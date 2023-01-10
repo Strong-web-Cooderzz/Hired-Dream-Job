@@ -4,6 +4,7 @@ const Hero = () => {
     return (
         <div>
             Hero
+            Arman Kan
         </div>
     );
 };
