@@ -1,9 +1,7 @@
-function Footer() {
+export default function Footer() {
   return (
     <footer>
-      2023
+      2023 &copy; Hired Dream Job
     </footer>
   );
 }
-
-export default Footer;
