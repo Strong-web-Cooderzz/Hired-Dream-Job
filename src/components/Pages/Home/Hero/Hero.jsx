@@ -3,8 +3,7 @@ import React from 'react';
 const Hero = () => {
     return (
         <div>
-            Hero
-            Arman Kan
+           This is Hero Section
         </div>
     );
 };
