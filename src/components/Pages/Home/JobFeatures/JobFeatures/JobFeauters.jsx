@@ -73,7 +73,7 @@ const JobFeauters = () => {
     ]
     return (
         <section className='mx-auto'>
-         <div className='text-center mb-4 mt-8 '>
+         <div className='text-center mb-4 mt-14 '>
          <h2 className='text-2xl font-semibold'> Featured Jobs </h2>
          <p className=''> Know your worth and find the job that qualify your life </p>
 
@@ -88,7 +88,7 @@ const JobFeauters = () => {
           </div>            
          
             <div className=' flex justify-center mt-8'>
-                <Link > <button className='btn-normal flex  items-center gap-2'> Load More Listing <FaArrowRight /> </button> </Link>
+                <Link > <button className='btn-normal flex  bg-blue-500 hover:bg-blue-400 items-center gap-2'> Load More Listing <FaArrowRight /> </button> </Link>
             </div>
         </section>
     );

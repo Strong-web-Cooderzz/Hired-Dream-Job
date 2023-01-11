@@ -24,11 +24,7 @@
 }
 .btn-normal{
   padding: 5px 20px ;
-  background-color: rgb(20, 20, 238);
   color: white;
   border-radius: 8px;
 
-}
-.btn-normal:hover{
-    background-color: rgb(13, 13, 112);
 }

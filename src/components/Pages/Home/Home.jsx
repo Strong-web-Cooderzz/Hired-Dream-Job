@@ -8,13 +8,9 @@ const Home = () => {
     return (
         <div>
             <Hero />
-<<<<<<< HEAD
-            <JobFeauters> </JobFeauters>
-=======
             <JobFeauters > </JobFeauters>
             <Articles></Articles>
-            <FeaturedCities />
->>>>>>> 06eb8bdf2becbf52e240e26a07c0cdc870701565
+            <FeaturedCities /> 
         </div>
     );
 };
