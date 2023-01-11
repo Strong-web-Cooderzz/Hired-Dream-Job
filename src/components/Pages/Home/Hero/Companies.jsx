@@ -20,6 +20,7 @@ export default function Companies() {
         pagination={{
           clickable: true,
         }}
+        //Responsive breakpoints
         breakpoints={{
           440: {
             slidesPerView: 4,
