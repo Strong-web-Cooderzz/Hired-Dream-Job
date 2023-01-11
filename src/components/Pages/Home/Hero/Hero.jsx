@@ -9,7 +9,7 @@ const Hero = () => {
     <div className="md:pl-20 lg:pl-24">
       <div className="w-full flex text-center sm:text-left  relative">
         <div className="lg:w-7/12 mx-8 z-10 flex items-center justify-center pt-24 sm:pt-56">
-          <div>
+          <div className="mb-2">
             {/* Title */}
             <h2 className="text-4xl font-bold">
               There Are <span className="text-[#1967d2]">93,178</span> <br />
