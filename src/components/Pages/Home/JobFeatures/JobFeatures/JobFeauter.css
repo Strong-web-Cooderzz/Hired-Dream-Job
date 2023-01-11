@@ -1,0 +1,33 @@
+/* job featured style sheet  */
+.job-card{
+    border: 1px solid rgb(233, 229, 229);
+}
+.job-feature-btn-left{
+    padding: 0px 20px ;
+    color: blue;
+    margin-top: 3px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 25px;
+
+}
+.job-feature-btn{
+    padding: 0px 18px ;
+    height: 25px;
+    border-radius: 20px;
+}
+.job-more-btn{
+    padding: 0px 18px ;
+    height: 25px;
+    border-radius: 20px;
+}
+.btn-normal{
+  padding: 5px 20px ;
+  background-color: rgb(20, 20, 238);
+  color: white;
+  border-radius: 8px;
+
+}
+.btn-normal:hover{
+    background-color: rgb(13, 13, 112);
+}
