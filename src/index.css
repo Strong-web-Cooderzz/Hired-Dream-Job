@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  
 @font-face {
   font-family: 'Jost';
   src: url('/fonts/Jost/Jost-Regular.ttf'),
     url('/fonts/Jost/Jost-Italic.ttf');
+}
 }
