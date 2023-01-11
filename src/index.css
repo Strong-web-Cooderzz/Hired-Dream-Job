@@ -1,9 +1,20 @@
 
+/* Google font - Poppins  */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap'); */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap');
-@layer utilities {
+/* @layer utilities {
     body{
         font-family:  'Poppins', sans-serif;;
+    }
+} */
+
+
+/* Google font - jost  */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,200;1,200&display=swap');
+
+@layer utilities {
+    body {
+        font-family: 'Jost', sans-serif;
     }
 }
 
