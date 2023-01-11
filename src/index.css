@@ -1,26 +1,10 @@
 
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  
-@font-face {
-  font-family: 'Jost';
-  src: url('/fonts/Jost/Jost-Regular.ttf'),
-    url('/fonts/Jost/Jost-Italic.ttf');
-}
 
-/* Google font - Poppins  */
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap'); */
-
-/* @layer utilities {
-    body{
-        font-family:  'Poppins', sans-serif;;
-    }
-} */
+ 
 
 
 /* Google font - jost  */
@@ -30,5 +14,4 @@
     body {
         font-family: 'Jost', sans-serif;
     }
-}
 }
