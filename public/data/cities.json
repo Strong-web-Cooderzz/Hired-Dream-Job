@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Paris",
+    "jobs": 20,
+    "image": "https://unsplash.com/photos/-UWtb-3v6jQ/download?w=640"
+  },
+  {
+    "id": 2,
+    "name": "London",
+    "jobs": 100,
+    "image": "https://unsplash.com/photos/Oja2ty_9ZLM/download?w=640"
+  },
+  {
+    "id": 3,
+    "name": "New York",
+    "jobs": 50,
+    "image": "https://unsplash.com/photos/wOj5odhDOZ0/download?w=640"
+  },
+  {
+    "id": 4,
+    "name": "Madrid",
+    "jobs": 80,
+    "image": "https://unsplash.com/photos/ChSZETOal-I/download?w=640"
+  },
+  {
+    "id": 5,
+    "name": "Miami",
+    "jobs": 40,
+    "image": "https://unsplash.com/photos/FQjUaIMQF3Q/download?w=640"
+  },
+  {
+    "id": 6,
+    "name": "Los Angeles",
+    "jobs": 30,
+    "image": "https://unsplash.com/photos/UZVlSjrIJ3o/download?w=640"
+  }
+]
