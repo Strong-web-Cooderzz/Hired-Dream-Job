@@ -1,15 +1,15 @@
-import React from 'react'
-import softIt from '../../../../../JobFeaturesCompanyLogo/softIt.png'
-import Figma from '../../../../../JobFeaturesCompanyLogo/figma.png'
-import marketing from '../../../../../JobFeaturesCompanyLogo/marketing.png'
-import android from '../../../../../JobFeaturesCompanyLogo/android-soft.png'
-import linkedin from '../../../../../JobFeaturesCompanyLogo/linkedin.png'
-import skype from '../../../../../JobFeaturesCompanyLogo/skype.png'
-import tech from '../../../../../JobFeaturesCompanyLogo/tech.png'
-import upwork from '../../../../../JobFeaturesCompanyLogo/upwork.png' 
-import JobFeaturedCard from './JobFeaturedCard'
-import { Link } from 'react-router-dom'
-import { FaArrowRight } from 'react-icons/fa'
+import React from 'react';
+import softIt from '../../../../../assets/logos/softIt.png';
+import figma from '../../../../../assets/logos/figma.png';
+import marketing from '../../../../../assets/logos/marketing.png';
+import android from '../../../../../assets/logos/android-soft.png';
+import linkedin from '../../../../../assets/logos/linkedin.png';
+import skype from '../../../../../assets/logos/skype.png';
+import tech from '../../../../../assets/logos/tech.png';
+import upwork from '../../../../../assets/logos/upwork.png';
+import JobFeaturedCard from './JobFeaturedCard';
+import { Link } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 
 const JobFeauters = () => {
 
@@ -25,7 +25,7 @@ const JobFeauters = () => {
             "company":"UI-Master",
             "title":" Figma UI/UX Designer  ",
             "location":"Dhaka, BD",
-             "logo":  Figma 
+             "logo":  figma 
         },
         {
             "id": 3,
