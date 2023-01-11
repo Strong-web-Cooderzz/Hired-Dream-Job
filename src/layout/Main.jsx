@@ -6,14 +6,14 @@ import Footer from '../components/shared/Footer/Footer';
 import Navbar from '../components/shared/Navbar/Navbar';
 
 const Main = () => {
-    return (
-        <div>
-          <Navbar />
-            <Home />
-            <Testimonial/>
-          <Footer />
-        </div>
-    );
+	return (
+		<>
+		<Navbar />
+		<Home />
+		<Testimonial/>
+		<Footer />
+		</>
+	);
 };
 
 export default Main;
