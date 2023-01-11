@@ -24,15 +24,15 @@ const Hero = () => {
             <div>
               <div>
                 {/* Search Form */}
-                <form className="flex items-center bg-white md:w-full border-2 rounded-full">
-                  <div className="relative ">
+                <form className="sm:flex  items-center sm:border-for-form  border-none bg-white md:w-full rounded-full">
+                  <div className="relative">
                     <span className="absolute left-2 top-5 ">
                       <FiSearch className="text-md" />
                     </span>
                     {/* Input for keyword or title */}
                     <input
                       placeholder="Job title, keywords, or company"
-                      className=" outline-none md:px-8 rounded-full text-sm py-4"
+                      className="border-2 sm:border-none px-8 mb-2 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
                       type="text"
                     />
                   </div>
@@ -43,7 +43,7 @@ const Hero = () => {
                     {/* Input for city or post code */}
                     <input
                       placeholder="City or postcode"
-                      className=" outline-none px-8 text-sm border-l-2 py-4"
+                      className=" outline-none px-8 w-full sm:w-auto text-sm border-2 sm:border-none rounded-full py-4"
                       type="text"
                     />
                   </div>
