@@ -18,7 +18,7 @@ export default function Footer() {
         </address>
 
         {/* links */}
-        <div className="pl-6 flex flex-col gap-16 shadow-md py-10">
+        <div className="pl-6 flex flex-col gap-16 shadow-md py-10 md:flex-row md:gap-16">
           <div className="flex flex-col gap-8">
             <span className="font-4xl font-bold text-gray-900">For Candidates</span>
             <ul className="text-sm flex flex-col gap-4">
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
       </div>
       {/* social icons and copyright */}
-      <div className="flex items-center flex-col gap-6 py-8 text-gray-600">
+      <div className="flex items-center flex-col gap-6 py-8 text-gray-600 md:flex-row-reverse md:justify-between md:px-6 md:py-12">
         <div className="flex gap-6">
           <span><FaFacebookF /></span>
           <span><FaTwitter /></span>
@@ -73,7 +73,7 @@ export default function Footer() {
         </span>
       </div>
       {/* button to scroll to top */}
-      <span onClick={moveToTop} className="cursor-pointer font-black font-2xl text-blue-700 fixed bottom-6 right-6 bg-blue-200 p-3 rounded-full"><IoIosArrowUp /></span>
+      <span onClick={moveToTop} className="cursor-pointer font-black font-2xl text-blue-700 fixed bottom-6 right-6 md:bottom-12 md:right-12 bg-blue-200 p-3 rounded-full"><IoIosArrowUp /></span>
     </footer>
   );
 }
