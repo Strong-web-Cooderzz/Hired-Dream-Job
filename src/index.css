@@ -1,4 +1,12 @@
 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,200&display=swap');
+@layer utilities {
+    body{
+        font-family:  'Poppins', sans-serif;;
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
