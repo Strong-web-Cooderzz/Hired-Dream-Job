@@ -22,8 +22,12 @@ export default function Companies() {
         }}
         //Responsive breakpoints
         breakpoints={{
-          440: {
-            slidesPerView: 4,
+          340: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          540: {
+            slidesPerView: 3,
             spaceBetween: 20,
           },
           768: {
