@@ -1,11 +1,12 @@
 import React from 'react';
+import Articles from './Articles/Articles';
 import Hero from './Hero/Hero';
 
 const Home = () => {
     return (
         <div>
             <Hero />
-            <h2>Home</h2>
+            <Articles></Articles>
         </div>
     );
 };
