@@ -31,4 +31,7 @@
         font-family: 'Jost', sans-serif;
     }
 }
+.border-for-form{
+    border: 1px solid #ddd;
+}
 }
