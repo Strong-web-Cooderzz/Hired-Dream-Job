@@ -1,6 +1,7 @@
 /* job featured style sheet  */
 .job-card{
     border: 1px solid rgb(233, 229, 229);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .job-feature-btn-left{
     padding: 0px 20px ;
