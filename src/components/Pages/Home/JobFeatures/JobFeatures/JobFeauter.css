@@ -1,6 +1,11 @@
 /* job featured style sheet  */
 .job-card{
     border: 1px solid rgb(233, 229, 229);
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    transition: all .3s ease-in-out; 
+}
+.job-card:hover{
+    transform: translateY(-20px) ;
 }
 .job-feature-btn-left{
     padding: 0px 20px ;
