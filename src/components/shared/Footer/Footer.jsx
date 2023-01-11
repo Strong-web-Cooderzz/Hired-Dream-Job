@@ -1,5 +1,6 @@
 import { IoIosArrowUp } from 'react-icons/io';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import logo from '../../../assets/logo.svg';
 
 export default function Footer() {
   const moveToTop = () => {
@@ -11,14 +12,20 @@ export default function Footer() {
 
   return (
     <footer className="text-gray-600">
-      {/* links and logo */}
-      <div>
-        <address>
-          329 Whatever Street, Dhaka 2000, Bangladesh
-        </address>
-
+      <div className="md:flex md:justify-between md:px-12 border-solid border-2 border-gray-100 border-l-0 border-t-0 border-r-0">
+        {/* logo, phone and address */}
+        <div className="flex flex-col gap-4">
+          <img src={logo} alt="Hired Dream Job" width="100px" />
+          <div className="flex flex-col gap-2">
+            <span className="text-lg font-bold">Call us at</span>
+            <a href="tel:+8801234567890" className="text-blue-600">+880123456789</a>
+          </div>
+          <address>
+            329 Whatever Street, Dhaka 2000, Bangladesh
+          </address>
+        </div>
         {/* links */}
-        <div className="pl-6 flex flex-col gap-16 shadow-md py-10 md:flex-row md:gap-16">
+        <div className="pl-6 flex flex-col gap-16 py-10 md:flex-row md:gap-28 md:pl-0">
           <div className="flex flex-col gap-8">
             <span className="font-4xl font-bold text-gray-900">For Candidates</span>
             <ul className="text-sm flex flex-col gap-4">
