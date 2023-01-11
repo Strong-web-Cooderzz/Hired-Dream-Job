@@ -32,7 +32,7 @@ const Hero = () => {
                     {/* Input for keyword or title */}
                     <input
                       placeholder="Job title, keywords, or company"
-                      className="border-2 sm:border-none px-8 mb-2 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
+                      className="border-2 sm:border-none px-8 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
                       type="text"
                     />
                   </div>
