@@ -73,7 +73,7 @@ const JobFeauters = () => {
     ]
     return (
         <section className='mx-auto'>
-         <div className='text-center mb-4 '>
+         <div className='text-center mb-4 mt-8 '>
          <h2 className='text-2xl font-semibold'> Featured Jobs </h2>
          <p className=''> Know your worth and find the job that qualify your life </p>
 
