@@ -79,7 +79,7 @@ const JobFeauters = () => {
 
          </div>
          {/*  job featured card section   */}
-          <div className=' grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8'>
+          <div className=' mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8'>
         
            {
           jobFeaturesData.map(data => <JobFeaturedCard key={data.id} data={data} > 
