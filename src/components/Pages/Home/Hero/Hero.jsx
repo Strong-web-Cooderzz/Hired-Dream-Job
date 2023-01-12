@@ -7,7 +7,7 @@ import Companies from "./Companies";
 const Hero = () => {
   return (
     <div className="md:pl-20 overflow-hidden lg:pl-24">
-      <div className="w-full sm:flex text-center sm:text-left  relative">
+      <div className="w-full sm:flex text-white sm:text-black text-center sm:text-left  relative">
         <div className="lg:w-7/12 mx-8 z-10 flex items-center justify-center pt-24 sm:pt-56">
           <div className="mb-2">
             {/* Title */}
