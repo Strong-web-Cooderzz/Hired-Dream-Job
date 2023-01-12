@@ -79,7 +79,7 @@ const JobFeauters = () => {
 
          </div>
          {/*  job featured card section   */}
-          <div className=' grid md:grid-cols-2 lg:grid-cols-4 gap-x-6  gap-y-8'>
+          <div className=' mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-6  gap-y-8'>
         
            {
           jobFeaturesData.map(data => <JobFeaturedCard key={data.id} data={data} > 
@@ -88,7 +88,7 @@ const JobFeauters = () => {
           </div>            
          
             <div className=' flex justify-center mt-8'>
-                <Link > <button className='btn-normal flex  items-center gap-2'> Load More Listing <FaArrowRight /> </button> </Link>
+                <Link > <button className='btn-normal bg-blue-500 hover:bg-blue-700 flex  items-center gap-2 '> Load More Listing <FaArrowRight /> </button> </Link>
             </div>
         </section>
     );

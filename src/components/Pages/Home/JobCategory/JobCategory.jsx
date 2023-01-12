@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCoins, FaHandHoldingUsd, FaHandshakeAltSlash, FaHandsHelping, FaLaptopCode } from "react-icons/fa";
+import { FaCogs, FaHandHoldingUsd, FaHandsHelping, FaLaptopCode  } from "react-icons/fa";
 import { GoMegaphone } from "react-icons/go";
 import { MdOutlineDesignServices, MdPersonSearch } from "react-icons/md";
 import { RxRocket } from "react-icons/rx";
@@ -10,7 +10,7 @@ const JobCategory = () => {
   const category = [
     {
       Name: "Accounting / Finance",
-      icon: <FaCoins className="text-4xl text-blue-500 child2 duration-1000" />,
+      icon: <FaHandHoldingUsd className="text-4xl text-blue-500 child2 duration-1000" />,
       Positions: 2,
     },
     {
@@ -63,7 +63,7 @@ const JobCategory = () => {
     {
       Name: "Project Management",
       icon: (
-        <FaHandsHelping className="text-4xl text-blue-500 child2 duration-1000" />
+        <FaCogs className="text-4xl text-blue-500 child2 duration-1000" />
       ),
       Positions: 92,
     },
