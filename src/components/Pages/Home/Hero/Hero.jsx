@@ -6,8 +6,8 @@ import Companies from "./Companies";
 
 const Hero = () => {
   return (
-    <div className="md:pl-20 lg:pl-24">
-      <div className="w-full flex text-center sm:text-left  relative">
+    <div className="md:pl-20 overflow-hidden lg:pl-24">
+      <div className="w-full sm:flex text-center sm:text-left  relative">
         <div className="lg:w-7/12 mx-8 z-10 flex items-center justify-center pt-24 sm:pt-56">
           <div className="mb-2">
             {/* Title */}
@@ -57,7 +57,7 @@ const Hero = () => {
         </div>
         <div className=" w-full">
             {/* Right side image */}
-            <div className="sm:w-[800px] w-full h-[400px] bg-blue-500 -z-10 sm:h-[800px] rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
+            <div className="sm:w-[800px] w-full h-[400px] bg-blue-500 -z-10 sm:h-[800px] sm:rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
  <img
             src={heroImg}
             className="w-full h-full opacity-40"

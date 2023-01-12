@@ -12,7 +12,7 @@ const Testimonial = ({TestimonialData}) => {
                 </svg>
                 <p class="leading-relaxed mb-6">{TestimonialData.description}</p>
                 <a class="inline-flex items-center">
-                  <img alt="testimonial" src={TestimonialData.image} class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"/>
+                  <img alt="testimonial" src={TestimonialData.image} className="!w-12 !h-12 rounded-full flex-shrink-0  object-center"/>
                   <span class="flex-grow flex flex-col pl-4">
                     <span class="title-font font-medium text-gray-900">{TestimonialData.name}</span>
                     <span class="text-gray-500 text-sm">{TestimonialData.designation}</span>
