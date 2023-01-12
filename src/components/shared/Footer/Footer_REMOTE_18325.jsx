@@ -1,17 +1,8 @@
 import { IoIosArrowUp } from 'react-icons/io';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import logo from '../../../assets/logo.svg';
-import { useEffect, useState } from 'react';
 
 export default function Footer() {
-  const [height, setHeight] = useState(window.scrollY);
-
-  useEffect(() => {
-    window.onscroll = () => {
-      setHeight(window.scrollY);
-    }
-  }, []);
-
   const moveToTop = () => {
     window.scroll({
       top: 0,
@@ -81,7 +72,7 @@ export default function Footer() {
         </div>
       </div>
       {/* social icons and copyright */}
-      <div className="flex items-center flex-col gap-6 py-8 text-gray-600 md:flex-row-reverse md:justify-between md:px-12 md:py-12">
+      <div className="flex items-center flex-col gap-6 py-8 text-gray-600 md:flex-row-reverse md:justify-between md:px-6 md:py-12">
         <div className="flex gap-6">
           <span><FaFacebookF /></span>
           <span><FaTwitter /></span>
@@ -93,7 +84,7 @@ export default function Footer() {
         </span>
       </div>
       {/* button to scroll to top */}
-      <span onClick={moveToTop} className={`${height > 100 ? '' : 'hidden'} cursor-pointer font-black font-2xl text-blue-700 fixed bottom-6 right-6 md:bottom-16 md:right-16 bg-blue-200 p-3 rounded-full z-10`}><IoIosArrowUp /></span>
+      <span onClick={moveToTop} className="cursor-pointer font-black font-2xl text-blue-700 fixed bottom-6 right-6 md:bottom-12 md:right-12 bg-blue-200 p-3 rounded-full"><IoIosArrowUp /></span>
     </footer>
   );
 }

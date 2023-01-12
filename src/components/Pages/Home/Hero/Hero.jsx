@@ -1,22 +1,22 @@
 import React from "react";
-import heroImg from "../../../../assets/hero2.png";
+import heroImg from "../../../../assets/Hero/hero5.jpg";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
 
 const Hero = () => {
   return (
-    <div className="md:pl-20 lg:pl-24">
-      <div className="w-full flex text-center sm:text-left  relative">
-        <div className="lg:w-7/12 mx-8 z-10 flex items-center justify-center pt-24 sm:pt-56">
-          <div>
+    <div className="md:pl-20 overflow-hidden lg:pl-24">
+      <div className="w-full sm:flex text-white sm:text-black text-center sm:text-left  relative">
+        <div className="lg:w-7/12 mx-8 z-10 flex items-center justify-center pt-4 sm:pt-56">
+          <div className="mb-2">
             {/* Title */}
-            <h2 className="text-4xl font-bold">
-              There Are <span className="text-[#1967d2]">93,178</span> <br />
+            <h2 className="lg:text-4xl md:text-3xl sm:text-3xl text-3xl font-bold">
+              There Are <span className="sm:text-[#1967d2] text-blue-200">93,178</span> <br />
               Postings Here For you!
             </h2>
             {/* Small title */}
-            <p className="py-6 text-sm">
+            <p className="lg:py-6 md:py-4 py-3 text-sm">
               Postings Here For you! Find Jobs, Employment & Career
               Opportunities
             </p>
@@ -24,7 +24,7 @@ const Hero = () => {
             <div>
               <div>
                 {/* Search Form */}
-                <form className="sm:flex  items-center sm:border-for-form  border-none bg-white md:w-full rounded-full">
+                <form className="sm:flex  items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
                   <div className="relative">
                     <span className="absolute left-2 top-5 ">
                       <FiSearch className="text-md" />
@@ -32,22 +32,22 @@ const Hero = () => {
                     {/* Input for keyword or title */}
                     <input
                       placeholder="Job title, keywords, or company"
-                      className="border-2 sm:border-none px-8 mb-2 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
+                      className="border-2 text-black sm:border-none px-8 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
                       type="text"
                     />
                   </div>
-                  <div className="relative ">
+                  <div className="relative lg:mt-0 md:mt-0 mt-5 ">
                     <span className="absolute left-2 top-5 ">
                       <GoLocation className="text-md" />
                     </span>
                     {/* Input for city or post code */}
                     <input
                       placeholder="City or postcode"
-                      className=" outline-none px-8 w-full sm:w-auto text-sm border-2 sm:border-none rounded-full py-4"
+                      className="  outline-none px-8 text-black w-full sm:w-auto text-sm border-2 sm:border-none rounded-full py-4"
                       type="text"
                     />
                   </div>
-                  <button className="bg-blue-500 hover:bg-blue-400 h-12 my-1 mr-1 text-white w-28 rounded-full px-4 py-2">
+                  <button className="bg-blue-500 lg:mt-0 md:mt-0 mt-4 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 my-1 mr-1 text-white  rounded-full px-4 py-2">
                     Find jobs
                   </button>
                 </form>
@@ -55,13 +55,16 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="hidden sm:block w-full">
+        <div className=" w-full">
             {/* Right side image */}
-          <img
+            <div className="sm:w-[800px] w-full h-[400px] bg-blue-700  -z-10 sm:h-[800px] sm:rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
+ <img
             src={heroImg}
-            className="w-full left-40 sm:left-auto sm:w-[65%] absolute top-0 sm:right-0"
+            className="w-full h-full opacity-40"
             alt=""
           />
+            </div>
+         
         </div>
        
       </div>

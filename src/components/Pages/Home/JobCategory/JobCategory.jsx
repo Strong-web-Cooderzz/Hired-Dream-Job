@@ -70,20 +70,20 @@ const JobCategory = () => {
   ];
   return (
     <>
-      <section className="max-w-7xl mx-auto py-20 px-4">
+      <section className="w-full  mx-auto py-20 px-5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-semibold">Popular Job Categories</h2>
           <p className="text-md text-[#b3b3b3]">9 Categories are available</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-14">
           {category.map(({ Name, icon, Positions }) => (
-            <div className="flex justify-start items-center gap-5 cursor-pointer parent border border-cyan-400/30 p-5 rounded-lg">
+            <div className="flex justify-start hover:bg-blue-100 items-center gap-5 cursor-pointer parent border border-cyan-400/30 p-5 rounded-lg">
               <div className="p-4 bg-black/5 rounded-lg child duration-1000">
                 <span>{icon}</span>
               </div>
               <div>
                 <p className="text-xl font-semibold">{Name}</p>
-                <p className="text-sm text-[#b3b3b3]">
+                <p className="text-sm text-gray-400">
                   ({Positions} open positions)
                 </p>
               </div>
