@@ -8,7 +8,7 @@ const JobFeaturedCard = ({data}) => {
     console.log(data)
     const {company,location,logo,title} = data ;
     return (
-        <div className='job-card w-11/12  mx-auto  py-2'>
+        <div className='job-card w-full  mx-auto  py-2 '>
             <div className=''>
               <div className='flex justify-between'>
                  <button className='job-feature-btn-left bg-zinc-200 ' > Internship </button>
