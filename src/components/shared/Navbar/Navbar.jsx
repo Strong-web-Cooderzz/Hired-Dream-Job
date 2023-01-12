@@ -1,5 +1,6 @@
 import { useState } from "react";
-import logo from "../../../assets/logo-ts.svg";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.svg";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -9,9 +10,9 @@ export default function Navbar() {
       <div className="justify-between px-4 md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="#">
+            <Link to="/">
               <img src={logo} alt="" className="w-12" />
-            </a>
+            </Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -50,7 +51,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        <div >
+        <div>
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 transition-all ${
               navbar ? "block" : "hidden"
@@ -58,23 +59,23 @@ export default function Navbar() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0  duration-1000">
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#">Find Jobs</a>
+                <Link to="/">Find Jobs</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#">Employers</a>
+                <Link to="/">Employers</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#">Candidates</a>
+                <Link to="/">Candidates</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <a href="#">Blog</a>
+                <Link to="/">Blog</Link>
               </li>
               <li className="text-white">
                 <button className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600">
-                  <a href="#">LogIn</a>
+                  <Link to="/login">LogIn</Link>
                 </button>
               </li>
             </ul>
