@@ -12,7 +12,7 @@ const Hero = () => {
           <div className="mb-2">
             {/* Title */}
             <h2 className="text-4xl font-bold">
-              There Are <span className="text-[#1967d2]">93,178</span> <br />
+              There Are <span className="sm:text-[#1967d2] text-blue-200">93,178</span> <br />
               Postings Here For you!
             </h2>
             {/* Small title */}
