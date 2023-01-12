@@ -24,7 +24,7 @@ const Hero = () => {
             <div>
               <div>
                 {/* Search Form */}
-                <form className="sm:flex  items-center sm:border-for-form  border-none sm:bg-white md:w-full rounded-full">
+                <form className="sm:flex  items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
                   <div className="relative">
                     <span className="absolute left-2 top-5 ">
                       <FiSearch className="text-md" />
