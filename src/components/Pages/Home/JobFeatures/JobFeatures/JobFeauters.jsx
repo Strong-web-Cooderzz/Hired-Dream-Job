@@ -72,14 +72,14 @@ const JobFeauters = () => {
 
     ]
     return (
-        <section className='mx-auto'>
+        <section className='mx-auto md:px-12'>
          <div className='text-center mb-4 '>
          <h2 className='text-3xl  font-semibold'> Featured Jobs </h2>
          <p className=''> Know your worth and find the job that qualify your life </p>
 
          </div>
          {/*  job featured card section   */}
-          <div className=' grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8'>
+          <div className=' grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 max-w-screen-2xl 2xl:mx-auto'>
         
            {
           jobFeaturesData.map(data => <JobFeaturedCard key={data.id} data={data} > 
