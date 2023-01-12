@@ -4,6 +4,8 @@ import Articles from "./Articles/Articles";
 import Hero from "./Hero/Hero";
 import JobFeauters from "./JobFeatures/JobFeatures/JobFeauters";
 import JobCategory from "./JobCategory/JobCategory";
+import Testimonial from "../Testimonial/Testimonial";
+import Testimonials from "../Testimonial/Testimonials";
 
 const Home = () => {
   return (
@@ -13,6 +15,7 @@ const Home = () => {
       <JobFeauters> </JobFeauters>
       <Articles></Articles>
       <FeaturedCities />
+      <Testimonials />
     </div>
   );
 };
