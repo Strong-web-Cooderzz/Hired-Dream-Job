@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { IoIosArrowUp } from 'react-icons/io';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import logo from '../../../assets/logo.svg';
@@ -88,3 +89,14 @@ export default function Footer() {
     </footer>
   );
 }
+=======
+function Footer() {
+  return (
+    <footer>
+      2023
+    </footer>
+  );
+}
+
+export default Footer;
+>>>>>>> 72367bb (changed footer)
