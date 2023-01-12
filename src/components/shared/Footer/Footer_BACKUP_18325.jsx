@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+export default function Footer() {
+  return (
+    <footer>
+      2023 &copy; Hired Dream Job
+=======
 import { IoIosArrowUp } from 'react-icons/io';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import logo from '../../../assets/logo.svg';
@@ -85,6 +91,7 @@ export default function Footer() {
       </div>
       {/* button to scroll to top */}
       <span onClick={moveToTop} className="cursor-pointer font-black font-2xl text-blue-700 fixed bottom-6 right-6 md:bottom-12 md:right-12 bg-blue-200 p-3 rounded-full"><IoIosArrowUp /></span>
+>>>>>>> footer-abid
     </footer>
   );
 }
