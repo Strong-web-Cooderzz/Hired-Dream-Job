@@ -1,5 +1,5 @@
 import React from "react";
-import heroImg from "../../../../assets/hero2.png";
+import heroImg from "../../../../assets/heor4.jpg";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
@@ -24,7 +24,7 @@ const Hero = () => {
             <div>
               <div>
                 {/* Search Form */}
-                <form className="sm:flex  items-center sm:border-for-form  border-none bg-white md:w-full rounded-full">
+                <form className="sm:flex  items-center sm:border-for-form  border-none sm:bg-white md:w-full rounded-full">
                   <div className="relative">
                     <span className="absolute left-2 top-5 ">
                       <FiSearch className="text-md" />
@@ -55,13 +55,16 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="hidden sm:block w-full">
+        <div className=" w-full">
             {/* Right side image */}
-          <img
+            <div className="sm:w-[800px] w-full h-[400px] bg-blue-500 -z-10 sm:h-[800px] rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
+ <img
             src={heroImg}
-            className="w-full left-40 sm:left-auto sm:w-[65%] absolute top-0 sm:right-0"
+            className="w-full h-full opacity-40"
             alt=""
           />
+            </div>
+         
         </div>
        
       </div>
