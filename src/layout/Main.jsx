@@ -12,6 +12,6 @@ const Main = () => {
 		<Outlet />
 		<Footer />
 		</>
-};
-
+	)
+	}
 export default Main;
