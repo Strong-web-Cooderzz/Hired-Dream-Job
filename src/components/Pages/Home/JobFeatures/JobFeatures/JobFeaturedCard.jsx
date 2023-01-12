@@ -17,7 +17,7 @@ const JobFeaturedCard = ({data}) => {
               <button className='job-feature-btn-left bg-orange-100 text-orange-500 mt-2'>  Part time </button>
             </div>
          <div className='flex justify-center relative -mt-6'>
-         <img className='w-16 h-16 rounded-full ml-3' src={logo}  alt='' />
+         <img className='w-16 h-16 rounded-full ml-4 ' src={logo}  alt='' />
          </div>
             
             <div className='text-center mt-4 mb-6'>

@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom';
+import {  FaArrowRight } from "react-icons/fa";
+
+
 const Articles = () => {
   return (
-    <div className="px-4 mt-10  w-full  mx-auto">
-      <h2 className="text-2xl font-bold text-center">Recent News Articles</h2>
-      <p className="text-center  mb-4">Fresh job related news content posted each day.</p>
+    <div className="px-4 mt-10  w-full mb-6  mx-auto">
+      <h2 className="text-3xl font-semibold text-center">Recent News Articles</h2>
+      <p className="text-center mt-2 mb-4">Fresh job related news content posted each day.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
 
@@ -74,7 +78,11 @@ const Articles = () => {
           </div>
         </div>
         {/* <!-- card 3 end --> */}
+        
      </div>
+    <div className='mt-4 flex justify-center'>
+    <button className=' bg-blue-500 hover:bg-blue-700 btn-normal  text-white  flex items-center gap-3  ' > Load more articles <FaArrowRight className='text-white ' />   </button>
+    </div>
     </div>
   );
 };
