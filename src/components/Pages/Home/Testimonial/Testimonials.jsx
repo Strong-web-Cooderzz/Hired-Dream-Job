@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
-import { Navigation, Mousewheel, Keyboard } from "swiper";
+import { Keyboard, Mousewheel, Navigation } from "swiper";
 import Testimonial from "./Testimonial";
 
 const ArrOfTestimonials = [
@@ -75,12 +75,12 @@ const ArrOfTestimonials = [
 const Testimonials = () => {
   return (
     <div>
-      <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-          <h1 class="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 py-24 mx-auto">
+          <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
             Testimonials
           </h1>
-          <div class="flex flex-wrap -m-4">
+          <div className="flex flex-wrap -m-4">
             <Swiper
               slidesPerView={2}
               spaceBetween={30}
