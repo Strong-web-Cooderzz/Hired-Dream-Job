@@ -98,7 +98,7 @@ export default function Navbar() {
                         <img
                           src={user?.photoURL}
                           alt=""
-                          className="rounded-full w-12 h-6"
+                          className="rounded-full w-12 h-11"
                         />
                       ) : (
                         <FaUserCircle className="text-black text-xl" />
