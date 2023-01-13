@@ -60,7 +60,7 @@ const Hero = () => {
             <div className="sm:w-[800px] w-full h-[400px] bg-blue-700  -z-10 sm:h-[800px] sm:rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
  <img
             src={heroImg}
-            className="w-full h-full opacity-40"
+            className="w-full h-full opacity-40 object-cover"
             alt=""
           />
             </div>

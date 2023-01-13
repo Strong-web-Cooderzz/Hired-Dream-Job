@@ -4,7 +4,7 @@ import {  FaArrowRight } from "react-icons/fa";
 
 const Articles = () => {
   return (
-    <div className="px-4 mt-10  w-full mb-6  mx-auto">
+    <div className="px-4 mt-10  w-full mb-8  mx-auto">
       <h2 className="text-3xl font-semibold text-center">Recent News Articles</h2>
       <p className="text-center mt-2 mb-4">Fresh job related news content posted each day.</p>
 
