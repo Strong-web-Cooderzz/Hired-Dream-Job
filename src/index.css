@@ -1,133 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,200;1,200&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Black.ttf');
-    font-weight: 900;
-    font-style: normal;
+  body {
+    font-family: 'Jost', sans-serif;
   }
+}
 
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-BlackItalic.ttf');
-    font-weight: 900;
-    font-style: italic;
-  }
 
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-BoldItalic.ttf');
-    font-weight: 700;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Bold.ttf');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-ExtraBoldItalic.ttf');
-    font-weight: 800;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-ExtraBold.ttf');
-    font-weight: 800;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-ExtraLightItalic.ttf');
-    font-weight: 200;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-ExtraLight.ttf');
-    font-weight: 200;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Italic.ttf');
-    font-weight: 400;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-LightItalic.ttf');
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-MediumItalic.ttf');
-    font-weight: 500;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Medium.ttf');
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Regular.ttf');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-SemiBoldItalic.ttf');
-    font-weight: 600;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-SemiBold.ttf');
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-ThinItalic.ttf');
-    font-weight: 100;
-    font-style: italic;
-  }
-
-  @font-face {
-    font-family: 'Jost';
-    src: url('/fonts/Jost/Jost-Thin.ttf');
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  /* Google font - jost  */
-  /*  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,200;1,200&display=swap'); */
-
-  @layer utilities {
-    body {
-      font-family: 'Jost', sans-serif;
-    }
-  }
+#sortbox:checked~#sortboxmenu {
+  opacity: 1;
 }

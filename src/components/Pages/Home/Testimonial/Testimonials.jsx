@@ -90,8 +90,8 @@ const Testimonials = () => {
               modules={[Navigation, Mousewheel, Keyboard]}
               className="mySwiper"
             >
-              {ArrOfTestimonials.map((TestimonialData) => (
-                <SwiperSlide>
+              {ArrOfTestimonials.map((TestimonialData, index) => (
+                <SwiperSlide key={index}>
                   <Testimonial
                     key={TestimonialData.id}
                     TestimonialData={TestimonialData}
