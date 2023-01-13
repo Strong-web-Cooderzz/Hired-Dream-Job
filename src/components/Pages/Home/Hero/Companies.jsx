@@ -22,8 +22,12 @@ export default function Companies() {
         }}
         //Responsive breakpoints
         breakpoints={{
-          440: {
-            slidesPerView: 4,
+          340: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          540: {
+            slidesPerView: 3,
             spaceBetween: 20,
           },
           768: {
@@ -38,6 +42,7 @@ export default function Companies() {
         modules={[Pagination]}
         className="mySwiper"
       >
+        
         <SwiperSlide>
             <img src="https://superio-next.vercel.app/images/clients/1-4.png" alt="" />
         </SwiperSlide>
