@@ -27,7 +27,7 @@ export default function FeaturedCities() {
     <>
       <div className="my-6 text-center">
         <p className="font-bold text-3xl">Featured Cities</p>
-        <p>Lorem Ipsum Whatever</p>
+        <p>Get all of the job informations from our the top cities</p>
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-6 place-content-center max-w-screen-2xl 2xl:mx-auto md:px-12 gap-8">
         {
