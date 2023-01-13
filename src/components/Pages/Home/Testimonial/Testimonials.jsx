@@ -77,17 +77,41 @@ const Testimonials = () => {
     <div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
+          <h1 className="text-3xl font-semibold  text-gray-900  text-center">
             Testimonials
           </h1>
-          <div className="flex flex-wrap -m-4">
+          <h4 className="text-black text-center mt-2"> See now  What's  our client say </h4>
+          <div className="flex flex-wrap -m-4 mt-6">
             <Swiper
-              slidesPerView={2}
+              slidesPerView={1}
               spaceBetween={30}
               navigation={true}
               mousewheel={true}
               keyboard={true}
               modules={[Navigation, Mousewheel, Keyboard]}
+               //Responsive breakpoints
+        breakpoints={{
+          340: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          540: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1400: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }}
               className="mySwiper"
             >
               {ArrOfTestimonials.map((TestimonialData, index) => (

@@ -42,6 +42,7 @@ export default function Companies() {
         modules={[Pagination]}
         className="mySwiper"
       >
+        
         <SwiperSlide>
             <img src="https://superio-next.vercel.app/images/clients/1-4.png" alt="" />
         </SwiperSlide>
