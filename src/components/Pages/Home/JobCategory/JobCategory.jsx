@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCoins, FaLaptopCode } from "react-icons/fa";
+import { FaCogs, FaHandHoldingUsd, FaHandsHelping, FaLaptopCode  } from "react-icons/fa";
 import { GoMegaphone } from "react-icons/go";
 import { MdOutlineDesignServices, MdPersonSearch } from "react-icons/md";
 import { RxRocket } from "react-icons/rx";
@@ -10,7 +10,7 @@ const JobCategory = () => {
   const category = [
     {
       Name: "Accounting / Finance",
-      icon: <FaCoins className="text-4xl text-blue-500 child2 duration-1000" />,
+      icon: <FaHandHoldingUsd className="text-4xl text-blue-500 child2 duration-1000" />,
       Positions: 2,
     },
     {
@@ -50,7 +50,7 @@ const JobCategory = () => {
     },
     {
       Name: "Customer Service",
-      icon: <FaCoins className="text-4xl text-blue-500 child2 duration-1000" />,
+      icon: <FaHandsHelping className="text-4xl text-blue-500 child2 duration-1000" />,
       Positions: 2,
     },
     {
@@ -63,14 +63,14 @@ const JobCategory = () => {
     {
       Name: "Project Management",
       icon: (
-        <AiFillCar className="text-4xl text-blue-500 child2 duration-1000" />
+        <FaCogs className="text-4xl text-blue-500 child2 duration-1000" />
       ),
       Positions: 92,
     },
   ];
   return (
     <>
-      <section className="max-w-7xl mx-auto py-20 px-4">
+      <section className="w-full  mx-auto py-20 px-5">
         <div className="text-center space-y-4">
           <h2 className="text-3xl font-semibold">Popular Job Categories</h2>
           <p className="text-md text-[#b3b3b3]">9 Categories are available</p>

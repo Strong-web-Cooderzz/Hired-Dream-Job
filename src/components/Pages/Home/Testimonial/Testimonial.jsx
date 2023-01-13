@@ -3,7 +3,7 @@ import React from "react";
 const Testimonial = ({ TestimonialData }) => {
   return (
     <>
-      <div className="p-4 w-full">
+      <div className=" w-full overflow-hidden" >
         <div className="h-full bg-gray-100 p-8 rounded">
           <svg
             xmlns="http://www.w3.org/2000/svg"

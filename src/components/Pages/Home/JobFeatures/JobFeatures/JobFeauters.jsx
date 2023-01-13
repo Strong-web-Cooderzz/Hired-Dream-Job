@@ -72,14 +72,14 @@ const JobFeauters = () => {
 
     ]
     return (
-        <section className='mx-auto md:px-12'>
+        <section className='mx-auto w-full px-5 '>
          <div className='text-center mb-4 '>
          <h2 className='text-3xl  font-semibold'> Featured Jobs </h2>
          <p className=''> Know your worth and find the job that qualify your life </p>
 
          </div>
          {/*  job featured card section   */}
-          <div className=' grid md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 max-w-screen-2xl 2xl:mx-auto'>
+          <div className=' mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-6  gap-y-8'>
         
            {
           jobFeaturesData.map(data => <JobFeaturedCard key={data.id} data={data} > 
@@ -88,7 +88,7 @@ const JobFeauters = () => {
           </div>            
          
             <div className=' flex justify-center mt-8'>
-                <Link > <button className='btn-normal flex  items-center gap-2'> Load More Listing <FaArrowRight /> </button> </Link>
+                <Link > <button className='btn-normal bg-blue-500 hover:bg-blue-700 flex  items-center gap-2 '> Load More Listing <FaArrowRight /> </button> </Link>
             </div>
         </section>
     );
