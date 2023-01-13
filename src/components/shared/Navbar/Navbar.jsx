@@ -91,14 +91,14 @@ export default function Navbar() {
                     <label
                       htmlFor="sortbox"
                       className={`flex items-center space-x-1 cursor-pointer ${
-                        user?.photoURL ? "w-5/12" : "w-full"
+                        user?.photoURL ? "w-[32px]" : "w-full"
                       }`}
                     >
                       {user?.photoURL ? (
                         <img
                           src={user?.photoURL}
                           alt=""
-                          className="rounded-full w-12 h-11"
+                          className="rounded-full"
                         />
                       ) : (
                         <FaUserCircle className="text-black text-xl" />
