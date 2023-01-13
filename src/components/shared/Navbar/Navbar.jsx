@@ -91,7 +91,7 @@ export default function Navbar() {
                     <label
                       htmlFor="sortbox"
                       className={`flex items-center space-x-1 cursor-pointer ${
-                        user?.photoURL ? "w-7/12" : "w-full"
+                        user?.photoURL ? "w-5/12" : "w-full"
                       }`}
                     >
                       {user?.photoURL ? (
