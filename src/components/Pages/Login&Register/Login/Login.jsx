@@ -4,23 +4,30 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Login() {
-  const { FacebookSignIn, GoogleSignIn, GithubSignIn } =
+  const { FacebookSignIn, GoogleSignIn, GithubSignIn, Login } =
     useContext(AuthContext);
   const FacebookProvider = new FacebookAuthProvider();
   const GoogleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const facebookLogin = () => {
     FacebookSignIn(FacebookProvider)
       .then((result) => {
         console.log(result);
       })
-      .then((err) => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const googleLogin = () => {
@@ -28,7 +35,7 @@ export default function Login() {
       .then((result) => {
         console.log(result);
       })
-      .then((err) => {
+      .catch((err) => {
         console.error(err);
       });
   };
@@ -38,9 +45,20 @@ export default function Login() {
       .then((result) => {
         console.log(result);
       })
-      .then((err) => {
+      .catch((err) => {
         console.error(err);
       });
+  };
+
+  const onSubmit = (data) => {
+    // console.log(data);
+    const { email, password } = data;
+    Login(email, password)
+      .then((result) => {
+        console.log(result.user);
+        reset();
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -55,9 +73,9 @@ export default function Login() {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-row items-center justify-center lg:justify-start">
-                <p className="text-xl mb-0 mr-4 font-bold">Sign in with</p>
+                <p className="text-xl mb-0 mr-4 font-bold">Login in with</p>
                 <button
                   type="button"
                   data-mdb-ripple="true"
@@ -95,20 +113,28 @@ export default function Login() {
 
               <div className="mb-6">
                 <input
-                  type="text"
+                  type="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="email"
                   placeholder="Email address"
+                  {...register("email", {
+                    required: "Email address is require",
+                  })}
                 />
+                {errors.email && <span>{errors.email?.message}</span>}
               </div>
 
               <div className="mb-6">
                 <input
                   type="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="password"
                   placeholder="Password"
+                  {...register("password", {
+                    required: "Password is require",
+                  })}
                 />
+                {errors.password && <span>{errors.password?.message}</span>}
               </div>
 
               <div className="flex justify-between items-center mb-6">
@@ -125,14 +151,17 @@ export default function Login() {
                     Remember me
                   </label>
                 </div>
-                <Link to="/" className="text-gray-800 hover:text-blue-500">
+                <Link
+                  to="/resetPass"
+                  className="text-gray-800 hover:text-blue-500"
+                >
                   Forgot password?
                 </Link>
               </div>
 
               <div className="text-center lg:text-left">
                 <button
-                  type="button"
+                  type="submit"
                   className="block w-full md:w-40 md:inline-block px-7 py-3 bg-blue-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-600 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Login

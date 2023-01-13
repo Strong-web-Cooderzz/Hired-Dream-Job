@@ -1,5 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -9,16 +17,32 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const FacebookSignIn = (authProvider) => {
-    return signInWithPopup(auth, authProvider);
+  const FacebookSignIn = (facebook) => {
+    return signInWithPopup(auth, facebook);
   };
 
-  const GoogleSignIn = (authProvider) => {
-    return signInWithPopup(auth, authProvider);
+  const GoogleSignIn = (google) => {
+    return signInWithPopup(auth, google);
   };
 
-  const GithubSignIn = (authProvider) => {
-    return signInWithPopup(auth, authProvider);
+  const GithubSignIn = (github) => {
+    return signInWithPopup(auth, github);
+  };
+
+  const createAccount = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  const Login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const logOut = () => {
+    return signOut(auth);
+  };
+
+  const changePass = (email) => {
+    return sendPasswordResetEmail(auth, email);
   };
 
   useEffect(() => {
@@ -31,9 +55,14 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    loading,
     FacebookSignIn,
     GoogleSignIn,
     GithubSignIn,
+    createAccount,
+    Login,
+    logOut,
+    changePass,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
