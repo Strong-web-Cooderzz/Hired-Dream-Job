@@ -76,8 +76,11 @@ const JobCategory = () => {
           <p className="text-md text-[#b3b3b3]">9 Categories are available</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-14">
-          {category.map(({ Name, icon, Positions }) => (
-            <div className="flex justify-start hover:bg-blue-100 items-center gap-5 cursor-pointer parent border border-cyan-400/30 p-5 rounded-lg">
+          {category.map(({ Name, icon, Positions }, index) => (
+            <div
+              key={index}
+              className="flex justify-start hover:bg-blue-100 items-center gap-5 cursor-pointer parent border border-cyan-400/30 p-5 rounded-lg"
+            >
               <div className="p-4 bg-black/5 rounded-lg child duration-1000">
                 <span>{icon}</span>
               </div>

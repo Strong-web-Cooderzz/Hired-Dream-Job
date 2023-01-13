@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
+  const { logOut, user, loading } = useContext(AuthContext);
+
+  const LogOut = () => {
+    logOut();
+  };
 
   return (
     <nav className="w-full bg-white shadow">
       <div className="justify-between px-4 md:items-center md:flex md:px-8">
         <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+          <div className="flex items-center justify-between py-3 md:py-2 md:block">
             <Link to="/">
               <img src={logo} alt="" className="w-12" />
             </Link>
@@ -74,9 +81,59 @@ export default function Navbar() {
                 <Link to="/">Blog</Link>
               </li>
               <li className="text-white">
-                <button className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600">
-                  <Link to="/login">LogIn</Link>
-                </button>
+                {user?.uid ? (
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      id="sortbox"
+                      className="hidden absolute"
+                    />
+                    <label
+                      htmlFor="sortbox"
+                      className={`flex items-center space-x-1 cursor-pointer ${
+                        user?.photoURL ? "w-7/12" : "w-full"
+                      }`}
+                    >
+                      {user?.photoURL ? (
+                        <img
+                          src={user?.photoURL}
+                          alt=""
+                          className="rounded-full"
+                        />
+                      ) : (
+                        <FaUserCircle className="text-black text-xl" />
+                      )}
+                    </label>
+
+                    <div
+                      id="sortboxmenu"
+                      className="absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out z-10 font-semibold"
+                    >
+                      <ul className="block text-gray-900">
+                        <li className="block px-3 py-2 hover:bg-gray-200">
+                          <p>
+                            {user?.displayName ? user?.displayName : "Unknown"}
+                          </p>
+                        </li>
+                        <li className="block px-3 py-2 hover:bg-gray-200">
+                          <p>Account Settings</p>
+                        </li>
+                        <li className="block px-3 py-2">
+                          <button
+                            onClick={LogOut}
+                            className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600 w-full"
+                          >
+                            Log Out
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                ) : (
+                  <button className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600">
+                    <Link to="/login">LogIn</Link>
+                  </button>
+                )}
               </li>
             </ul>
           </div>
