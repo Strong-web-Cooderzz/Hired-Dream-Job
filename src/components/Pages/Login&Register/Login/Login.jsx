@@ -5,6 +5,7 @@ import {
 } from "firebase/auth";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
@@ -25,7 +26,7 @@ export default function Login() {
   const facebookLogin = () => {
     FacebookSignIn(FacebookProvider)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
       })
       .catch((err) => console.error(err));
   };
@@ -33,7 +34,8 @@ export default function Login() {
   const googleLogin = () => {
     GoogleSignIn(GoogleProvider)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
+        toast.success("Login Successfully");
       })
       .catch((err) => {
         console.error(err);
