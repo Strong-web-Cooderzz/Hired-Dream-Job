@@ -1,9 +1,37 @@
 import { BsSearch } from "react-icons/bs";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
-import { IoIosArrowDown } from 'react-icons/io';
+import { BsBookmark } from "react-icons/bs";
+import { useEffect, useState } from "react";
 
 export default function Employers() {
+	function SearchResultCard({ employer }) {
+		const { name, location, type, available } = employer;
+		return (
+			<div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
+				<div className="rounded-full w-20 h-20 bg-red-400"></div>
+				<span className="mt-2 text-lg">{name}</span>
+				<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{location}</span>
+				<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{type}</span>
+				<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {available}</span>
+
+				{/* featured */}
+				<span className="absolute top-2 left-2 bg-green-100 text-green-500 py-1 px-4 text-xs rounded-full">Featured</span>
+
+				{/* bookmark icon */}
+				<span className="absolute top-2 right-2 p-2 bg-gray-100 rounded-full hidden group-hover:block cursor-pointer"><BsBookmark /></span>
+			</div>
+		);
+	}
+
+	const [search, setSearch] = useState([]);
+
+	useEffect(() => {
+		fetch('/data/employers.json')
+			.then(res => res.json())
+			.then(data => setSearch(data));
+	}, []);
+
 	return (
 		<main className="w-full">
 			{/* search form starts here */}
@@ -75,6 +103,13 @@ export default function Employers() {
 					</div>
 				</div>
 			</section>
+
+			{/* cards */}
+			<div className="px-12 grid grid-cols-4 gap-6">
+				{
+					search.length && search.map((i, id) => <SearchResultCard key={id} employer={i} />)
+				}
+			</div>
 		</main>
 	)
 }
