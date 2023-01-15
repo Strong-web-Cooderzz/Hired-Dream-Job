@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import AccountAgency from "../components/Pages/Account/AccountAgency";
+import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidates from "../components/Pages/Candidates/Candidates";
 import Home from "../components/Pages/Home/Home";
 import Login from "../components/Pages/Login&Register/Login/Login";
@@ -25,14 +27,22 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
-   {
-    path: "/candidates",
-    element: <Candidates />,
-  },
+      {
+        path: "/candidates",
+        element: <Candidates />,
+      },
     ],
   },
   {
     path: "/resetPass",
     element: <ResetPass />,
+  },
+  {
+    path: "/accountClient",
+    element: <AccountClient />,
+  },
+  {
+    path: "/accountAgency",
+    element: <AccountAgency />,
   },
 ]);
