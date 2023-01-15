@@ -20,7 +20,7 @@ export default function Employer() {
 
 	return (
 		<main>
-			{/* name, email, phone */}
+			{/* short details */}
 			<section className="bg-blue-50 flex items-center px-12 py-16">
 				<div className="w-24 h-24 bg-green-300 rounded-full">
 				</div>
@@ -28,11 +28,14 @@ export default function Employer() {
 				{/* name */}
 				<div className="ml-4 flex flex-col gap-3">
 					<span className="text-2xl font-semibold">{employer.name}</span>
-					<div className="flex items-center gap-4">
-						<span className="flex items-center gap-2"><FaMapMarkerAlt />{employer.location}</span>
-						<span className="flex items-center gap-2"><BsFillBagFill />{employer.type}</span>
-						<span className="flex items-center gap-2"><BsTelephone />123123123</span>
-						<span className="flex items-center gap-2"><HiOutlineMail />info@info.info</span>
+					<div className="flex items-center gap-4 text-xs text-gray-600">
+						<span className="flex items-center gap-1"><FaMapMarkerAlt />{employer.location}</span>
+						<span className="flex items-center gap-1"><BsFillBagFill />{employer.type}</span>
+						<span className="flex items-center gap-1"><BsTelephone />123123123</span>
+						<span className="flex items-center gap-1"><HiOutlineMail />info@info.info</span>
+					</div>
+					<div>
+						<span className="text-xs text-blue-700 bg-blue-200 px-6 py-1 rounded-full">Open Jobs - {employer.available}</span>
 					</div>
 				</div>
 
@@ -41,6 +44,8 @@ export default function Employer() {
 					<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800">Private Message</button>
 				</div>
 			</section>
+
+			{/* details */}
 		</main>
 	)
 }
