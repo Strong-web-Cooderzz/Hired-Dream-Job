@@ -88,7 +88,7 @@ export default function Employers() {
 				<div className="flex justify-between items-center">
 					{/* shows how many jobs available */}
 					<span>
-						24 jobs
+						{search.length} jobs
 					</span>
 
 					{/* sorting options */}
