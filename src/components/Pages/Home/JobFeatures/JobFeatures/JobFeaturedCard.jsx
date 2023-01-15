@@ -5,7 +5,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 
 
 const JobFeaturedCard = ({data}) => {
-    console.log(data)
+    // console.log(data)
     const {company,location,logo,title} = data ;
     return (
         <div className='job-card w-full  mx-auto  py-2 '>
