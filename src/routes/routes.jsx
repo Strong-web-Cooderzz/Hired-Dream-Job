@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Candidates from "../components/Pages/Candidates/Candidates";
 import Home from "../components/Pages/Home/Home";
 import Login from "../components/Pages/Login&Register/Login/Login";
 import ResetPass from "../components/Pages/Login&Register/Login/ResetPass";
@@ -29,5 +30,9 @@ export const router = createBrowserRouter([
   {
     path: "/resetPass",
     element: <ResetPass />,
+  },
+  {
+    path: "/candidates",
+    element: <Candidates />,
   },
 ]);
