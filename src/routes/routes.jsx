@@ -10,7 +10,6 @@ import Main from "../layout/Main";
 export const router = createBrowserRouter([
     {
         path: "/",
-        errorElement: <NotFound />,
         element: <Main />,
         children: [
             {
@@ -35,4 +34,8 @@ export const router = createBrowserRouter([
         path: "/resetPass",
         element: <ResetPass />,
     },
+    {
+        path: '*',
+        element: <NotFound />
+    }
 ]);
