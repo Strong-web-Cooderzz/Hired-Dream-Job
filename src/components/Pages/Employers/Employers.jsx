@@ -3,14 +3,15 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
 import { BsBookmark } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Employers() {
 	function SearchResultCard({ employer }) {
-		const { name, location, type, available } = employer;
+		const { id, name, location, type, available } = employer;
 		return (
 			<div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
 				<div className="rounded-full w-20 h-20 bg-red-400"></div>
-				<span className="mt-2 text-lg">{name}</span>
+				<Link to={`/employer/${id}`} className="mt-2 text-lg hover:text-blue-600">{name}</Link>
 				<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{location}</span>
 				<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{type}</span>
 				<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {available}</span>
