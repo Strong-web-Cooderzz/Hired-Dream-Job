@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidates from "../components/Pages/Candidates/Candidates";
+import FindJob from "../components/Pages/FindJob/FindJob";
 import Home from "../components/Pages/Home/Home";
 import Login from "../components/Pages/Login&Register/Login/Login";
 import ResetPass from "../components/Pages/Login&Register/Login/ResetPass";
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/candidates",
         element: <Candidates />,
+      },
+      {
+        path: "/find-jobs",
+        element: <FindJob />,
       },
     ],
   },
