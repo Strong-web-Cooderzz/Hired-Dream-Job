@@ -21,6 +21,8 @@ const Candidates = () => {
   const [hover, setHover] = useState();
   console.log(hover);
 
+  const [filter,setFilter] = useState(false)
+
   return (
     <div className="bg-[#e5ecfa]">
       <div>
@@ -32,10 +34,14 @@ const Candidates = () => {
           </p>
           </div>
         </div>
-        <div className="flex bg-white px-6 py-6 gap-8">
+        <div className="flex bg-white px-6 py-6 gap-8 ">
+          
             {/* Left Side */}
-          <div className="bg-blue-50 p-4 w-4/12 rounded-md flex flex-col gap-3">
+          <div className={`bg-blue-50 absolute top-0 ${filter ? '-left-0':'-left-96'} z-10 md:left-0 md:relative flex p-4 w-8/12 md:w-4/12 rounded-md  flex-col gap-3`}>
             <div>
+              <div className="w-full flex justify-end">
+              <button onClick={()=>setFilter(!filter)}>Folter</button>
+              </div>
               <p className="text-lg my-2">Search by Keywords</p>
               <fieldset className="w-full space-y-1 dark:text-gray-100">
                 <label for="Search" className="hidden">
@@ -61,7 +67,7 @@ const Candidates = () => {
                     type="search"
                     name="Search"
                     placeholder="Job title, keywords, or company..."
-                    className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
+                    className=" w-full py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
                   />
                 </div>
               </fieldset>
@@ -86,14 +92,15 @@ const Candidates = () => {
                     type="search"
                     name="Search"
                     placeholder=" City or postcode"
-                    className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
+                    className=" w-full py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
                   />
                 </div>
               </fieldset>
             </div>
             <div>
               <p className="text-sm my-2">Radius around selected destination</p>
-              <MultiRangeSlider
+             <div className="w-full">
+             <MultiRangeSlider
                 min={0}
                 max={100}
                 step={5}
@@ -105,6 +112,7 @@ const Candidates = () => {
                   handleInput(e);
                 }}
               />
+             </div>
               <div className="flex justify-center">
                 <p className="bg-blue-300 w-20 text-center rounded-md p-1 text-sm">
                   {maxValue}km
@@ -371,13 +379,22 @@ const Candidates = () => {
             </div>
           </div>
           {/* Right side */}
-          <div className="w-8/12">
+          <div className="md:w-8/12">
+            <div className="flex items-center justify-between my-6">
+              <h2>10 Jobs</h2> 
+             <div className="flex items-center gap-4">
+              <button onClick={()=>setFilter(!filter)}>Folter</button>
+             <CategorySelect />
+             <CategorySelect />
+             </div>
+            </div>
             <div
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
               className="flex gap-3 items-center justify-between w-full border p-6 rounded-md"
             >
               <div>
+                 {/* Candidate Image */}
                 <img
                   className="w-24 h-24 rounded-full"
                   src="https://superio-next.vercel.app/images/resource/candidate-1.png"
@@ -431,6 +448,7 @@ const Candidates = () => {
               className="flex gap-3 items-center mt-6 justify-between w-full border p-6 rounded-md"
             >
               <div>
+                {/* Candidate Image */}
                 <img
                   className="w-24 h-24 rounded-full"
                   src="https://superio-next.vercel.app/images/resource/candidate-1.png"
@@ -472,7 +490,7 @@ const Candidates = () => {
                   </div>
                 )}
                 <div>
-                  <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
+                  <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 sm:px-7 px-3 py-4 rounded-md text-blue-500">
                     View Profile
                   </Link>
                 </div>
