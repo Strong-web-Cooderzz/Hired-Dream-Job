@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 import MultiRangeSlider from "multi-range-slider-react";
+import React, { useState } from "react";
+import { AiOutlineCheck } from "react-icons/ai";
+import { FiBookmark } from "react-icons/fi";
+import { GiMoneyStack } from "react-icons/gi";
+import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { CategorySelect } from "./Select/CategorySelect";
 import { GenderSelect } from "./Select/GenderSelect";
-import { AiOutlineCheck } from "react-icons/ai";
-import { GrLocation } from "react-icons/gr";
-import { GiMoneyStack } from "react-icons/gi";
-import { FiBookmark } from "react-icons/fi";
 
 const Candidates = () => {
   const [minValue, set_minValue] = useState(0);
@@ -26,19 +26,19 @@ const Candidates = () => {
       <div>
         <div className="text-center w-full h-44 flex justify-center items-center">
           <div>
-          <h3 className="text-2xl font-semibold">Candidates</h3>
-          <p className="text-sm">
-            <Link to='/'>Home</Link> / Candidates
-          </p>
+            <h3 className="text-2xl font-semibold">Candidates</h3>
+            <p className="text-sm">
+              <Link to="/">Home</Link> / Candidates
+            </p>
           </div>
         </div>
         <div className="flex bg-white px-6 py-6 gap-8">
-            {/* Left Side */}
+          {/* Left Side */}
           <div className="bg-blue-50 p-4 w-4/12 rounded-md flex flex-col gap-3">
             <div>
               <p className="text-lg my-2">Search by Keywords</p>
               <fieldset className="w-full space-y-1 dark:text-gray-100">
-                <label for="Search" className="hidden">
+                <label htmlFor="Search" className="hidden">
                   Search
                 </label>
                 <div className="relative">
@@ -69,7 +69,7 @@ const Candidates = () => {
             <div>
               <p className="text-lg my-2">Location</p>
               <fieldset className="w-full space-y-1 dark:text-gray-100">
-                <label for="Search" className="hidden">
+                <label htmlFor="Search" className="hidden">
                   Search
                 </label>
                 <div className="relative">
@@ -232,7 +232,7 @@ const Candidates = () => {
               <p className="text-lg my-2">Experience</p>
               <div className="flex flex-col">
                 <label
-                  for="fresh"
+                  htmlFor="fresh"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -243,7 +243,7 @@ const Candidates = () => {
                   Fresh
                 </label>
                 <label
-                  for="1year"
+                  htmlFor="1year"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -254,7 +254,7 @@ const Candidates = () => {
                   1 Year
                 </label>
                 <label
-                  for="2year"
+                  htmlFor="2year"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -265,7 +265,7 @@ const Candidates = () => {
                   2 Year
                 </label>
                 <label
-                  for="3year"
+                  htmlFor="3year"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -276,7 +276,7 @@ const Candidates = () => {
                   3 Year
                 </label>
                 <label
-                  for="4year"
+                  htmlFor="4year"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -293,7 +293,7 @@ const Candidates = () => {
               <p className="text-lg my-2">Qualification</p>
               <div className="flex flex-col gap-2">
                 <label
-                  for="Certificate"
+                  htmlFor="Certificate"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -308,7 +308,7 @@ const Candidates = () => {
                   Certificate
                 </label>
                 <label
-                  for="Associate"
+                  htmlFor="Associate"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -323,7 +323,7 @@ const Candidates = () => {
                   Associate Degree
                 </label>
                 <label
-                  for="Bachelor"
+                  htmlFor="Bachelor"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -338,7 +338,7 @@ const Candidates = () => {
                   Bachelor Degree
                 </label>
                 <label
-                  for="Master"
+                  htmlFor="Master"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
@@ -353,7 +353,7 @@ const Candidates = () => {
                   Master’s Degree
                 </label>
                 <label
-                  for="Doctorate"
+                  htmlFor="Doctorate"
                   className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
                 >
                   <span className="relative mr-4">
