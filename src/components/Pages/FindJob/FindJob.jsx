@@ -1008,7 +1008,9 @@ const FindJob = () => {
                   />
                   <div className="p-4">
                     <h3 className="text-xl text-center font-medium text-gray-900">
-                      Software Engineer (Android), Libraries
+                      <Link to="single-job">
+                        Software Engineer (Android), Libraries
+                      </Link>
                     </h3>
                     <p className="mt-1 text-gray-500">
                       Sailboat UI helps streamline software projects, sprints,
