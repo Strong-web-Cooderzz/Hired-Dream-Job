@@ -88,12 +88,12 @@ export default function Employers() {
 			<section className="px-12 py-12">
 				<div className="grid grid-cols-2 gap-y-6 md:gap-y-0 md:flex justify-between items-center">
 					{/* shows how many jobs available */}
-					<span className="col-start-1 col-end-3 text-center">
-						{search.length} jobs
+					<span className="col-start-1 col-end-3 text-center text-sm md:text-md">
+						<span className="font-medium">{search.length}</span> jobs
 					</span>
 
 					{/* sorting options */}
-					<div className="flex md:gap-4 col-start-1 col-end-3 justify-center gap-3">
+					<div className="flex md:gap-4 col-start-1 col-end-3 justify-center gap-3 text-xs md:text-md">
 						<select className="bg-gray-100 px-6 py-2" name="sort-by" id="sort-by">
 							<option value="">Sort by (default)</option>
 						</select>
