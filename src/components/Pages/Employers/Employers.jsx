@@ -36,19 +36,19 @@ export default function Employers() {
 	return (
 		<main className="w-full">
 			{/* search form starts here */}
-			<section className="bg-blue-50 w-full justify-center p-12 grid items-center gap-6">
+			<section className="bg-blue-50 w-full justify-center py-8 px-4 md:p-12 grid items-center gap-6">
 				{/* search form */}
-				<form className="flex gap-8 px-8 py-4 rounded-md bg-white">
+				<form className="w-[90vw] bg-transparent md:w-full flex flex-col md:flex-row gap-8 md:px-8 md:py-4 rounded-md md:bg-white">
 					{/* search by name */}
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
 						<div>
 							<BsSearch />
 						</div>
-						<input className="outline-none" type="text" placeholder="Job title, keywords, or company" />
+						<input className="outline-none w-full" type="text" placeholder="Job title, keywords, or company" />
 					</div>
 
 					{/* search by location */}
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
 						<div>
 							<FaMapMarkerAlt />
 						</div>
@@ -56,7 +56,7 @@ export default function Employers() {
 					</div>
 
 					{/* category list */}
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
 						<div>
 							<BiShoppingBag />
 						</div>
@@ -69,12 +69,12 @@ export default function Employers() {
 					</div>
 
 					{/* search button */}
-					<div className="">
-						<button className="bg-blue-600 text-white py-4 px-12 rounded-md">Find Jobs</button>
+					<div className="w-full md:w-auto">
+						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full md:w-auto text-xs">Find Jobs</button>
 					</div>
 				</form>
 
-				<div className="grid place-content-center">
+				<div className="grid place-content-center text-xs">
 					<select className="bg-blue-100 px-6 py-3 rounded-md" name="founded-date" id="founded-date">
 						<option value="">Founded Date</option>
 						<option value="">Test</option>
