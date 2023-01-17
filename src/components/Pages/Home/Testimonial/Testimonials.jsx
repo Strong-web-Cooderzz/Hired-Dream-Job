@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
-import { Keyboard, Mousewheel, Navigation } from "swiper";
+import { Keyboard, Navigation } from "swiper";
 import Testimonial from "./Testimonial";
 
 const ArrOfTestimonials = [
@@ -80,38 +80,40 @@ const Testimonials = () => {
           <h1 className="text-3xl font-semibold  text-gray-900  text-center">
             Testimonials
           </h1>
-          <h4 className="text-black text-center mt-2"> See now  What's  our client say </h4>
+          <h4 className="text-black text-center mt-2">
+            {" "}
+            See now What's our client say{" "}
+          </h4>
           <div className="flex flex-wrap -m-4 mt-6">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
               navigation={true}
-              mousewheel={true}
               keyboard={true}
-              modules={[Navigation, Mousewheel, Keyboard]}
-               //Responsive breakpoints
-        breakpoints={{
-          340: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          540: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1400: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        }}
+              modules={[Navigation, Keyboard]}
+              //Responsive breakpoints
+              breakpoints={{
+                340: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                540: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                768: {
+                  slidesPerView: 1,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1400: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
               className="mySwiper"
             >
               {ArrOfTestimonials.map((TestimonialData, index) => (
