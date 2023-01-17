@@ -420,7 +420,7 @@ const Candidates = () => {
                 )}
                 <div>
                   <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
-                    View Profile
+                     Profile
                   </Link>
                 </div>
               </div>
@@ -473,7 +473,7 @@ const Candidates = () => {
                 )}
                 <div>
                   <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
-                    View Profile
+                     Profile
                   </Link>
                 </div>
               </div>
