@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Udemy",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 2,
+    "name": "Stripe",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 3,
+    "name": "Dropbox",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 4,
+    "name": "Udemy",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 5,
+    "name": "Stripe",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 6,
+    "name": "Dropbox",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 7,
+    "name": "Udemy",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 8,
+    "name": "Stripe",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  },
+  {
+    "id": 9,
+    "name": "Dropbox",
+    "location": "London, UK",
+    "type": "Accounting/Finance",
+    "available": 15
+  }
+]
