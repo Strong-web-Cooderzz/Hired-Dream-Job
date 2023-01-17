@@ -20,9 +20,9 @@ export default function Employer() {
 	}, []);
 
 	return (
-		<main className="flex flex-col-reverse">
+		<main className="flex flex-col-reverse md:flex-col">
 			{/* short details */}
-			<section className="bg-blue-50 md:flex items-center px-12 py-16 hidden">
+			<section className="bg-blue-50 hidden md:flex items-center px-12 py-16">
 				<div className="w-24 h-24 bg-green-300 rounded-full">
 				</div>
 
