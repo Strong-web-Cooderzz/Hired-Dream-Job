@@ -58,6 +58,8 @@ export default function Footer() {
               <li><a href="#">Employer Dashboard</a></li>
               <li><a href="#">Add Job</a></li>
               <li><a href="#">Job Packages</a></li>
+              <li><a href="fqa">FQA</a></li>
+              <li><a href="pricing">Pricing</a></li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
