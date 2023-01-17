@@ -40,15 +40,15 @@ export default function Employers() {
 				{/* search form */}
 				<form className="w-[90vw] bg-transparent md:w-full flex flex-col md:flex-row gap-8 md:px-8 md:py-4 rounded-md md:bg-white">
 					{/* search by name */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
 						<div>
 							<BsSearch />
 						</div>
-						<input className="outline-none w-full" type="text" placeholder="Job title, keywords, or company" />
+						<input className="outline-none w-content" type="text" placeholder="Job title, keywords, or company" />
 					</div>
 
 					{/* search by location */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
 						<div>
 							<FaMapMarkerAlt />
 						</div>
@@ -56,7 +56,7 @@ export default function Employers() {
 					</div>
 
 					{/* category list */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-none rounded-md md:rounded-none shadow">
+					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
 						<div>
 							<BiShoppingBag />
 						</div>
@@ -69,8 +69,8 @@ export default function Employers() {
 					</div>
 
 					{/* search button */}
-					<div className="w-full md:w-auto">
-						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full md:w-auto text-xs">Find Jobs</button>
+					<div className="w-full">
+						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full text-xs">Find Jobs</button>
 					</div>
 				</form>
 
