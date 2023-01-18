@@ -30,7 +30,7 @@ const Candidates = () => {
             <h3 className="text-2xl font-semibold">Candidates</h3>
             <p className="text-sm">
               <Link to="/">Home</Link> / Candidates
-            </p>
+            </p>  
           </div>
         </div>
       
@@ -57,16 +57,16 @@ const Candidates = () => {
               onMouseLeave={() => setHover(false)}
               className="lg:flex gap-3 items-center justify-between w-full border p-6 rounded-md"
             >
-              <div className="md:w-full flex justify-center w-full lg:w-64 lg:h-24">
+              <div className="md:w-full flex justify-center w-full lg:w-[20rem] lg:h-24">
                 <img
                   className="md:w-44 lg:w-24 lg:h-24 rounded-full"
                   src="https://superio-next.vercel.app/images/resource/candidate-1.png"
                   alt=""
                 />
               </div>
-              <div className="flex w-full justify-center text-center">
-               <div className="flex flex-col gap-2 justify-center">
-               <h3 className="text-2xl">Darlene Robertson</h3>
+              <div className="flex w-full justify-center lg:justify-start lg:text-left text-center">
+               <div className="flex flex-col gap-2 justify-center lg:justify-start">
+               <Link to={'/candidate'}><h3 className="text-2xl">Darlene Robertson</h3></Link>
                 <div className="flex flex-wrap md:w-96 gap-3">
                   <p className="w-24">UI Designer</p>
                   <p className="flex items-center justify-center gap-2">
@@ -101,7 +101,7 @@ const Candidates = () => {
                   </div>
                 )}
                 <div>
-                  <Link className="bg-blue-100 inline-block my-7 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
+                  <Link to={'/candidate'} className="bg-blue-100 inline-block my-7 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
                      Profile
                   </Link>
                 </div>
