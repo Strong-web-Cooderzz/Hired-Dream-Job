@@ -75,8 +75,8 @@ const ArrOfTestimonials = [
 const Testimonials = () => {
   return (
     <div>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
+      <section className="text-gray-600 w-full body-font">
+        <div className=" px-5 py-24 mx-auto">
           <h1 className="text-3xl font-semibold  text-gray-900  text-center">
             Testimonials
           </h1>
