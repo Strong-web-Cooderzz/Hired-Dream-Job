@@ -81,8 +81,7 @@ const Testimonials = () => {
             Testimonials
           </h1>
           <h4 className="text-black text-center mt-2">
-            {" "}
-            See now What's our client say{" "}
+            See now What's our client say
           </h4>
           <div className="flex flex-wrap -m-4 mt-6">
             <Swiper
