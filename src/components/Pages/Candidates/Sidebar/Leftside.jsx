@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { GrLocation } from 'react-icons/gr';
+import MultiRangeSlider from '../MultirangeSlider';
 import { CategorySelect } from '../Select/CategorySelect';
 import { GenderSelect } from '../Select/GenderSelect';
-import MultiRangeSlider from "multi-range-slider-react";
 
 const Leftside = () => {
         const [minValue, set_minValue] = useState(0);
         const [maxValue, set_maxValue] = useState(100);
         const handleInput = (e) => {
-          set_minValue(e.minValue);
-          set_maxValue(e.maxValue);
+          set_maxValue(e);
         };
-        console.log(minValue, maxValue);
+        console.log(maxValue);
       
         const [date, setDate] = useState("");
         const [hover, setHover] = useState();
@@ -77,17 +76,10 @@ const Leftside = () => {
             <div>
               <p className="text-sm my-2">Radius around selected destination</p>
               <MultiRangeSlider
-                min={0}
-                max={100}
-                step={5}
-                ruler={false}
-                label={false}
-                minValue={minValue}
-                maxValue={maxValue}
-                onInput={(e) => {
-                  handleInput(e);
-                }}
-              />
+      min={0}
+      max={100}
+      onChange={({ min, max }) => handleInput(max)}
+    />
               <div className="flex justify-center">
                 <p className="bg-blue-300 w-20 text-center rounded-md p-1 text-sm">
                   {maxValue}km
