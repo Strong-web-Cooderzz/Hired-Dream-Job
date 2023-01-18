@@ -16,7 +16,6 @@ import Register from "../components/Pages/Login&Register/Register/Register";
 import NotFound from "../components/Pages/NotFound/NotFound";
 import Pricing from "../components/Pages/Pricing/Pricing";
 import Main from "../layout/Main";
-
 export const router = createBrowserRouter([
 	{
 		path: "/",
