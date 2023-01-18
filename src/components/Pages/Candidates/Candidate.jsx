@@ -295,7 +295,7 @@ const Candidate = () => {
             </div>
            </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
   );
