@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
+import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
 import Fqa from "../components/Pages/FQA/Fqa";
 import FindJob from "../components/Pages/FindJob/FindJob";
@@ -45,6 +46,11 @@ export const router = createBrowserRouter([
 				path: "/candidates",
 				element: <Candidates />,
 			},
+
+      {
+        path: "/candidate",
+        element: <Candidate />,
+      },
 			{
 				path: "/fqa",
 				element: <Fqa />,
