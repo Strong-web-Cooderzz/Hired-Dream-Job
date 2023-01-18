@@ -2,6 +2,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import logo from '../../../assets/logo.svg';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const [height, setHeight] = useState(window.scrollY);
@@ -28,7 +29,7 @@ export default function Footer() {
           <img src={logo} alt="Hired Dream Job" className='w-20' />
           <div className="flex flex-col gap-2">
             <span className="text-lg font-bold">Call us at</span>
-            <a href="tel:+8801234567890" className="text-blue-600">+880123456789</a>
+            <Link to="tel:+8801234567890" className="text-blue-600">+880123456789</Link>
           </div>
           <address className='w-9/12'>
             329 Whatever Street,
@@ -44,40 +45,40 @@ export default function Footer() {
           <div className="flex flex-col gap-3  ">
             <span className="font-4xl font-bold text-gray-900">For Candidates</span>
             <ul className="text-sm flex flex-col gap-4">
-              <li><a href="#">Browse Jobs</a></li>
-              <li><a href="#">Browse Categories</a></li>
-              <li><a href="#">Candidate Dashboard</a></li>
-              <li><a href="#">Job Alerts</a></li>
-              <li><a href="#">My Bookmarks</a></li>
+              <li><Link to="#">Browse Jobs</Link></li>
+              <li><Link to="#">Browse Categories</Link></li>
+              <li><Link to="#">Candidate Dashboard</Link></li>
+              <li><Link to="#">Job Alerts</Link></li>
+              <li><Link to="#">My Bookmarks</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
             <span className="font-4xl font-bold text-gray-900">For Employers</span>
             <ul className="text-sm flex flex-col gap-4">
-              <li><a href="#">Browse Candidates</a></li>
-              <li><a href="#">Employer Dashboard</a></li>
-              <li><a href="#">Add Job</a></li>
-              <li><a href="#">Job Packages</a></li>
+              <li><Link to="#">Browse Candidates</Link></li>
+              <li><Link to="#">Employer Dashboard</Link></li>
+              <li><Link to="#">Add Job</Link></li>
+              <li><Link to="#">Job Packages</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
             <span className="font-4xl font-bold text-gray-900">About Us</span>
             <ul className="text-sm flex flex-col gap-4">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Join Page Invoice</a></li>
-              <li><a href="#">Terms Page</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><Link to="#">About Us</Link></li>
+              <li><Link to="#">Join Page Invoice</Link></li>
+              <li><Link to="#">Terms Page</Link></li>
+              <li><Link to="#">Blog</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
           <div className="flex flex-col gap-3">
             <span className="font-4xl font-bold text-gray-900">Helpful Resources</span>
             <ul className="text-sm flex flex-col gap-4">
-              <li><a href="#">Site Map</a></li>
-              <li><a href="#">Terms of Use</a></li>
-              <li><a href="#">Privacy Center</a></li>
-              <li><a href="#">Security Center</a></li>
-              <li><a href="#">Accesibility Center</a></li>
+              <li><Link to="#">Site Map</Link></li>
+              <li><Link to="#">Terms of Use</Link></li>
+              <li><Link to="#">Privacy Center</Link></li>
+              <li><Link to="#">Security Center</Link></li>
+              <li><Link to="#">Accesibility Center</Link></li>
             </ul>
           </div>
         </div>
