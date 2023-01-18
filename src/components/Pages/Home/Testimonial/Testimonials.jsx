@@ -75,14 +75,13 @@ const ArrOfTestimonials = [
 const Testimonials = () => {
   return (
     <div>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
+      <section className="text-gray-600 w-full body-font">
+        <div className=" px-5 py-24 mx-auto">
           <h1 className="text-3xl font-semibold  text-gray-900  text-center">
             Testimonials
           </h1>
           <h4 className="text-black text-center mt-2">
-            {" "}
-            See now What's our client say{" "}
+            See now What's our client say
           </h4>
           <div className="flex flex-wrap -m-4 mt-6">
             <Swiper
