@@ -5,20 +5,20 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
-  const [height, setHeight] = useState(window.scrollY);
+	const [height, setHeight] = useState(window.scrollY);
 
-  useEffect(() => {
-    window.onscroll = () => {
-      setHeight(window.scrollY);
-    }
-  }, []);
+	useEffect(() => {
+		window.onscroll = () => {
+			setHeight(window.scrollY);
+		}
+	}, []);
 
-  const moveToTop = () => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
+	const moveToTop = () => {
+		window.scroll({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}
 
   return (
     <footer className="text-gray-600 w-full 2xl:mx-auto">
