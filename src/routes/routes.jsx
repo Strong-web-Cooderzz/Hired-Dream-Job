@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidates from "../components/Pages/Candidates/Candidates";
+import Contact from "../components/Pages/Contact/Contact";
 import FindJob from "../components/Pages/FindJob/FindJob";
 import SingleJobs from "../components/Pages/FindJob/SingleJobs";
 import Home from "../components/Pages/Home/Home";
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "/find-jobs/single-job",
         element: <SingleJobs />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },
