@@ -1,7 +1,6 @@
-import { BsSearch } from "react-icons/bs";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -106,7 +105,7 @@ export default function Employers() {
 			</section>
 
 			{/* cards */}
-			<div className="px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+			<div className="px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				{
 					search.length && search.map((i, id) => <SearchResultCard key={id} employer={i} />)
 				}
