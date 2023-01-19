@@ -18,7 +18,6 @@ import FindJob from "../components/Pages/FindJob/FindJob";
 import SingleJobs from "../components/Pages/FindJob/SingleJobs";
 import Employer from "../components/Pages/Employer/Employer";
 import Employers from "../components/Pages/Employers/Employers";
-import CandidateDashboardRight from "../components/Pages/Dashboard/CandidatesDashboard/CandidateDashboardRight/CandidateDashboardRight";
 import Home from "../components/Pages/Home/Home";
 import Invoice from "../components/Pages/Invoice/Invoice";
 import Login from "../components/Pages/Login&Register/Login/Login";
@@ -30,6 +29,7 @@ import Pricing from "../components/Pages/Pricing/Pricing";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
+import Fqa from "../components/Pages/FQA/Fqa";
 
 export const router = createBrowserRouter([
 	{
@@ -81,6 +81,36 @@ export const router = createBrowserRouter([
 				path: "/blogs",
 				element: <Articles></Articles>
 			},
+			{
+				path: "/candidate",
+				element: <Candidate />,
+			},
+			{
+				path: "/fqa",
+				element: <Fqa />,
+			},
+			{
+				path: "/pricing",
+				element: <Pricing />,
+			},
+		
+			{
+				path: "/find-jobs",
+				element: <FindJob />,
+			},
+			{
+				path: "/find-jobs/single-job",
+				element: <SingleJobs />,
+			},
+			{
+				path: "/resetPass",
+				element: <ResetPass />,
+			},
+		
+			{
+				path: "*",
+				element: <NotFound />,
+			},		
 			{
 				path: "/invoice",
 				element: <Invoice />,
@@ -136,35 +166,7 @@ export const router = createBrowserRouter([
     ]
    },
 
-	{
-		path: "/candidate",
-		element: <Candidate />,
-	},
-	{
-		path: "/fqa",
-		element: <Fqa />,
-	},
-	{
-		path: "/pricing",
-		element: <Pricing />,
-	},
 
-	{
-		path: "/find-jobs",
-		element: <FindJob />,
-	},
-	{
-		path: "/find-jobs/single-job",
-		element: <SingleJobs />,
-	},
-	{
-		path: "/resetPass",
-		element: <ResetPass />,
-	},
 
-	{
-		path: "*",
-		element: <NotFound />,
-	}
 
 ]);
