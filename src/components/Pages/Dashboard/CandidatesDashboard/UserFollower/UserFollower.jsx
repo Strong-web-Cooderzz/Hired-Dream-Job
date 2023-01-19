@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CandidateFollower = ({data}) => {
+const UserFollowers = ({data}) => {
     const {name, image} = data ;
     return (
         <div className='bg-slate-50   hover:bg-slate-100 px-3 '>
@@ -18,4 +18,4 @@ const CandidateFollower = ({data}) => {
     );
 };
 
-export default CandidateFollower;
+export default UserFollowers;

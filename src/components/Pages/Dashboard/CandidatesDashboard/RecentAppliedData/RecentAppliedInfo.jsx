@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
-const CompanyInfo = ({companyInfoData}) => {
+const RecentAppliedInfo = ({companyInfoData}) => {
     const {name, logo, location} = companyInfoData ;
     return (
         <div className='border lg:mt-0 mt-5 flex gap-10 p-4 hover:bg-slate-50 shadow-md rounded-md'>
@@ -17,4 +17,4 @@ const CompanyInfo = ({companyInfoData}) => {
     );
 };
 
-export default CompanyInfo;
+export default RecentAppliedInfo;
