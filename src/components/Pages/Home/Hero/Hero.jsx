@@ -59,7 +59,7 @@ const Hero = () => {
             {/* Right side image */}
             <div className="sm:w-[800px] w-full h-[400px] bg-blue-700  -z-10 sm:h-[800px] sm:rounded-full left-0 sm:left-auto -top-0 absolute sm:-top-80 sm:-right-48 overflow-hidden">
  <img
-            src={heroImg}
+            src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYW18ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60'
             className="w-full h-full opacity-40 object-cover"
             alt=""
           />
