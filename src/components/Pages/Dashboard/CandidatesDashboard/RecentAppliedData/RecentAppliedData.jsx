@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import CompanyInfo from './CompanyInfo';
+import CompanyInfo from './RecentAppliedInfo';
 
-const RecentAppliedCompany = () => {
+const RecentAppliedData = () => {
     const [companyInfo , setCompanyInfo]  = useState([])
     useEffect(()=> {
         fetch('/data/RecentAppliedCompany/RecentAppliedCompany.json')
@@ -26,4 +26,4 @@ const RecentAppliedCompany = () => {
     );
 };
 
-export default RecentAppliedCompany;    
+export default RecentAppliedData;    

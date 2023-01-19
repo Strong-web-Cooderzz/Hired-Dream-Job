@@ -1,9 +1,16 @@
+
 import { createBrowserRouter } from "react-router-dom";
 import About from "../components/Pages/About/About";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
+
+import CandidatesDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
+import DashboardAddPost from "../components/Pages/Dashboard/DashboardAddPost/DashboardAddPost";
+import MyAllPost from "../components/Pages/Dashboard/MyAllPost/MyAllPost";
+import MyProfile from "../components/Pages/Dashboard/MyProfle/MyProfile";
+
 import Articles from "../components/Pages/Home/Articles/Articles";
 import SingelArticles from "../components/Pages/Home/Articles/SingelArticles";
 import Contact from "../components/Pages/Contact/Contact";
@@ -22,6 +29,7 @@ import TremsPages from "../components/Pages/TermsPages/TremsPages";
 import Pricing from "../components/Pages/Pricing/Pricing";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 
 export const router = createBrowserRouter([
 	{
@@ -44,10 +52,7 @@ export const router = createBrowserRouter([
 				path: "/candidates",
 				element: <Candidates />,
 			},
-			{
-				path: "/candidates",
-				element: <Candidates />,
-			},
+		
 			{
 				path: "/find-jobs",
 				element: <FindJob />,
@@ -95,6 +100,42 @@ export const router = createBrowserRouter([
 		element: <ResetPass />,
 	},
 
+  {
+    path: "/accountClient",
+    element: <AccountClient />,
+  },
+  {
+    path: "/accountAgency",
+    element: <AccountAgency />,
+  },
+  
+   {
+    path: '/dashboard', 
+    element: <DashboardLayout > </DashboardLayout> ,
+    children: [
+      {
+        path: '/dashboard',
+        element:<UserDashboard > </UserDashboard>
+      },
+      {
+        path:  '/dashboard/my_dashboard',
+        element: <UserDashboard > </UserDashboard>
+      },
+      {
+        path: '/dashboard/my_profile',
+        element: <MyProfile> </MyProfile>
+      },
+      {
+        path: '/dashboard/addpost',
+        element: <DashboardAddPost> </DashboardAddPost>
+      },
+      {
+        path: '/dashboard/my_allpost',
+        element: <MyAllPost> </MyAllPost>
+      }
+    ]
+   },
+
 	{
 		path: "/candidate",
 		element: <Candidate />,
@@ -120,26 +161,10 @@ export const router = createBrowserRouter([
 		path: "/resetPass",
 		element: <ResetPass />,
 	},
-	{
-		path: "/accountClient",
-		element: <AccountClient />,
-	},
-	{
-		path: "/accountAgency",
-		element: <AccountAgency />,
-	},
-	{
-		path: '/dashboard',
-		element: <DashboardLayout > </DashboardLayout>,
-		children: [
-			{
-				path: '/dashboard/candidates_dashboard',
-				element: <CandidateDashboardRight > </CandidateDashboardRight>
-			}
-		]
-	},
+
 	{
 		path: "*",
 		element: <NotFound />,
 	}
+
 ]);

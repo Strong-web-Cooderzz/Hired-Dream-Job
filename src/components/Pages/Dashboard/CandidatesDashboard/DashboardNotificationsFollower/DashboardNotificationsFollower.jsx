@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {BiBriefcase ,BiChevronRight} from "react-icons/bi";
 import { FaBell } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import CandidateFollower from '../CandidateFollower/CandidateFollower';
+import UserFollowers from '../UserFollower/UserFollower';
 
 
-const CandidatesNotificationsFollower = () => {
+const DashboardNotificationsFollower = () => {
 
     const [follower,setFollower] = useState([]);
     useEffect(()=>{
@@ -16,7 +16,6 @@ const CandidatesNotificationsFollower = () => {
         })
     },[])
 
-    console.log(follower)
 
     const CandidateNotifyData = [
         {
@@ -88,10 +87,10 @@ const CandidatesNotificationsFollower = () => {
               <h2 className='font-semibold  '> Who  is  followed you  ?   </h2>
               <div className='pl-3 grid lg:grid-cols-1 md:grid-cols-2 md:gap-4 mt-2'>
                {
-                follower.map(data => <CandidateFollower 
+                follower.map(data => <UserFollowers 
                     key={data.id} 
                     data = {data}
-                 >  </CandidateFollower>)
+                 >  </UserFollowers>)
                }
               </div>
             </div>
@@ -99,4 +98,4 @@ const CandidatesNotificationsFollower = () => {
     );
 };
 
-export default CandidatesNotificationsFollower;
+export default DashboardNotificationsFollower;
