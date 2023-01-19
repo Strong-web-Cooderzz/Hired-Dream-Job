@@ -79,6 +79,14 @@ export const router = createBrowserRouter([
 			{
 				path: "/invoice",
 				element: <Invoice />,
+			},
+			{
+				path: "/employers",
+				element: <Employers />
+			},
+			{
+				path: "/employer/:id",
+				element: <Employer />
 			}
 		]
 	},
