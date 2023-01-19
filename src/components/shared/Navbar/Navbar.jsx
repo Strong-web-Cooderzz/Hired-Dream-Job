@@ -69,10 +69,10 @@ export default function Navbar() {
                 <Link to="/">Home</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <Link to="/">Find Jobs</Link>
+                <Link to="/find-jobs">Find Jobs</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <Link to="/">Employers</Link>
+                <Link to="/employers">Employers</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/candidates">Candidates</Link>
