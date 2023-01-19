@@ -3,6 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Candidates from './../../Pages/Candidates/Candidates';
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -80,6 +81,18 @@ export default function Navbar() {
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/blogs">Blog</Link>
               </li>
+              <li className="text-gray-600 hover:text-blue-600" > 
+              <Link  to="/dashboard"> Dashboard </Link>
+              
+              </li>
+              {
+                user?.uid?
+                <li> 
+                <Link onClick={logOut}> Logout  </Link>
+              </li>
+              :
+              ''
+              }
               <li className="text-white">
                 {user?.uid ? (
                   <div className="relative">
