@@ -20,7 +20,8 @@
     "react-ranger": "^2.1.0",
     "react-router-dom": "^6.6.2",
     "react-select": "^5.7.0",
-    "swiper": "^8.4.5"
+    "swiper": "^8.4.5",
+    "tw-elements": "^1.0.0-alpha13"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

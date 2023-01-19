@@ -1,0 +1,39 @@
+[
+    {
+        "id": 10,
+        "name":"Figma",
+        "logo":"https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+        "location":"USA"
+    },
+    {
+        "id": 11,
+        "name":"Skype",
+        "logo":"https://seeklogo.com/images/S/skype-icon-logo-62E333BBBA-seeklogo.com.png",
+        "location":"USA, Washington"
+    },
+    {
+        "id": 12,
+        "name":" TechNo",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBsEJ4atQiNAySWyXJNUJsyYJWgB4n9Kfvhw&usqp=CAU",
+        "location":"India "
+    },
+    {
+        "id": 13,
+        "name":"Tiger It ",
+        "logo":"https://media.licdn.com/dms/image/C510BAQHKCVwP5bk8zg/company-logo_200_200/0/1575181976474?e=2147483647&v=beta&t=1_nZzQHxYXqHkonWE8NUCReqIwhZ8NNYy9-_mAX8CKE",
+        "location":"Dhaka,  Bangladesh"
+    },
+    {
+        "id": 14,
+        "name":"SoftZino",
+        "logo":"https://upwork-usw2-prod-assets-static.s3.us-west-2.amazonaws.com/org-logo/1039418973455630336",
+        "location":"Dhaka, Bd"
+    },
+    {
+        "id": 15,
+        "name":" Tencent",
+        "logo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTcjMFASZ5aASl4EtUHm7cBDXef4f7IXFNoA&usqp=CAU",
+        "location":" India  "
+    }
+
+]

@@ -3,14 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   body {
     font-family: 'Jost', sans-serif;
 
 }
-
-
-#sortbox:checked~#sortboxmenu {
-  opacity: 1;
 }
