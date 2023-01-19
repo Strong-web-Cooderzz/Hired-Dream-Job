@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import softIt from '../../../../../assets/logos/softIt.png';
 import figma from '../../../../../assets/logos/figma.png';
 import marketing from '../../../../../assets/logos/marketing.png';
@@ -12,65 +12,14 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 
 const JobFeauters = () => {
-
-    const jobFeaturesData = [
-        {  "id": 1,
-            "company":"softIt",
-            "title":"Software engineer",
-            "location":"Dhaka, BD",
-             "logo": softIt 
-        },
-        {
-            "id": 2,
-            "company":"UI-Master",
-            "title":" Figma UI/UX Designer  ",
-            "location":"Dhaka, BD",
-             "logo":  figma 
-        },
-        {
-            "id": 3,
-            "company":"it-lab",
-            "title":" Android Software Engineer",
-            "location":"Kolkata ,India",
-             "logo":  android
-        },
-        {
-            "id": 4,
-            "company":"Linkedin",
-            "title":" Web Developer ",
-            "location":" USA , UK",
-             "logo":  linkedin  
-        },
-        {
-            "id": 5,
-            "company":"Skype",
-            "title":" Front-end Developer ",
-            "location":" Dhaka, BD ",
-             "logo":  skype
-        },
-        {
-            "id": 6,
-            "company":"TechIt",
-            "title":" Mern Stack Developer ",
-            "location":"California,USA",
-             "logo":  tech 
-        },
-        {
-            "id": 7,
-            "company":"Money-exchange",
-            "title":"Marketing  Officer ",
-            "location":"California,USA",
-             "logo":  marketing
-        },
-        {
-            "id": 8,
-            "company":"upwork",
-            "title":"PHP , Laravel Developer ",
-            "location":"Washington,USA",
-             "logo":  upwork 
-        }
-
-    ]
+    const api = import.meta.env.VITE_API + 'jobs'
+    const [jobFeaturesData,setJobFeaturesData] = useState([])
+    useEffect(()=>{
+        fetch(api)
+        .then(res=>res.json())
+        .then(data=>setJobFeaturesData(data))
+    },[])
+    console.log(jobFeaturesData);
     return (
         <section className='mx-auto w-full px-5 '>
          <div className='text-center mb-4 '>
