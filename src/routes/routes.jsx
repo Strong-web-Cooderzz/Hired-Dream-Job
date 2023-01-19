@@ -1,8 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
+import About from "../components/Pages/About/About";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
+import Articles from "../components/Pages/Home/Articles/Articles";
+import SingelArticles from "../components/Pages/Home/Articles/SingelArticles";
 import Contact from "../components/Pages/Contact/Contact";
 import FindJob from "../components/Pages/FindJob/FindJob";
 import SingleJobs from "../components/Pages/FindJob/SingleJobs";
@@ -14,12 +17,13 @@ import Login from "../components/Pages/Login&Register/Login/Login";
 import ResetPass from "../components/Pages/Login&Register/Login/ResetPass";
 import Register from "../components/Pages/Login&Register/Register/Register";
 import NotFound from "../components/Pages/NotFound/NotFound";
+import TremsPages from "../components/Pages/TermsPages/TremsPages";
 import Pricing from "../components/Pages/Pricing/Pricing";
 import Main from "../layout/Main";
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <NotFound />,
     element: <Main />,
     children: [
       {
@@ -95,6 +99,20 @@ export const router = createBrowserRouter([
     element: <AccountAgency />,
   },
   {
+    path:'/about',
+    element:<About></About>
+  },
+  {
+    path:'/singelArticles',
+    element:<SingelArticles></SingelArticles>
+  },
+  {
+    path:"/trems",
+    element:<TremsPages></TremsPages>
+  },{
+    path:"/blogs",
+    element:<Articles></Articles>
+  }
     path: "/invoice",
     element: <Invoice />,
   },
