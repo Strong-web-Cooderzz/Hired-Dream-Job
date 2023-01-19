@@ -3,7 +3,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import Candidates from './../../Pages/Candidates/Candidates';
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -61,11 +60,11 @@ export default function Navbar() {
         </div>
         <div>
           <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 transition-all ${
+            className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  ${
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0  duration-1000">
+            <ul className="items-center   justify-center space-y-8 md:flex md:space-x-6 md:space-y-0   transition duration-150 ease-in-out ">
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/">Home</Link>
               </li>

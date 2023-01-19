@@ -1,9 +1,9 @@
 import React from 'react';
-import CandidateDashboardRight from './CandidateDashboardRight/CandidateDashboardRight';
-import CandidatesNotificationsFollower from'./CandidatesNotificationsFollower/CandidatesNotificationsFollower';
-import RecentAppliedCompany from './RecentAppliedCompany/RecentAppliedCompany';
+import DashboardNotificationsFollower from './DashboardNotificationsFollower/DashboardNotificationsFollower';
+import RecentAppliedData from './RecentAppliedData/RecentAppliedData';
+import UserDashboardRightPart from './UserDashboardRightPart/UserDashboardRightPart';
 
-const CandidatesDashboard = () => {
+const UserDashboard = () => {
   
     return (
        <section className='w-full px-5'>
@@ -16,14 +16,13 @@ const CandidatesDashboard = () => {
 
             {/* right  side of dashboard  */}
             <div className='bg-slate-200 w-full  px-3 py-4 '>
-               <CandidateDashboardRight > </CandidateDashboardRight>
+       
+             <UserDashboardRightPart > </UserDashboardRightPart>
             {/* candidates notification and follower   */}
             
-             <CandidatesNotificationsFollower>  </CandidatesNotificationsFollower> 
-            
+             <DashboardNotificationsFollower > </DashboardNotificationsFollower>            
              {/* Candidate recent applied company show with details  */}
-             <RecentAppliedCompany > </RecentAppliedCompany>
-
+             <RecentAppliedData > </RecentAppliedData>
             </div>
         
          </div>
@@ -31,4 +30,4 @@ const CandidatesDashboard = () => {
     );
 };
 
-export default CandidatesDashboard;
+export default UserDashboard;
