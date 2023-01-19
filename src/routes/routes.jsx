@@ -1,48 +1,104 @@
 
 import { createBrowserRouter } from "react-router-dom";
+import About from "../components/Pages/About/About";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
+import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
+
 import CandidatesDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 import DashboardAddPost from "../components/Pages/Dashboard/DashboardAddPost/DashboardAddPost";
 import MyAllPost from "../components/Pages/Dashboard/MyAllPost/MyAllPost";
 import MyProfile from "../components/Pages/Dashboard/MyProfle/MyProfile";
+
+import Articles from "../components/Pages/Home/Articles/Articles";
+import SingelArticles from "../components/Pages/Home/Articles/SingelArticles";
+import Contact from "../components/Pages/Contact/Contact";
+import FindJob from "../components/Pages/FindJob/FindJob";
+import SingleJobs from "../components/Pages/FindJob/SingleJobs";
+import Employer from "../components/Pages/Employer/Employer";
+import Employers from "../components/Pages/Employers/Employers";
+import CandidateDashboardRight from "../components/Pages/Dashboard/CandidatesDashboard/CandidateDashboardRight/CandidateDashboardRight";
 import Home from "../components/Pages/Home/Home";
+import Invoice from "../components/Pages/Invoice/Invoice";
 import Login from "../components/Pages/Login&Register/Login/Login";
 import ResetPass from "../components/Pages/Login&Register/Login/ResetPass";
 import Register from "../components/Pages/Login&Register/Register/Register";
 import NotFound from "../components/Pages/NotFound/NotFound";
+import TremsPages from "../components/Pages/TermsPages/TremsPages";
+import Pricing from "../components/Pages/Pricing/Pricing";
 import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
+import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      }, 
-      {
-        path: "/candidates",
-        element: <Candidates />,
-      },
-  
-    ],
-  },
-  {
-    path: "/resetPass",
-    element: <ResetPass />,
-  },
+	{
+		path: "/",
+		element: <Main />,
+		children: [
+			{
+				path: "/",
+				element: <Home />,
+			},
+			{
+				path: "/login",
+				element: <Login />,
+			},
+			{
+				path: "/register",
+				element: <Register />,
+			},
+			{
+				path: "/candidates",
+				element: <Candidates />,
+			},
+		
+			{
+				path: "/find-jobs",
+				element: <FindJob />,
+			},
+			{
+				path: "/find-jobs/single-job",
+				element: <SingleJobs />,
+			},
+			{
+				path: "/contact",
+				element: <Contact />,
+			},
+			{
+				path: '/about',
+				element: <About></About>
+			},
+			{
+				path: '/singelArticles',
+				element: <SingelArticles></SingelArticles>
+			},
+			{
+				path: "/trems",
+				element: <TremsPages></TremsPages>
+			},
+			{
+				path: "/blogs",
+				element: <Articles></Articles>
+			},
+			{
+				path: "/invoice",
+				element: <Invoice />,
+			},
+			{
+				path: "/employers",
+				element: <Employers />
+			},
+			{
+				path: "/employer/:id",
+				element: <Employer />
+			}
+		]
+	},
+	{
+		path: "/resetPass",
+		element: <ResetPass />,
+	},
 
   {
     path: "/accountClient",
@@ -52,21 +108,18 @@ export const router = createBrowserRouter([
     path: "/accountAgency",
     element: <AccountAgency />,
   },
-   {
-    path: '*' , 
-    element: <NotFound />
-   },
+  
    {
     path: '/dashboard', 
     element: <DashboardLayout > </DashboardLayout> ,
     children: [
       {
         path: '/dashboard',
-        element:<CandidatesDashboard > </CandidatesDashboard>
+        element:<UserDashboard > </UserDashboard>
       },
       {
         path:  '/dashboard/my_dashboard',
-        element: <CandidatesDashboard > </CandidatesDashboard>
+        element: <UserDashboard > </UserDashboard>
       },
       {
         path: '/dashboard/my_profile',
@@ -81,5 +134,37 @@ export const router = createBrowserRouter([
         element: <MyAllPost> </MyAllPost>
       }
     ]
-   }
+   },
+
+	{
+		path: "/candidate",
+		element: <Candidate />,
+	},
+	{
+		path: "/fqa",
+		element: <Fqa />,
+	},
+	{
+		path: "/pricing",
+		element: <Pricing />,
+	},
+
+	{
+		path: "/find-jobs",
+		element: <FindJob />,
+	},
+	{
+		path: "/find-jobs/single-job",
+		element: <SingleJobs />,
+	},
+	{
+		path: "/resetPass",
+		element: <ResetPass />,
+	},
+
+	{
+		path: "*",
+		element: <NotFound />,
+	}
+
 ]);

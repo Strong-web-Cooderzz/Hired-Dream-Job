@@ -1,12 +1,13 @@
+
 import React, { useState } from "react";
-import MultiRangeSlider from "multi-range-slider-react";
+import { AiOutlineCheck } from "react-icons/ai";
+import { FiBookmark } from "react-icons/fi";
+import { GiMoneyStack } from "react-icons/gi";
+import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { CategorySelect } from "./Select/CategorySelect";
 import { GenderSelect } from "./Select/GenderSelect";
-import { AiOutlineCheck } from "react-icons/ai";
-import { GrLocation } from "react-icons/gr";
-import { GiMoneyStack } from "react-icons/gi";
-import { FiBookmark } from "react-icons/fi";
+import Leftside from "./Sidebar/Leftside";
 
 const Candidates = () => {
   const [minValue, set_minValue] = useState(0);
@@ -21,397 +22,60 @@ const Candidates = () => {
   const [hover, setHover] = useState();
   console.log(hover);
 
-  const [filter,setFilter] = useState(false)
-
   return (
     <div className="bg-[#e5ecfa]">
       <div>
         <div className="text-center w-full h-44 flex justify-center items-center">
           <div>
-          <h3 className="text-2xl font-semibold">Candidates</h3>
-          <p className="text-sm">
-            <Link to='/'>Home</Link> / Candidates
-          </p>
+            <h3 className="text-2xl font-semibold">Candidates</h3>
+            <p className="text-sm">
+              <Link to="/">Home</Link> / Candidates
+            </p>  
           </div>
         </div>
-        <div className="flex bg-white px-6 py-6 gap-8 ">
-          
-            {/* Left Side */}
-          <div className={`bg-blue-50 absolute top-0 ${filter ? '-left-0':'-left-96'} z-10 md:left-0 md:relative flex p-4 w-8/12 md:w-4/12 rounded-md  flex-col gap-3`}>
-            <div>
-              <div className="w-full flex justify-end">
-              <button onClick={()=>setFilter(!filter)}>Folter</button>
-              </div>
-              <p className="text-lg my-2">Search by Keywords</p>
-              <fieldset className="w-full space-y-1 dark:text-gray-100">
-                <label for="Search" className="hidden">
-                  Search
-                </label>
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <button
-                      type="button"
-                      title="search"
-                      className="p-1 focus:outline-none focus:ring"
-                    >
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 512 512"
-                        className="w-4 h-4 dark:text-gray-100"
-                      >
-                        <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
-                      </svg>
-                    </button>
-                  </span>
-                  <input
-                    type="search"
-                    name="Search"
-                    placeholder="Job title, keywords, or company..."
-                    className=" w-full py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
-                  />
-                </div>
-              </fieldset>
-            </div>
-            <div>
-              <p className="text-lg my-2">Location</p>
-              <fieldset className="w-full space-y-1 dark:text-gray-100">
-                <label for="Search" className="hidden">
-                  Search
-                </label>
-                <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                    <button
-                      type="button"
-                      title="search"
-                      className="p-1 focus:outline-none focus:ring"
-                    >
-                      <GrLocation />
-                    </button>
-                  </span>
-                  <input
-                    type="search"
-                    name="Search"
-                    placeholder=" City or postcode"
-                    className=" w-full py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400"
-                  />
-                </div>
-              </fieldset>
-            </div>
-            <div>
-              <p className="text-sm my-2">Radius around selected destination</p>
-             <div className="w-full">
-             <MultiRangeSlider
-                min={0}
-                max={100}
-                step={5}
-                ruler={false}
-                label={false}
-                minValue={minValue}
-                maxValue={maxValue}
-                onInput={(e) => {
-                  handleInput(e);
-                }}
-              />
-             </div>
-              <div className="flex justify-center">
-                <p className="bg-blue-300 w-20 text-center rounded-md p-1 text-sm">
-                  {maxValue}km
-                </p>
-              </div>
-            </div>
-            <div>
-              <p className="text-lg my-2">Category</p>
-              <CategorySelect />
-            </div>
-            <div>
-              <p className="text-lg my-2">Candidate Gender</p>
-              <GenderSelect />
-            </div>
-            <div>
-              <p className="text-lg my-2">Date Posted</p>
-
-              <div>
-                <h3
-                  onClick={() => setDate("all")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "all"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "all" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  All
-                </h3>
-                <h3
-                  onClick={() => setDate("last")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "last"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "last" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  Last Hour
-                </h3>
-
-                <h3
-                  onClick={() => setDate("24")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "24"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "24" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  Last 24 Hour
-                </h3>
-                <h3
-                  onClick={() => setDate("7day")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "7day"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "7day" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  Last 7 Days
-                </h3>
-                <h3
-                  onClick={() => setDate("14day")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "14day"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "14day" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  Last 14 Days
-                </h3>
-                <h3
-                  onClick={() => setDate("30day")}
-                  className="flex select-none cursor-pointer items-center"
-                >
-                  <p
-                    className={`${
-                      date === "30day"
-                        ? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-                        : " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-                    }`}
-                  >
-                    {date === "30day" && (
-                      <AiOutlineCheck className="text-white text-xs" />
-                    )}{" "}
-                  </p>{" "}
-                  Last 30 Days
-                </h3>
-              </div>
-            </div>
-            <div>
-              <p className="text-lg my-2">Experience</p>
-              <div className="flex flex-col">
-                <label
-                  for="fresh"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input id="fresh" type="checkbox" className="hidden peer" />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Fresh
-                </label>
-                <label
-                  for="1year"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input id="1year" type="checkbox" className="hidden peer" />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  1 Year
-                </label>
-                <label
-                  for="2year"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input id="2year" type="checkbox" className="hidden peer" />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  2 Year
-                </label>
-                <label
-                  for="3year"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input id="3year" type="checkbox" className="hidden peer" />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  3 Year
-                </label>
-                <label
-                  for="4year"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input id="4year" type="checkbox" className="hidden peer" />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  4 Year
-                </label>
-              </div>
-            </div>
-            {/* Qualification */}
-            <div>
-              <p className="text-lg my-2">Qualification</p>
-              <div className="flex flex-col gap-2">
-                <label
-                  for="Certificate"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input
-                      id="Certificate"
-                      type="checkbox"
-                      className="hidden peer"
-                    />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Certificate
-                </label>
-                <label
-                  for="Associate"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input
-                      id="Associate"
-                      type="checkbox"
-                      className="hidden peer"
-                    />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Associate Degree
-                </label>
-                <label
-                  for="Bachelor"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input
-                      id="Bachelor"
-                      type="checkbox"
-                      className="hidden peer"
-                    />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Bachelor Degree
-                </label>
-                <label
-                  for="Master"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input
-                      id="Master"
-                      type="checkbox"
-                      className="hidden peer"
-                    />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Master’s Degree
-                </label>
-                <label
-                  for="Doctorate"
-                  className="inline-flex items-center space-x-4 cursor-pointer text-gray-800"
-                >
-                  <span className="relative mr-4">
-                    <input
-                      id="Doctorate"
-                      type="checkbox"
-                      className="hidden peer"
-                    />
-                    <div className="w-10 h-5 rounded-full shadow-inner bg-gray-300 peer-checked:bg-blue-600"></div>
-                    <div className="absolute inset-y-0 left-0 w-3 h-3 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-100"></div>
-                  </span>
-                  Doctorate Degree
-                </label>
-              </div>
-            </div>
-          </div>
+      
+        <div className="md:flex bg-white px-6 py-6 gap-8 relative">
+       
+          {/* Left Side */}
+         <Leftside />
           {/* Right side */}
-          <div className="md:w-8/12">
-            <div className="flex items-center justify-between my-6">
-              <h2>10 Jobs</h2> 
-             <div className="flex items-center gap-4">
-              <button onClick={()=>setFilter(!filter)}>Folter</button>
-             <CategorySelect />
-             <CategorySelect />
-             </div>
-            </div>
+          <div className="md:w-8/12 ">
+         <div className="flex md:block justify-center">
+         <div className="p-4 md:flex  justify-between">
+          <div className="flex gap-2">
+            <h3>10 Jobs</h3>
+            <h3 className=" md:hidden">Filter</h3>
+          </div>
+          <div className="flex gap-2">
+            <CategorySelect />
+            <CategorySelect />
+          </div>
+        </div>
+         </div>
             <div
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}
-              className="flex gap-3 items-center justify-between w-full border p-6 rounded-md"
+              className="lg:flex gap-3 items-center justify-between w-full border p-6 rounded-md"
             >
-              <div>
-                 {/* Candidate Image */}
+              <div className="md:w-full flex justify-center w-full lg:w-[20rem] lg:h-24">
                 <img
-                  className="w-24 h-24 rounded-full"
+                  className="md:w-44 lg:w-24 lg:h-24 rounded-full"
                   src="https://superio-next.vercel.app/images/resource/candidate-1.png"
                   alt=""
                 />
               </div>
-              <div>
-                <h3 className="text-2xl">Darlene Robertson</h3>
-                <div className="flex gap-3">
-                  <p>UI Designer</p>
+              <div className="flex w-full justify-center lg:justify-start lg:text-left text-center">
+               <div className="flex flex-col gap-2 justify-center lg:justify-start">
+               <Link to={'/candidate'}><h3 className="text-2xl">Darlene Robertson</h3></Link>
+                <div className="flex flex-wrap md:w-96 gap-3">
+                  <p className="w-24">UI Designer</p>
                   <p className="flex items-center justify-center gap-2">
                     <GrLocation />
-                    London, UK
+                   <p className="w-24"> London, UK</p>
                   </p>
-                  <p className="flex items-center justify-center gap-2">
-                    <GiMoneyStack /> $99 / hour
-                  </p>
+                  <div className="flex items-center justify-center gap-2">
+                    <GiMoneyStack /> <p className="w-24">$99 / hour</p>
+                  </div>
                 </div>
                 <div className="flex gap-3">
                   <p className="bg-blue-100 text-gray-500 px-3 rounded-full">
@@ -424,11 +88,12 @@ const Candidates = () => {
                     Digital
                   </p>
                 </div>
+               </div>
               </div>
-              <div className="flex items-center gap-5">
+              <div className="flex flex-col lg:flex-row w-full justify-center lg:justify-between items-center lg:gap-5">
                 {hover ? (
                   <div className=" ">
-                    <FiBookmark className="text-4xl duration-500 bg-gray-200 rounded-full p-2" />
+                    <FiBookmark className="text-4xl mt-3 duration-500 bg-gray-200 rounded-full p-2" />
                   </div>
                 ) : (
                   <div className=" ">
@@ -436,62 +101,8 @@ const Candidates = () => {
                   </div>
                 )}
                 <div>
-                  <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
-                    View Profile
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-              className="flex gap-3 items-center mt-6 justify-between w-full border p-6 rounded-md"
-            >
-              <div>
-                {/* Candidate Image */}
-                <img
-                  className="w-24 h-24 rounded-full"
-                  src="https://superio-next.vercel.app/images/resource/candidate-1.png"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h3 className="text-2xl">Darlene Robertson</h3>
-                <div className="flex gap-3">
-                  <p>UI Designer</p>
-                  <p className="flex items-center justify-center gap-2">
-                    <GrLocation />
-                    London, UK
-                  </p>
-                  <p className="flex items-center justify-center gap-2">
-                    <GiMoneyStack /> $99 / hour
-                  </p>
-                </div>
-                <div className="flex gap-3">
-                  <p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-                    App
-                  </p>
-                  <p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-                    Design
-                  </p>
-                  <p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-                    Digital
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-5">
-                {hover ? (
-                  <div className=" ">
-                    <FiBookmark className="text-4xl duration-500 bg-gray-200 rounded-full p-2" />
-                  </div>
-                ) : (
-                  <div className=" ">
-                    <FiBookmark className="text-4xl duration-500 text-transparent rounded-full p-2" />
-                  </div>
-                )}
-                <div>
-                  <Link className="bg-blue-100 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 sm:px-7 px-3 py-4 rounded-md text-blue-500">
-                    View Profile
+                  <Link to={'/candidate'} className="bg-blue-100 inline-block my-7 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-7 py-4 rounded-md text-blue-500">
+                     Profile
                   </Link>
                 </div>
               </div>

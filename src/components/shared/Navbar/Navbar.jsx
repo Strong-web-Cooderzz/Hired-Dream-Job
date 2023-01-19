@@ -84,14 +84,7 @@ export default function Navbar() {
               <Link  to="/dashboard"> Dashboard </Link>
               
               </li>
-              {
-                user?.uid?
-                <li> 
-                <Link onClick={logOut}> Logout  </Link>
-              </li>
-              :
-              ''
-              }
+             
               <li className="text-white">
                 {user?.uid ? (
                   <div className="relative">
