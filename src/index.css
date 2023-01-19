@@ -228,3 +228,7 @@
 #sortbox:checked~#sortboxmenu {
   opacity: 1;
 }
+
+.active{
+  color: blue;
+}
