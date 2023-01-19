@@ -1,7 +1,6 @@
-import { BsSearch } from "react-icons/bs";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsSearch } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -38,9 +37,9 @@ export default function Employers() {
 			{/* search form starts here */}
 			<section className="bg-blue-50 w-full justify-center py-8 px-4 md:p-12 grid items-center gap-6">
 				{/* search form */}
-				<form className="w-[90vw] bg-transparent md:w-full flex flex-col md:flex-row gap-8 md:px-8 md:py-4 rounded-md md:bg-white">
+				<form className="w-[90vw] bg-transparent lg:w-full flex flex-col lg:flex-row gap-8 lg:px-8 lg:py-4 rounded-md lg:bg-white">
 					{/* search by name */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
+					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
 						<div>
 							<BsSearch />
 						</div>
@@ -48,7 +47,7 @@ export default function Employers() {
 					</div>
 
 					{/* search by location */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
+					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
 						<div>
 							<FaMapMarkerAlt />
 						</div>
@@ -56,11 +55,11 @@ export default function Employers() {
 					</div>
 
 					{/* category list */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 md:p-0 rounded-md md:rounded-none shadow md:shadow-none">
+					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
 						<div>
 							<BiShoppingBag />
 						</div>
-						<select className="bg-transparent text-gray-500">
+						<select className="bg-transparent text-gray-500 w-full">
 							<option value="">Choose a category</option>
 							<option>Test</option>
 							<option>Test</option>
@@ -106,7 +105,7 @@ export default function Employers() {
 			</section>
 
 			{/* cards */}
-			<div className="px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+			<div className="px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				{
 					search.length && search.map((i, id) => <SearchResultCard key={id} employer={i} />)
 				}
