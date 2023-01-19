@@ -78,7 +78,7 @@ export default function Navbar() {
                 <Link to="/candidates">Candidates</Link>
               </li>
               <li className="text-gray-600 hover:text-blue-600">
-                <Link to="/">Blog</Link>
+                <Link to="/blogs">Blog</Link>
               </li>
               <li className="text-white">
                 {user?.uid ? (
