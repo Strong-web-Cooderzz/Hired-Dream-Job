@@ -11,6 +11,7 @@ import FindJob from "../components/Pages/FindJob/FindJob";
 import SingleJobs from "../components/Pages/FindJob/SingleJobs";
 import Employer from "../components/Pages/Employer/Employer";
 import Employers from "../components/Pages/Employers/Employers";
+import CandidateDashboardRight from "../components/Pages/Dashboard/CandidatesDashboard/CandidateDashboardRight/CandidateDashboardRight";
 import Home from "../components/Pages/Home/Home";
 import Invoice from "../components/Pages/Invoice/Invoice";
 import Login from "../components/Pages/Login&Register/Login/Login";
@@ -19,105 +20,118 @@ import Register from "../components/Pages/Login&Register/Register/Register";
 import NotFound from "../components/Pages/NotFound/NotFound";
 import TremsPages from "../components/Pages/TermsPages/TremsPages";
 import Pricing from "../components/Pages/Pricing/Pricing";
+import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/candidates",
-        element: <Candidates />,
-      },
-      {
-        path: "/candidates",
-        element: <Candidates />,
-      },
-      {
-        path: "/find-jobs",
-        element: <FindJob />,
-      },
-      {
-        path: "/find-jobs/single-job",
-        element: <SingleJobs />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-    ],
-  },
-  {
-    path: "/resetPass",
-    element: <ResetPass />,
-  },
+	{
+		path: "/",
+		element: <Main />,
+		children: [
+			{
+				path: "/",
+				element: <Home />,
+			},
+			{
+				path: "/login",
+				element: <Login />,
+			},
+			{
+				path: "/register",
+				element: <Register />,
+			},
+			{
+				path: "/candidates",
+				element: <Candidates />,
+			},
+			{
+				path: "/candidates",
+				element: <Candidates />,
+			},
+			{
+				path: "/find-jobs",
+				element: <FindJob />,
+			},
+			{
+				path: "/find-jobs/single-job",
+				element: <SingleJobs />,
+			},
+			{
+				path: "/contact",
+				element: <Contact />,
+			},
+			{
+				path: '/about',
+				element: <About></About>
+			},
+			{
+				path: '/singelArticles',
+				element: <SingelArticles></SingelArticles>
+			},
+			{
+				path: "/trems",
+				element: <TremsPages></TremsPages>
+			},
+			{
+				path: "/blogs",
+				element: <Articles></Articles>
+			},
+			{
+				path: "/invoice",
+				element: <Invoice />,
+			}
+		]
+	},
+	{
+		path: "/resetPass",
+		element: <ResetPass />,
+	},
 
-  {
-    path: "/candidate",
-    element: <Candidate />,
-  },
-  {
-    path: "/fqa",
-    element: <Fqa />,
-  },
-  {
-    path: "/pricing",
-    element: <Pricing />,
-  },
+	{
+		path: "/candidate",
+		element: <Candidate />,
+	},
+	{
+		path: "/fqa",
+		element: <Fqa />,
+	},
+	{
+		path: "/pricing",
+		element: <Pricing />,
+	},
 
-  {
-    path: "/find-jobs",
-    element: <FindJob />,
-  },
-  {
-    path: "/find-jobs/single-job",
-    element: <SingleJobs />,
-  },
-  {
-    path: "/resetPass",
-    element: <ResetPass />,
-  },
-  {
-    path: "/accountClient",
-    element: <AccountClient />,
-  },
-  {
-    path: "/accountAgency",
-    element: <AccountAgency />,
-  },
-  {
-    path:'/about',
-    element:<About></About>
-  },
-  {
-    path:'/singelArticles',
-    element:<SingelArticles></SingelArticles>
-  },
-  {
-    path:"/trems",
-    element:<TremsPages></TremsPages>
-  },{
-    path:"/blogs",
-    element:<Articles></Articles>
-  }
-    path: "/invoice",
-    element: <Invoice />,
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
+	{
+		path: "/find-jobs",
+		element: <FindJob />,
+	},
+	{
+		path: "/find-jobs/single-job",
+		element: <SingleJobs />,
+	},
+	{
+		path: "/resetPass",
+		element: <ResetPass />,
+	},
+	{
+		path: "/accountClient",
+		element: <AccountClient />,
+	},
+	{
+		path: "/accountAgency",
+		element: <AccountAgency />,
+	},
+	{
+		path: '/dashboard',
+		element: <DashboardLayout > </DashboardLayout>,
+		children: [
+			{
+				path: '/dashboard/candidates_dashboard',
+				element: <CandidateDashboardRight > </CandidateDashboardRight>
+			}
+		]
+	},
+	{
+		path: "*",
+		element: <NotFound />,
+	}
 ]);
