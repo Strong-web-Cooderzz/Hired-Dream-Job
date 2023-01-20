@@ -53,7 +53,7 @@ const Register = () => {
                 console.log(result);
                 reset();
                 toast.success("Successfully Login");
-                if (data.type === "Client") {
+                if (data.type === "Candidate") {
                   navigate("/accountClient");
                 } else {
                   navigate("/accountAgency");
@@ -193,9 +193,9 @@ const Register = () => {
                         {...register("type", {
                           required: "Account Type Is Required",
                         })}
-                        value="Client"
+                        value="Candidate"
                       />
-                      <div className="title px-2">Client</div>
+                      <div className="title px-2">Candidate</div>
                     </label>
                   </div>
                 </div>
