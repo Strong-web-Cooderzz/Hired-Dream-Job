@@ -12,51 +12,55 @@ import { BiUser } from "react-icons/bi";
 import { RiCoinsFill } from "react-icons/ri";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import logo from "../../../assets/logos/figma.png";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FiTwitter } from "react-icons/fi";
+import JobFeaturedCard from "../Home/JobFeatures/JobFeatures/JobFeaturedCard";
 
 const SingleJobs = () => {
-  return (
-    <div>
+  const singleJob = useLoaderData()
+  console.log(singleJob);
+  const {company,companyType,expireDate,jobDescription,jobType,location,logo,postTime,rateMax,rateMin,responsibilities,salaryMax,salaryMin,skills,title,trems,urgent,workingHours} = singleJob;
+   return (
+    <div className="w-[98%] mx-auto">
       <div className="lg:flex block mt-10 gap-10">
         <div className="basis-2/3">
           <div className="m-6 lg:m-0">
-            <h1 className="text-2xl font-medium ">Product Manager, Studio</h1>
+            <h1 className="text-2xl font-medium ">{title}</h1>
             <div className="flex items-center gap-5 flex-wrap">
               <p className="flex items-center gap-1">
                 <span>
                   <TfiBag />
                 </span>
-                Invision
+                {company}
               </p>
               <p className="flex items-center gap-1">
                 <span>
                   <GoLocation />
                 </span>
-                London, UK
+                {location}
               </p>
               <p className="flex items-center gap-1">
                 <span>
                   <BsClock />
                 </span>
-                11 hours ago
+                {postTime}
               </p>
               <p className="flex items-center gap-1">
                 <span>
                   <GiMoneyStack />
                 </span>
-                $35k - $45k
+                ${salaryMin} - ${salaryMax}
               </p>
             </div>
             <div className="mt-4 flex gap-2">
               <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-500">
-                Full Time
+               {jobType}
               </span>
               <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-500">
-                Urgent
+                {urgent?'Urgent':''}
               </span>
               <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-500">
-                Private
+                {companyType}
               </span>
             </div>
           </div>
@@ -73,7 +77,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Date Posted:
                       </span>
-                      Posted 1 hours ago
+                      Posted {postTime}
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -84,7 +88,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Expiration date:
                       </span>
-                      April 06, 2021
+                     {expireDate.slice(0,10)}
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -95,7 +99,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Location:
                       </span>
-                      London, UK
+                      {location}
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -106,7 +110,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Job Title:
                       </span>
-                      Designer
+                      {title}
                     </p>
                   </div>
                 </div>
@@ -119,7 +123,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Hours:
                       </span>
-                      50h / week
+                      {workingHours}h / week
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -130,7 +134,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Rate:
                       </span>
-                      $15 - $25 / hour
+                      ${rateMin} - ${rateMax} / hour
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -141,7 +145,7 @@ const SingleJobs = () => {
                       <span className="block font-semibold text-black">
                         Salary:
                       </span>
-                      $35k - $45k
+                      ${salaryMin} - ${salaryMax}
                     </p>
                   </div>
                 </div>
@@ -152,75 +156,19 @@ const SingleJobs = () => {
             <div>
               <h1 className="text-xl font-medium mb-3">Job Description</h1>
               <p className="text-black/70 text-justify">
-                As a Product Designer, you will work within a Product Delivery
-                Team fused with UX, engineering, product and data talent. You
-                will help the team design beautiful interfaces that solve
-                business challenges for our clients. We work with a number of
-                Tier 1 banks on building web-based applications for AML, KYC and
-                Sanctions List management workflows. This role is ideal if you
-                are looking to segue your career into the FinTech or Big Data
-                arenas.
+                {jobDescription}
               </p>
             </div>
             <div>
               <h1 className="text-xl font-medium my-5">Key Responsibilities</h1>
               <ul className="text-black/70 text-justify list-disc space-y-5">
-                <li>
-                  Be involved in every step of the product design cycle from
-                  discovery to developer handoff and user acceptance testing.
-                </li>
-                <li>
-                  Work with BAs, product managers and tech teams to lead the
-                  Product Design
-                </li>
-                <li>
-                  Maintain quality of the design process and ensure that when
-                  designs are translated into code they accurately reflect the
-                  design specifications.
-                </li>
-                <li>
-                  Accurately estimate design tickets during planning sessions.
-                </li>
-                <li>
-                  Contribute to sketching sessions involving
-                  non-designersCreate, iterate and maintain UI deliverables
-                  including sketch files, style guides, high fidelity
-                  prototypes, micro interaction specifications and pattern
-                  libraries.
-                </li>
-                <li>
-                  Ensure design choices are data led by identifying assumptions
-                  to test each sprint, and work with the analysts in your team
-                  to plan moderated usability test sessions.
-                </li>
-                <li>
-                  Design pixel perfect responsive UI’s and understand that
-                  adopting common interface patterns is better for UX than
-                  reinventing the wheel
-                </li>
-                <li>
-                  Present your work to the wider business at Show & Tell
-                  sessions.
-                </li>
+               {responsibilities}
               </ul>
             </div>
             <div>
               <h1 className="text-xl font-medium my-5">Skill & Experience</h1>
               <ul className="text-black/70 text-justify list-disc space-y-5">
-                <li>
-                  You have at least 3 years’ experience working as a Product
-                  Designer.
-                </li>
-                <li>
-                  You have experience using Sketch and InVision or Framer X
-                </li>
-                <li>
-                  You have some previous experience working in an agile
-                  environment – Think two-week sprints.
-                </li>
-                <li>
-                  You are familiar using Jira and Confluence in your workflow
-                </li>
+                {skills}
               </ul>
             </div>
             <div className="my-16 flex flex-wrap items-center">

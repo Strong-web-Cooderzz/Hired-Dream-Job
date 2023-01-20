@@ -1,6 +1,7 @@
 import React from 'react';
 import './JobFeauter.css'
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 
@@ -8,6 +9,7 @@ const JobFeaturedCard = ({data}) => {
     // console.log(data)
     const {company,location,logo,title,jobType,companyType,urgent} = data ;
     return (
+        <Link to={`/find-jobs/single-job/${data._id}`}>
         <div className='job-card w-full  mx-auto  py-2 '>
             <div className=''>
               <div className='flex justify-between'>
@@ -21,13 +23,17 @@ const JobFeaturedCard = ({data}) => {
          </div>
             
             <div className='text-center mt-4 mb-6'>
+              
+
                 <h2 className='text-green-500 font-semibold'> {title} </h2>
+             
                 <p>{company}</p>
                 <h3 className='flex justify-center items-center'>
                 <FaMapMarkerAlt className='text-slate-600' /> {location}  
                 </h3>
             </div>
         </div>
+        </Link>
     );
 };
 
