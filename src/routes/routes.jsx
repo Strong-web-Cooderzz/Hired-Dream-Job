@@ -100,7 +100,12 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: "/find-jobs/single-job",
+				element: <SingleJobs />
+			},
+			{
+				path: "/find-jobs/single-job/:id",
 				element: <SingleJobs />,
+				loader:({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
