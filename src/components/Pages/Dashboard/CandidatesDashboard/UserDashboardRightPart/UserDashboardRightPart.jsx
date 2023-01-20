@@ -2,9 +2,9 @@ import React from 'react';
 import { useContext } from 'react';
 import { FaBell, FaBriefcase, FaRegBookmark, FaRegCommentAlt} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { AuthContext } from './../../../../AuthProvider/AuthProvider' ;
+import { AuthContext } from '../../../../AuthProvider/AuthProvider' ;
 
-const CandidateDashboardRight = () => {
+const UserDashboardRightPart = () => {
 const {user} = useContext(AuthContext);
     return (
         <section >
@@ -70,4 +70,4 @@ const {user} = useContext(AuthContext);
     );
 };
 
-export default CandidateDashboardRight;
+export default UserDashboardRightPart;
