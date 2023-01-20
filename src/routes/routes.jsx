@@ -110,12 +110,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/resetPass",
 				element: <ResetPass />,
-			},
-		
-			{
-				path: "*",
-				element: <NotFound />,
-			},		
+			},	
 			{
 				path: "/invoice",
 				element: <Invoice />,
@@ -134,7 +129,6 @@ export const router = createBrowserRouter([
 		path: "/resetPass",
 		element: <ResetPass />,
 	},
-
   {
     path: "/accountClient",
     element: <AccountClient />,
@@ -143,8 +137,7 @@ export const router = createBrowserRouter([
     path: "/accountAgency",
     element: <AccountAgency />,
   },
-  
-   {
+  {
     path: '/dashboard', 
     element: <DashboardLayout > </DashboardLayout> ,
     children: [
@@ -170,8 +163,8 @@ export const router = createBrowserRouter([
       }
     ]
    },
-
-
-
-
+{
+		path: "*",
+		element: <NotFound />,
+	},
 ]);
