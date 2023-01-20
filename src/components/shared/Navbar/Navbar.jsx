@@ -80,11 +80,7 @@ export default function Navbar() {
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/blogs">Blog</Link>
               </li>
-              <li className="text-gray-600 hover:text-blue-600" > 
-              <Link  to="/dashboard"> Dashboard </Link>
-              
-              </li>
-             
+
               <li className="text-white">
                 {user?.uid ? (
                   <div className="relative">
@@ -122,6 +118,9 @@ export default function Navbar() {
                         </li>
                         <li className="block px-3 py-2 hover:bg-gray-200">
                           <p>Account Settings</p>
+                        </li>
+                        <li className="block px-3 py-2 hover:bg-gray-200">
+                          <Link to="/dashboard"> Dashboard </Link>
                         </li>
                         <li className="block px-3 py-2">
                           <button
