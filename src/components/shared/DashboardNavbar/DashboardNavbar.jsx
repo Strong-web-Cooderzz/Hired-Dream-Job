@@ -20,15 +20,18 @@ export default function AdminNavbar() {
             <Link to="/">
               <img src={logo} alt="" className="w-12" />
             </Link>
-            
-      
- <div className="md:hidden">
-    {/* dashboard navbar button  */}
-    <button class="lg:hidden inline-block px-6 py-2.5  text-slate-600 hover:text-slate-800 hover:bg-gray-50 font-medium text-xs leading-tight uppercase rounded shadow-md  focus:shadow-lg  focus:outline-none focus:ring-0 active:bg-gray-300  transition duration-150 ease-in-out" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-      <FaAlignRight className="text-xl" />
-    </button>
 
-            
+            <div className="md:hidden">
+              {/* dashboard navbar button  */}
+              <button
+                class="lg:hidden inline-block px-6 py-2.5  text-slate-600 hover:text-slate-800 hover:bg-gray-50 font-medium text-xs leading-tight uppercase rounded shadow-md  focus:shadow-lg  focus:outline-none focus:ring-0 active:bg-gray-300  transition duration-150 ease-in-out"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample"
+              >
+                <FaAlignRight className="text-xl" />
+              </button>
             </div>
           </div>
         </div>
@@ -54,18 +57,6 @@ export default function AdminNavbar() {
               <li className="text-gray-600 hover:text-blue-600">
                 <Link to="/">Blog</Link>
               </li>
-              <li className="text-gray-600 hover:text-blue-600" > 
-              <Link  to="/dashboard"> Dashboard </Link>
-              
-              </li>
-              {
-                user?.uid?
-                <li> 
-                <Link onClick={logOut}> Logout  </Link>
-              </li>
-              :
-              ''
-              }
               <li className="text-white">
                 {user?.uid ? (
                   <div className="relative">
@@ -97,12 +88,15 @@ export default function AdminNavbar() {
                     >
                       <ul className="block text-gray-900">
                         <li className="block px-3 py-2 hover:bg-gray-200">
-                          <p>
+                          <Link to="">
                             {user?.displayName ? user?.displayName : "Unknown"}
-                          </p>
+                          </Link>
                         </li>
                         <li className="block px-3 py-2 hover:bg-gray-200">
-                          <p>Account Settings</p>
+                          <Link to="">Account Settings</Link>
+                        </li>
+                        <li className="block px-3 py-2 hover:bg-gray-200">
+                          <Link to="/dashboard"> Dashboard </Link>
                         </li>
                         <li className="block px-3 py-2">
                           <button
