@@ -15,7 +15,7 @@ const FindJob = () => {
   const [enabled, setEnabled] = useState(false);
   const [data,setData] = useState([])
   useEffect(()=>{
-    fetch(`http://localhost:5000/jobs`)
+    fetch(`https://hired-dream-server.vercel.app/jobs`)
     .then(res=>res.json())
     .then(data=>{
       setData(data)
