@@ -66,8 +66,8 @@ export default function Footer() {
             <ul className="text-sm flex flex-col gap-4">
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="#">Join Page Invoice</Link></li>
-              <li><Link to="#">Terms Page</Link></li>
-              <li><Link to="#">Blog</Link></li>
+              <li><Link to="/fqa">FAQ</Link></li>
+              <li><Link to="/pricing">Pricing</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
