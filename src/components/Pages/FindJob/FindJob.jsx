@@ -1015,7 +1015,7 @@ const FindJob = () => {
                   <div key={job._id} className="rounded-lg bg-white shadow">
                   <img
                     src={job.logo}
-                    className="aspect-video rounded-full mx-auto object-cover"
+                    className=" w-24 h-24 rounded-full mx-auto "
                     alt=""
                   />
                   <div className="p-4">
