@@ -28,7 +28,9 @@ const Articles = () => {
             </p>
           </div>
           <div className="pl-4 pb-4">
+            <Link to={'/singelArticles'}>
             <button className="text-sm font-semibold text-sky-400">Read More </button>
+            </Link>
           </div>
         </div>
         {/* <!-- card 1 end --> */}
@@ -51,7 +53,9 @@ const Articles = () => {
             </p>
           </div>
           <div className="pl-4 pb-4">
+          <Link to={'/singelArticles'}>
             <button className="text-sm font-semibold text-sky-400">Read More </button>
+            </Link>
           </div>
         </div>
         {/* <!-- card 2 end --> */}
@@ -74,7 +78,9 @@ const Articles = () => {
             </p>
           </div>
           <div className="pl-4 pb-4">
+          <Link to={'/singelArticles'}>
             <button className="text-sm font-semibold text-sky-400">Read More </button>
+            </Link>
           </div>
         </div>
         {/* <!-- card 3 end --> */}

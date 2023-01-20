@@ -12,7 +12,7 @@ const SingelArticles = () => {
        <li className="mx-3">August 31, 2021</li>
        <li>12 Comment</li>
       </div>
-      <div className="my-8">
+      <div className="my-8 w-full flex justify-center">
         <img className="" src="https://i.pinimg.com/originals/a2/83/d7/a283d71bd2a2a4e9080dad4b79091d61.jpg" alt=""/>
       </div>
       <div className="my-8 lg:w-1/2 md:w-full mx-auto">

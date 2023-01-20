@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <span className="font-4xl font-bold text-gray-900">About Us</span>
             <ul className="text-sm flex flex-col gap-4">
-              <li><Link to="#">About Us</Link></li>
+              <li><Link to="/about">About Us</Link></li>
               <li><Link to="#">Join Page Invoice</Link></li>
               <li><Link to="#">Terms Page</Link></li>
               <li><Link to="#">Blog</Link></li>
@@ -75,7 +75,7 @@ export default function Footer() {
             <span className="font-4xl font-bold text-gray-900">Helpful Resources</span>
             <ul className="text-sm flex flex-col gap-4">
               <li><Link to="#">Site Map</Link></li>
-              <li><Link to="#">Terms of Use</Link></li>
+              <li><Link to="/trems">Terms of Use</Link></li>
               <li><Link to="#">Privacy Center</Link></li>
               <li><Link to="#">Security Center</Link></li>
               <li><Link to="#">Accesibility Center</Link></li>
