@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
@@ -13,7 +13,15 @@ const FindJob = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [enabled, setEnabled] = useState(false);
-
+  const [data,setData] = useState([])
+  useEffect(()=>{
+    fetch(`http://localhost:5000/jobs`)
+    .then(res=>res.json())
+    .then(data=>{
+      setData(data)
+    })
+  },[])
+  console.log(data);
   return (
     <>
       <div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
@@ -999,29 +1007,32 @@ const FindJob = () => {
                   <option value="Oldest">30 per Page</option>
                 </select>
               </div>
+
+              {/* Single Job */}
               <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-0 lg:mt-5">
-                <div className="rounded-lg bg-white shadow">
+               {
+                data.map(job=>
+                  <div key={job._id} className="rounded-lg bg-white shadow">
                   <img
-                    src={logo}
-                    className="aspect-video mx-auto object-cover"
+                    src={job.logo}
+                    className="aspect-video rounded-full mx-auto object-cover"
                     alt=""
                   />
                   <div className="p-4">
                     <h3 className="text-xl text-center font-medium text-gray-900">
-                      <Link to="single-job">
-                        Software Engineer (Android), Libraries
+                      <Link to={`single-job/${job._id}`}>
+                        {job.title}
                       </Link>
                     </h3>
                     <p className="mt-1 text-gray-500">
-                      Sailboat UI helps streamline software projects, sprints,
-                      tasks, and bug tracking.
+                     {job.jobDescription.slice(0,100)}
                     </p>
                     <div className="mt-4 flex gap-2">
                       <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                        Full Time
+                       {job.jobType}
                       </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
-                        Urgent
+                      <span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
+                        {job.urgent?'Urgent':''}
                       </span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
                         Private
@@ -1029,87 +1040,8 @@ const FindJob = () => {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-lg bg-white shadow">
-                  <img
-                    src={logo}
-                    className="aspect-video mx-auto object-cover"
-                    alt=""
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl text-center font-medium text-gray-900">
-                      Software Engineer (Android), Libraries
-                    </h3>
-                    <p className="mt-1 text-gray-500">
-                      Sailboat UI helps streamline software projects, sprints,
-                      tasks, and bug tracking.
-                    </p>
-                    <div className="mt-4 flex gap-2">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                        Full Time
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
-                        Urgent
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                        Private
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="rounded-lg bg-white shadow">
-                  <img
-                    src={logo}
-                    className="aspect-video mx-auto object-cover"
-                    alt=""
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl text-center font-medium text-gray-900">
-                      Software Engineer (Android), Libraries
-                    </h3>
-                    <p className="mt-1 text-gray-500">
-                      Sailboat UI helps streamline software projects, sprints,
-                      tasks, and bug tracking.
-                    </p>
-                    <div className="mt-4 flex gap-2">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                        Full Time
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
-                        Urgent
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                        Private
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="rounded-lg bg-white shadow">
-                  <img
-                    src={logo}
-                    className="aspect-video mx-auto object-cover"
-                    alt=""
-                  />
-                  <div className="p-4">
-                    <h3 className="text-xl text-center font-medium text-gray-900">
-                      Software Engineer (Android), Libraries
-                    </h3>
-                    <p className="mt-1 text-gray-500">
-                      Sailboat UI helps streamline software projects, sprints,
-                      tasks, and bug tracking.
-                    </p>
-                    <div className="mt-4 flex gap-2">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                        Full Time
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
-                        Urgent
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
-                        Private
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                )
+               }
               </div>
             </div>
           </div>
