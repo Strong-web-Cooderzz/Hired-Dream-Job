@@ -20,9 +20,9 @@ export default function Employer() {
 	}, []);
 
 	return (
-		<main className="flex flex-col-reverse md:flex-col">
+		<main className="flex flex-col-reverse lg:flex-col mb-16">
 			{/* short details */}
-			<section className="bg-blue-50 hidden md:flex items-center px-12 py-16">
+			<section className="bg-blue-50 hidden lg:flex items-center px-12 py-16">
 				<div className="w-24 h-24 bg-green-300 rounded-full">
 				</div>
 
@@ -47,8 +47,8 @@ export default function Employer() {
 			</section>
 
 			{/* details */}
-			<secction className="px-6 md:px-12 flex flex-col md:flex-row gap-8 md:gap-16 mt-16">
-				<div className="md:w-9/12 flex flex-col">
+			<secction className="px-6 md:px-12 flex flex-col lg:flex-row gap-8 md:gap-16 mt-16">
+				<div className="lg:w-9/12 flex flex-col">
 					<span className="text-lg font-bold">About Company</span>
 					<span className="text-sm mt-4 text-gray-600">Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.</span>
 					<span className="text-xl font-medium mt-6">3 others jobs available</span>
@@ -100,20 +100,30 @@ export default function Employer() {
 					</div>
 				</div>
 
-				<div className="md:w-3/12">
-					<div className="md:hidden">
+				<div className="lg:w-3/12">
+					{/* shows only on mobile device */}
+					<div className="lg:hidden">
 						<div className="ml-auto mb-4 text-xs flex items-center gap-4">
-							<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800">Private Message</button>
+							<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800 w-full">Private Message</button>
 							<span className="text-lg text-blue-700 bg-blue-100 p-3 rounded-lg"><BsBookmark /></span>
 						</div>
 					</div>
 					<div className="flex flex-col bg-blue-50 p-6 gap-4">
-						<span className="flex items-center justify-between">Primary industry: <span className="text-gray-500 text-sm">Software</span></span>
-						<span className="flex items-center justify-between">Company Size: <span className="text-gray-500 text-sm">501-1000</span></span>
-						<span className="flex items-center justify-between">Founded in: <span className="text-gray-500 text-sm">2011</span></span>
-						<span className="flex items-center justify-between">Phone: <span className="text-gray-500 text-sm">123123123</span></span>
-						<span className="flex items-center justify-between">Location: <span className="text-gray-500 text-sm">{employer.location}</span></span>
-						<span className="flex items-center justify-between">Social media: <span className="text-gray-500 text-sm"><BsLinkedin /></span></span>
+						<div className="hidden md:flex lg:hidden items-center gap-4">
+							{/* shows company image */}
+							<div className="w-16 h-16 bg-red-300 rounded-full">
+							</div>
+							<div className="flex flex-col">
+								<span className="text-xl font-bold">{employer.name}</span>
+								<span className="bg-blue-200 px-4 rounded-full py-1 text-xs">Open Jobs - {employer.available}</span>
+							</div>
+						</div>
+						<span className="flex items-center justify-between text-md">Primary industry: <span className="text-gray-500 text-sm">Software</span></span>
+						<span className="flex items-center justify-between text-md">Company Size: <span className="text-gray-500 text-sm">501-1000</span></span>
+						<span className="flex items-center justify-between text-md">Founded in: <span className="text-gray-500 text-sm">2011</span></span>
+						<span className="flex items-center justify-between text-md">Phone: <span className="text-gray-500 text-sm">123123123</span></span>
+						<span className="flex items-center justify-between text-md">Location: <span className="text-gray-500 text-sm">{employer.location}</span></span>
+						<span className="flex items-center justify-between text-md">Social media: <span className="text-gray-500 text-sm"><BsLinkedin /></span></span>
 						<button className="bg-blue-200 py-3 text-blue-700 rounded-md">www.site.com</button>
 					</div>
 				</div>
