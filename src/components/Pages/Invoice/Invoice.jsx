@@ -11,7 +11,7 @@ export default function Invoice() {
 				</div>
 
 				{/* invoice */}
-				<div className="mt-20 bg-white pt-20 px-16 rounded-md">
+				<div className="mt-20 bg-white py-20 px-16 rounded-md">
 					<div className="flex">
 						<div className="w-7/12">
 							<span className="text-2xl font-bold">Logo</span>
@@ -41,6 +41,45 @@ export default function Invoice() {
 								<span className="mt-2 text-xs text-gray-600">300, Whatever street, Dhaka</span>
 							</div>
 						</div>
+					</div>
+					<div className="my-16">
+						<table className="table-fixed w-full">
+							<thead>
+								<tr className="[&>th]:w-1/4 [&>th]:py-5 bg-blue-100 [&>th]:font-medium text-blue-600 text-sm">
+									<th>Description</th>
+									<th>Price</th>
+									<th>VAT(20%)</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							<tbody className="[&>*]:font-normal text-sm">
+								<tr className="text-center [&>td]:py-5 border border-t-0 border-r-0 border-l-0">
+									<td>Standard Plan</td>
+									<td>$443.00</td>
+									<td>$921.80</td>
+									<td>$123</td>
+								</tr>
+								<tr className="text-center [&>td]:py-5 border border-t-0 border-r-0 border-l-0">
+									<td>Extra Plan</td>
+									<td>$443.00</td>
+									<td>$921.80</td>
+									<td>$123</td>
+								</tr>
+								{/* total */}
+								<tr className="text-center [&>td]:py-5 border border-t-0 border-r-0 border-l-0 [&>*]:font-medium">
+									<td>Total Due</td>
+									<td></td>
+									<td></td>
+									<td>$999</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					{/* footer */}
+					<div className="flex gap-16 justify-center mt-32">
+						<span className="text-xs">hdj</span>
+						<span className="text-xs">hdj</span>
+						<span className="text-xs">123</span>
 					</div>
 				</div>
 			</section>
