@@ -33,7 +33,7 @@ export default function Employers() {
 	}, []);
 
 	return (
-		<main className="w-full">
+		<main className="w-full mb-16">
 			{/* search form starts here */}
 			<section className="bg-blue-50 w-full justify-center py-8 px-4 md:p-12 grid items-center gap-6">
 				{/* search form */}
