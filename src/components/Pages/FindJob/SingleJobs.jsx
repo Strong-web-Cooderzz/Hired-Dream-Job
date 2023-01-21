@@ -199,7 +199,7 @@ const SingleJobs = () => {
             </div>
             <div className="bg-black/5 p-5 rounded-lg mt-8">
               <div className="flex gap-5 items-center">
-                <img src={logo} alt="" />
+                <img className="w-24 h-24" src={logo} alt="" />
                 <div>
                   <h3 className="text-xl font-medium">Invision</h3>
                   <Link to="/" className="text-blue-500 text-sm">

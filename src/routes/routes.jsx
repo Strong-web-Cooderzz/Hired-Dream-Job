@@ -30,6 +30,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Main from "../layout/Main";
 import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 import Fqa from "../components/Pages/FQA/Fqa";
+import UserProfile from "../components/Pages/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
 	{
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
 				element: <About></About>
 			},
 			{
+				path: '/profile',
+				element: <UserProfile></UserProfile>
+			},
+			{
 				path: '/singelArticles',
 				element: <SingelArticles></SingelArticles>
 			},
@@ -108,16 +113,17 @@ export const router = createBrowserRouter([
 				loader: ({ params }) => fetch(`https://hired-dream-server.vercel.app/jobs/${params.id}`)
 			},
 			{
+				path: "/employer/:id",
+				element: <Employer />,
+				loader:({params})=> fetch(`http://localhost:5000/employ/${params.id}`)
+			},
+			{
 				path: "/resetPass",
 				element: <ResetPass />,
 			},
 			{
 				path: "/employers",
 				element: <Employers />
-			},
-			{
-				path: "/employer/:id",
-				element: <Employer />
 			}
 		]
 	},

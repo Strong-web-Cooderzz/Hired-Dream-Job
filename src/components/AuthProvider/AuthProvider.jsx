@@ -17,6 +17,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [dbUser,setDbUser] = useState([])
 
   const FacebookSignIn = (facebook) => {
     return signInWithPopup(auth, facebook);
@@ -58,6 +59,13 @@ const AuthProvider = ({ children }) => {
     return () => unSubscribe();
   }, []);
 
+
+  useEffect(()=>{
+    fetch(`http://localhost:5000/user?email=${user?.email}`)
+    .then(res=>res.json())
+    .then(data=>setDbUser(data))
+},[user?.email])
+
   const authInfo = {
     user,
     loading,
@@ -66,6 +74,7 @@ const AuthProvider = ({ children }) => {
     GithubSignIn,
     createAccount,
     Login,
+    dbUser,
     logOut,
     changePass,
     updateUserProfile,
