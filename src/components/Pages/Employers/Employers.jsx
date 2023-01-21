@@ -1,26 +1,38 @@
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
 import { BsBookmark, BsSearch } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
 
 export default function Employers() {
+	const [employ,setEmploy] = useState([])
+	useEffect(()=>{
+        fetch(`http://localhost:5000/employ?type=Agency`)
+        .then(res=>res.json())
+        .then(data=>setEmploy(data))
+    },[])
+	console.log(employ)
 	function SearchResultCard({ employer }) {
-		const { id, name, location, type, available } = employer;
+		const { _id, fullName, email, type,employData,photo, available } = employ;
 		return (
-			<div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
-				<div className="rounded-full w-20 h-20 bg-red-400"></div>
-				<Link to={`/employer/${id}`} className="mt-2 text-lg hover:text-blue-600">{name}</Link>
-				<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{location}</span>
-				<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{type}</span>
-				<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {available}</span>
-
-				{/* featured */}
-				<span className="absolute top-2 left-2 bg-green-100 text-green-700 py-1 px-4 text-xs rounded-full">Featured</span>
-
-				{/* bookmark icon */}
-				<span className="absolute top-2 right-2 p-2 bg-gray-100 rounded-full hidden group-hover:block cursor-pointer"><BsBookmark /></span>
-			</div>
+			<>
+				{
+					employ.map(data=><div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
+					<img src={data.photo} className="rounded-full w-20 h-20 bg-red-400"/>
+					<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data.fullName}</Link>
+					<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{data.employData?.City + ','+ data.employData?.Country}</span>
+					<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{data.type}</span>
+					<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {available}</span>
+	
+					{/* featured */}
+					<span className="absolute top-2 left-2 bg-green-100 text-green-700 py-1 px-4 text-xs rounded-full">Featured</span>
+	
+					{/* bookmark icon */}
+					<span className="absolute top-2 right-2 p-2 bg-gray-100 rounded-full hidden group-hover:block cursor-pointer"><BsBookmark /></span>
+				</div>)
+				}
+			</>
 		);
 	}
 
@@ -106,9 +118,8 @@ export default function Employers() {
 
 			{/* cards */}
 			<div className="px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-				{
-					search.length && search.map((i, id) => <SearchResultCard key={id} employer={i} />)
-				}
+				<SearchResultCard />
+				
 			</div>
 		</main>
 	)

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import React, { useContext, useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import AuthProvider, { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
+
   const {
     register,
     handleSubmit,
@@ -13,18 +14,22 @@ const Register = () => {
     reset,
   } = useForm();
 
+
+
+
   const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
   const navigate = useNavigate();
 
   const { createAccount, user, loading, updateUserProfile } =
     useContext(AuthContext);
 
+
   const onSubmit = (data) => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
 
-    console.log(image, data);
+ 
 
     const url = `https://api.imgbb.com/1/upload?key=${imgbbAPIKEY}`;
     const { email, password } = data;
@@ -34,12 +39,11 @@ const Register = () => {
     })
       .then((res) => res.json())
       .then((imgbb) => {
-        console.log(imgbb.data.url);
         createAccount(email, password)
           .then((result) => {
             console.log(result);
 
-            const displayName = data.firstName + data.lastName;
+            const displayName = data.firstName +' '+ data.lastName;
             const photoURL = imgbb.data.url;
 
             console.log(displayName, photoURL);
@@ -50,10 +54,27 @@ const Register = () => {
             };
             updateUserProfile(info)
               .then((result) => {
-                console.log(result);
-                reset();
-                toast.success("Successfully Login");
-                if (data.type === "Candidate") {
+                const userData = {
+                  'email':data.email,
+                  'fullName': data.firstName + ' ' + data.lastName,
+                  'type':data.type,
+                  'photo':imgbb.data.url
+                }
+                fetch('http://localhost:5000/user',{
+                  method:'POST',
+                  headers:{
+                    'content-type':'application/json'
+                  },
+                  body: JSON.stringify(userData)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                  console.log(data);
+                   reset(); 
+                   
+                  })
+                  toast.success("Successfully Login");
+               if (data.type === "Candidate") {
                   navigate("/accountClient");
                 } else {
                   navigate("/accountAgency");

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -6,6 +6,22 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 const AccountAgency = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [userData,setUserData] = useState('')
+  
+    useEffect(()=>{
+  fetch(`http://localhost:5000/user?email=${user?.email}`)
+  .then(res=>res.json())
+  .then(data=>{
+    setUserData(data)
+  })
+},[user?.email])
+  
+    
+
+
+
+
   const {
     register,
     handleSubmit,
@@ -13,7 +29,21 @@ const AccountAgency = () => {
   } = useForm();
 
   const OnSubmit = (data) => {
-    console.log(data);
+    const employInfo = {
+      'email':userData.email,
+      'fullName':userData.fullName,
+      'photo': userData.photo,
+      'type': userData.type,
+      'employData': data
+    } 
+    console.log(employInfo);
+    fetch(`http://localhost:5000/user/${userData._id}`,{
+      method:"PUT",
+      headers:{
+        'content-type':'application/json'
+      },
+      body: JSON.stringify(employInfo)
+    })
     navigate("/");
   };
 
