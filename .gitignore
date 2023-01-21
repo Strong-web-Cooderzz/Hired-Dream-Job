@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 # added by Abid Hasan
-yarn.lock
+/yarn.lock
 
 # Editor directories and files
 .vscode/*
