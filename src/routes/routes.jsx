@@ -115,7 +115,6 @@ export const router = createBrowserRouter([
 			{
 				path: "/employer/:id",
 				element: <Employer />,
-				loader:({params})=> fetch(`http://localhost:5000/employ/${params.id}`)
 			},
 			{
 				path: "/resetPass",
