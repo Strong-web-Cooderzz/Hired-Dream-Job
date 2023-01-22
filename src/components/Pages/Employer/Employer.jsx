@@ -8,8 +8,13 @@ import { GiCash } from "react-icons/gi";
 
 export default function Employer() {
 	const employerId = useParams().id;
+	const [employer, setEmployer]=useState([]);
+	useEffect(() => {
+		fetch(`http://localhost:5000/employ/${employerId}`)
+			.then(res => res.json())
+			.then(data => console.log(data));
+	}, []);
 
-	const employer = useLoaderData()
 	console.log(employer);
 	return (
 		<>
