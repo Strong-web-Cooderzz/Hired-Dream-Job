@@ -5,21 +5,19 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logos/figma.png";
 
 const FindJob = () => {
 	const formRef = useRef(null);
 	const [value, setValue] = useState(100);
 	const [salary, setSalary] = useState(20000);
 	const [newer, setNewer] = useState(true);
-	console.log(newer)
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [enabled, setEnabled] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
 	useEffect(() => {
-		fetch(`https://hired-dream-server.vercel.app/jobs`)
+		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -31,9 +29,8 @@ const FindJob = () => {
 		const form = e.target;
 		const searchString = form.search.value;
 		const location = form.location.value;
-		console.log(searchString, location);
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -45,7 +42,6 @@ const FindJob = () => {
 		const searchString = form.search.value;
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
-		console.log(sort);
 		setDataLoading(true);
 		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
 			.then(res => res.json())
@@ -54,7 +50,6 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}, [newer]);
-	console.log(data);
 	return (
 		<>
 			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
