@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
@@ -8,8 +8,11 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logos/figma.png";
 
 const FindJob = () => {
+	const formRef = useRef(null);
 	const [value, setValue] = useState(100);
 	const [salary, setSalary] = useState(20000);
+	const [newer, setNewer] = useState(true);
+	console.log(newer)
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [enabled, setEnabled] = useState(false);
@@ -37,6 +40,20 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}
+	useEffect(() => {
+		const form = formRef.current;
+		const searchString = form.search.value;
+		const location = form.location.value;
+		const sort = newer ? 'new' : 'old';
+		console.log(sort);
+		setDataLoading(true);
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
+			.then(res => res.json())
+			.then(data => {
+				setData(data);
+				setDataLoading(false);
+			});
+	}, [newer]);
 	console.log(data);
 	return (
 		<>
@@ -49,7 +66,7 @@ const FindJob = () => {
 					/<span className="text-gray-600">Jobs</span>
 				</p>
 			</div>
-			<div className="mt-14">
+			<div className="mt-0">
 				<div>
 					<div className={`lg:hidden flex items-center justify-center`}>
 						<button
@@ -540,8 +557,8 @@ const FindJob = () => {
 					</div>
 				</div>
 				<div className="relative rounded-md grid lg:grid-cols-4">
-					<div className="lg:col-span-1 bg-[#e8eefa] p-6 rounded-md hidden lg:block">
-						<form onSubmit={e => search(e)}>
+					<div className="lg:col-span-1 bg-[#e8eefa] p-6 hidden lg:block">
+						<form ref={formRef} onSubmit={e => search(e)}>
 							<div>
 								<h1 className="text-xl mb-3">Search by keywords</h1>
 								<div className="relative text-gray-600 focus-within:text-gray-400">
@@ -989,13 +1006,12 @@ const FindJob = () => {
 					</div>
 					<div className="lg:col-span-3">
 						<div className="px-5">
-							<div className="flex lg:justify-end items-center justify-center lg:my-0 my-5">
-								<select className="border mr-3 border-gray-900 bg-gray-100 focus:outline-none py-3 px-2 rounded-md">
-									<option value="Sort by (default)">Sort by (default)</option>
+							<div className="flex lg:justify-end items-center justify-center lg:my-4 my-5">
+								<select onChange={() => setNewer(!newer)} className="mr-3 bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="Newest">Newest</option>
 									<option value="Oldest">Oldest</option>
 								</select>
-								<select className="border border-gray-900 bg-gray-100 focus:outline-none py-3 px-2 rounded-md">
+								<select className="bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="Sort by (default)">All</option>
 									<option value="Newest">10 per Page</option>
 									<option value="Oldest">20 per Page</option>
@@ -1017,29 +1033,33 @@ const FindJob = () => {
 									<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-0 lg:mt-5">
 										{
 											data.map(job =>
-												<div key={job._id} className="rounded-lg bg-white shadow">
+												<div key={job._id} className="rounded-lg bg-white shadow border-1 pt-6">
 													<img
 														src={job.logo}
-														className=" w-24 h-24 rounded-full mx-auto object-cover"
+														className="w-24 h-24 rounded-full mx-auto object-cover"
 														alt=""
 													/>
 													<div className="p-4">
-														<h3 className="text-xl text-center font-medium text-gray-900">
+														<h3 className="text-md text-center font-medium text-gray-900">
 															<Link to={`single-job/${job._id}`}>
 																{job.title}
 															</Link>
 														</h3>
-														<p className="mt-1 text-gray-500">
+														<p className="mt-3 text-sm text-gray-500 text-justify">
 															{job.jobDescription.slice(0, 100)}
+															{job.jobDescription.length >= 100 && <span>...</span>}
 														</p>
 														<div className="mt-4 flex gap-2">
-															<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
+															<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
 																{job.jobType}
 															</span>
-															<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-500">
-																{job.urgent ? 'Urgent' : ''}
-															</span>
-															<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-600">
+															{
+																job.urgent &&
+																<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
+																	{job.urgent ? 'Urgent' : ''}
+																</span>
+															}
+															<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
 																Private
 															</span>
 														</div>
