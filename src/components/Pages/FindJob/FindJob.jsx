@@ -24,16 +24,18 @@ const FindJob = () => {
 			})
 	}, [])
 	function search(e) {
-		const searchString = e.target.value;
-		if (e.key === 'Enter') {
-			setDataLoading(true);
-			fetch(`http://localhost:5000/find-jobs?search=${searchString}`)
-				.then(res => res.json())
-				.then(data => {
-					setData(data);
-					setDataLoading(false);
-				});
-		}
+		e.preventDefault();
+		const form = e.target;
+		const searchString = form.search.value;
+		const location = form.location.value;
+		console.log(searchString, location);
+		setDataLoading(true);
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}`)
+			.then(res => res.json())
+			.then(data => {
+				setData(data);
+				setDataLoading(false);
+			});
 	}
 	console.log(data);
 	return (
@@ -113,9 +115,6 @@ const FindJob = () => {
 								</div>
 							</div>
 							<div>
-								<p className="text-gray-600 text-sm my-2">
-									Radius around selected destination
-								</p>
 								<input
 									type="range"
 									className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
@@ -542,65 +541,48 @@ const FindJob = () => {
 				</div>
 				<div className="relative rounded-md grid lg:grid-cols-4">
 					<div className="lg:col-span-1 bg-[#e8eefa] p-6 rounded-md hidden lg:block">
-						<div>
-							<h1 className="text-xl mb-3">Search by keywords</h1>
-							<div className="relative text-gray-600 focus-within:text-gray-400">
-								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
-									<button
-										type="submit"
-										className="p-1 focus:outline-none focus:shadow-outline"
-									>
-										<FiSearch className="text-xl" />
-									</button>
-								</span>
-								<input
-									type="search"
-									name="q"
-									className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
-									placeholder="Job title, keywords or company"
-									autoComplete="off"
-									onKeyDown={e => search(e)}
-								/>
+						<form onSubmit={e => search(e)}>
+							<div>
+								<h1 className="text-xl mb-3">Search by keywords</h1>
+								<div className="relative text-gray-600 focus-within:text-gray-400">
+									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
+										<button
+											type="submit"
+											className="p-1 focus:outline-none focus:shadow-outline"
+										>
+											<FiSearch className="text-xl" />
+										</button>
+									</span>
+									<input
+										type="search"
+										name="search"
+										className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
+										placeholder="Job title, keywords or company"
+										autoComplete="off"
+									/>
+								</div>
 							</div>
-						</div>
-						<div className="mt-8">
-							<h1 className="text-xl mb-3">Location</h1>
-							<div className="relative text-gray-600 focus-within:text-gray-400">
-								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
-									<button
-										type="submit"
-										className="p-1 focus:outline-none focus:shadow-outline"
-									>
-										<GoLocation />
-									</button>
-								</span>
-								<input
-									type="search"
-									name="q"
-									className="py-3 text-sm text-white w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
-									placeholder="City or Postcode"
-									autoComplete="off"
-								/>
+							<div className="mt-8">
+								<h1 className="text-xl mb-3">Location</h1>
+								<div className="relative text-gray-600 focus-within:text-gray-400">
+									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
+										<button
+											type="submit"
+											className="p-1 focus:outline-none focus:shadow-outline"
+										>
+											<GoLocation />
+										</button>
+									</span>
+									<input
+										type="search"
+										name="location"
+										className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
+										placeholder="City or Postcode"
+										autoComplete="off"
+									/>
+								</div>
 							</div>
-						</div>
-						<div>
-							<p className="text-gray-600 text-sm my-2">
-								Radius around selected destination
-							</p>
-							<input
-								type="range"
-								className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
-								min={0}
-								max={100}
-								value={value}
-								onChange={(e) => setValue(e.target.value)}
-							/>
-							<div className="flex justify-center mt-3 mb-5">
-								<button className="text-blue-500 py-1 px-3 bg-blue-200 rounded-md">
-									{value}km
-								</button>
-							</div>
-						</div>
+						</form>
 						<div className="mt-8">
 							<h1 className="text-xl mb-3">Category</h1>
 							<div className="relative text-gray-600 focus-within:text-gray-400">
