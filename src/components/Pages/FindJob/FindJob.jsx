@@ -958,10 +958,10 @@ const FindJob = () => {
 								</select>
 							</div>
 
-
+							{/* spinner */}
 							{
 								dataLoading && <>
-									<div className='w-36 h-36 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-transparent animate-spin mt-16'>
+									<div className='w-24 h-24 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-gray-200 border-b-gray-200 animate-spin mt-16'>
 									</div>
 								</>
 							}
