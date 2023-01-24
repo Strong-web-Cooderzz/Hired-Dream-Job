@@ -24,8 +24,8 @@ export default function Employers() {
 			<>
 				{
 					employ.map(data => <div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
-						<img src={data.photo} className="rounded-full w-20 h-20 bg-red-400 object-cover" />
-						<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data.fullName}</Link>
+						<img src={data?.employData?.photo || data?.photo} className="rounded-full w-20 h-20 bg-red-400 object-cover" />
+						<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data?.employData?.companyName || data?.fullName}</Link>
 						<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{data.employData?.City + ',' + data.employData?.Country}</span>
 						<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{data.type}</span>
 						<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {available}</span>
