@@ -12,13 +12,15 @@ const FindJob = () => {
 	const [salary, setSalary] = useState(20000);
 	const [newer, setNewer] = useState(true);
 	const [jobType, setJobType] = useState('');
+	const [time, setTime] = useState(0);
+	const second = 1000;
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [enabled, setEnabled] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
 	useEffect(() => {
-		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"`)
+		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -32,7 +34,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -47,7 +49,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -62,13 +64,28 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
 			});
-	}, [jobType])
+		}, [jobType]);
+
+	// sends new fetch request when date posted is changed
+	useEffect(() => {
+		const form = formRef.current;
+		const searchString = form.search.value;
+		const location = form.location.value;
+		const sort = newer ? 'new' : 'old';
+		setDataLoading(true);
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+			.then(res => res.json())
+			.then(data => {
+				setData(data);
+				setDataLoading(false);
+			});
+	}, [time]);
 	return (
 		<>
 			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
@@ -650,108 +667,71 @@ const FindJob = () => {
 									setJobType('Part Time');
 								} else if (value === 'temporary') {
 									setJobType('Temporary');
+								} else {
+									setJobType('all');
 								}
 							}} className="mt-5 [&>div>label]:text-gray-600 [&>div>label]:ml-2">
 								<h1 className="text-md mb-1">Job type</h1>
 								<div className="flex my-0">
+									<input type="radio" name="job-type" value="all" id="all" />
+									<label htmlFor="all">All</label>
+								</div>
+								<div className="flex my-0">
 									<input type="radio" name="job-type" value="full-time" id="full-time" />
-									<label for="full-time">Full Time</label>
+									<label htmlFor="full-time">Full Time</label>
 								</div>
 								<div className="flex my-0">
 									<input type="radio" name="job-type" value="part-time" id="part-time" />
-									<label for="part-time">Part Time</label>
+									<label htmlFor="part-time">Part Time</label>
 								</div>
 								<div className="flex my-0">
 									<input type="radio" name="job-type" value="temporary" id="temporary" />
-									<label for="temporary">Temporary</label>
+									<label htmlFor="temporary">Temporary</label>
 								</div>
 							</div>
 						</div>
-						<div className="mt-6">
-							<h1 className="text-xl mb-3">Date Posted</h1>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault1"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault1"
-								>
-									All
-								</label>
+						<div onChange={e => {
+							const value = e.target.value;
+							if (value === 'all') {
+								setTime(0);
+							} else if (value === 'last-hour') {
+								setTime(60 * 60 * second);
+							} else if (value === 'last-day') {
+								setTime(24 * 60 * 60 * second);
+							} else if (value === 'seven-day') {
+								setTime(7 * 24 * 60 * 60 * second);
+							} else if (value === 'fourteen-day') {
+								setTime(14 * 24 * 60 * 60 * second);
+							} else if (value === 'one-month') {
+								setTime(30 * 24 * 60 * 60 * second);
+							} else {
+								setTime(0);
+							}
+						}} className="mt-6 [&>div>label]:text-sm [&>div>label]:text-gray-600 [&>div>label]:ml-2">
+							<h1 className="text-md mb-1">Date Posted</h1>
+							<div className="my-1">
+								<input id="all-date" type="radio" value="all" name="date-posted" />
+								<label htmlFor="all-date">All</label>
 							</div>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault2"
-								>
-									Last Hour
-								</label>
+							<div className="my-1">
+								<input id="last-hour" type="radio" value="last-hour" name="date-posted" />
+								<label htmlFor="last-hour">Last Hour</label>
 							</div>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault2"
-								>
-									Last 24 Hour
-								</label>
+							<div className="my-1">
+								<input id="last-day" type="radio" name="date-posted" value="last-day" />
+								<label htmlFor="last-day">Last 24 Hour</label>
 							</div>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault2"
-								>
-									Last 7 Days
-								</label>
+							<div className="my-1">
+								<input id="seven-day" type="radio" name="date-posted" value="seven-day" />
+								<label htmlFor="seven-day">Last 7 Days</label>
 							</div>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault2"
-								>
-									Last 14 Days
-								</label>
+							<div className="my-1">
+								<input id="fourteen-day" type="radio" name="date-posted" value="fourteen-day" />
+								<label htmlFor="fourteen-day">Last 14 days</label>
 							</div>
-							<div className="my-4">
-								<input
-									className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-									type="radio"
-									name="flexRadioDefault"
-									id="flexRadioDefault2"
-								/>
-								<label
-									className="ml-2 text-sm text-gray-500"
-									htmlFor="flexRadioDefault2"
-								>
-									Last 30 Days
-								</label>
+							<div className="my-1">
+								<input id="one-month" type="radio" name="date-posted" value="one-month" />
+								<label htmlFor="one-month">Last 30 Days</label>
 							</div>
 						</div>
 						<div>
