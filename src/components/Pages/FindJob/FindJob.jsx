@@ -11,6 +11,7 @@ const FindJob = () => {
 	const [value, setValue] = useState(100);
 	const [salary, setSalary] = useState(20000);
 	const [newer, setNewer] = useState(true);
+	const [jobType, setJobType] = useState('');
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [enabled, setEnabled] = useState(false);
@@ -38,6 +39,8 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}
+
+	// sends new fetch request when sorting changed
 	useEffect(() => {
 		const form = formRef.current;
 		const searchString = form.search.value;
@@ -51,6 +54,21 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}, [newer]);
+
+	// sends new fetch request when job type is changed
+	useEffect(() => {
+		const form = formRef.current;
+		const searchString = form.search.value;
+		const location = form.location.value;
+		const sort = newer ? 'new' : 'old';
+		setDataLoading(true);
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}`)
+			.then(res => res.json())
+			.then(data => {
+				setData(data);
+				setDataLoading(false);
+			});
+	}, [jobType])
 	return (
 		<>
 			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
@@ -556,7 +574,7 @@ const FindJob = () => {
 					<div className="lg:col-span-1 bg-[#e8eefa] p-6 hidden lg:block">
 						<form ref={formRef} onSubmit={e => search(e)}>
 							<div>
-								<h1 className="text-xl mb-3">Search by keywords</h1>
+								<h1 className="text-md mb-1">Search by keywords</h1>
 								<div className="relative text-gray-600 focus-within:text-gray-400">
 									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 										<button
@@ -576,7 +594,7 @@ const FindJob = () => {
 								</div>
 							</div>
 							<div className="mt-8">
-								<h1 className="text-xl mb-3">Location</h1>
+								<h1 className="text-md mb-1">Location</h1>
 								<div className="relative text-gray-600 focus-within:text-gray-400">
 									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 										<button
@@ -597,7 +615,7 @@ const FindJob = () => {
 							</div>
 						</form>
 						<div className="mt-8">
-							<h1 className="text-xl mb-3">Category</h1>
+							<h1 className="text-md mb-1">Category</h1>
 							<div className="relative text-gray-600 focus-within:text-gray-400">
 								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 									<button
@@ -624,83 +642,28 @@ const FindJob = () => {
 							</div>
 						</div>
 						<div>
-							<div className="mt-5">
-								<h1 className="text-xl mb-3">Job type</h1>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">
-											Freelancer
-										</span>
-									</label>
+							<div onChange={e => {
+								const value = e.target.value;
+								if (value === 'full-time') {
+									setJobType('Full Time');
+								} else if (value === 'part-time') {
+									setJobType('Part Time');
+								} else if (value === 'temporary') {
+									setJobType('Temporary');
+								}
+							}} className="mt-5 [&>div>label]:text-gray-600 [&>div>label]:ml-2">
+								<h1 className="text-md mb-1">Job type</h1>
+								<div className="flex my-0">
+									<input type="radio" name="job-type" value="full-time" id="full-time" />
+									<label for="full-time">Full Time</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">
-											Full Time
-										</span>
-									</label>
+								<div className="flex my-0">
+									<input type="radio" name="job-type" value="part-time" id="part-time" />
+									<label for="part-time">Part Time</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">
-											Part Time
-										</span>
-									</label>
-								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">
-											Temporary
-										</span>
-									</label>
+								<div className="flex my-0">
+									<input type="radio" name="job-type" value="temporary" id="temporary" />
+									<label for="temporary">Temporary</label>
 								</div>
 							</div>
 						</div>
