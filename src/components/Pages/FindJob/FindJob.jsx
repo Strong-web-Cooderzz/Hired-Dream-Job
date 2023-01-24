@@ -966,6 +966,11 @@ const FindJob = () => {
 								</>
 							}
 
+							{
+								!dataLoading && !data.length && 
+								<span className="text-center block font-semibold text-2xl">Nothing to show</span>
+							}
+
 							{/* Single Job */}
 							{
 								!dataLoading && <>
