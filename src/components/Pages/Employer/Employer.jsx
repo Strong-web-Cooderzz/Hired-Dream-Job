@@ -117,6 +117,7 @@ export default function Employer() {
 						</div>
 						<span className="flex items-center justify-between text-md">Primary industry: <span className="text-gray-500 text-sm">Software</span></span>
 						<span className="flex items-center justify-between text-md">Company Size: <span className="text-gray-500 text-sm">{employer.employData?.team}</span></span>
+
 						<span className="flex items-center justify-between text-md">Founded in: <span className="text-gray-500 text-sm">{employer.employData?.build}</span></span>
 						<span className="flex items-center justify-between text-md">Phone: <span className="text-gray-500 text-sm">{employer.employData?.phoneNumber}</span></span>
 						<span className="flex items-center justify-between text-md">Location: <span className="text-gray-500 text-sm">{employer.employData?.City+', '+employer.employData?.Country}</span></span>
@@ -129,6 +130,7 @@ export default function Employer() {
 							</span>
 
 						<a className="bg-blue-200 flex justify-center py-3 text-blue-700 rounded-md" href={employer.employData?.website}><button>{employer.employData?.website}</button></a>
+
 					</div>
 				</div>
 			</secction>
