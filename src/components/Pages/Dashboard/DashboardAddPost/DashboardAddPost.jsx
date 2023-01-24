@@ -12,7 +12,7 @@ const DashboardAddPost = () => {
     const [urgent,setUrgent] = useState(false)
     const [companyType,setCompanyType] = useState('')
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const { logOut, user } = useContext(AuthContext);
+    const { logOut, user, dbUser } = useContext(AuthContext);
     
     const [loading,setLoading] = useState(false)
 
@@ -58,7 +58,7 @@ const DashboardAddPost = () => {
 
     return (
         <div className='md:w-7/12 h-screen mx-auto'>
-            <h2 className='text-xl '> Add new post  </h2>
+            <h2 className='text-xl '> Add New Job  </h2>
             <div class="block p-6 rounded-lg shadow-lg bg-white max-w-lg">
   <form onSubmit={handleSubmit(handleAddNewJob)}>
     <div class="form-group mb-6 w-full">

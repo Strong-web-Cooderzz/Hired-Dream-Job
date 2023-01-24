@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { set } from "react-hook-form";
 import { FaHome } from "react-icons/fa";
 import { FcMenu, FcTodoList } from "react-icons/fc";
 import { NavLink, Outlet } from "react-router-dom";
+import AuthProvider, { AuthContext } from "../components/AuthProvider/AuthProvider";
 import DashboardNavbar from "../components/shared/DashboardNavbar/DashboardNavbar";
 import DashboardSidebar from "../components/shared/DashboardSidebar/DashboardSidebar";
 
 
 const DashboardLayout = () => {
+  const {dbUser} = useContext(AuthContext)
+  console.log(dbUser);
   const [side, setSide] = useState(false);
   return (
     <div className="w-full" >
@@ -33,13 +37,13 @@ const DashboardLayout = () => {
       <div className="offcanvas-body flex-grow p-4 overflow-y-auto">
        <ul>
 
-          <NavLink to='/dashboard/my_dashboard ' >  <li className="w-full active hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200">My Dashboard </li></NavLink>
+          <NavLink to='/dashboard/ ' >  <li className="w-full active hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200">My Dashboard </li></NavLink>
 
           <NavLink to='/dashboard/my_profile'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> My Profile  </li></NavLink>
 
-          <NavLink to='/dashboard/addpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> Add New Post </li></NavLink>
+          <NavLink to='/dashboard/addpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> Add New Job </li></NavLink>
 
-          <NavLink to='/dashboard/my_allpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200">  My All Posts </li></NavLink>
+          <NavLink to='/dashboard/my_allpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> All Applicants</li></NavLink>
           <NavLink to='/'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base 
           flex gap-2 items-center focus:bg-gray-200"> <FaHome className="text-blue-500" /> Back Home  </li></NavLink>
        </ul>
