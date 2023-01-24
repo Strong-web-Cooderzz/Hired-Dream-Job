@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 const DashboardSidebar = () => {
     return (
         <div>
- <div className="w-[20vw] h-screen shadow-md bg-slate-50 px-1 ">
+ <div className="w-[20vw] sticky top-0 h-screen shadow-md bg-slate-50 px-1 ">
   <ul className="relative">
     <li className="relative">
-      <NavLink to='/dashboard/my_dashboard' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"  data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Dashboard </NavLink>
+      <NavLink to='/dashboard' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"  data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Dashboard </NavLink>
     </li>
 
     <li className="relative">
@@ -16,10 +16,10 @@ const DashboardSidebar = () => {
 
     <li className="relative">
       <NavLink to='/dashboard/addpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> Add 
-      New Post </NavLink>
+      New Job </NavLink>
     </li>
     <li className="relative">
-      <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My All Post  </NavLink>
+      <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> All Applicants  </NavLink>
     </li>
   </ul>
 </div>

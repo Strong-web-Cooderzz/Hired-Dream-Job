@@ -47,7 +47,7 @@ const Hero = () => {
                       type="text"
                     />
                   </div>
-                  <button className="bg-blue-500 lg:mt-0 md:mt-0 mt-4 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 my-1 mr-1 text-white  rounded-full px-4 py-2">
+                  <button className="bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white  rounded-full px-4 py-2">
                     Find jobs
                   </button>
                 </form>

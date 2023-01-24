@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
 				path: "/candidates",
 				element: <Candidates />,
 			},
-		
+
 			{
 				path: "/find-jobs",
 				element: <FindJob />,
@@ -98,7 +98,7 @@ export const router = createBrowserRouter([
 				path: "/pricing",
 				element: <Pricing />,
 			},
-		
+
 			{
 				path: "/find-jobs",
 				element: <FindJob />,
@@ -110,66 +110,65 @@ export const router = createBrowserRouter([
 			{
 				path: "/find-jobs/single-job/:id",
 				element: <SingleJobs />,
-				loader:({params})=> fetch(`https://hired-dream-server.vercel.app/jobs/${params.id}`)
-			},
-			{
-				path: "/employer/:id",
-				element: <Employer />,
-				loader:({params})=> fetch(`http://localhost:5000/employ/${params.id}`)
+				loader: ({ params }) => fetch(`https://hired-dream-server.vercel.app/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
 				element: <ResetPass />,
-			},	
-			{
-				path: "/invoice",
-				element: <Invoice />,
 			},
 			{
 				path: "/employers",
 				element: <Employers />
-			}
+			},
+			{
+				path: "/employer/:id",
+				element: <Employer />,
+			},
 		]
 	},
 	{
 		path: "/resetPass",
 		element: <ResetPass />,
 	},
-  {
-    path: "/accountClient",
-    element: <AccountClient />,
-  },
-  {
-    path: "/accountAgency",
-    element: <AccountAgency />,
-  },
-  {
-    path: '/dashboard', 
-    element: <DashboardLayout > </DashboardLayout> ,
-    children: [
-      {
-        path: '/dashboard',
-        element:<UserDashboard > </UserDashboard>
-      },
-      {
-        path:  '/dashboard/my_dashboard',
-        element: <UserDashboard > </UserDashboard>
-      },
-      {
-        path: '/dashboard/my_profile',
-        element: <MyProfile> </MyProfile>
-      },
-      {
-        path: '/dashboard/addpost',
-        element: <DashboardAddPost> </DashboardAddPost>
-      },
-      {
-        path: '/dashboard/my_allpost',
-        element: <MyAllPost> </MyAllPost>
-      }
-    ]
-   },
-{
+	{
+		path: "/accountClient",
+		element: <AccountClient />,
+	},
+	{
+		path: "/invoice",
+		element: <Invoice />,
+	},
+	{
+		path: "/accountAgency",
+		element: <AccountAgency />,
+	},
+	{
+		path: '/dashboard',
+		element: <DashboardLayout > </DashboardLayout>,
+		children: [
+			{
+				path: '/dashboard',
+				element: <UserDashboard > </UserDashboard>
+			},
+			{
+				path: '/dashboard/my_dashboard',
+				element: <UserDashboard > </UserDashboard>
+			},
+			{
+				path: '/dashboard/my_profile',
+				element: <MyProfile> </MyProfile>
+			},
+			{
+				path: '/dashboard/addpost',
+				element: <DashboardAddPost> </DashboardAddPost>
+			},
+			{
+				path: '/dashboard/my_allpost',
+				element: <MyAllPost> </MyAllPost>
+			}
+		]
+	},
+	{
 		path: "*",
 		element: <NotFound />,
 	},

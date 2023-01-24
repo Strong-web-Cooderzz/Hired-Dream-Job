@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom"
+import { Link, useLoaderData, useParams } from "react-router-dom"
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { BsFillBagFill, BsBagFill, BsClock } from "react-icons/bs";
+import { BsFillBagFill, BsBagFill, BsClock, BsFacebook, BsGithub } from "react-icons/bs";
 import { BsTelephone, BsLinkedin, BsBookmark } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { GiCash } from "react-icons/gi";
 
 export default function Employer() {
 	const employerId = useParams().id;
+	const [employer, setEmployer]=useState([]);
+	useEffect(() => {
+		fetch(`http://localhost:5000/employ/${employerId}`)
+			.then(res => res.json())
+			.then(data => setEmployer(data));
+	}, []);
 
-	const employer = useLoaderData()
 	console.log(employer);
 	return (
 		<>
 		<main className="flex flex-col-reverse lg:flex-col mb-16">
 			{/* short details */}
 			<section className="bg-blue-50 hidden lg:flex items-center px-12 py-16">
-				<img src={employer.photo} className="w-24 h-24 bg-green-300 rounded-full" />
+				<img src={employer?.employData?.photo || employer?.photo}  className="w-24 h-24 bg-green-300 rounded-full" />
 
 				{/* name */}
 				<div className="ml-4 flex flex-col gap-3">
-					<span className="text-2xl font-semibold">{employer?.fullName}</span>
+					<span className="text-2xl font-semibold">{employer?.employData?.companyName || employer?.fullName}</span>
 					<div className="flex items-center gap-4 text-xs text-gray-600">
 						<span className="flex items-center gap-1"><FaMapMarkerAlt />{employer?.employData?.City + ', ' +employer?.employData?.Country}</span>
 						<span className="flex items-center gap-1"><BsFillBagFill />{employer?.type}</span>
@@ -112,11 +117,20 @@ export default function Employer() {
 						</div>
 						<span className="flex items-center justify-between text-md">Primary industry: <span className="text-gray-500 text-sm">Software</span></span>
 						<span className="flex items-center justify-between text-md">Company Size: <span className="text-gray-500 text-sm">{employer.employData?.team}</span></span>
-						<span className="flex items-center justify-between text-md">Founded in: <span className="text-gray-500 text-sm">2011</span></span>
+
+						<span className="flex items-center justify-between text-md">Founded in: <span className="text-gray-500 text-sm">{employer.employData?.build}</span></span>
 						<span className="flex items-center justify-between text-md">Phone: <span className="text-gray-500 text-sm">{employer.employData?.phoneNumber}</span></span>
 						<span className="flex items-center justify-between text-md">Location: <span className="text-gray-500 text-sm">{employer.employData?.City+', '+employer.employData?.Country}</span></span>
-						<span className="flex items-center justify-between text-md">Social media: <span className="text-gray-500 text-sm"><BsLinkedin /></span></span>
-						<button className="bg-blue-200 py-3 text-blue-700 rounded-md">{employer.employData?.website}</button>
+						<span className="flex items-center justify-between text-md">Social media:
+						 <span className="text-gray-500 text-sm flex items-center gap-1">
+							<a href={employer.employData?.facebook} className="text-lg"><BsFacebook /></a>
+							<a href={employer.employData?.linkedin} className="text-lg"><BsLinkedin /></a>
+							<a href={employer.employData?.github} className="text-lg"><BsGithub /></a>
+							</span>
+							</span>
+
+						<a className="bg-blue-200 flex justify-center py-3 text-blue-700 rounded-md" href={employer.employData?.website}><button>{employer.employData?.website}</button></a>
+
 					</div>
 				</div>
 			</secction>
