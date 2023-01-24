@@ -29,6 +29,7 @@ const FindJob = () => {
 		const form = e.target;
 		const searchString = form.search.value;
 		const location = form.location.value;
+		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
 		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}`)
 			.then(res => res.json())
