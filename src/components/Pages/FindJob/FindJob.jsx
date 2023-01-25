@@ -4,9 +4,10 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 const FindJob = () => {
+
 	const formRef = useRef(null);
 	const [value, setValue] = useState(100);
 	const [salary, setSalary] = useState(20000);
@@ -16,6 +17,7 @@ const FindJob = () => {
 	const [enabled, setEnabled] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
+
 	useEffect(() => {
 		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"`)
 			.then(res => res.json())
@@ -24,6 +26,7 @@ const FindJob = () => {
 				setDataLoading(false);
 			})
 	}, [])
+
 	function search(e) {
 		e.preventDefault();
 		const form = e.target;
@@ -37,6 +40,7 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}
+
 	useEffect(() => {
 		const form = formRef.current;
 		const searchString = form.search.value;
@@ -50,6 +54,9 @@ const FindJob = () => {
 				setDataLoading(false);
 			});
 	}, [newer]);
+
+
+
 	return (
 		<>
 			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
@@ -61,6 +68,7 @@ const FindJob = () => {
 					/<span className="text-gray-600">Jobs</span>
 				</p>
 			</div>
+			
 			<div className="mt-0">
 				<div>
 					<div className={`lg:hidden flex items-center justify-center`}>
@@ -114,6 +122,7 @@ const FindJob = () => {
 											type="submit"
 											className="p-1 focus:outline-none focus:shadow-outline"
 										>
+
 											<GoLocation />
 										</button>
 									</span>
@@ -571,6 +580,8 @@ const FindJob = () => {
 										className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
 										placeholder="Job title, keywords or company"
 										autoComplete="off"
+
+
 									/>
 								</div>
 							</div>
@@ -1015,12 +1026,13 @@ const FindJob = () => {
 							</div>
 
 
-							{
+							{/* {
 								dataLoading && <>
 									<div className='w-36 h-36 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-transparent animate-spin mt-16'>
 									</div>
 								</>
-							}
+							} */}
+							
 
 							{/* Single Job */}
 							{
@@ -1074,3 +1086,15 @@ const FindJob = () => {
 };
 
 export default FindJob;
+
+
+
+
+
+
+
+
+
+
+
+
