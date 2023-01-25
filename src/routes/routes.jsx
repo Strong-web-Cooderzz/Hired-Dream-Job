@@ -6,7 +6,6 @@ import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
 
-import CandidatesDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 import DashboardAddPost from "../components/Pages/Dashboard/DashboardAddPost/DashboardAddPost";
 import MyAllPost from "../components/Pages/Dashboard/MyAllPost/MyAllPost";
 import MyProfile from "../components/Pages/Dashboard/MyProfle/MyProfile";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TfiBag } from "react-icons/tfi";
 import { GoLocation } from "react-icons/go";
 import { BsBookmark, BsClock, BsHourglassSplit } from "react-icons/bs";
@@ -11,15 +11,20 @@ import {
 import { BiUser } from "react-icons/bi";
 import { RiCoinsFill } from "react-icons/ri";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import logo from "../../../assets/logos/figma.png";
 import { Link, useLoaderData } from "react-router-dom";
 import { FiTwitter } from "react-icons/fi";
-import JobFeaturedCard from "../Home/JobFeatures/JobFeatures/JobFeaturedCard";
+import ApplyJobModal from "./ApplyJobModal/ApplyJobModal";
 
 const SingleJobs = () => {
   const singleJob = useLoaderData()
-  console.log(singleJob);
-  const {company,companyType,expireDate,jobDescription,jobType,location,logo,postTime,rateMax,rateMin,responsibilities,salaryMax,salaryMin,skills,title,trems,urgent,workingHours} = singleJob;
+  const  [singleJobData, setSingleJobData] = useState({});
+
+  // console.log(singleJob);
+  const {company,companyType,expireDate,jobDescription,jobType,location,logo,postTime,rateMax,rateMin,responsibilities,salaryMax,salaryMin,skills,title,trems,urgent,workingHours,_id} = singleJob;
+
+  const singleJobSet = () => {
+    setSingleJobData(singleJob)
+  }
    return (
     <div className="w-[98%] mx-auto">
       <div className="lg:flex block mt-10 gap-10">
@@ -189,14 +194,19 @@ const SingleJobs = () => {
         </div>
         <div className="basis-1/3 px-5 lg:px-0">
           <div>
+
+            {/* Job apply button part  */}
             <div className="flex gap-5 items-center">
-              <button className="bg-blue-500 w-full py-3 rounded-md text-white cursor-pointer">
+              <button onClick={singleJobSet} className="bg-blue-500 w-full hover:bg-blue-600 py-3 rounded-md text-white cursor-pointer"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
                 Apply For Job
+
               </button>
               <button className="p-4 text-blue-500 bg-blue-50 rounded-md">
                 <BsBookmark />
               </button>
+              <ApplyJobModal key={_id} setSingleJobData={setSingleJobData} singleJobData={singleJobData} > </ApplyJobModal>
             </div>
+
             <div className="bg-black/5 p-5 rounded-lg mt-8">
               <div className="flex gap-5 items-center">
                 <img className="w-24 h-24" src={logo} alt="" />
