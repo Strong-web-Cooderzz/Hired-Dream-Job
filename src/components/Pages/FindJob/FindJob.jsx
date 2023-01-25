@@ -3,6 +3,7 @@ import { BiCategory } from "react-icons/bi";
 import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
+import {AiOutlineCloseCircle} from "react-icons/ai";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 
@@ -39,6 +40,7 @@ const FindJob = () => {
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
+				setIsOpen(false);
 			});
 	}
 
@@ -54,6 +56,7 @@ const FindJob = () => {
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
+				setIsOpen(false);
 			});
 	}, [newer]);
 
@@ -69,6 +72,7 @@ const FindJob = () => {
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
+				setIsOpen(false);
 			});
 		}, [jobType]);
 
@@ -84,10 +88,11 @@ const FindJob = () => {
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
+				setIsOpen(false);
 			});
 	}, [time]);
 	return (
-		<>
+		<main className="mb-16">
 			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
 				<h1 className="font-semibold text-2xl">Find Jobs</h1>
 				<p className="text-gray-900">
@@ -97,9 +102,9 @@ const FindJob = () => {
 					/<span className="text-gray-600">Jobs</span>
 				</p>
 			</div>
-			<div className="mt-0">
+			<div className="mt-0 relative lg:static">
 				<div>
-					<div className={`lg:hidden flex items-center justify-center`}>
+					<div className={`lg:hidden flex items-center justify-center mt-4`}>
 						<button
 							className={`text-blue-500 flex items-center justify-center py-3 px-4 rounded-md bg-blue-200`}
 							onClick={() => setIsOpen(!isOpen)}
@@ -107,488 +112,12 @@ const FindJob = () => {
 							<BsFilter className="mr-2" /> Filter
 						</button>
 					</div>
-					<div
-						className={` ${isOpen ? "block" : "hidden"
-							} lg:block overflow-y-auto fixed top-0 left-0 h-screen w-80 bg-gray-100 px-3 py-1 z-50 transition duration-1000 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
-							} `}
-						style={{ transition: "transform 1s" }}
-					>
-						<div className="text-right ">
-							<button
-								className={`px-2 pt-2 text-3xl rounded-md`}
-								onClick={() => setIsOpen(!isOpen)}
-							>
-								<IoIosCloseCircleOutline />
-							</button>
-						</div>
-						<div className="">
-							<div>
-								<h1 className="text-xl mb-3">Search by keywords</h1>
-								<div className="relative text-gray-600 focus-within:text-gray-400">
-									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
-										<button
-											type="submit"
-											className="p-1 focus:outline-none focus:shadow-outline"
-										>
-											<FiSearch className="text-xl" />
-										</button>
-									</span>
-									<input
-										type="search"
-										name="q"
-										className="py-3 text-sm text-white w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
-										placeholder="Job title, keywords or company"
-										autoComplete="off"
-									/>
-								</div>
-							</div>
-							<div className="mt-8">
-								<h1 className="text-xl mb-3">Location</h1>
-								<div className="relative text-gray-600 focus-within:text-gray-400">
-									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
-										<button
-											type="submit"
-											className="p-1 focus:outline-none focus:shadow-outline"
-										>
-											<GoLocation />
-										</button>
-									</span>
-									<input
-										type="search"
-										name="q"
-										className="py-3 text-sm text-white w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
-										placeholder="City or Postcode"
-										autoComplete="off"
-									/>
-								</div>
-							</div>
-							<div>
-								<input
-									type="range"
-									className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
-									min={0}
-									max={100}
-									value={value}
-									onChange={(e) => setValue(e.target.value)}
-								/>
-								<div className="flex justify-center mt-3 mb-5">
-									<button className="text-blue-500 py-1 px-3 bg-blue-200 rounded-md">
-										{value}km
-									</button>
-								</div>
-							</div>
-							<div className="mt-8">
-								<h1 className="text-xl mb-3">Category</h1>
-								<div className="relative text-gray-600 focus-within:text-gray-400">
-									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
-										<button
-											type="submit"
-											className="p-1 focus:outline-none focus:shadow-outline"
-										>
-											<BiCategory className="text-xl" />
-										</button>
-									</span>
-									<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900">
-										<option defaultValue>Select One Category</option>
-										<option value="Accounting / Finance">
-											Accounting / Finance
-										</option>
-										<option value="Marketing">Marketing</option>
-										<option value="Design">Design</option>
-										<option value="Development">Development</option>
-										<option value="Human Resource">Human Resource</option>
-										<option value="Automotive Jobs">Automotive Jobs</option>
-										<option value="Customer Service">Customer Service</option>
-										<option value="Health and Care">Health and Care</option>
-										<option value="Project Management">
-											Project Management
-										</option>
-									</select>
-								</div>
-							</div>
-							<div>
-								<div className="mt-5">
-									<h1 className="text-xl mb-3">Job type</h1>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">
-												Freelancer
-											</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">
-												Full Time
-											</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">
-												Part Time
-											</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">
-												Temporary
-											</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div className="mt-6">
-								<h1 className="text-xl mb-3">Date Posted</h1>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault1"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault1"
-									>
-										All
-									</label>
-								</div>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault2"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault2"
-									>
-										Last Hour
-									</label>
-								</div>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault2"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault2"
-									>
-										Last 24 Hour
-									</label>
-								</div>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault2"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault2"
-									>
-										Last 7 Days
-									</label>
-								</div>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault2"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault2"
-									>
-										Last 14 Days
-									</label>
-								</div>
-								<div className="my-4">
-									<input
-										className="rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-										type="radio"
-										name="flexRadioDefault"
-										id="flexRadioDefault2"
-									/>
-									<label
-										className="ml-2 text-sm text-gray-500"
-										htmlFor="flexRadioDefault2"
-									>
-										Last 30 Days
-									</label>
-								</div>
-							</div>
-							<div>
-								<div className="mt-5">
-									<h1 className="text-xl mb-3">Experience Level</h1>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">Fresh</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">1 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">2 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">3 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">4 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">5 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">6 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">7 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">8 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">9 Year</span>
-										</label>
-									</div>
-									<div className="flex my-4">
-										<label className="inline-flex relative items-center mr-5 cursor-pointer">
-											<input
-												type="checkbox"
-												className="sr-only peer"
-												checked={enabled}
-												readOnly
-											/>
-											<div
-												onClick={() => {
-													setEnabled(!enabled);
-												}}
-												className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-											></div>
-											<span className="ml-2 text-sm text-gray-500">
-												10 Year
-											</span>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div>
-								<h1 className="text-xl mb-3">Salary</h1>
-								<input
-									type="range"
-									className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
-									min={0}
-									max={20000}
-									value={salary}
-									onChange={(e) => setSalary(e.target.value)}
-								/>
-								<div className="flex justify-center mt-3 mb-5">
-									<button className="text-blue-500 py-1 px-3 bg-blue-200 rounded-md">
-										${salary}
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
-				<div className="relative rounded-md grid lg:grid-cols-4">
-					<div className="lg:col-span-1 bg-[#e8eefa] p-6 hidden lg:block">
+				<div className="rounded-md grid lg:grid-cols-4">
+					<div className={`left-0 ${isOpen ? 'left-0' : '-translate-x-full'} lg:translate-x-0 transition-transform lg:col-span-1 bg-[#e8eefa] p-6 pt-10 md:pt-6 absolute lg:static top-16 right-0 lg:top-auto lg:right-auto z-10`}>
+						<div>
+							<button onClick={() => setIsOpen(!isOpen)} type="button" className="absolute top-3 right-3 text-4xl lg:hidden"><AiOutlineCloseCircle /></button>
+						</div>
 						<form ref={formRef} onSubmit={e => search(e)}>
 							<div>
 								<h1 className="text-md mb-1">Search by keywords</h1>
@@ -1018,7 +547,7 @@ const FindJob = () => {
 					</div>
 				</div>
 			</div>
-		</>
+		</main>
 	);
 };
 
