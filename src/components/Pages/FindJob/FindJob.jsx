@@ -20,7 +20,7 @@ const FindJob = () => {
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -35,7 +35,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -51,7 +51,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -67,7 +67,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -83,7 +83,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
