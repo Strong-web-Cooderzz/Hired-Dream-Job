@@ -1,15 +1,17 @@
 import { useContext, useState } from "react";
 import { FaAlignRight, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function AdminNavbar() {
+  const navigate = useNavigate()
   const [navbar, setNavbar] = useState(false);
   const { logOut, user, loading } = useContext(AuthContext);
 
   const LogOut = () => {
     logOut();
+    navigate('/')
   };
 
   return (

@@ -6,10 +6,11 @@ import {
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Login() {
+  const navigate = useNavigate()
   const { FacebookSignIn, GoogleSignIn, GithubSignIn, Login } =
     useContext(AuthContext);
   const FacebookProvider = new FacebookAuthProvider();
@@ -57,6 +58,7 @@ export default function Login() {
       .then((result) => {
         console.log(result.user);
         reset();
+        navigate('/')
       })
       .catch((err) => console.error(err));
   };

@@ -30,6 +30,7 @@ import Main from "../layout/Main";
 import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/UserDashboard";
 import Fqa from "../components/Pages/FQA/Fqa";
 import UserProfile from "../components/Pages/UserProfile/UserProfile";
+import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 
 export const router = createBrowserRouter([
 	{
@@ -155,7 +156,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/dashboard/my_profile',
-				element: <MyProfile> </MyProfile>
+				element: <Profile> </Profile>
 			},
 			{
 				path: '/dashboard/addpost',
