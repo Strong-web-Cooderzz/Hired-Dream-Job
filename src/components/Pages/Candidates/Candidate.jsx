@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiBookmark, BiCalendar, BiDollar, BiUser } from "react-icons/bi";
 import { BsClock, BsCurrencyExchange } from "react-icons/bs";
 import { SlGraduation } from "react-icons/sl";
@@ -16,10 +16,18 @@ import {
 import { GiMoneyStack, GiSandsOfTime } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { GrMoney } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FiFacebook, FiTwitter } from "react-icons/fi";
 
 const Candidate = () => {
+  const candidateId = useParams().id;
+	const [candidate, setCandidate]=useState([]);
+	useEffect(() => {
+		fetch(`https://hired-dream-job-server.vercel.app/candidate/${candidateId}`)
+			.then(res => res.json())
+			.then(data => setCandidate(data));
+	}, []);
+console.log(candidate);
   return (
     <div>
       <div>
@@ -33,11 +41,11 @@ const Candidate = () => {
             </div>
             <div className="flex gap-2 justify-center">
               <div className="text-gray-700 md:text-left text-center ">
-                <h2 className="text-xl font-semibold">Darlene Robertson</h2>
+                <h2 className="text-xl font-semibold">{candidate.fullName}</h2>
                 <div className="flex flex-wrap items-center gap-3">
-                  <p>UI Designer</p>
+                  <p>{candidate?.candidateData?.Category}</p>
                   <p className="flex items-center gap-1">
-                    <GoLocation /> London, UK
+                    <GoLocation /> {candidate?.candidateData?.City}, {candidate?.candidateData?.Country}
                   </p>
                   <p className="flex items-center gap-1">
                     <GrMoney /> $99 / hour
@@ -215,49 +223,53 @@ const Candidate = () => {
               <BiCalendar className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Experience:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.experience}</p>
               </div>
             </div>
             <div className="flex gap-2">
               <GiSandsOfTime className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Age:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.age} Years</p>
               </div>
-            </div>
-            <div className="flex gap-2 w-full">
+            </div> 
+            {
+                candidate?.candidateData?.salary > 0 &&   <div className="flex gap-2 w-full">
+             
               <BsCurrencyExchange className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Current Salary:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.salary}</p>
               </div>
             </div>
+              }
+          
             <div className="flex gap-2">
               <GiMoneyStack className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Expected Salary:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.expectedSalary}</p>
               </div>
             </div>
             <div className="flex gap-2">
               <BiUser className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Gender:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.gender}</p>
               </div>
             </div>
             <div className="flex gap-2">
               <IoLanguage className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Language:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.language}</p>
               </div>
             </div>
             <div className="flex gap-2">
               <SlGraduation className="text-blue-500 text-3xl" />
               <div>
                 <h3 className="text-lg">Education Level:</h3>
-                <p>0-2 Years</p>
+                <p>{candidate?.candidateData?.education}</p>
               </div>
             </div>
           </div>
