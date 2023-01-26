@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 const AccountClient = () => {
-  const { user } = useContext(AuthContext);
+  const { user,dbUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -13,8 +14,30 @@ const AccountClient = () => {
   } = useForm();
 
   const OnSubmit = (data) => {
-    console.log(data);
-    navigate("/");
+    const userData = {
+      'email': user.email,
+      'fullName': user.displayName,
+      'type': dbUser.type,
+      'photo': user.photoURL,
+      'candidateData': data
+    }
+    console.log(userData);
+    fetch(`http://localhost:5000/user/${dbUser._id}`,{
+      method:'PUT',
+      headers:{
+        'content-type':'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+      if(data){
+        toast.success('Profile Data Updated')
+        navigate('/')
+      }
+    })
+    
   };
 
   return (
@@ -99,18 +122,19 @@ const AccountClient = () => {
                       className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Job Title
+                      Title
                     </label>
                     <input
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Web Developer"
-                      {...register("jobTitle", {
-                        required: "Job Title Is Required",
+                      {...register("title", {
+                        required: "Title Is Required",
                       })}
                     />
                   </div>
                 </div>
+                {/* Experience */}
                 <div className="w-full lg:w-6/12 px-4">
                   <div className="relative w-full mb-3">
                     <label
@@ -119,14 +143,99 @@ const AccountClient = () => {
                     >
                       Experience
                     </label>
-                    <input
-                      type="text"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="5 - 10 Years"
-                      {...register("Experience", {
-                        required: "Experience Is Required",
-                      })}
-                    />
+                    <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("experience")}
+                      >
+                        <option defaultValue value="Fresher">
+                         Fresher
+                        </option>
+                        <option defaultValue value="0-1">
+                          0-2 Years
+                        </option>
+                        <option value="1-3">3-5 Years</option>
+                        <option value="3-5">6-8 Years</option>
+                        <option value="5-10">9-12 Years</option>
+                      </select>
+                  </div>
+                </div>
+                {/* Salary */}
+                <div className="w-full lg:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Current Salary:(if have)
+                    </label>
+                    <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("salary")}
+                      >
+                        {/* Salary */}
+                        <option defaultValue value="0">
+                        0
+                        </option>
+                        <option defaultValue value="1K - 10K">
+                        1K - 10K
+                        </option>
+                        <option value="11K - 15K">11K - 15K</option>
+                        <option value="16K - 20K">16K - 20K</option>
+                        <option value="21K - 30K">21K - 30K</option>
+                        <option value="31K - 35K">31K - 35K</option>
+                        <option value="36K - 40K">36K - 40K</option>
+                      </select>
+                  </div>
+                </div>
+                {/* Expected Salary */}
+                <div className="w-full lg:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                     Expected Salary
+                    </label>
+                    <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("expectedSalary")}
+                      >
+                        {/* Salary */}
+                        <option defaultValue value="1K - 10K">
+                        1K - 10K
+                        </option>
+                        <option value="11K - 15K">11K - 15K</option>
+                        <option value="16K - 20K">16K - 20K</option>
+                        <option value="21K - 30K">21K - 30K</option>
+                        <option value="21K - 30K">31K - 35K</option>
+                        <option value="36K - 40K">36K - 40K</option>
+                      </select>
+                  </div>
+                </div>
+                <div className="w-full lg:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Age
+                    </label>
+                    <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("age")}
+                      >
+                        <option defaultValue value="0-1">
+                          15-20 Years
+                        </option>
+                        <option value="21-24">21-24 Years</option>
+                        <option value="25-28">25-28 Years</option>
+                        <option value="28-35">28-35 Years</option>
+                        <option value="35-50">35-50 Years</option>
+                      </select>
                   </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">
@@ -137,12 +246,20 @@ const AccountClient = () => {
                     >
                       Education
                     </label>
-                    <input
-                      type="text"
-                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Certificate"
-                      {...register("education")}
-                    />
+                     <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("education")}
+                      >
+                        <option defaultValue value="Certificate">
+                          Certificate
+                        </option>
+                        <option value="Associate Degree">Associate Degree</option>
+                        <option value="Bachelor Degree">Bachelor Degree</option>
+                        <option value="Master’s Degree">Master’s Degree</option>
+                        <option value="Doctorate Degree">Doctorate Degree</option>
+                       
+                      </select>
                   </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">
@@ -163,6 +280,7 @@ const AccountClient = () => {
                     />
                   </div>
                 </div>
+                {/* Category */}
                 <div className="w-full lg:w-6/12 px-4">
                   <label
                     className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -171,14 +289,13 @@ const AccountClient = () => {
                     Category
                   </label>
                   <div className="flex justify-center">
-                    <div className="mb-3 xl:w-96">
+                    <div className="mb-3 w-full">
                       <select
-                        className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        {...register("Category")}
+                        {...register("Category",{required:'Category Required'})}
                       >
-                        <option defaultValue>Select One Category</option>
-                        <option value="Accounting / Finance">
+                        <option defaultValue value="Accounting / Finance">
                           Accounting / Finance
                         </option>
                         <option value="Marketing">Marketing</option>
@@ -193,6 +310,30 @@ const AccountClient = () => {
                         <option value="Project Management">
                           Project Management
                         </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                {/* Gender */}
+                <div className="w-full lg:w-6/12 px-4">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Gender
+                  </label>
+                  <div className="flex justify-center">
+                    <div className="mb-3 w-full">
+                      <select
+                        className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("gender")}
+                      >
+                        <option defaultValue value="Male">
+                        Male
+                        </option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
                       </select>
                     </div>
                   </div>
