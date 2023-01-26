@@ -6,8 +6,8 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
-  const { logOut, user, loading } = useContext(AuthContext);
-
+  const { logOut, user,dbUser, loading } = useContext(AuthContext);
+console.log(user);
   const LogOut = () => {
     logOut();
   };
@@ -82,7 +82,7 @@ export default function Navbar() {
               </li>
 
               <li className="text-white">
-                {user?.uid ? (
+                {user ? (
                   <div className="relative">
                     <input
                       type="checkbox"
@@ -95,15 +95,20 @@ export default function Navbar() {
                         user?.photoURL ? "w-[32px]" : "w-full"
                       }`}
                     >
-                      {user?.photoURL ? (
-                        <img
-                          src={user?.photoURL}
-                          alt=""
-                          className="rounded-full"
-                        />
+                      {
+                        user.reloadUserInfo.providerUserInfo[0].providerId==='google.com' ? <div>
+                            <FaUserCircle className="text-black text-3xl" />
+                        </div>
+                        :
+                        <div>
+                            {user?.photoURL ? (
+                   <img src={user?.photoURL} alt="" />
                       ) : (
-                        <FaUserCircle className="text-black text-xl" />
+                        <FaUserCircle className="text-black text-3xl" />
                       )}
+                        </div>
+                      }
+                    
                     </label>
 
                     <div

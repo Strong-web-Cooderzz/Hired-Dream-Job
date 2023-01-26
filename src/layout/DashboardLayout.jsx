@@ -39,10 +39,23 @@ const DashboardLayout = () => {
 
           <NavLink to='/dashboard/ ' >  <li className="w-full active hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200">My Dashboard </li></NavLink>
 
-          <NavLink to='/dashboard/my_profile'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> My Profile  </li></NavLink>
-
-          <NavLink to='/dashboard/addpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> Add New Job </li></NavLink>
-
+          {
+  dbUser?.type==='Agency' ?   <li className="relative">
+      <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Profile   </NavLink>
+    </li>
+    :
+    <li className="relative">
+    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Profile   </NavLink>
+  </li>
+}
+  
+{
+  dbUser?.type==='Agency' &&  <li className="relative">
+      <NavLink to='/dashboard/addpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> Add 
+      New Job </NavLink>
+    </li>
+}
+    
           <NavLink to='/dashboard/my_allpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> All Applicants</li></NavLink>
           <NavLink to='/'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base 
           flex gap-2 items-center focus:bg-gray-200"> <FaHome className="text-blue-500" /> Back Home  </li></NavLink>
