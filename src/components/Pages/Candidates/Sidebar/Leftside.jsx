@@ -3,18 +3,15 @@ import { GrLocation } from 'react-icons/gr';
 import MultiRangeSlider from '../MultirangeSlider';
 import { CategorySelect } from '../Select/CategorySelect';
 import { GenderSelect } from '../Select/GenderSelect';
-
+import {AiOutlineCheck} from 'react-icons/ai'
 const Leftside = () => {
         const [minValue, set_minValue] = useState(0);
         const [maxValue, set_maxValue] = useState(100);
         const handleInput = (e) => {
           set_maxValue(e);
         };
-        console.log(maxValue);
-      
         const [date, setDate] = useState("");
         const [hover, setHover] = useState();
-        console.log(hover);
     return (
         <div className="bg-blue-50 p-4 md:w-4/12 absolute md:relative -left-96 md:left-0 rounded-md flex flex-col gap-3">
             <div>
