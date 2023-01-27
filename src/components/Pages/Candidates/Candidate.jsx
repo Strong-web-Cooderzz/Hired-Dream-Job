@@ -23,7 +23,7 @@ const Candidate = () => {
   const candidateId = useParams().id;
 	const [candidate, setCandidate]=useState([]);
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server.vercel.app/candidate/${candidateId}`)
+		fetch(`http://localhost:5000/candidate/${candidateId}`)
 			.then(res => res.json())
 			.then(data => setCandidate(data));
 	}, []);
@@ -34,8 +34,8 @@ console.log(candidate);
         <div className="flex gap-2 flex-wrap justify-center items-center md:justify-between px-12 py-11 ptext-blue-500 y-12 bg-blue-50">
           <div className="flex gap-2 flex-wrap justify-center md:text-left text-center items-center "text-blue-500 >
             <div>
-              <img
-                src="https://superio-next.vercel.app/images/resource/candidate-1.png"
+              <img className="w-24 h-24 rounded-full"
+                src={candidate.photo}
                 alt=""
               />
             </div>
@@ -55,15 +55,13 @@ console.log(candidate);
                   </p>
                 </div>
                 <div className="flex my-2 items-center gap-3">
-                  <p className="px-2 text-blue-500 bg-blue-200 rounded-full">
-                    App
+                 {
+                  candidate?.employData.skills?.map((skill,i)=>
+                    <p key={i} className="px-2 text-blue-500 bg-blue-200 rounded-full">
+                    {skill.value}
                   </p>
-                  <p className="px-2 text-blue-500 bg-blue-200 rounded-full">
-                    Design
-                  </p>
-                  <p className="px-2 text-blue-500 bg-blue-200 rounded-full">
-                    Digital
-                  </p>
+                  )
+                 }
                 </div>
               </div>
             </div>
@@ -288,11 +286,13 @@ console.log(candidate);
            <div className=" items-center justify-between">
             <h3>Professional Skills</h3>
             <div className="flex flex-wrap items-center gap-2">
-               <p className="px-2 bg-blue-100 rounded-full">HTML</p>
-               <p className="px-2 bg-blue-100 rounded-full">HTML</p>
-               <p className="px-2 bg-blue-100 rounded-full">HTML</p>
-               <p className="px-2 bg-blue-100 rounded-full">HTML</p>
-               <p className="px-2 bg-blue-100 rounded-full">HTML</p>
+            {
+                  candidate?.employData.skills?.map((skill,i)=>
+                    <p key={i} className="px-2 text-blue-500 bg-blue-200 rounded-full">
+                    {skill.value}
+                  </p>
+                  )
+                 }
             </div>
            </div>
           </div>

@@ -110,7 +110,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/find-jobs/single-job/:id",
 				element: <SingleJobs />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server.vercel.app/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",

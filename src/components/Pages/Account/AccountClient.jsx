@@ -1,10 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 const AccountClient = () => {
-  const { user,dbUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
+
+  const [dbUser,setDbUser] = useState('')
+  
+  useEffect(()=>{
+fetch(`http://localhost:5000/user?email=${user?.email}`)
+.then(res=>res.json())
+.then(data=>{
+  setDbUser(data)
+})
+},[user?.email])
+
+console.log(dbUser);
   const navigate = useNavigate();
   const {
     register,
@@ -17,12 +30,12 @@ const AccountClient = () => {
     const userData = {
       'email': user.email,
       'fullName': user.displayName,
-      'type': dbUser.type,
+      'type': dbUser?.type,
       'photo': user.photoURL,
       'candidateData': data
     }
     console.log(userData);
-    fetch(`https://hired-dream-job-server.vercel.app/user/${dbUser._id}`,{
+    fetch(`http://localhost:5000/user/${dbUser?._id}`,{
       method:'PUT',
       headers:{
         'content-type':'application/json'

@@ -92,7 +92,7 @@ console.log(user);
                     <label
                       htmlFor="sortbox"
                       className={`flex items-center space-x-1 cursor-pointer ${
-                        user?.photoURL ? "w-[32px]" : "w-full"
+                        user?.photoURL ? "!w-8 rounded-full !h-8" : "w-full"
                       }`}
                     >
                       {
@@ -102,7 +102,7 @@ console.log(user);
                         :
                         <div>
                             {user?.photoURL ? (
-                   <img src={user?.photoURL} alt="" />
+                   <img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="" />
                       ) : (
                         <FaUserCircle className="text-black text-3xl" />
                       )}
