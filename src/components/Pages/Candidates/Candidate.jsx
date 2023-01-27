@@ -56,9 +56,9 @@ console.log(candidate);
                 </div>
                 <div className="flex my-2 items-center gap-3">
                  {
-                  candidate?.employData.skills?.map((skill,i)=>
+                  candidate?.employData?.skills?.map((skill,i)=>
                     <p key={i} className="px-2 text-blue-500 bg-blue-200 rounded-full">
-                    {skill.value}
+                    {skill?.value}
                   </p>
                   )
                  }
@@ -287,7 +287,7 @@ console.log(candidate);
             <h3>Professional Skills</h3>
             <div className="flex flex-wrap items-center gap-2">
             {
-                  candidate?.employData.skills?.map((skill,i)=>
+                  candidate?.employData?.skills?.map((skill,i)=>
                     <p key={i} className="px-2 text-blue-500 bg-blue-200 rounded-full">
                     {skill.value}
                   </p>
