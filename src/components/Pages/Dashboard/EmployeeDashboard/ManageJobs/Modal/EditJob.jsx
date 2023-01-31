@@ -2,13 +2,41 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../../../AuthProvider/AuthProvider';
 import DatePicker from "react-datepicker";
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
-const EditModal = ({editData}) => {
+const EditJob = () => {
+  const editData = useLoaderData()
+  const navigate = useNavigate('')
     const [startDate, setStartDate] = useState(new Date());
     const [jobType,setJobType] = useState('')
     const [urgent,setUrgent] = useState(false)
     const [companyType,setCompanyType] = useState('')
-    const { register, handleSubmit,reset ,watch, formState: { errors } } = useForm();
+    const { register, handleSubmit,reset ,watch, formState: { errors } } = useForm({
+      defaultValues: {
+        'title':editData.title,
+        'jobDescription':editData.jobDescription,
+        'responsibilities':editData.responsibilities,
+        'skills':editData.skills,
+        'jobEmail':editData.jobEmail,
+        'location':editData.location,
+        'logo': editData.logo,
+        'urgent':editData.urgent,
+        'jobType':editData.jobType,
+        'companyType':editData.companyType,
+        'company':editData.company,
+        'postTime':'1 hours ago',
+        'expireDate':editData.expireDate,
+        'trems':editData.trems,
+        'workingHours':editData.workingHours,
+        'salaryMin':editData.salaryMin,
+        'salaryMax':editData.salaryMax,
+        'rateMin':editData.rateMin,
+        'rateMax':editData.rateMax,
+        timestamp:1,
+        isVisible:editData.isVisible
+      }
+    });
     const { logOut, user, dbUser } = useContext(AuthContext);
 
     const [loading,setLoading] = useState(false)
@@ -41,37 +69,36 @@ const EditModal = ({editData}) => {
             
         }
         console.log(jobDetails);
-        // fetch('http://localhost:5000/jobs',{
-        //     method:'PATCH',
-        //     headers:{
-        //         'content-type':'application/json'
-        //       },
-        //       body: JSON.stringify(jobDetails)             
-        // })
-        // .then(res=>res.json())
-        // .then(data=>{
-        //   toast.success('Job Added')
-        //   setLoading(false)
-        //   reset()
-        // })
+        fetch(`http://localhost:5000/jobsUpdate/${editData._id}`,{
+            method:'PATCH',
+            headers:{
+                'content-type':'application/json'
+              },
+              body: JSON.stringify(jobDetails)             
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          setLoading(false)
+          console.log(data);
+          toast.success('Job Updated')
+          navigate('/dashboard/manage_jobs')
+        })
     }
 
 
     return (
-<div class="modal fade overflow-y-scroll overflow-hidden absolute top-0 left-0 hidden w-full h-full outline-none" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
-  <div class="modal-dialog max-w-2xl overflow-x-scroll modal-dialog-centered relative w-full pointer-events-none">
+<div class="" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+  <div class="modal-dialog max-w-2xl modal-dialog-centered relative w-full pointer-events-none">
     <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
       <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
         <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
-          Edit {editData.title}
+          Edit {editData?.title}
         </h5>
-        <button type="button"
-          class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-          data-bs-dismiss="modal" aria-label="Close"></button>
+       
       </div>
       <form className='p-6 ' onSubmit={handleSubmit(handleAddNewJob)}>
     <div class="form-group mb-6 w-full">
-      <input defaultValue={editData?.title} {...register("title", { required: true })} type="text" class="form-control block
+      <input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -88,7 +115,7 @@ const EditModal = ({editData}) => {
         placeholder="Job Title"/>
     </div>
     <div class="form-group mb-6 w-full">
-      <input defaultValue={editData.location} {...register("location", { required: true })} type="text" class="form-control block
+      <input defaultValue={editData?.location} {...register("location", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -167,7 +194,7 @@ const EditModal = ({editData}) => {
         {/* Working Hours */}
         <p>Working Hours</p>
      <div className='flex items-center gap-1'>
-     <input defaultValue={editData.workingHours} {...register("workingHours", { required: true })} type="text" class="form-control block
+     <input defaultValue={editData?.workingHours} {...register("workingHours", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -191,7 +218,7 @@ const EditModal = ({editData}) => {
      <p>Salary: </p>
     <div className='flex items-center gap-2'>
         
-        <input defaultValue={editData.salaryMin} {...register("salaryMin", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.salaryMin} {...register("salaryMin", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -207,7 +234,7 @@ const EditModal = ({editData}) => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="35k"/>
         -
-        <input defaultValue={editData.salaryMax} {...register("salaryMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.salaryMax} {...register("salaryMax", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -236,7 +263,7 @@ const EditModal = ({editData}) => {
 <div>
 <h3>Rate</h3>
 <div className='flex gap-2 items-center'>
-<input defaultValue={editData.rateMin} {...register("rateMin", { required: true })} type="text" class="form-control block
+<input defaultValue={editData?.rateMin} {...register("rateMin", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -252,7 +279,7 @@ const EditModal = ({editData}) => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="15"/>
         -
-        <input defaultValue={editData.rateMax} {...register("rateMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.rateMax} {...register("rateMax", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -278,7 +305,7 @@ const EditModal = ({editData}) => {
     <div class="form-group mb-6">
         <h3>Job Description</h3>
       <textarea
-      defaultValue={editData.jobDescription}
+      defaultValue={editData?.jobDescription}
        {...register("jobDescription", { required: true })}
       class="
         form-control
@@ -309,7 +336,7 @@ const EditModal = ({editData}) => {
     <div class="form-group mb-6">
         <h3>Key Responsibilities</h3>
       <textarea
-      defaultValue={editData.responsibilities}
+      defaultValue={editData?.responsibilities}
         {...register("responsibilities", { required: true })}
       class="
         form-control
@@ -342,7 +369,7 @@ const EditModal = ({editData}) => {
     <div class="form-group mb-6">
         <h3>Skill & Experience</h3>
       <textarea
-      defaultValue={editData.skills}
+      defaultValue={editData?.skills}
         {...register("skills", { required: true })}
       class="
         form-control
@@ -395,18 +422,11 @@ const EditModal = ({editData}) => {
       duration-150
       ease-in-out" disabled={loading}>{loading?'Updating...':'Update Job'}</button>
   </form>
-      <div
-        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-        <button type="button"
-          class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-          data-bs-dismiss="modal">
-          Close
-        </button>
-      </div>
+    
     </div>
   </div>
 </div>
     );
 };
 
-export default EditModal;
+export default EditJob;

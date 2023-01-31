@@ -29,6 +29,7 @@ const DashboardAddPost = () => {
             'location':data.location,
             'logo': dbUser.employData.photo,
             'urgent':urgent,
+            'category': data.category,
             'jobType':jobType,
             'companyType':companyType,
             'company':dbUser.employData.companyName   ,
@@ -101,12 +102,45 @@ const DashboardAddPost = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
         placeholder="Location"/>
     </div>
+    <div class="my-5">
+  <div>
 
+    {/* Selece Category */}
+   <div className='wfu'>
+   <select {...register("category", { required: true })} class="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+        <option selected>Select Category</option>
+        <option value="Accounting / Finance">Accounting / Finance</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Design">Design</option>
+        <option value="Development">Development</option>
+        <option value="Human Resource">Human Resource</option>
+        <option value="Automotive Jobs">Automotive Jobs</option>
+        <option value="Customer Service">Customer Service</option>
+        <option value="Health and Care">Health and Care</option>
+        <option value="Project Management">Project Management</option>
+    </select>
+   </div>
+  </div>
+</div>
 
     {/* Job TYpe */}
     <div class="form-group mb-6 w-full">
     <div class="flex flex-wrap items-center">
-        <h3>Job Type: </h3>
+        <h3 className='mr-2'>Job Type: </h3>
   <div class="form-check form-check-inline">
   <label class="form-check-label inline-block text-gray-800" for="inlineRadio10">
     <input onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Full Time"/>
