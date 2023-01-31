@@ -4,93 +4,60 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 
 const FindJob = () => {
-	const formRef = useRef(null);
-	const [salary, setSalary] = useState(20000);
+	const dataFromForm = useActionData();
+	const formRef = useRef();
 	const [newer, setNewer] = useState(true);
 	const [jobType, setJobType] = useState('');
 	const [time, setTime] = useState(0);
+	// how many cards will be shown per page
+	const [perPage, setPerPage] = useState(10);
+	// which page user currently in
+	const [page, setPage] = useState(1);
+	// 1 seconds = 1000 miliseconds
 	const second = 1000;
+	const [experience, setExperience] = useState(0);
 
 	const [isOpen, setIsOpen] = useState(false);
-	const [enabled, setEnabled] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
 
-	useEffect(() => {
-		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
+	const fetchFromServer = (e) => {
+		if (e) {
+			e.preventDefault();
+		}
+		const form = formRef.current;
+		const searchString = form.search.value;
+		const location = form.location.value;
+		const sort = newer ? 'new' : 'old';
+		setDataLoading(true);
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
 				setDataLoading(false);
-			})
-	}, [])
+				setIsOpen(false);
+			});
+	};
 
 	function search(e) {
-		e.preventDefault();
-		const form = e.target;
-		const searchString = form.search.value;
-		const location = form.location.value;
-		const sort = newer ? 'new' : 'old';
-		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
-			.then(res => res.json())
-			.then(data => {
-				setData(data);
-				setDataLoading(false);
-				setIsOpen(false);
-			});
-	}
+		fetchFromServer(e);
+	};
 
-	// sends new fetch request when sorting changed
+	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		const form = formRef.current;
-		const searchString = form.search.value;
-		const location = form.location.value;
-		const sort = newer ? 'new' : 'old';
-		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
-			.then(res => res.json())
-			.then(data => {
-				setData(data);
-				setDataLoading(false);
-				setIsOpen(false);
-			});
-	}, [newer]);
-
-	// sends new fetch request when job type is changed
-	useEffect(() => {
-		const form = formRef.current;
-		const searchString = form.search.value;
-		const location = form.location.value;
-		const sort = newer ? 'new' : 'old';
-		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
-			.then(res => res.json())
-			.then(data => {
-				setData(data);
-				setDataLoading(false);
-				setIsOpen(false);
-			});
-	}, [jobType]);
-
-	// sends new fetch request when date posted is changed
-	useEffect(() => {
-		const form = formRef.current;
-		const searchString = form.search.value;
-		const location = form.location.value;
-		const sort = newer ? 'new' : 'old';
-		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
-			.then(res => res.json())
-			.then(data => {
-				setData(data);
-				setDataLoading(false);
-				setIsOpen(false);
-			});
-	}, [time]);
+		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		if(dataFromForm) {
+			setData(dataFromForm.fetchedData);
+			setDataLoading(false);
+			formRef.current.search.value = dataFromForm.form.title;
+			formRef.current.location.value = dataFromForm.form.location;
+		} else {
+			fetchFromServer();
+		}
+	}, [time, jobType, newer, perPage, experience]);
 
 	return (
 		<main className="mb-16">
@@ -198,7 +165,7 @@ const FindJob = () => {
 								} else if (value === 'temporary') {
 									setJobType('Temporary');
 								} else {
-									setJobType('all');
+									setJobType('');
 								}
 							}} className="mt-5 [&>div>label]:text-gray-600 [&>div>label]:ml-2">
 								<h1 className="text-md mb-1">Job type</h1>
@@ -265,211 +232,36 @@ const FindJob = () => {
 							</div>
 						</div>
 						<div>
-							<div className="mt-5">
-								<h1 className="text-xl mb-3">Experience Level</h1>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">Fresh</span>
-									</label>
+							<div onChange={e => setExperience(parseInt(e.target.value))} className="mt-6 [&>div>label]:text-sm [&>div>label]:text-gray-500 [&>div>label]:ml-2">
+								<h1 className="text-md mb-1">Experience Level</h1>
+								<div className="flex my-1">
+									<input id="xp-0" type="radio" name="experience" value="0" />
+									<label htmlFor="xp-0">No Experience</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">1 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-1" type="radio" name="experience" value="1" />
+									<label htmlFor="xp-1">1 Year</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">2 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-2" type="radio" name="experience" value="2" />
+									<label htmlFor="xp-2">2 Year</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">3 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-3" type="radio" name="experience" value="3" />
+									<label htmlFor="xp-3">3 Year</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">4 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-4" type="radio" name="experience" value="4" />
+									<label htmlFor="xp-4">4 Year</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">5 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-5" type="radio" name="experience" value="5" />
+									<label htmlFor="xp-5">5 Year</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">6 Year</span>
-									</label>
+								<div className="flex my-1">
+									<input id="xp-6" type="radio" name="experience" value="6" />
+									<label htmlFor="xp-6">5 Year+</label>
 								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">7 Year</span>
-									</label>
-								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">8 Year</span>
-									</label>
-								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">9 Year</span>
-									</label>
-								</div>
-								<div className="flex my-4">
-									<label className="inline-flex relative items-center mr-5 cursor-pointer">
-										<input
-											type="checkbox"
-											className="sr-only peer"
-											checked={enabled}
-											readOnly
-										/>
-										<div
-											onClick={() => {
-												setEnabled(!enabled);
-											}}
-											className="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-green-300  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"
-										></div>
-										<span className="ml-2 text-sm text-gray-500">10 Year</span>
-									</label>
-								</div>
-							</div>
-						</div>
-						<div>
-							<h1 className="text-xl mb-3">Salary</h1>
-							<input
-								type="range"
-								className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
-								min={0}
-								max={20000}
-								value={salary}
-								onChange={(e) => setSalary(e.target.value)}
-							/>
-							<div className="flex justify-center mt-3 mb-5">
-								<button className="text-blue-500 py-1 px-3 bg-blue-200 rounded-md">
-									${salary}
-								</button>
 							</div>
 						</div>
 					</div>
@@ -480,11 +272,10 @@ const FindJob = () => {
 									<option value="Newest">Newest</option>
 									<option value="Oldest">Oldest</option>
 								</select>
-								<select className="bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
-									<option value="Sort by (default)">All</option>
-									<option value="Newest">10 per Page</option>
-									<option value="Oldest">20 per Page</option>
-									<option value="Oldest">30 per Page</option>
+								<select onChange={e => setPerPage(e.target.value)} className="bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
+									<option value="10">10 per Page</option>
+									<option value="20">20 per Page</option>
+									<option value="30">30 per Page</option>
 								</select>
 							</div>
 
@@ -504,12 +295,13 @@ const FindJob = () => {
 							{/* Single Job */}
 							{
 								!dataLoading && <>
-									<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-0 lg:mt-5">
+									<div className="grid  md:grid-cols-3 grid-cols-1 gap-2  mt-0 lg:mt-5">
 										{
 											data.map(job =>
-												<div key={job._id}>
-													{
-														job.isVisible && <div className="rounded-lg bg-white shadow border-1 pt-6">
+											<>
+												{
+													job.isVisible && <div key={job._id}>
+														<div className="rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6">
 														<img
 															src={job.logo}
 															className="w-24 h-24 rounded-full mx-auto object-cover"
@@ -541,8 +333,10 @@ const FindJob = () => {
 															</div>
 														</div>
 													</div>
-													}
 												</div>
+												}
+											</>
+												
 											)
 										}
 									</div>
