@@ -31,6 +31,7 @@ import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/Use
 import Fqa from "../components/Pages/FQA/Fqa";
 import UserProfile from "../components/Pages/UserProfile/UserProfile";
 import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
+import { formAction } from "../components/Pages/Home/Hero/Hero";
 
 export const router = createBrowserRouter([
 	{
@@ -57,6 +58,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/find-jobs",
 				element: <FindJob />,
+				action: formAction,
 			},
 			{
 				path: "/find-jobs/single-job",
