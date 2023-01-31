@@ -60,7 +60,7 @@ const Register = () => {
                   'type':data.type,
                   'photo':imgbb.data.url
                 }
-                fetch('https://hired-dream-job-server.vercel.app/user',{
+                fetch('http://localhost:5000/user',{
                   method:'POST',
                   headers:{
                     'content-type':'application/json'

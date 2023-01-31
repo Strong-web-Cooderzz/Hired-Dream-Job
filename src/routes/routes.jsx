@@ -31,6 +31,7 @@ import UserDashboard from "../components/Pages/Dashboard/CandidatesDashboard/Use
 import Fqa from "../components/Pages/FQA/Fqa";
 import UserProfile from "../components/Pages/UserProfile/UserProfile";
 import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
+import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
 
 export const router = createBrowserRouter([
 	{
@@ -110,7 +111,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/find-jobs/single-job/:id",
 				element: <SingleJobs />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server.vercel.app/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
@@ -157,6 +158,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/my_profile',
 				element: <Profile> </Profile>
+			},
+			{
+				path: '/dashboard/manage_jobs',
+				element: <ManageJobs> </ManageJobs>
 			},
 			{
 				path: '/dashboard/addpost',

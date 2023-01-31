@@ -20,7 +20,7 @@ const FindJob = () => {
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
+		fetch(`http://localhost:5000/find-jobs?search=""&location=""&sort="new"&type=""&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -35,7 +35,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -51,7 +51,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -67,7 +67,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -83,7 +83,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -507,37 +507,41 @@ const FindJob = () => {
 									<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-0 lg:mt-5">
 										{
 											data.map(job =>
-												<div key={job._id} className="rounded-lg bg-white shadow border-1 pt-6">
-													<img
-														src={job.logo}
-														className="w-24 h-24 rounded-full mx-auto object-cover"
-														alt=""
-													/>
-													<div className="p-4">
-														<h3 className="text-md text-center font-medium text-gray-900">
-															<Link to={`single-job/${job._id}`}>
-																{job.title}
-															</Link>
-														</h3>
-														<p className="mt-3 text-sm text-gray-500 text-justify">
-															{job.jobDescription.slice(0, 100)}
-															{job.jobDescription.length >= 100 && <span>...</span>}
-														</p>
-														<div className="mt-4 flex gap-2">
-															<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
-																{job.jobType}
-															</span>
-															{
-																job.urgent &&
-																<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
-																	{job.urgent ? 'Urgent' : ''}
+												<div key={job._id}>
+													{
+														job.isVisible && <div className="rounded-lg bg-white shadow border-1 pt-6">
+														<img
+															src={job.logo}
+															className="w-24 h-24 rounded-full mx-auto object-cover"
+															alt=""
+														/>
+														<div className="p-4">
+															<h3 className="text-md text-center font-medium text-gray-900">
+																<Link to={`single-job/${job._id}`}>
+																	{job.title}
+																</Link>
+															</h3>
+															<p className="mt-3 text-sm text-gray-500 text-justify">
+																{job.jobDescription.slice(0, 100)}
+																{job.jobDescription.length >= 100 && <span>...</span>}
+															</p>
+															<div className="mt-4 flex gap-2">
+																<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+																	{job.jobType}
 																</span>
-															}
-															<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
-																Private
-															</span>
+																{
+																	job.urgent &&
+																	<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
+																		{job.urgent ? 'Urgent' : ''}
+																	</span>
+																}
+																<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
+																	Private
+																</span>
+															</div>
 														</div>
 													</div>
+													}
 												</div>
 											)
 										}

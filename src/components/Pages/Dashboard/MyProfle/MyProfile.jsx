@@ -11,7 +11,7 @@ const MyProfile = () => {
   const [userData,setUserData] = useState('')
   
     useEffect(()=>{
-  fetch(`https://hired-dream-job-server.vercel.app/user?email=${user?.email}`)
+  fetch(`http://localhost:5000/user?email=${user?.email}`)
   .then(res=>res.json())
   .then(data=>{
     setUserData(data)
@@ -65,7 +65,7 @@ const MyProfile = () => {
         'employData': updateData
       } 
       if(imageUrl){
-        fetch(`https://hired-dream-job-server.vercel.app/employ?email=${user?.email}`,{
+        fetch(`http://localhost:5000/employ?email=${user?.email}`,{
           method:'PUT',
           headers:{
             'content-type':'application/json'
@@ -158,11 +158,13 @@ const MyProfile = () => {
             <div className="md:w-1/2">
               <p>Email address </p>
               <div class="form-floating mb-3 w-full">
-                <input {...register("emailAddress", { required: true })}
+                <input defaultValue={user.email} disabled {...register("emailAddress", { required: false })}
                   type="email"
                   class="form-control
        block
        w-full
+       cursor-not-allowed
+       disabled
        px-3
        py-1.5
        text-base

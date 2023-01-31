@@ -1,25 +1,20 @@
 import React, { useContext, useState } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { AuthContext } from '../../../../../AuthProvider/AuthProvider';
+import DatePicker from "react-datepicker";
 
-
-
-const DashboardAddPost = () => {
+const EditModal = ({editData}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [jobType,setJobType] = useState('')
     const [urgent,setUrgent] = useState(false)
     const [companyType,setCompanyType] = useState('')
     const { register, handleSubmit,reset ,watch, formState: { errors } } = useForm();
     const { logOut, user, dbUser } = useContext(AuthContext);
-    
+
     const [loading,setLoading] = useState(false)
 
     const handleAddNewJob = (data) =>{ 
-        console.log(data);
-        setLoading(true)
+        // setLoading(true)
         const jobDetails = {
             'title':data.title,
             'jobDescription':data.jobDescription,
@@ -31,7 +26,7 @@ const DashboardAddPost = () => {
             'urgent':urgent,
             'jobType':jobType,
             'companyType':companyType,
-            'company':dbUser.employData.companyName   ,
+            'company':dbUser.employData.companyName,
             'postTime':'1 hours ago',
             'expireDate':startDate,
             'trems':data.trems,
@@ -42,33 +37,41 @@ const DashboardAddPost = () => {
             'rateMax':data.rateMax,
             timestamp:1,
             isVisible:true
-               
-
+            
+            
         }
         console.log(jobDetails);
-        fetch('http://localhost:5000/jobs',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
-              },
-              body: JSON.stringify(jobDetails)             
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          toast.success('Job Added')
-          setLoading(false)
-          reset()
-        })
+        // fetch('http://localhost:5000/jobs',{
+        //     method:'PATCH',
+        //     headers:{
+        //         'content-type':'application/json'
+        //       },
+        //       body: JSON.stringify(jobDetails)             
+        // })
+        // .then(res=>res.json())
+        // .then(data=>{
+        //   toast.success('Job Added')
+        //   setLoading(false)
+        //   reset()
+        // })
     }
 
 
     return (
-        <div className='md:w-7/12 h-screen mx-auto'>
-            <h2 className='text-xl '> Add New Job  </h2>
-            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-lg">
-  <form onSubmit={handleSubmit(handleAddNewJob)}>
+<div class="modal fade overflow-y-scroll overflow-hidden absolute top-0 left-0 hidden w-full h-full outline-none" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+  <div class="modal-dialog max-w-2xl overflow-x-scroll modal-dialog-centered relative w-full pointer-events-none">
+    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+      <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+          Edit {editData.title}
+        </h5>
+        <button type="button"
+          class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form className='p-6 ' onSubmit={handleSubmit(handleAddNewJob)}>
     <div class="form-group mb-6 w-full">
-      <input {...register("title", { required: true })} type="text" class="form-control block
+      <input defaultValue={editData?.title} {...register("title", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -85,7 +88,7 @@ const DashboardAddPost = () => {
         placeholder="Job Title"/>
     </div>
     <div class="form-group mb-6 w-full">
-      <input {...register("location", { required: true })} type="text" class="form-control block
+      <input defaultValue={editData.location} {...register("location", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -114,7 +117,7 @@ const DashboardAddPost = () => {
   </div>
   <div class="form-check form-check-inline">
   <label class="form-check-label inline-block text-gray-800" for="inlineRadio20">
-    <input  onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Part Time"/>
+    <input onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Part Time"/>
    Part Time</label>
   </div>
   <div class="form-check form-check-inline">
@@ -164,7 +167,7 @@ const DashboardAddPost = () => {
         {/* Working Hours */}
         <p>Working Hours</p>
      <div className='flex items-center gap-1'>
-     <input  {...register("workingHours", { required: true })} type="text" class="form-control block
+     <input defaultValue={editData.workingHours} {...register("workingHours", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -188,7 +191,7 @@ const DashboardAddPost = () => {
      <p>Salary: </p>
     <div className='flex items-center gap-2'>
         
-        <input  {...register("salaryMin", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData.salaryMin} {...register("salaryMin", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -204,7 +207,7 @@ const DashboardAddPost = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="35k"/>
         -
-        <input  {...register("salaryMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData.salaryMax} {...register("salaryMax", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -233,7 +236,7 @@ const DashboardAddPost = () => {
 <div>
 <h3>Rate</h3>
 <div className='flex gap-2 items-center'>
-<input  {...register("rateMin", { required: true })} type="text" class="form-control block
+<input defaultValue={editData.rateMin} {...register("rateMin", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -249,7 +252,7 @@ const DashboardAddPost = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="15"/>
         -
-        <input  {...register("rateMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData.rateMax} {...register("rateMax", { required: true })} type="text" class="form-control block
         w-full
         px-3
         py-1.5
@@ -275,6 +278,7 @@ const DashboardAddPost = () => {
     <div class="form-group mb-6">
         <h3>Job Description</h3>
       <textarea
+      defaultValue={editData.jobDescription}
        {...register("jobDescription", { required: true })}
       class="
         form-control
@@ -305,6 +309,7 @@ const DashboardAddPost = () => {
     <div class="form-group mb-6">
         <h3>Key Responsibilities</h3>
       <textarea
+      defaultValue={editData.responsibilities}
         {...register("responsibilities", { required: true })}
       class="
         form-control
@@ -337,6 +342,7 @@ const DashboardAddPost = () => {
     <div class="form-group mb-6">
         <h3>Skill & Experience</h3>
       <textarea
+      defaultValue={editData.skills}
         {...register("skills", { required: true })}
       class="
         form-control
@@ -387,11 +393,20 @@ const DashboardAddPost = () => {
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out" disabled={loading}>{loading?'Adding...':'Add Job'}</button>
+      ease-in-out" disabled={loading}>{loading?'Updating...':'Update Job'}</button>
   </form>
+      <div
+        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+        <button type="button"
+          class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+          data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-        </div>
     );
 };
 
-export default DashboardAddPost;
+export default EditModal;
