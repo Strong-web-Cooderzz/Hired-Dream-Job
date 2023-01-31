@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImg from "../../../../assets/Hero/hero5.jpg";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
-import { Form, useSubmit } from "react-router-dom";
+import { Form } from "react-router-dom";
 
 const Hero = () => {
+	const [formLoading, setFormLoading] = useState(false);
+
 	return (
 		<div className="md:pl-20 overflow-hidden lg:pl-24">
 			<div className="w-full sm:flex text-white sm:text-black text-center sm:text-left  relative">
@@ -25,7 +27,7 @@ const Hero = () => {
 						<div>
 							<div>
 								{/* Search Form */}
-								<Form method="post" action="/find-jobs" className="sm:flex items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
+								<Form onSubmit={() => setFormLoading(true)} method="post" action="/find-jobs" className="sm:flex items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
 									<div className="relative">
 										<span className="absolute left-2 top-5 ">
 											<FiSearch className="text-md" />
@@ -36,6 +38,7 @@ const Hero = () => {
 											className="border-2 text-black sm:border-none px-8 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
 											type="text"
 											name="job-title"
+											required
 										/>
 									</div>
 									<div className="relative lg:mt-0 md:mt-0 mt-5 ">
@@ -50,8 +53,9 @@ const Hero = () => {
 											name="job-location"
 										/>
 									</div>
-									<button type="submit" className="bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white  rounded-full px-4 py-2">
-										Find jobs
+									<button type="submit" className={`bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 ${formLoading && 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed lg:w-32'}`} disabled={formLoading}>
+										<div className={`w-5 h-5 rounded-full border-2 border-t-gray-600 border-x-transparent border-b-transparent animate-spin ${!formLoading && 'hidden'}`}></div>
+										<span>Find jobs</span>
 									</button>
 								</Form>
 							</div>
@@ -89,7 +93,7 @@ export const formAction = async ({ request }) => {
 	const res = await fetch(`http://localhost:5000/find-jobs?search=${form.title}&location=${form.location}&sort=new&type=&time=0&per-page=10&page=1&experience=0`);
 	const fetchedData = await res.json();
 	// console.log(fetchedData);
-	return {form, fetchedData};
+	return { form, fetchedData };
 }
 
 export default Hero;
