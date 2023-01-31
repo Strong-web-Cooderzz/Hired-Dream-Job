@@ -257,22 +257,6 @@ const FindJob = () => {
 								</div>
 							</div>
 						</div>
-						<div>
-							<h1 className="text-xl mb-3">Salary</h1>
-							<input
-								type="range"
-								className="block w-full rounded-md focus:outline-none focus:shadow-outline-blue-500"
-								min={0}
-								max={20000}
-								value={salary}
-								onChange={(e) => setSalary(e.target.value)}
-							/>
-							<div className="flex justify-center mt-3 mb-5">
-								<button className="text-blue-500 py-1 px-3 bg-blue-200 rounded-md">
-									${salary}
-								</button>
-							</div>
-						</div>
 					</div>
 					<div className="lg:col-span-3">
 						<div className="px-5">
