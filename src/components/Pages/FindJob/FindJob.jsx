@@ -4,7 +4,7 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link, useActionData } from "react-router-dom";
+import { Link ,useActionData } from "react-router-dom";
 
 const FindJob = () => {
 	const dataFromForm = useActionData();

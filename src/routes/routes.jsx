@@ -33,6 +33,7 @@ import UserProfile from "../components/Pages/UserProfile/UserProfile";
 import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
 import { formAction } from "../components/Pages/Home/Hero/Hero";
+import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
 
 export const router = createBrowserRouter([
 	{
@@ -127,6 +128,10 @@ export const router = createBrowserRouter([
 				path: "/employer/:id",
 				element: <Employer />,
 			},
+			{
+				path: '/edit-job/:id',loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`),
+				element: <EditJob />
+			}
 		]
 	},
 	{

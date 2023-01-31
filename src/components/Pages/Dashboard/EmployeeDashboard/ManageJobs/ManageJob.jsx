@@ -5,7 +5,8 @@ import { GoLocation } from 'react-icons/go';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { RiSuitcase2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import EditModal from './Modal/EditModal';
+import EditJob from './Modal/EditJob';
+
 
 const ManageJob = ({job,setUpdate,update}) => {
   const [loading,setLoading] = useState(false)
@@ -90,15 +91,13 @@ const ManageJob = ({job,setUpdate,update}) => {
                        }
                         </button>
                         {/* Edit Job */}
-                    <Link onClick={()=>setEditData(job)} data-bs-toggle="modal" data-bs-target="#exampleModalCenter" title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
+                    <Link to={`/edit-job/${job._id}`} title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
                         {/* Delete Job */}
                     <button onClick={()=>handleDeleteData(job._id)} title="Delete Job" className='bg-rose-50 p-2 text-red-700 hover:bg-red-500 hover:text-white rounded-md'>{
                       dLoading ? <p className='animate-ping'>...</p>:<BiTrash />
                     }</button>
                    </div>
                     </td>
-<EditModal editData={editData} />
-                    
                   </tr>
     );
 };
