@@ -6,11 +6,13 @@ import Navbar from "../components/shared/Navbar/Navbar";
 
 const Main = () => {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <Outlet />
+			<div className="flex-grow">
+				<Outlet />
+			</div>
       <Footer />
-    </>
+    </div>
   );
 };
 export default Main;
