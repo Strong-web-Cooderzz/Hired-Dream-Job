@@ -38,6 +38,7 @@ const Hero = () => {
 											className="border-2 text-black sm:border-none px-8 w-full sm:w-auto outline-none md:px-8 rounded-full text-sm py-4"
 											type="text"
 											name="job-title"
+											required
 										/>
 									</div>
 									<div className="relative lg:mt-0 md:mt-0 mt-5 ">
