@@ -4,11 +4,11 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 
 const FindJob = () => {
+	const dataFromForm = useActionData();
 	const formRef = useRef();
-	const [salary, setSalary] = useState(20000);
 	const [newer, setNewer] = useState(true);
 	const [jobType, setJobType] = useState('');
 	const [time, setTime] = useState(0);
@@ -49,7 +49,14 @@ const FindJob = () => {
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
 		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
-		fetchFromServer();
+		if(dataFromForm) {
+			setData(dataFromForm.fetchedData);
+			setDataLoading(false);
+			formRef.current.search.value = dataFromForm.form.title;
+			formRef.current.location.value = dataFromForm.form.location;
+		} else {
+			fetchFromServer();
+		}
 	}, [time, jobType, newer, perPage, experience]);
 
 	return (
