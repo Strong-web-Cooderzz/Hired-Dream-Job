@@ -33,7 +33,7 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
