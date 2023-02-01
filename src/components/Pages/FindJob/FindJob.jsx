@@ -4,7 +4,7 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link ,useActionData } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 
 const FindJob = () => {
 	const dataFromForm = useActionData();
@@ -49,7 +49,7 @@ const FindJob = () => {
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
 		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
-		if(dataFromForm) {
+		if (dataFromForm) {
 			setData(dataFromForm.fetchedData);
 			setDataLoading(false);
 			formRef.current.search.value = dataFromForm.form.title;
@@ -139,7 +139,7 @@ const FindJob = () => {
 										<BiCategory className="text-xl" />
 									</button>
 								</span>
-								<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900">
+								<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 bg-white focus:text-gray-900">
 									<option defaultValue>Select One Category</option>
 									<option value="Accounting / Finance">
 										Accounting / Finance
@@ -295,48 +295,48 @@ const FindJob = () => {
 							{/* Single Job */}
 							{
 								!dataLoading && <>
-									<div className="grid  md:grid-cols-3 grid-cols-1 gap-2  mt-0 lg:mt-5">
+									<div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2  mt-0 lg:mt-5">
 										{
 											data.map(job =>
-											<>
-												{
-													job.isVisible && <div key={job._id}>
-														<div className="rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6">
-														<img
-															src={job.logo}
-															className="w-24 h-24 rounded-full mx-auto object-cover"
-															alt=""
-														/>
-														<div className="p-4">
-															<h3 className="text-md text-center font-medium text-gray-900">
-																<Link to={`single-job/${job._id}`}>
-																	{job.title}
-																</Link>
-															</h3>
-															<p className="mt-3 text-sm text-gray-500 text-justify">
-																{job.jobDescription.slice(0, 100)}
-																{job.jobDescription.length >= 100 && <span>...</span>}
-															</p>
-															<div className="mt-4 flex gap-2">
-																<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
-																	{job.jobType}
-																</span>
-																{
-																	job.urgent &&
-																	<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
-																		{job.urgent ? 'Urgent' : ''}
-																	</span>
-																}
-																<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
-																	Private
-																</span>
+												<>
+													{
+														job.isVisible && <div key={job._id}>
+															<div className="rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
+																<img
+																	src={job.logo}
+																	className="w-24 h-24 rounded-full mx-auto object-cover"
+																	alt=""
+																/>
+																<div className="p-4 flex flex-col flex-grow">
+																	<h3 className="text-md text-center font-medium text-gray-900">
+																		<Link to={`single-job/${job._id}`}>
+																			{job.title}
+																		</Link>
+																	</h3>
+																	<p className="mt-3 text-sm text-gray-500 text-justify">
+																		{job.jobDescription.slice(0, 100)}
+																		{job.jobDescription.length >= 100 && <span>...</span>}
+																	</p>
+																	<div className="flex gap-2 mt-auto">
+																		<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+																			{job.jobType}
+																		</span>
+																		{
+																			job.urgent &&
+																			<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
+																				{job.urgent ? 'Urgent' : ''}
+																			</span>
+																		}
+																		<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
+																			Private
+																		</span>
+																	</div>
+																</div>
 															</div>
 														</div>
-													</div>
-												</div>
-												}
-											</>
-												
+													}
+												</>
+
 											)
 										}
 									</div>
