@@ -9,6 +9,7 @@ import { Link, useActionData } from "react-router-dom";
 const FindJob = () => {
 	const dataFromForm = useActionData();
 	const formRef = useRef();
+	const [firstTime, setFirstTime] = useState(true);
 	const [newer, setNewer] = useState(true);
 	const [jobType, setJobType] = useState('');
 	const [time, setTime] = useState(0);
@@ -35,7 +36,7 @@ const FindJob = () => {
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
 		// https://hired-dream-job-server.vercel.app
-		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
+		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -51,11 +52,12 @@ const FindJob = () => {
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
 		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
-		if (dataFromForm) {
+		if (firstTime && dataFromForm) {
 			setData(dataFromForm.fetchedData);
 			setDataLoading(false);
 			formRef.current.search.value = dataFromForm.form.title;
 			formRef.current.location.value = dataFromForm.form.location;
+			setFirstTime(false);
 		} else {
 			fetchFromServer();
 		}

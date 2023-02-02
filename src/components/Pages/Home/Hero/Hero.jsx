@@ -91,7 +91,7 @@ export const formAction = async ({ request }) => {
 		location: data.get('job-location')
 	}
 
-	const res = await fetch(`http://localhost:5000/find-jobs?search=${form.title}&location=${form.location}&sort=new&type=&time=0&per-page=10&page=1&experience=0&category=`);
+	const res = await fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${form.title}&location=${form.location}&sort=new&type=&time=0&per-page=10&page=1&experience=0&category=`);
 	const fetchedData = await res.json();
 	// console.log(fetchedData);
 	return { form, fetchedData };

@@ -12,14 +12,14 @@ export default function AdminDashboard() {
 	useEffect(() => {
 		if (dataType === 'user') {
 			setLoading(true);
-			fetch(`http://localhost:5000/api/v1/get/users?type=${userType}`)
+			fetch(`https://hired-dream-job-server.vercel.app/api/v1/get/users?type=${userType}`)
 				.then(res => res.json())
 				.then(data => {
 					setUsers(data);
 					setLoading(false);
 				});
 		} else {
-			fetch('http://localhost:5000/jobs')
+			fetch('https://hired-dream-job-server.vercel.app/jobs')
 				.then(res => res.json())
 				.then(data => {
 					console.log(data);
@@ -47,8 +47,8 @@ export default function AdminDashboard() {
 
 	function JobRow({ i }) {
 		function removeJob(job) {
-			const newUsers = jobs.filter(i => i._id !== job);
-			setUsers(newUsers);
+			const newJobs = jobs.filter(i => i._id !== job);
+			setJobs(newJobs);
 		}
 
 		return (

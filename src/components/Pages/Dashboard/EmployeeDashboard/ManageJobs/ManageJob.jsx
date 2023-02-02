@@ -18,7 +18,7 @@ const ManageJob = ({job,setUpdate,update}) => {
     const handleUpdateVisiblity = (id) =>{
       setLoading(true)
       setVisible(!visible)
-      fetch(`http://localhost:5000/jobs/${id}`,{
+      fetch(`https://hired-dream-job-server.vercel.app/jobs/${id}`,{
       method:'PATCH',
       headers:{
         'content-type':'application/json'
@@ -37,7 +37,7 @@ const ManageJob = ({job,setUpdate,update}) => {
     // Delete Data
     const handleDeleteData = (id) =>{
       setDLoading(true)
-      fetch(`http://localhost:5000/deleteJob/${id}`,{
+      fetch(`https://hired-dream-job-server.vercel.app/deleteJob/${id}`,{
         method:'DELETE',
       })
       .then(res=>res.json())
