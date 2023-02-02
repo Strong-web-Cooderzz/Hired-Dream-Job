@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../../shared/Navbar/Navbar";
+import { BsFillTrashFill } from "react-icons/bs"
+
+function UserRow({i}) {
+	return (
+		<tr className="[&>td]:text-center border-2 [&>td]:py-4">
+			<td><img src={i.photo} className="w-10 h-10 rounded-full mx-auto object-cover" /></td>
+			<td>{i.fullName}</td>
+			<td>{i.email}</td>
+			<td><div className="text-red-400 text-2xl mx-auto flex justify-center"><span className="cursor-pointer"><BsFillTrashFill /></span></div></td>
+		</tr>
+	)
+}
 
 export default function AdminDashboard() {
 	const [candidates, setCandidates] = useState([]);
@@ -23,12 +35,36 @@ export default function AdminDashboard() {
 	return (
 		<>
 			<Navbar />
-			<section>
-				<div className="flex flex-col lg:w-3/12 [&>span]:py-2 [&>span]:cursor-pointer [&>span]:rounded-md [&>span]:px-6 [&>span:hover]:bg-gray-300">
-					<span onClick={() => setUserType('candidates')} className={`${userType === 'candidates' && 'bg-gray-200'}`}>Candidates</span>
-					<span onClick={() => setUserType('employers')} className={`${userType === 'employers' && 'bg-gray-200'}`}>Employers</span>
-				</div>
-			</section>
+			{/* user type */}
+			<main className="flex w-full">
+				<section className="lg:w-3/12">
+					<div className="flex flex-col [&>span]:py-2 [&>span]:cursor-pointer [&>span]:rounded-md [&>span]:px-6 [&>span:hover]:bg-gray-300">
+						<span onClick={() => setUserType('candidates')} className={`${userType === 'candidates' && 'bg-gray-200'}`}>Candidates</span>
+						<span onClick={() => setUserType('employers')} className={`${userType === 'employers' && 'bg-gray-200'}`}>Employers</span>
+					</div>
+				</section>
+				{/* table */}
+				<section className="w-9/12">
+					<table className="border-2 w-full">
+						<thead>
+							<tr className="[&>th]:text-center border-2">
+								<th>Avater</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								userType === 'candidates' && candidates.map(i => <UserRow key={i._id} i={i} />)
+							}
+							{
+								userType === 'employers' && employers.map(i => <UserRow key={i._id} i={i} />)
+							}
+						</tbody>
+					</table>
+				</section>
+			</main>
 		</>
 	)
 }
