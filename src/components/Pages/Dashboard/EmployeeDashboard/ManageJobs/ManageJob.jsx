@@ -3,9 +3,11 @@ import { useEffect } from 'react';
 import { BiPen, BiTrash } from 'react-icons/bi';
 import { GoLocation } from 'react-icons/go';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
-import { RiSuitcase2Line } from 'react-icons/ri';
+import { RiFireLine, RiSuitcase2Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import EditJob from './Modal/EditJob';
+import Payment from './FeaturedJob/Payment/Payment';
+import PaymentModal from './FeaturedJob/Payment/Payment';
 
 
 const ManageJob = ({job,setUpdate,update}) => {
@@ -47,7 +49,7 @@ const ManageJob = ({job,setUpdate,update}) => {
         setDLoading(false)
       })
     }
-    const [editData,setEditData] = useState({})
+    const [paymentData,setPaymentData] = useState('')
 
     return (
             <tr class="bg-white border-b">
@@ -92,10 +94,80 @@ const ManageJob = ({job,setUpdate,update}) => {
                         </button>
                         {/* Edit Job */}
                     <Link to={`/edit-job/${job._id}`} title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
-                        {/* Delete Job */}
-                    <button onClick={()=>handleDeleteData(job._id)} title="Delete Job" className='bg-rose-50 p-2 text-red-700 hover:bg-red-500 hover:text-white rounded-md'>{
-                      dLoading ? <p className='animate-ping'>...</p>:<BiTrash />
+                    {/* Payment For Featured Job */}
+                  
+                    <Link to={`/pay/${job._id}`} title="Add To Featured" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><RiFireLine /></Link>
+
+
+                    <div class="flex justify-center">
+  <div>
+    <div class="dropdown relative">
+      <a
+        class="
+          dropdown-toggle
+          bg-rose-50 p-2 text-red-700 hover:bg-red-500 hover:text-white rounded-md
+        "
+        href="#"
+        type="button"
+        id="dropdownMenuButton2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <BiTrash />
+      </a>
+      <ul
+        class="
+          dropdown-menu
+          min-w-max
+          absolute
+          hidden
+          text-base
+          z-50
+          p-3
+          border
+          bg-white
+          float-left
+          list-none
+          text-left
+          rounded-lg
+          shadow-lg
+          mt-1
+          m-0
+          bg-clip-padding
+          border-none
+        "
+        aria-labelledby="dropdownMenuButton2"
+      >
+        <p className='p-2'>Confirm if you want to delete</p>
+        <li className='flex gap-5'>
+          <a
+            class="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              rounded-md
+              font-normal
+              w-full
+              flex justify-center
+              whitespace-nowrap
+              bg-blue-300
+              text-blue-700
+              hover:bg-blue-100
+            "
+            href="#"
+            >Cancel
+            </a>
+         {/* Delete Job */}
+         <button onClick={()=>handleDeleteData(job._id)} title="Delete Job" className='bg-rose-50 p-2 text-red-700 hover:bg-red-500 hover:text-white rounded-md'>{
+                      dLoading ? <p className='animate-ping'>...</p>:'Confirm'
                     }</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+                       
                    </div>
                     </td>
                   </tr>

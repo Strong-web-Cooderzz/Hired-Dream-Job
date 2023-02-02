@@ -102,9 +102,9 @@ export default function AdminNavbar() {
                           <FaUserCircle className="text-black text-3xl" />
                       </div>
                       :
-                      <div>
+                      <div title="Company Logo">
                           {dbUser?.photo ? (
-                 <img className="w-8 h-8 rounded-full" src={dbUser?.photo} alt="" />
+                 <img className="w-8 h-8 rounded-full border border-black" src={dbUser?.employData?.photo} alt="" />
                     ) : (
                       <FaUserCircle className="text-black text-3xl" />
                     )}

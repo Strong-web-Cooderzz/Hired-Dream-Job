@@ -85,7 +85,7 @@ const ManageJobs = () => {
                 </thead >
                 <tbody>
                   {
-                    jobs.map(job=><ManageJob update={update} setUpdate={setUpdate} key={job._id} job={job} />)
+                    jobs.map((job,i)=><ManageJob update={update} setUpdate={setUpdate} key={i} job={job} />)
                   }
                 </tbody>
               </table>

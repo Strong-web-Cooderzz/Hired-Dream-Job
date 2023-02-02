@@ -39,6 +39,7 @@ const FindJob = () => {
 				setData(data);
 				setDataLoading(false);
 				setIsOpen(false);
+        console.log(data);
 			});
 	};
 

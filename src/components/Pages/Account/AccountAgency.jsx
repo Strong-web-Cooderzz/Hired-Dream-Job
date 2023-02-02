@@ -33,7 +33,7 @@ const AccountAgency = () => {
       'email':userData.email,
       'fullName':userData.fullName,
       'photo': userData.photo,
-      'type': userData.type,
+      'type': 'Agency',
       'employData': data
     } 
     console.log(employInfo);
