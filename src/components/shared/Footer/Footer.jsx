@@ -74,7 +74,7 @@ export default function Footer() {
 						</span>
 						<ul className="text-sm flex flex-col gap-4">
 							<li>
-								<Link to="#">Browse Candidates</Link>
+								<Link to="/candidates">Browse Candidates</Link>
 							</li>
 							<li>
 								<Link to="#">Employer Dashboard</Link>
