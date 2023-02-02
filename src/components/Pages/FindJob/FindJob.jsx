@@ -16,6 +16,7 @@ const FindJob = () => {
 	const [perPage, setPerPage] = useState(10);
 	// which page user currently in
 	const [page, setPage] = useState(1);
+	const [category, setCategory] = useState('');
 	// 1 seconds = 1000 miliseconds
 	const second = 1000;
 	const [experience, setExperience] = useState(0);
@@ -33,7 +34,8 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}`)
+		// https://hired-dream-job-server.vercel.app
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -57,7 +59,7 @@ const FindJob = () => {
 		} else {
 			fetchFromServer();
 		}
-	}, [time, jobType, newer, perPage, experience]);
+	}, [time, jobType, newer, perPage, experience, category]);
 
 	return (
 		<main className="mb-16">
@@ -130,7 +132,7 @@ const FindJob = () => {
 						</form>
 						<div className="mt-8">
 							<h1 className="text-md mb-1">Category</h1>
-							<div className="relative text-gray-600 focus-within:text-gray-400">
+							<div onChange={e => setCategory(e.target.value)} className="relative text-gray-600 focus-within:text-gray-400">
 								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 									<button
 										type="submit"
@@ -140,7 +142,7 @@ const FindJob = () => {
 									</button>
 								</span>
 								<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 bg-white focus:text-gray-900">
-									<option defaultValue>Select One Category</option>
+									<option value="">Select One Category</option>
 									<option value="Accounting / Finance">
 										Accounting / Finance
 									</option>
