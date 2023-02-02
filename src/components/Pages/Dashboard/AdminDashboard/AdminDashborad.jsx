@@ -2,16 +2,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../../../shared/Navbar/Navbar";
 import { BsFillTrashFill } from "react-icons/bs"
 
-function UserRow({i}) {
-	return (
-		<tr className="[&>td]:text-center border-2 [&>td]:py-4">
-			<td><img src={i.photo} className="w-10 h-10 rounded-full mx-auto object-cover" /></td>
-			<td>{i.fullName}</td>
-			<td>{i.email}</td>
-			<td><div className="text-red-400 text-2xl mx-auto flex justify-center"><span className="cursor-pointer"><BsFillTrashFill /></span></div></td>
-		</tr>
-	)
-}
 
 export default function AdminDashboard() {
 	const [candidates, setCandidates] = useState([]);
@@ -29,8 +19,24 @@ export default function AdminDashboard() {
 				setEmployers(newEmployers);
 			});
 	}, []);
-	console.log(candidates)
-	console.log(employers)
+
+	function UserRow({ i }) {
+		function removeUser(user) {
+			if (userType === 'candidates') {
+				const newUsers = candidates.filter(i => i._id !== user);
+				setCandidates(newUsers);
+			}
+		}
+
+		return (
+			<tr className="[&>td]:text-center border-2 [&>td]:py-4">
+				<td><img src={i.photo} className="w-10 h-10 rounded-full mx-auto object-cover" /></td>
+				<td>{i.fullName}</td>
+				<td>{i.email}</td>
+				<td><div className="text-red-400 text-2xl mx-auto flex justify-center"><span onClick={() => removeUser(i._id)} className="cursor-pointer"><BsFillTrashFill /></span></div></td>
+			</tr>
+		)
+	}
 
 	return (
 		<>
