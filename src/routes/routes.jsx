@@ -36,6 +36,8 @@ import { formAction } from "../components/Pages/Home/Hero/Hero";
 import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
 import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
 
+import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
+
 export const router = createBrowserRouter([
 	{
 		path: "/",
@@ -135,7 +137,7 @@ export const router = createBrowserRouter([
 				element: <Employer />,
 			},
 			{
-				path: '/edit-job/:id',loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`),
+				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
 				element: <EditJob />
 			}
 		]
@@ -185,6 +187,10 @@ export const router = createBrowserRouter([
 				element: <MyAllPost> </MyAllPost>
 			}
 		]
+	},
+	{
+		path: '/dashboard/admin',
+		element: <AdminDashboard />
 	},
 	{
 		path: "*",
