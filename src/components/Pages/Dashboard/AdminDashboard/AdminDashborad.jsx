@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../../../shared/Navbar/Navbar";
 import { BsFillTrashFill } from "react-icons/bs"
 
-
 export default function AdminDashboard() {
 	const [candidates, setCandidates] = useState([]);
 	const [employers, setEmployers] = useState([]);
