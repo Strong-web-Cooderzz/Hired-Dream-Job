@@ -39,7 +39,7 @@ const Leftside = () => {
 						<input
 							type="search"
 							name="Search"
-							placeholder="Job title, keywords, or company..."
+							placeholder="Search Candidates"
 							className="w-32 md:w-full py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none focus:dark:bg-gray-900 focus:dark:border-violet-400"
 						/>
 					</div>
@@ -69,130 +69,6 @@ const Leftside = () => {
 						/>
 					</div>
 				</fieldset>
-			</div>
-			<div>
-				<p className="text-sm my-2">Radius around selected destination</p>
-				<MultiRangeSlider
-					min={0}
-					max={100}
-					onChange={({ min, max }) => handleInput(max)}
-				/>
-				<div className="flex justify-center">
-					<p className="bg-blue-300 w-20 text-center rounded-md p-1 text-sm">
-						{maxValue}km
-					</p>
-				</div>
-			</div>
-			<div>
-				<p className="text-lg my-2">Category</p>
-				<CategorySelect />
-			</div>
-			<div>
-				<p className="text-lg my-2">Candidate Gender</p>
-				<GenderSelect />
-			</div>
-			<div>
-				<p className="text-lg my-2">Date Posted</p>
-
-				<div>
-					<h3
-						onClick={() => setDate("all")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "all"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "all" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						All
-					</h3>
-					<h3
-						onClick={() => setDate("last")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "last"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "last" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						Last Hour
-					</h3>
-
-					<h3
-						onClick={() => setDate("24")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "24"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "24" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						Last 24 Hour
-					</h3>
-					<h3
-						onClick={() => setDate("7day")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "7day"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "7day" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						Last 7 Days
-					</h3>
-					<h3
-						onClick={() => setDate("14day")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "14day"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "14day" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						Last 14 Days
-					</h3>
-					<h3
-						onClick={() => setDate("30day")}
-						className="flex select-none cursor-pointer items-center"
-					>
-						<p
-							className={`${date === "30day"
-									? "border bg-blue-600 rounded-full w-5 flex justify-center items-center h-5 mr-3"
-									: " bg-white-400 border-2 rounded-full w-5 h-5 mr-3"
-								}`}
-						>
-							{date === "30day" && (
-								<AiOutlineCheck className="text-white text-xs" />
-							)}{" "}
-						</p>{" "}
-						Last 30 Days
-					</h3>
-				</div>
 			</div>
 			<div>
 				<p className="text-lg my-2">Experience</p>

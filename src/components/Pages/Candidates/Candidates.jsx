@@ -49,7 +49,7 @@ const Candidates = () => {
 						<div className="flex md:block justify-center">
 							<div className="p-4 md:flex  justify-between">
 								<div className="flex gap-2">
-									<h3>10 Jobs</h3>
+									<h3>{candidates.length} Candidates</h3>
 									<h3 className=" md:hidden">Filter</h3>
 								</div>
 								<div className="flex gap-2">
