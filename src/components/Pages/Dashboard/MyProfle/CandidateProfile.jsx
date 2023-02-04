@@ -76,19 +76,21 @@ const CandidateProfile = () => {
         'age':data.age,
         'education':data.education,
         'resumeUrl':data.resumeUrl,
-        'skills':data.skills,
+        'skills':skills,
         'language':data.language,
+        'experience':data.experience,
+        'gender':data.gender,
         'Category':data.category
       }
       const employInfo = {
         'email':dbUser.email,
-        'fullName':dbUser.fullName,
-        'photo': dbUser.photo,
+        'fullName':data.candidateName,
+        'photo': imageUrl,
         'type': dbUser.type,
         'candidateData': updateData
       } 
       if(imageUrl){
-        fetch(`https://hired-dream-job-server.vercel.app/candidate?email=${user?.email}`,{
+        fetch(`http://localhost:5000/candidate?email=${user?.email}`,{
           method:'PUT',
           headers:{
             'content-type':'application/json'

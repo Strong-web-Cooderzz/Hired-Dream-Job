@@ -62,14 +62,24 @@ const Candidate = () => {
                   </p>
                 </div>
                 <div className="flex my-2 items-center gap-3 flex-wrap">
-                  {candidate?.candidateData?.skills?.map((skill, i) => (
                     <p
-                      key={i}
                       className="px-2 text-blue-500 bg-blue-200 rounded-full"
-                    >
-                      {skill?.value}
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[0].value
+                    }
                     </p>
-                  ))}
+                    <p
+                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[1].value
+                    }
+                    </p>
+                    <p
+                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[2].value
+                    }
+                    </p>
                 </div>
               </div>
             </div>

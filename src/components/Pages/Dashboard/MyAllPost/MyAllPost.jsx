@@ -7,7 +7,7 @@ const {user} = useContext(AuthContext)
 const [appliedJobData, setAppliedJobData ] = useState([])
 
 
-const url  = `https://hired-dream-job-server.vercel.app/job-applied-post/${user?.uid}`
+const url  = `http://localhost:5000/job-applied-post/${user?.uid}`
 useEffect(()=> {
     fetch(url)
     .then(res => res.json())

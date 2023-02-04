@@ -10,7 +10,7 @@ const AccountAgency = () => {
 	const [userData, setUserData] = useState('')
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server.vercel.app/user?email=${user?.email}`)
+		fetch(`http://localhost:5000/user?email=${user?.email}`)
 			.then(res => res.json())
 			.then(data => {
 				setUserData(data)
@@ -32,7 +32,7 @@ const AccountAgency = () => {
 			'employData': data
 		}
 		console.log(employInfo);
-		fetch(`https://hired-dream-job-server.vercel.app/user/${userData._id}`, {
+		fetch(`http://localhost:5000/user/${userData._id}`, {
 			method: "PUT",
 			headers: {
 				'content-type': 'application/json'
@@ -204,24 +204,7 @@ const AccountAgency = () => {
 
 							<hr className="mt-6 border-b-1 border-blueGray-300" />
 
-  const OnSubmit = (data) => {
-    const employInfo = {
-      'email':userData.email,
-      'fullName':userData.fullName,
-      'photo': userData.photo,
-      'type': 'Agency',
-      'employData': data
-    } 
-    console.log(employInfo);
-    fetch(`http://localhost:5000/user/${userData._id}`,{
-      method:"PUT",
-      headers:{
-        'content-type':'application/json'
-      },
-      body: JSON.stringify(employInfo)
-    })
-    navigate("/");
-  };
+
 
 							<h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
 								Contact Information

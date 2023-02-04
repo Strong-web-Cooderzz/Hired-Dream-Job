@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
 
 
   useEffect(()=>{
-    fetch(`https://hired-dream-job-server.vercel.app/user?email=${user?.email}`)
+    fetch(`http://localhost:5000/user?email=${user?.email}`)
     .then(res=>res.json())
     .then(data=>setDbUser(data))
 },[user?.email])
