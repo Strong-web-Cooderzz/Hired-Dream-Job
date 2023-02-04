@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import softIt from "../../../../../assets/logos/softIt.png";
-import figma from "../../../../../assets/logos/figma.png";
-import marketing from "../../../../../assets/logos/marketing.png";
-import android from "../../../../../assets/logos/android-soft.png";
-import linkedin from "../../../../../assets/logos/linkedin.png";
-import skype from "../../../../../assets/logos/skype.png";
-import tech from "../../../../../assets/logos/tech.png";
-import upwork from "../../../../../assets/logos/upwork.png";
 import JobFeaturedCard from "./JobFeaturedCard";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import api from "../../../../../api/fetchData";
 
 const JobFeauters = () => {
   const [loading, setLoading] = useState(true);
-  const api = import.meta.env.VITE_API + "jobs";
+  // const api = import.meta.env.VITE_API + "jobs";
   const [jobFeaturesData, setJobFeaturesData] = useState([]);
   useEffect(() => {
-    fetch(api)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobFeaturesData(data);
-        setLoading(false);
-      });
+		async function fetchJobs() {
+			try {
+				const response = await api.get("/jobs", {params: {limit: 6}});
+				setJobFeaturesData(response.data);
+				setLoading(false);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchJobs();
+    // fetch(api)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setJobFeaturesData(data);
+    //     setLoading(false);
+    //   });
   }, []);
   console.log(jobFeaturesData);
   return (
