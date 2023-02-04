@@ -69,7 +69,7 @@ const ApplyJobModal = ({singleJobData}) => {
 
 
       {/* -----------apply job form start here ---------  */}
-      <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+      <div className="block p-6 rounded-lg bg-white max-w-md">
    <form onSubmit={jobApplyFormHandlar} >
     <div className="form-group mb-3 ">
       <label >Name : </label>
@@ -135,7 +135,7 @@ const ApplyJobModal = ({singleJobData}) => {
       required
       name='message'
       className="
-        form-control
+        form-control resize-none
         block
         w-full
         px-3
@@ -153,7 +153,7 @@ const ApplyJobModal = ({singleJobData}) => {
       "
       id="exampleFormControlTextarea13"
       rows="3"
-      placeholder=" Why should we hired you ? "
+      placeholder="Why should we hired you ?"
     ></textarea>
     </div>
   
