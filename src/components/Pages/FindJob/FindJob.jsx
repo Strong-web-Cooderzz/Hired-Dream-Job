@@ -5,6 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link, useActionData } from "react-router-dom";
+import api from "../../../api/fetchData";
 
 const FindJob = () => {
 	const dataFromForm = useActionData();
@@ -27,7 +28,7 @@ const FindJob = () => {
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
 
-	const fetchFromServer = (e) => {
+	const fetchFromServer = async (e) => {
 		if (e) {
 			e.preventDefault();
 		}
@@ -36,14 +37,22 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
+		try {
+			const response = await api.get(`/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
+			setData(response.data);
+			setDataLoading(false);
+			setIsOpen(false);
+		} catch (err) {
+			console.log(err)
+		}
 		// https://hired-dream-job-server.vercel.app
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
-			.then(res => res.json())
-			.then(data => {
-				setData(data);
-				setDataLoading(false);
-				setIsOpen(false);
-			});
+		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
+		// 	.then(res => res.json())
+		// 	.then(data => {
+		// 		setData(data);
+		// 		setDataLoading(false);
+		// 		setIsOpen(false);
+		// 	});
 	};
 
 	function search(e) {
@@ -305,7 +314,7 @@ const FindJob = () => {
 											data.map(job =>
 												<>
 													{
-														job.isVisible && <div key={job._id}>
+														<div key={job._id}>
 															<div className="rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
 																<img
 																	src={job.logo}
@@ -341,7 +350,6 @@ const FindJob = () => {
 														</div>
 													}
 												</>
-
 											)
 										}
 									</div>
