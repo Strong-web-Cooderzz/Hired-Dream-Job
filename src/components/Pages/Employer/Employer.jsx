@@ -10,7 +10,7 @@ export default function Employer() {
 	const employerId = useParams().id;
 	const [employer, setEmployer]=useState([]);
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server.vercel.app/employ/${employerId}`)
+		fetch(`http://localhost:5000/employ/${employerId}`)
 			.then(res => res.json())
 			.then(data => setEmployer(data));
 	}, []);

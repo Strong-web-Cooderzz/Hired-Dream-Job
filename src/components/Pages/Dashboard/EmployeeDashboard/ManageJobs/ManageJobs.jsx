@@ -15,7 +15,7 @@ const ManageJobs = () => {
   const [update,setUpdate] = useState('')
   const [jobs,setJobs] = useState([])
   useEffect(()=>{
-    fetch(`https://hired-dream-job-server.vercel.app/jobsFindByEmail?email=${user?.email}`)
+    fetch(`http://localhost:5000/jobsFindByEmail?email=${user?.email}`)
     .then(res=>res.json())
     .then(data=>setJobs(data))
   },[jobs,user,update])

@@ -10,7 +10,7 @@ export default function Employers() {
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server.vercel.app/employ?type=Agency`)
+		fetch(`http://localhost:5000/employ?type=Agency`)
 			.then(res => res.json())
 			.then(data => {
 				setEmploy(data);
@@ -26,7 +26,7 @@ export default function Employers() {
 		const search = form.search.value;
 		const location = form.location.value;
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server.vercel.app/find-employer?search=${search}&location=${location}`)
+		fetch(`http://localhost:5000/find-employer?search=${search}&location=${location}`)
 			.then(res => res.json())
 			.then(data => {
 				setEmploy(data);

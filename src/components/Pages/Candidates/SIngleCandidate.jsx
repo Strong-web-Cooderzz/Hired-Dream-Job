@@ -42,15 +42,26 @@ const SingleCandidate = ({ candidate }) => {
 							</div>
 						</div>
 						<div className="flex gap-3">
-							<p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-								App
-							</p>
-							<p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-								Design
-							</p>
-							<p className="bg-blue-100 text-gray-500 px-3 rounded-full">
-								Digital
-							</p>
+            <div className="flex my-2 items-center gap-3 flex-wrap">
+                    <p
+                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[0].value
+                    }
+                    </p>
+                    <p
+                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[1].value
+                    }
+                    </p>
+                    <p
+                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
+                    >{
+                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[2].value
+                    }
+                    </p>
+                </div>
 						</div>
 					</div>
 				</div>
@@ -65,7 +76,7 @@ const SingleCandidate = ({ candidate }) => {
 						</div>
 					)}
 					<div>
-						<Link to={'/candidate'} className="bg-blue-100 inline-block my-7 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-6 py-2 rounded-md text-blue-500">
+						<Link to={`/candidate/${_id}`} className="bg-blue-100 inline-block my-7 hover:bg-blue-500 hover:text-white hover:transition transition hover:duration-700 duration-700 px-6 py-2 rounded-md text-blue-500">
 							Profile
 						</Link>
 					</div>

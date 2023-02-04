@@ -39,8 +39,8 @@ const FindJob = () => {
 		const location = form.location.value;
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
-		// https://hired-dream-job-server.vercel.app
-		fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
+		// http://localhost:5000
+		fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
 			.then(res => res.json())
 			.then(data => {
 				setData(data);
@@ -57,7 +57,7 @@ const FindJob = () => {
 
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime) {
 			setData(dataFromForm.fetchedData);
 			setDataLoading(false);
