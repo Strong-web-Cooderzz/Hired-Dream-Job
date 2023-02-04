@@ -9,31 +9,30 @@ const CheckoutForm = ({jobManage}) => {
     const elements = useElements();
     const [cardError,setCardError] = useState('')
     const [loading,setLoading] = useState(false)
-    const price = 5;
-
+    const price =jobManage.rateMax;
+console.log(price);
 
     useEffect(() => {
     
       fetch("http://localhost:5000/create-payment-intent", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+           "Content-Type": "application/json"
+           },
         body: JSON.stringify({price}),
       })
         .then((res) => res.json())
-        .then((data) =>{
-          setClientSecret(data.clientSecret)
-          setLoading(false)
-        });
-    }, [price]);
+        .then((data) =>setClientSecret(data.clientSecret));
+    }, [jobManage._id,price]);
 
-console.log(clientSecret);
+
 
 
 
 
   
     const handleSubmit = async (event) => {
-      setLoading(true)
+      setLoading(false)
       // Block native form submission.
       event.preventDefault();
   
@@ -60,12 +59,35 @@ console.log(clientSecret);
   
       if (error) {
         setCardError(error.message)
-        console.log('[error]', error);
+        return
       } else {
         setCardError('')
-        console.log('[PaymentMethod]', paymentMethod);
+              const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
+       clientSecret,
+        {
+          payment_method: {
+            card: card,
+            billing_details: {
+              name: jobManage.company,
+              email: jobManage.jobEmail,
+              id: jobManage._id,
+            },
+          },
+        },
+      );
+
+        if(confirmError){
+          setCardError(confirmError.message)
+          return
+        }
+          console.log('paymentIntent',paymentIntent);
       }
+
+
+
     };
+
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -92,7 +114,7 @@ console.log(clientSecret);
         <Link to={'/dashboard/manage_jobs'} type="button"
           class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
         >Back</Link>
-        <button  disabled={!stripe || !clientSecret} type="submit"
+        <button  disabled={!stripe} type="submit"
           class="inline-block disabled:bg-gray-400 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">{loading?'Loading...':'Pay Now'}</button>
       </div>
       </form>

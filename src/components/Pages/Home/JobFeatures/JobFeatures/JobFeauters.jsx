@@ -13,7 +13,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const JobFeauters = () => {
   const [loading, setLoading] = useState(true);
-  const api = import.meta.env.VITE_API + "jobs";
+  const api = import.meta.env.VITE_API + "featured";
   const [jobFeaturesData, setJobFeaturesData] = useState([]);
   useEffect(() => {
     fetch(api)
@@ -22,7 +22,7 @@ const JobFeauters = () => {
         setJobFeaturesData(data);
         setLoading(false);
       });
-  }, []);
+  }, [jobFeaturesData]);
   console.log(jobFeaturesData);
   return (
     <section className="mx-auto w-full px-5 ">
@@ -47,9 +47,10 @@ const JobFeauters = () => {
       )}
 
       <div className=" flex justify-center mt-8">
-        <Link>
+        <Link to={'/find-jobs'} >
+
           <button className="btn-normal bg-blue-500 hover:bg-blue-700 flex  items-center gap-2 ">
-            Load More Listing <FaArrowRight />
+           See All Jobs<FaArrowRight />
           </button>
         </Link>
       </div>
