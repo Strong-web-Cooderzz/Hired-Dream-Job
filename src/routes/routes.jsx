@@ -34,6 +34,8 @@ import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
 import { formAction } from "../components/Pages/Home/Hero/Hero";
 import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
+import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
+
 import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
 
 export const router = createBrowserRouter([
@@ -116,6 +118,11 @@ export const router = createBrowserRouter([
 				path: "/find-jobs/single-job/:id",
 				element: <SingleJobs />,
 				loader: ({ params }) => fetch(`https://hired-dream-job-server.vercel.app/jobs/${params.id}`)
+			},
+			{
+				path: "/pay/:id",
+				element: <Payment />,
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",

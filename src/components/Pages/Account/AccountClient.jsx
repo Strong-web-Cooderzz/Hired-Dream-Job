@@ -306,7 +306,7 @@ console.log(dbUser);
                       <select
                         className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         aria-label="Default select example"
-                        {...register("Category",{required:'Category Required'})}
+                        {...register("category",{required:'Category Required'})}
                       >
                         <option defaultValue value="Accounting / Finance">
                           Accounting / Finance
@@ -394,7 +394,7 @@ console.log(dbUser);
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="south shajahanpur, shahidbagh masjid gali, khilgaon, 1217"
-                      {...register("Street", {
+                      {...register("street", {
                         required: "Street Is Required",
                       })}
                     />
@@ -412,7 +412,7 @@ console.log(dbUser);
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Dhaka"
-                      {...register("City", {
+                      {...register("city", {
                         required: "City Is Required",
                       })}
                     />
@@ -430,7 +430,7 @@ console.log(dbUser);
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Bangladesh"
-                      {...register("Country", {
+                      {...register("country", {
                         required: "Country Is Required",
                       })}
                     />
@@ -448,7 +448,7 @@ console.log(dbUser);
                       type="text"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="1217"
-                      {...register("Postal", {
+                      {...register("postal", {
                         required: "Postal Code Is Required",
                       })}
                     />

@@ -4,9 +4,12 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link, useActionData } from "react-router-dom";
+import { Link ,useActionData } from "react-router-dom";
+import ScrollToTop from "../../../ScrollUp/ScrollToTop";
+
 
 const FindJob = () => {
+	
 	const dataFromForm = useActionData();
 	// requires when searching from home page
 	const [firstTime, setFirstTime] = useState(true);
@@ -43,8 +46,10 @@ const FindJob = () => {
 				setData(data);
 				setDataLoading(false);
 				setIsOpen(false);
+        console.log(data);
 			});
 	};
+	
 
 	function search(e) {
 		fetchFromServer(e);
@@ -351,6 +356,7 @@ const FindJob = () => {
 					</div>
 				</div>
 			</div>
+			<ScrollToTop />
 		</main>
 	);
 };

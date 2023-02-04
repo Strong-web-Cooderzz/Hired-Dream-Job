@@ -27,27 +27,24 @@ const Register = () => {
   const onSubmit = (data) => {
     const image = data.image[0];
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("file", image)
+    formData.append("upload_preset", "hired-dream-job")
+    formData.append("cloud_name","dcckbmhft")
 
- 
 
-    const url = `https://api.imgbb.com/1/upload?key=${imgbbAPIKEY}`;
+    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
     const { email, password } = data;
     fetch(url, {
       method: "POST",
       body: formData,
     })
-      .then((res) => res.json())
-      .then((imgbb) => {
+      .then((res) => res?.json())
+      .then((imageData) => {
+        console.log(imageData);
         createAccount(email, password)
           .then((result) => {
-            console.log(result);
-
             const displayName = data.firstName +' '+ data.lastName;
-            const photoURL = imgbb.data.url;
-
-            console.log(displayName, photoURL);
-
+            const photoURL = imageData.url;
             const info = {
               displayName,
               photoURL,
@@ -58,7 +55,7 @@ const Register = () => {
                   'email':data.email,
                   'fullName': data.firstName + ' ' + data.lastName,
                   'type':data.type,
-                  'photo':imgbb.data.url
+                  'photo':imageData.url
                 }
                 fetch('https://hired-dream-job-server.vercel.app/user',{
                   method:'POST',
