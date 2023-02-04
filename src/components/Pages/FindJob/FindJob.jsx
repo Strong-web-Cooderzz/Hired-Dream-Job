@@ -5,8 +5,10 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link ,useActionData } from "react-router-dom";
+import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 
 const FindJob = () => {
+	
 	const dataFromForm = useActionData();
 	const formRef = useRef();
 	const [newer, setNewer] = useState(true);
@@ -42,6 +44,7 @@ const FindJob = () => {
         console.log(data);
 			});
 	};
+	
 
 	function search(e) {
 		fetchFromServer(e);
@@ -49,7 +52,7 @@ const FindJob = () => {
 
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if(dataFromForm) {
 			setData(dataFromForm.fetchedData);
 			setDataLoading(false);
@@ -347,6 +350,7 @@ const FindJob = () => {
 					</div>
 				</div>
 			</div>
+			<ScrollToTop />
 		</main>
 	);
 };

@@ -18,7 +18,7 @@ const ManageJobs = () => {
     fetch(`http://localhost:5000/jobsFindByEmail?email=${user?.email}`)
     .then(res=>res.json())
     .then(data=>setJobs(data))
-  },[user,update])
+  },[jobs,user,update])
 
  
     return (
