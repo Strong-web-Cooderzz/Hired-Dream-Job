@@ -14,15 +14,14 @@ const ApplyJobModal = ({singleJobData}) => {
  const jobApplyFormHandlar = (e) => {
   e.preventDefault()
   const form = e.target ;
-  const  candidateName = form.name.value ;
+  const candidateName = form.name.value ;
   const candidateEmail = form.email.value;
-  const candidateResume = form.resume.value ;
+  const candidateResume = window.btoa(form.resume.files[0]);
   const candidateMessage = form.message.value ;
-  
 
-  const jobApplyInfo = {candidateName, candidateEmail, candidateResume,candidateId:user?.uid, candidateMessage,company,companyType,jobType,applyDate, jobTitle:title,companyId:_id ,companyLocation:location }
+  const jobApplyInfo = {candidateName, candidateEmail, candidateResume,candidateId:user?.uid, candidateMessage,company,companyType,jobType,applyDate, jobTitle:title,companyId:_id ,companyLocation:location}
   // send and save  data in database 
-  fetch(`http://localhost:5000/candidate/applyjobs`, {
+  fetch(`https://hired-dream-job-server.vercel.app/candidate/applyjobs`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -41,7 +40,6 @@ const ApplyJobModal = ({singleJobData}) => {
     console.log(data)
   })
   .catch(err =>  console.log(err))
-
  }
 
    return (
@@ -63,13 +61,13 @@ const ApplyJobModal = ({singleJobData}) => {
           data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body relative px-4 py-6">
-        <div>
+        <div className='ml-6'>
             <h2 classNameName='font-semibold'> {title} </h2>
         </div>
 
 
       {/* -----------apply job form start here ---------  */}
-      <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+      <div className="block p-6 rounded-lg bg-white max-w-md">
    <form onSubmit={jobApplyFormHandlar} >
     <div className="form-group mb-3 ">
       <label >Name : </label>
@@ -111,8 +109,8 @@ const ApplyJobModal = ({singleJobData}) => {
     </div>
 
     <div className="form-group mb-3">
-      <label> Resume  drive link : </label>
-      <input type="url" required name='resume' className="form-control block
+      <label>Resume  drive link : </label>
+      <input type="file" name='resume' accept='application/pdf' className="form-control block
         w-full
         px-3
         py-1.5
@@ -135,7 +133,7 @@ const ApplyJobModal = ({singleJobData}) => {
       required
       name='message'
       className="
-        form-control
+        form-control resize-none
         block
         w-full
         px-3
@@ -153,7 +151,7 @@ const ApplyJobModal = ({singleJobData}) => {
       "
       id="exampleFormControlTextarea13"
       rows="3"
-      placeholder=" Why should we hired you ? "
+      placeholder="Why should we hired you ?"
     ></textarea>
     </div>
   

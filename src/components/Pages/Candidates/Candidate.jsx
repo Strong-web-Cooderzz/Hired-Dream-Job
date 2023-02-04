@@ -22,6 +22,7 @@ import { FiFacebook, FiTwitter } from "react-icons/fi";
 
 const Candidate = () => {
   const candidateId = useParams().id;
+
   const [candidate, setCandidate] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/candidate/${candidateId}`)

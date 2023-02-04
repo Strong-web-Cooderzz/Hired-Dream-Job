@@ -88,7 +88,7 @@ const CandidateProfile = () => {
         'candidateData': updateData
       } 
       if(imageUrl){
-        fetch(`http://localhost:5000/candidate?email=${user?.email}`,{
+        fetch(`https://hired-dream-job-server.vercel.app/candidate?email=${user?.email}`,{
           method:'PUT',
           headers:{
             'content-type':'application/json'

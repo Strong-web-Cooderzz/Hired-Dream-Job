@@ -198,7 +198,7 @@ const SingleJobs = () => {
             {/* Job apply button part  */}
             <div className="flex gap-5 items-center">
               <button onClick={singleJobSet} className="bg-blue-500 w-full hover:bg-blue-600 py-3 rounded-md text-white cursor-pointer"  data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                Apply For Job
+                Apply To Job
 
               </button>
               <button className="p-4 text-blue-500 bg-blue-50 rounded-md">

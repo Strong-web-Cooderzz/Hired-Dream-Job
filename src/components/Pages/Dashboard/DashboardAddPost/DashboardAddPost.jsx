@@ -47,7 +47,7 @@ const DashboardAddPost = () => {
 
         }
         console.log(jobDetails);
-        fetch('http://localhost:5000/jobs',{
+        fetch('https://hired-dream-job-server.vercel.app/jobs',{
             method:'POST',
             headers:{
                 'content-type':'application/json'
