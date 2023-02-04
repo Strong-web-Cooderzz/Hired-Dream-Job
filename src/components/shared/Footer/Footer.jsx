@@ -30,22 +30,22 @@ export default function Footer() {
 			{/* links and logo, first part */}
 			<div className="flex  flex-col lg:flex-row  md:px-12 border-solid border-2 border-gray-100 border-l-0 border-t-0 border-r-0 gap-6 ">
 				{/* logo, phone and address */}
-				<div className="flex flex-col lg:pl-6  gap-4 lg:text-left md:text-left  sm:text-center text-center  pl-6 md:pl-0">
-					<img src={logo} alt="Hired Dream Job" className="w-20" />
+				<div className="flex flex-col lg:pl-6  gap-4 lg:text-left md:text-left  sm:text-center text-center  pl-0 md:pl-0">
+					<img src={logo} alt="Hired Dream Job" className="w-20 mx-auto md:ml-0" />
 					<div className="flex flex-col gap-2">
 						<span className="text-lg font-bold">Call us at</span>
 						<Link to="tel:+8801234567890" className="text-blue-600">
 							+880123456789
 						</Link>
 					</div>
-					<address className="w-9/12">
+					<address className="w-9/12 mx-auto md:ml-0">
 						329 Whatever Street, Dhaka 2000, Bangladesh
 					</address>
 					<a href="mailto:support@hireddreamjob.com">support@hireddreamjob</a>
 				</div>
 
 				{/* links */}
-				<div className="pl-6 w-full justify-evenly lg:text-left md:text-left [&>div>ul>li>a:hover]:text-blue-600 sm:text-center text-center  flex flex-col lg:gap-16 md:gap-8 sm:gap-6 gap-5 py-10 lg:flex lg:flex-row md:pl-0 md:grid md:grid-cols-2">
+				<div className="pl-0 w-full justify-evenly lg:text-left md:text-left [&>div>ul>li>a:hover]:text-blue-600 sm:text-center text-center  flex flex-col lg:gap-16 md:gap-8 sm:gap-6 gap-5 py-10 lg:flex lg:flex-row md:pl-0 md:grid md:grid-cols-2">
 					<div className="flex flex-col gap-3">
 						<span className="font-4xl font-bold text-gray-900">
 							For Candidates
