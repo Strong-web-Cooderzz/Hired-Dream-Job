@@ -6,8 +6,8 @@ import api from "../../../../../api/fetchData";
 
 const JobFeauters = () => {
   const [loading, setLoading] = useState(true);
-  // const api = import.meta.env.VITE_API + "jobs";
   const [jobFeaturesData, setJobFeaturesData] = useState([]);
+
   useEffect(() => {
 		async function fetchJobs() {
 			try {
@@ -19,14 +19,8 @@ const JobFeauters = () => {
 			}
 		}
 		fetchJobs();
-    // fetch(api)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setJobFeaturesData(data);
-    //     setLoading(false);
-    //   });
   }, []);
-  console.log(jobFeaturesData);
+
   return (
     <section className="mx-auto w-full px-5 ">
       <div className="text-center mb-4 ">
@@ -50,9 +44,10 @@ const JobFeauters = () => {
       )}
 
       <div className=" flex justify-center mt-8">
-        <Link>
+        <Link to={'/find-jobs'} >
+
           <button className="btn-normal bg-blue-500 hover:bg-blue-700 flex  items-center gap-2 ">
-            Load More Listing <FaArrowRight />
+           See All Jobs<FaArrowRight />
           </button>
         </Link>
       </div>

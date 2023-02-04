@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
@@ -12,6 +14,7 @@ export default function Navbar() {
 		logOut();
 	};
 
+	
 	return (
 		<nav className="w-full bg-white shadow">
 			<div className="justify-between px-4 md:items-center md:flex md:px-8">
@@ -144,6 +147,7 @@ export default function Navbar() {
 					</div>
 				</div>
 			</div>
+			<ScrollToTop />
 		</nav>
 	);
 }

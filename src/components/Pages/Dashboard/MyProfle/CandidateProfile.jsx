@@ -43,15 +43,19 @@ const CandidateProfile = () => {
     console.log(data,skills);
     const image = data.image[0];
     const formData = new FormData()
-    formData.append('image',image)
-    const url = `https://api.imgbb.com/1/upload?key=${imgbbAPIKEY}`;
+    formData.append("file", image)
+    formData.append("upload_preset", "hired-dream-job")
+    formData.append("cloud_name","dcckbmhft")
+
+
+    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
     fetch(url,{
       method:'POST',
       body: formData
     })
     .then(res=>res.json())
     .then(imageData=>{
-      const imageUrl = imageData.data.url
+      const imageUrl = imageData.url
       const updateData = {
         'companyName': data.compnayName, 
         'photo':imageUrl,
@@ -72,17 +76,21 @@ const CandidateProfile = () => {
         'age':data.age,
         'education':data.education,
         'resumeUrl':data.resumeUrl,
-        'skills':skills
+        'skills':skills,
+        'language':data.language,
+        'experience':data.experience,
+        'gender':data.gender,
+        'Category':data.category
       }
       const employInfo = {
         'email':dbUser.email,
-        'fullName':dbUser.fullName,
-        'photo': dbUser.photo,
+        'fullName':data.candidateName,
+        'photo': imageUrl,
         'type': dbUser.type,
         'candidateData': updateData
       } 
       if(imageUrl){
-        fetch(`https://hired-dream-job-server.vercel.app/candidate?email=${user?.email}`,{
+        fetch(`http://localhost:5000/candidate?email=${user?.email}`,{
           method:'PUT',
           headers:{
             'content-type':'application/json'
@@ -102,14 +110,14 @@ const CandidateProfile = () => {
 
 
   return (
-    <div className="w-full text-gray-700 h-screen bg-slate-200">
+    <div className="w-full text-gray-700 bg-white h-screen">
       <div className="mx-12 my-7">
-        <h2 className="text-2xl font-semibold ">Company Profile!</h2>
+        <h2 className="text-2xl font-semibold ">Employer Profile!</h2>
         <h3>Ready to jump back in?</h3>
       </div>
       <form
         onSubmit={handleSubmit(handleUpdateEmployer)}
-        className="mx-8 p-5 bg-white"
+        className="mx-8 p-5 w-full bg-gray-100  rounded-xl"
       >
         <h3>My Profile</h3>
         <div>
@@ -177,7 +185,7 @@ const CandidateProfile = () => {
             <div className="md:w-1/2">
               <p>Email address (this email show only profile) </p>
               <div class="form-floating mb-3 w-full">
-                <input {...register("emailAddress", { required: true })}
+                <input disabled defaultValue={dbUser.email} {...register("emailAddress", { required: false })}
                   type="email"
                   class="form-control
        block
@@ -451,9 +459,9 @@ const CandidateProfile = () => {
           
         </div>
         {/*Resume Url , */}
-        <div class="">
-          <div className=" gap-5">
-            <div className="md:">
+        <div class="flex gap-1">
+          <div className=" gap-5 w-full">
+            <div className="md:w-full">
               <p>Resume Url</p>
               <div class="form-floating mb-3 w-full">
                 {/*Resume Url*/}
@@ -479,7 +487,7 @@ const CandidateProfile = () => {
                     placeholder="name@example.com"
                   />
                   <label for="floatingInput" class="text-gray-700">
-                    www.drive.google.com/resumelink
+                    www.drive.google.com/
                   </label>
                 </div>
               </div>
@@ -489,6 +497,80 @@ const CandidateProfile = () => {
 
          
           </div>
+          <div className=" gap-5 w-full">
+            <div className="md:">
+              <p>Language</p>
+              <div class="form-floating mb-3 w-full">
+
+
+                {/*Language */}
+                <div class="form-floating mb-3 w-full">
+                  <input {...register("language", { required: false })}
+                    type="text"
+                    class="form-control
+       block
+       w-full
+       px-3
+       py-1.5
+       text-base
+       font-normal
+       text-gray-700
+       bg-white bg-clip-padding
+       border border-solid border-gray-300
+       rounded
+       transition
+       ease-in-out
+       m-0
+       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                  />
+                  <label for="floatingInput" class="text-gray-700">
+                    English, Bangla
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+
+
+         
+          </div>
+
+          {/* Category */}
+<div className="w-full lg:w-full px-1">
+                  <label
+                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    htmlFor="grid-password"
+                  >
+                    Category
+                  </label>
+                  <div className="flex justify-center">
+                    <div className="mb-3 w-full">
+                      <select
+                        className="form-select h-[57px] appearance-none block w-full px-3 py-4.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        aria-label="Default select example"
+                        {...register("category", { required: false })}
+                      >
+                        <option defaultValue value="Accounting / Finance">
+                          Accounting / Finance
+                        </option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Design">Design</option>
+                        <option value="Development">Development</option>
+                        <option value="Human Resource">Human Resource</option>
+                        <option value="Automotive Jobs">Automotive Jobs</option>
+                        <option value="Customer Service">
+                          Customer Service
+                        </option>
+                        <option value="Health and Care">Health and Care</option>
+                        <option value="Project Management">
+                          Project Management
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
           
         </div>
 

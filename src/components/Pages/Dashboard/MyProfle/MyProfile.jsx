@@ -11,7 +11,7 @@ const MyProfile = () => {
   const [userData,setUserData] = useState('')
   
     useEffect(()=>{
-  fetch(`https://hired-dream-job-server.vercel.app/user?email=${user?.email}`)
+  fetch(`http://localhost:5000/user?email=${user?.email}`)
   .then(res=>res.json())
   .then(data=>{
     setUserData(data)
@@ -30,15 +30,19 @@ const MyProfile = () => {
   
     const image = data.image[0];
     const formData = new FormData()
-    formData.append('image',image)
-    const url = `https://api.imgbb.com/1/upload?key=${imgbbAPIKEY}`;
+    formData.append("file", image)
+    formData.append("upload_preset", "hired-dream-job")
+    formData.append("cloud_name","dcckbmhft")
+
+
+    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
     fetch(url,{
       method:'POST',
       body: formData
     })
     .then(res=>res.json())
     .then(imageData=>{
-      const imageUrl = imageData.data.url
+      const imageUrl = imageData.url
       const updateData = {
         'companyName': data.compnayName, 
         'photo':imageUrl,
@@ -65,7 +69,7 @@ const MyProfile = () => {
         'employData': updateData
       } 
       if(imageUrl){
-        fetch(`https://hired-dream-job-server.vercel.app/employ?email=${user?.email}`,{
+        fetch(`http://localhost:5000/employ?email=${user?.email}`,{
           method:'PUT',
           headers:{
             'content-type':'application/json'

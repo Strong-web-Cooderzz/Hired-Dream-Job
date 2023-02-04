@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAjOeg1nZA50d6_ossoRWFKEE0LdMVjB-Y",
-  authDomain: "hired-dream-job.firebaseapp.com",
-  projectId: "hired-dream-job",
-  storageBucket: "hired-dream-job.appspot.com",
-  messagingSenderId: "538787129570",
-  appId: "1:538787129570:web:d43491f771a4adf95816bb",
+  apiKey: "AIzaSyCyooty3MgCBzDW9A_iZDGdQk0-jGGoqTo",
+  authDomain: "hired-job.firebaseapp.com",
+  projectId: "hired-job",
+  storageBucket: "hired-job.appspot.com",
+  messagingSenderId: "455348046721",
+  appId: "1:455348046721:web:4afa658cabe7ad596ef680"
 };
 
 // Initialize Firebase

@@ -5,6 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link, useActionData } from "react-router-dom";
+import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import api from "../../../api/fetchData";
 
 const FindJob = () => {
@@ -23,7 +24,6 @@ const FindJob = () => {
 	// 1 seconds = 1000 miliseconds
 	const second = 1000;
 	const [experience, setExperience] = useState(0);
-
 	const [isOpen, setIsOpen] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
@@ -55,13 +55,14 @@ const FindJob = () => {
 		// 	});
 	};
 
+
 	function search(e) {
 		fetchFromServer(e);
 	};
 
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		// fetch(`https://hired-dream-job-server.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime) {
 			setData(dataFromForm.fetchedData);
 			setDataLoading(false);
@@ -359,6 +360,7 @@ const FindJob = () => {
 					</div>
 				</div>
 			</div>
+			<ScrollToTop />
 		</main>
 	);
 };

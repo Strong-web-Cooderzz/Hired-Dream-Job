@@ -15,10 +15,10 @@ const ManageJobs = () => {
   const [update,setUpdate] = useState('')
   const [jobs,setJobs] = useState([])
   useEffect(()=>{
-    fetch(`https://hired-dream-job-server.vercel.app/jobsFindByEmail?email=${user?.email}`)
+    fetch(`http://localhost:5000/jobsFindByEmail?email=${user?.email}`)
     .then(res=>res.json())
     .then(data=>setJobs(data))
-  },[user,update])
+  },[jobs,user,update])
 
  
     return (
@@ -85,7 +85,7 @@ const ManageJobs = () => {
                 </thead >
                 <tbody>
                   {
-                    jobs.map(job=><ManageJob update={update} setUpdate={setUpdate} key={job._id} job={job} />)
+                    jobs.map((job,i)=><ManageJob update={update} setUpdate={setUpdate} key={i} job={job} />)
                   }
                 </tbody>
               </table>
