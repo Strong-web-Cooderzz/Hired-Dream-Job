@@ -3,7 +3,6 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
 import { Form } from "react-router-dom";
-import api from '../../../../api/fetchData';
 
 const Hero = () => {
 	const [formLoading, setFormLoading] = useState(false);
