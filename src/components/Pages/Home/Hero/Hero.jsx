@@ -3,6 +3,7 @@ import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
 import { Form } from "react-router-dom";
+import api from '../../../../api/fetchData';
 
 const Hero = () => {
 	const [formLoading, setFormLoading] = useState(false);
@@ -48,10 +49,10 @@ const Hero = () => {
 										</span>
 										{/* Input for city or post code */}
 										<input onChange={e => e.target.value && setIsEmpty(false)}
-										placeholder="City or postcode"
-										className="outline-none px-8 text-black w-full sm:w-auto text-sm border-2 sm:border-none rounded-full py-4"
-										type="text"
-										name="job-location"
+											placeholder="City or postcode"
+											className="outline-none px-8 text-black w-full sm:w-auto text-sm border-2 sm:border-none rounded-full py-4"
+											type="text"
+											name="job-location"
 										/>
 									</div>
 									<button type="submit" className={`bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 ${formLoading && 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed lg:w-32'}`} disabled={formLoading}>
@@ -90,11 +91,7 @@ export const formAction = async ({ request }) => {
 		title: data.get('job-title'),
 		location: data.get('job-location')
 	}
-
-	const res = await fetch(`http://localhost:5000/find-jobs?search=${form.title}&location=${form.location}&sort=new&type=&time=0&per-page=10&page=1&experience=0&category=`);
-	const fetchedData = await res.json();
-	// console.log(fetchedData);
-	return { form, fetchedData };
+	return form;
 }
 
 export default Hero;

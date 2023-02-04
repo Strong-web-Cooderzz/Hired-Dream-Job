@@ -38,23 +38,26 @@ const FindJob = () => {
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
 		try {
-			const response = await api.get(`/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
+			const response = await api.get(`/find-jobs`, {
+				params: {
+					search: searchString,
+					location,
+					sort,
+					type: jobType,
+					time,
+					'per-page': perPage,
+					page,
+					experience,
+					category
+				}
+			})
 			setData(response.data);
 			setDataLoading(false);
 			setIsOpen(false);
 		} catch (err) {
-			console.log(err)
+			console.log(err);
 		}
-		// https://hired-dream-job-server.vercel.app
-		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}&page=${page}&experience=${experience}&category=${category}`)
-		// 	.then(res => res.json())
-		// 	.then(data => {
-		// 		setData(data);
-		// 		setDataLoading(false);
-		// 		setIsOpen(false);
-		// 	});
 	};
-
 
 	function search(e) {
 		fetchFromServer(e);
@@ -64,10 +67,10 @@ const FindJob = () => {
 	useEffect(() => {
 		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime) {
-			setData(dataFromForm.fetchedData);
-			setDataLoading(false);
-			formRef.current.search.value = dataFromForm.form.title;
-			formRef.current.location.value = dataFromForm.form.location;
+			setDataLoading(true);
+			formRef.current.search.value = dataFromForm.title;
+			formRef.current.location.value = dataFromForm.location;
+			fetchFromServer();
 			setFirstTime(false);
 		} else {
 			fetchFromServer();
