@@ -14,15 +14,14 @@ const ApplyJobModal = ({singleJobData}) => {
  const jobApplyFormHandlar = (e) => {
   e.preventDefault()
   const form = e.target ;
-  const  candidateName = form.name.value ;
+  const candidateName = form.name.value ;
   const candidateEmail = form.email.value;
-  const candidateResume = form.resume.value ;
+  const candidateResume = window.btoa(form.resume.files[0]);
   const candidateMessage = form.message.value ;
-  
 
-  const jobApplyInfo = {candidateName, candidateEmail, candidateResume,candidateId:user?.uid, candidateMessage,company,companyType,jobType,applyDate, jobTitle:title,companyId:_id ,companyLocation:location }
+  const jobApplyInfo = {candidateName, candidateEmail, candidateResume,candidateId:user?.uid, candidateMessage,company,companyType,jobType,applyDate, jobTitle:title,companyId:_id ,companyLocation:location}
   // send and save  data in database 
-  fetch(`https://hired-dream-job-server.vercel.app/candidate/applyjobs`, {
+  fetch(`http://localhost:5000/candidate/applyjobs`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -41,7 +40,6 @@ const ApplyJobModal = ({singleJobData}) => {
     console.log(data)
   })
   .catch(err =>  console.log(err))
-
  }
 
    return (
@@ -63,7 +61,7 @@ const ApplyJobModal = ({singleJobData}) => {
           data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body relative px-4 py-6">
-        <div>
+        <div className='ml-6'>
             <h2 classNameName='font-semibold'> {title} </h2>
         </div>
 
@@ -111,8 +109,8 @@ const ApplyJobModal = ({singleJobData}) => {
     </div>
 
     <div className="form-group mb-3">
-      <label> Resume  drive link : </label>
-      <input type="url" required name='resume' className="form-control block
+      <label>Resume  drive link : </label>
+      <input type="file" name='resume' accept='application/pdf' className="form-control block
         w-full
         px-3
         py-1.5
