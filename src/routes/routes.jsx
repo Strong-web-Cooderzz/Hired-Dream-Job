@@ -1,4 +1,3 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import About from "../components/Pages/About/About";
 import AccountAgency from "../components/Pages/Account/AccountAgency";
@@ -59,7 +58,6 @@ export const router = createBrowserRouter([
 				path: "/candidates",
 				element: <Candidates />,
 			},
-
 			{
 				path: "/find-jobs",
 				element: <FindJob />,
@@ -86,7 +84,7 @@ export const router = createBrowserRouter([
 				element: <SingelArticles></SingelArticles>
 			},
 			{
-				path: "/trems",
+				path: "/terms",
 				element: <TremsPages></TremsPages>
 			},
 			{
@@ -98,7 +96,7 @@ export const router = createBrowserRouter([
 				element: <Candidate />,
 			},
 			{
-				path: "/fqa",
+				path: "/faq",
 				element: <Fqa />,
 			},
 			{

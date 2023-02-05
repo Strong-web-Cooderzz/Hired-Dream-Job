@@ -106,7 +106,7 @@ export default function Footer() {
 								<Link to="/contact">Contact</Link>
 							</li>
 							<li>
-								<Link to="/fqa">FAQ</Link>
+								<Link to="/faq">FAQ</Link>
 							</li>
 						</ul>
 					</div>
@@ -119,7 +119,7 @@ export default function Footer() {
 								<Link to="#">Site Map</Link>
 							</li>
 							<li>
-								<Link to="/trems">Terms of Use</Link>
+								<Link to="/terms">Terms of Use</Link>
 							</li>
 							<li>
 								<Link to="#">Privacy Center</Link>
