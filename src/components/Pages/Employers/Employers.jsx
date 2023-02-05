@@ -40,7 +40,7 @@ export default function Employers() {
 				{
 					employ.map(data => <div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
 
-						<img src={data?.employData?.photo || data?.photo} className="rounded-full w-20 h-20 bg-red-400 object-cover" />
+						<img src={data?.employData?.photo || data?.photo} className="rounded-full w-20 h-20 object-cover" />
 						<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data?.employData?.companyName || data?.fullName}</Link>
 						<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{data.employData?.City + ',' + data.employData?.Country}</span>
 
@@ -61,20 +61,20 @@ export default function Employers() {
 	return (
 		<main className="w-full mb-16">
 			{/* search form starts here */}
-			<section className="bg-blue-50 w-full justify-center py-8 px-4 md:p-12 grid items-center gap-6">
+			<section className="bg-gradient-to-r from-blue-400 to-purple-400 w-full justify-center py-12 px-4 md:p-12 md:py-6 grid items-center gap-3">
 				{/* search form */}
-				<form onSubmit={e => searchJob(e)} className="w-[90vw] bg-transparent lg:w-full flex flex-col lg:flex-row gap-8 lg:px-8 lg:py-4 rounded-md lg:bg-white">
+				<form onSubmit={e => searchJob(e)} className="w-[90vw] bg-transparent text-sm lg:w-full flex flex-col lg:flex-row gap-8 lg:px-4 lg:py-2 rounded-md lg:bg-white">
 					{/* search by name */}
 					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
-						<div>
+						<div className='text-gray-600'>
 							<BsSearch />
 						</div>
-						<input name='search' className="outline-none w-content" type="text" placeholder="Job title, keywords, or company" />
+						<input name='search' className="outline-none w-content" type="text" placeholder="Job title, keywords or company" />
 					</div>
 
 					{/* search by location */}
 					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
-						<div>
+						<div className='text-gray-600'>
 							<FaMapMarkerAlt />
 						</div>
 						<input name='location' className="outline-none" type="text" placeholder="City or postcode" />
@@ -82,7 +82,7 @@ export default function Employers() {
 
 					{/* category list */}
 					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
-						<div>
+						<div className='text-gray-600'>
 							<BiShoppingBag />
 						</div>
 						<select className="bg-transparent text-gray-500 w-content">
@@ -95,12 +95,12 @@ export default function Employers() {
 
 					{/* search button */}
 					<div className="w-full">
-						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full text-xs">Find Jobs</button>
+						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full text-sm">Find Jobs</button>
 					</div>
 				</form>
 
 				<div className="grid place-content-center text-xs">
-					<select className="bg-blue-100 px-6 py-3 rounded-md" name="founded-date" id="founded-date">
+					<select className="bg-white text-gray-500 px-6 py-3 rounded-md" name="founded-date" id="founded-date">
 						<option value="">Founded Date</option>
 						<option value="">Test</option>
 						<option value="">Test</option>
@@ -112,7 +112,7 @@ export default function Employers() {
 			{/* spinner */}
 			{
 				dataLoading && <>
-					<div className='w-36 h-36 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-transparent animate-spin mt-16'>
+					<div className='w-24 h-24 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-gray-200 border-b-gray-200 animate-spin mt-16'>
 					</div>
 				</>
 			}
@@ -129,11 +129,11 @@ export default function Employers() {
 
 							{/* sorting options */}
 							<div className="flex md:gap-4 col-start-1 col-end-3 justify-center gap-3 text-xs md:text-md">
-								<select className="bg-gray-100 px-6 py-2" name="sort-by" id="sort-by">
+								<select className="bg-white border-2 rounded-md px-6 py-2" name="sort-by" id="sort-by">
 									<option value="">Sort by (default)</option>
 								</select>
 
-								<select className="bg-gray-100 px-6 py-2 rounded-md" name="pagination" id="pagination">
+								<select className="bg-white border-2 px-6 py-2 rounded-md" name="pagination" id="pagination">
 									<option value="">All</option>
 								</select>
 							</div>
