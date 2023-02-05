@@ -9,7 +9,7 @@ const Hero = () => {
 	const [formLoading, setFormLoading] = useState(false);
 	// check whether form is empty or not
 	const [isEmpty, setIsEmpty] = useState(true);
-	const [jobCount, setJobCount] = useState(0);
+	const [jobCount, setJobCount] = useState('...');
 	useEffect(() => {
 		const fetchJobCount = async () => {
 			try {
