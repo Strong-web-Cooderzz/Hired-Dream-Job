@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -14,7 +13,6 @@ export default function Navbar() {
 		logOut();
 	};
 
-	
 	return (
 		<nav className="w-full bg-white shadow">
 			<div className="justify-between px-4 md:items-center md:flex md:px-8">
@@ -71,7 +69,7 @@ export default function Navbar() {
 								<Link to="/">Home</Link>
 							</li>
 							<li className="text-gray-600 hover:text-blue-600">
-								<Link to="/find-jobs">Find Jobs</Link>
+								<Link to="/jobs">Find Jobs</Link>
 							</li>
 							<li className="text-gray-600 hover:text-blue-600">
 								<Link to="/employers">Employers</Link>

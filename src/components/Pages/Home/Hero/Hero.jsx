@@ -28,7 +28,7 @@ const Hero = () => {
 						<div>
 							<div>
 								{/* Search Form */}
-								<Form onSubmit={() => setFormLoading(true)} method="post" action="/find-jobs" className="sm:flex items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
+								<Form onSubmit={() => setFormLoading(true)} method="post" action="/jobs" className="sm:flex items-center sm:border sm:border-[#ddd] sm:bg-white md:w-full rounded-full">
 									<div className="relative">
 										<span className="absolute left-2 top-5 ">
 											<FiSearch className="text-md" />

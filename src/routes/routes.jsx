@@ -59,13 +59,9 @@ export const router = createBrowserRouter([
 				element: <Candidates />,
 			},
 			{
-				path: "/find-jobs",
+				path: "/jobs",
 				element: <FindJob />,
 				action: formAction,
-			},
-			{
-				path: "/find-jobs/single-job",
-				element: <SingleJobs />,
 			},
 			{
 				path: "/contact",
@@ -103,17 +99,12 @@ export const router = createBrowserRouter([
 				path: "/pricing",
 				element: <Pricing />,
 			},
-
-			{
-				path: "/find-jobs",
-				element: <FindJob />,
-			},
 			{
 				path: "/find-jobs/single-job",
 				element: <SingleJobs />
 			},
 			{
-				path: "/find-jobs/single-job/:id",
+				path: "/jobs/:id",
 				element: <SingleJobs />,
 				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},

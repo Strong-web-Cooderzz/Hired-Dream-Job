@@ -320,7 +320,7 @@ const FindJob = () => {
 												<>
 													{
 														<div key={job._id}>
-															<div onClick={() => navigate(`single-job/${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
+															<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
 																<img
 																	src={job.logo}
 																	className="w-24 h-24 rounded-full mx-auto object-cover"
@@ -328,7 +328,7 @@ const FindJob = () => {
 																/>
 																<div className="p-4 flex flex-col flex-grow">
 																	<h3 className="text-md text-center font-medium text-gray-900">
-																		<Link to={`single-job/${job._id}`}>
+																		<Link to={`${job._id}`}>
 																			{job.title}
 																		</Link>
 																	</h3>
