@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import Companies from "./Companies";
 import { Form } from "react-router-dom";
+import fetchData from "../../../../api/fetchData";
 
 const Hero = () => {
 	const [formLoading, setFormLoading] = useState(false);
 	// check whether form is empty or not
 	const [isEmpty, setIsEmpty] = useState(true);
+	const [jobCount, setJobCount] = useState(0);
+	useEffect(() => {
+		const fetchJobCount = async () => {
+			try {
+				const response = await fetchData.get('/job-counter');
+				console.log(response)
+				setJobCount(response.data);
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		fetchJobCount();
+	}, []);
 
 	return (
 		<div className="md:pl-20 overflow-hidden lg:pl-24">
@@ -16,7 +30,7 @@ const Hero = () => {
 					<div className="mb-2">
 						{/* Title */}
 						<h2 className="lg:text-4xl md:text-3xl sm:text-3xl text-3xl font-bold">
-							There Are <span className="sm:text-[#1967d2] text-blue-200">93,178</span> <br />
+							There Are <span className="sm:text-[#1967d2] text-blue-200">{jobCount}</span> <br />
 							Postings Here For you!
 						</h2>
 						{/* Small title */}
