@@ -4,9 +4,9 @@ import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { Link, useActionData } from "react-router-dom";
+import { Link, useActionData, useNavigate } from "react-router-dom";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
-import api from "../../../api/fetchData";
+import fetchData from "../../../api/fetchData";
 
 const FindJob = () => {
 	const dataFromForm = useActionData();
@@ -27,6 +27,7 @@ const FindJob = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
+	const navigate = useNavigate();
 
 	const fetchFromServer = async (e) => {
 		if (e) {
@@ -38,7 +39,7 @@ const FindJob = () => {
 		const sort = newer ? 'new' : 'old';
 		setDataLoading(true);
 		try {
-			const response = await api.get(`/find-jobs`, {
+			const response = await fetchData.get(`/find-jobs`, {
 				params: {
 					search: searchString,
 					location,
@@ -79,13 +80,13 @@ const FindJob = () => {
 
 	return (
 		<main className="mb-16">
-			<div className="bg-[#e8eefa] flex flex-col justify-center items-center min-h-[200px]">
-				<h1 className="font-semibold text-2xl">Find Jobs</h1>
-				<p className="text-gray-900">
-					<Link to="/" className="hover:text-[#696998]">
+			<div className="bg-gradient-to-r from-sky-400 to-purple-400 flex flex-col justify-center items-center py-6">
+				<h1 className="font-semibold text-2xl text-white">Find Jobs</h1>
+				<p className="text-white flex gap-2">
+					<Link to="/" className="text-white underline">
 						Home
 					</Link>
-					/<span className="text-gray-600">Jobs</span>
+					/<span className="text-white underline">Jobs</span>
 				</p>
 			</div>
 			<div className="mt-0 relative lg:static">
@@ -100,14 +101,14 @@ const FindJob = () => {
 					</div>
 				</div>
 				<div className="rounded-md grid lg:grid-cols-4">
-					<div className={`left-0 ${isOpen ? 'left-0' : '-translate-x-full'} lg:translate-x-0 transition-transform lg:col-span-1 bg-[#e8eefa] p-6 pt-10 md:pt-6 absolute lg:static top-16 right-0 lg:top-auto lg:right-auto z-10`}>
+					<div className={`left-0 ${isOpen ? 'left-0' : '-translate-x-full'} bg-slate-100 lg:translate-x-0 transition-transform lg:col-span-1 p-6 pt-10 md:pt-6 absolute lg:static top-16 right-0 lg:top-auto lg:right-auto z-10`}>
 						<div>
 							<button onClick={() => setIsOpen(!isOpen)} type="button" className="absolute top-3 right-3 text-4xl lg:hidden"><AiOutlineCloseCircle /></button>
 						</div>
 						<form ref={formRef} onSubmit={e => search(e)}>
 							<div>
 								<h1 className="text-md mb-1">Search by keywords</h1>
-								<div className="relative text-gray-600 focus-within:text-gray-400">
+								<div className="relative text-gray-600 focus:text-gray-400">
 									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 										<button
 											type="submit"
@@ -119,7 +120,7 @@ const FindJob = () => {
 									<input
 										type="search"
 										name="search"
-										className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
+										className="py-3 text-sm text-gray-600 w-full border-2 border-gray-200 rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
 										placeholder="Job title, keywords or company"
 										autoComplete="off"
 									/>
@@ -127,7 +128,7 @@ const FindJob = () => {
 							</div>
 							<div className="mt-8">
 								<h1 className="text-md mb-1">Location</h1>
-								<div className="relative text-gray-600 focus-within:text-gray-400">
+								<div className="relative text-gray-600 focus:text-gray-400">
 									<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 										<button
 											type="submit"
@@ -139,7 +140,7 @@ const FindJob = () => {
 									<input
 										type="search"
 										name="location"
-										className="py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
+										className="border-2 border-gray-200 py-3 text-sm text-gray-600 w-full rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900"
 										placeholder="City or Postcode"
 										autoComplete="off"
 									/>
@@ -148,7 +149,7 @@ const FindJob = () => {
 						</form>
 						<div className="mt-8">
 							<h1 className="text-md mb-1">Category</h1>
-							<div onChange={e => setCategory(e.target.value)} className="relative text-gray-600 focus-within:text-gray-400">
+							<div onChange={e => setCategory(e.target.value)} className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
 								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 									<button
 										type="submit"
@@ -286,11 +287,11 @@ const FindJob = () => {
 					<div className="lg:col-span-3">
 						<div className="px-5">
 							<div className="flex lg:justify-end items-center justify-center lg:my-4 my-5">
-								<select onChange={() => setNewer(!newer)} className="mr-3 bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
+								<select onChange={() => setNewer(!newer)} className="mr-3 bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="Newest">Newest</option>
 									<option value="Oldest">Oldest</option>
 								</select>
-								<select onChange={e => setPerPage(e.target.value)} className="bg-gray-200 focus:outline-none py-3 px-4 rounded-md text-sm">
+								<select onChange={e => setPerPage(e.target.value)} className="bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="10">10 per Page</option>
 									<option value="20">20 per Page</option>
 									<option value="30">30 per Page</option>
@@ -313,13 +314,13 @@ const FindJob = () => {
 							{/* Single Job */}
 							{
 								!dataLoading && <>
-									<div className="grid  md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2  mt-0 lg:mt-5">
+									<div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5">
 										{
 											data.map(job =>
 												<>
 													{
 														<div key={job._id}>
-															<div className="rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
+															<div onClick={() => navigate(`single-job/${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
 																<img
 																	src={job.logo}
 																	className="w-24 h-24 rounded-full mx-auto object-cover"
