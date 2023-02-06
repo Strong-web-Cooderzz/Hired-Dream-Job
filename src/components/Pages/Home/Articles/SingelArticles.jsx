@@ -30,6 +30,13 @@ const SingelArticles = () => {
 
  
   <hr/>
+  {/* Tags */}
+  <div className="my-6">
+    <p>Tags:</p>
+        {
+          post.tags.map(tag=> <button type="button" className=" mx-1 px-2 py-1 font-bold bg-blue-100 text-blue-700  rounded focus:outline-none hover:bg-blue-400 hover:text-white " >{tag.label}</button> )
+        }
+         </div>
   {/* <!-- Share this post --> */}
   <div className="my-8">
     <div className="flex justify-between items-center"> 
@@ -38,10 +45,7 @@ const SingelArticles = () => {
       <button type="button" className=" px-4 py-2 font-bold text-white bg-blue-800 rounded focus:outline-none hover:bg-blue-900">Facebook</button> 
       <button type="button" className=" px-4 py-2 font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-800">Google</button>
       <button type="button" className=" px-4 py-2 font-bold text-white bg-blue-500 rounded focus:outline-none hover:bg-blue-900" >Twitter</button>
-      <div className="my-6">
-        <button type="button" className=" mx-1 p-2 font-bold bg-gray-400 rounded focus:outline-none hover:bg-blue-900" >Design</button> 
-        <button type="button" className=" mx-1 p-2 font-bold bg-gray-400 rounded focus:outline-none hover:bg-blue-900">Digital</button> 
-         </div>
+      
        
   
     </div>

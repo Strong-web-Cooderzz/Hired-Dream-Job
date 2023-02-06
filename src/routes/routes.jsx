@@ -108,12 +108,12 @@ export const router = createBrowserRouter([
 			{
 				path: "/jobs/:id",
 				element: <SingleJobs />,
-				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
 			},
 			{
 				path: "/pay/:id",
 				element: <Payment />,
-				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
@@ -128,11 +128,11 @@ export const router = createBrowserRouter([
 				element: <Employer />,
 			},
 			{
-				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
+				path: '/edit-job/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`),
 				element: <EditJob />
 			},
 			{
-				path: '/singelArticles/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				path: '/singelArticles/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
 				element: <SingelArticles />
 			}
 		]

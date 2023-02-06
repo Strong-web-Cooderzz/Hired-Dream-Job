@@ -10,7 +10,7 @@ const AccountClient = () => {
   const [dbUser,setDbUser] = useState('')
   
   useEffect(()=>{
-fetch(`http://localhost:5000/user?email=${user?.email}`)
+fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
 .then(res=>res.json())
 .then(data=>{
   setDbUser(data)
@@ -35,7 +35,7 @@ console.log(dbUser);
       'candidateData': data
     }
     console.log(userData);
-    fetch(`http://localhost:5000/user/${dbUser?._id}`,{
+    fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user/${dbUser?._id}`,{
       method:'PUT',
       headers:{
         'content-type':'application/json'

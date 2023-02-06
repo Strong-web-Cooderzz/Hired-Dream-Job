@@ -25,14 +25,14 @@ const CandidateAddpost = () => {
   
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://hired-dream-job-server-sparmankhan.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
 
   const [tags, setTags] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/tags")
+    fetch("https://hired-dream-job-server-sparmankhan.vercel.app/tags")
       .then((res) => res.json())
       .then((data) => setTags(data));
   }, []);
@@ -75,7 +75,7 @@ const CandidateAddpost = () => {
           categories: postCategory,
           tags: postTags,
         };
-        fetch("http://localhost:5000/postBlog", {
+        fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
           method: "POST",
           headers: {
             "content-type": "application/json",

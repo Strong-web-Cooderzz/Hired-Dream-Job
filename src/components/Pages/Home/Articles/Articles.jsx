@@ -6,22 +6,61 @@ import MDEditor from '@uiw/react-md-editor';
 
 
 const Articles = () => {
+  const [loading,setLoading] = useState(true)
   
   const [posts,setPosts] = useState([])
   useEffect(()=>{
-    fetch('http://localhost:5000/blogPosts')
+    fetch('https://hired-dream-job-server-sparmankhan.vercel.app/blogPosts')
     .then(res=>res.json())
-    .then(data=>setPosts(data))
-  },[])
+    .then(data=>{
+      setPosts(data)
+      setLoading(false)
+    }      )
+  },[loading])
   console.log(posts);
   return (
     <div className="px-4 mt-10  w-full mb-8  mx-auto">
       <h2 className="text-3xl font-semibold text-center">Recent News Articles</h2>
       <p className="text-center mt-2 mb-4">Fresh job related news content posted each day.</p>
+{
+  loading ? 
+  <div className='grid grid-cols-3 w-full'>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
+  <div className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+<div className="h-48 rounded-t bg-gray-300"></div>
+<div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-50">
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-3/4 h-6 rounded bg-gray-300"></div>
+</div>
+</div>
+
+
+<div className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+<div className="h-48 rounded-t bg-gray-300"></div>
+<div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-50">
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-3/4 h-6 rounded bg-gray-300"></div>
+</div>
+</div>
+ 
+  <div className="flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+<div className="h-48 rounded-t bg-gray-300"></div>
+<div className="flex-1 px-4 py-8 space-y-4 sm:p-8 bg-gray-50">
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-full h-6 rounded bg-gray-300"></div>
+<div className="w-3/4 h-6 rounded bg-gray-300"></div>
+</div>
+</div>
+  </div>
+
+  :
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
         {
-          posts.map(post=>  <div key={post._id} className="w-full mt-5 rounded-md overflow-hidden border-2">
+        
+         
+           posts.map(post=>  <div key={post._id} className="w-full mt-5 rounded-md overflow-hidden border-2">
           {/* image */}
           <div className="overflow-hidden">
             <img className="w-full hover:scale-110 transition-transform h-40" src={post.image} alt="Mountain" />
@@ -49,10 +88,14 @@ const Articles = () => {
             </Link>
           </div>
         </div>)
+        
         }
+       
 
         
      </div>
+}
+      
     <div className='mt-4 flex justify-center'>
     <button className=' bg-blue-500 hover:bg-blue-700 btn-normal  text-white  flex items-center gap-3  ' > Load more articles <FaArrowRight className='text-white ' />   </button>
     </div>
