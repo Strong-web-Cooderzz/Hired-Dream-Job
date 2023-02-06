@@ -1,100 +1,42 @@
+import MDEditor from '@uiw/react-md-editor';
 import React from 'react';
+import { useLoaderData } from 'react-router';
 
 const SingelArticles = () => {
-
+  const post = useLoaderData();
+  console.log(post);
   return (
     <section>
     <div>
-      <h2 className="text-center font-bold text-2xl mt-5">Attract Sales And Profits toward the sunshine - and shadows <br/> will fall behind you.</h2>
+      <h2 className="text-center font-bold text-2xl mt-5">{post.title}</h2>
       <div className="flex justify-center my-8">
-       <img className=" h-8 w-8 rounded-full ring-2 ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt=""/>
+       <img className=" h-8 w-8 rounded-full ring-2 ring-white" src={post.userImage} alt=""/>
        <h3 className="mx-3">Alison Dawn</h3>
        <li className="mx-3">August 31, 2021</li>
        <li>12 Comment</li>
       </div>
       <div className="my-8 w-full flex justify-center">
-        <img className="" src="https://i.pinimg.com/originals/a2/83/d7/a283d71bd2a2a4e9080dad4b79091d61.jpg" alt=""/>
+        <img className="" src={post.image} alt=""/>
       </div>
-      <div className="my-8 lg:w-1/2 md:w-full mx-auto">
-        <h3 className="font-bold text-xl my-5">Course Description</h3>
-        <p className="">Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh facilisis, at malesuada orci  congue. Nullam tempus sollicitudin cursus. Ut et adipiscing erat. Curabitur this is a text link libero tempus congue.</p>
-    <p className="my-6">Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum, quis dictum metus mattis. Phasellus posuere felis sed eros porttitor mattis. Curabitur massa magna, tempor in blandit id, porta in ligula. Aliquam laoreet nisl massa, at interdum mauris sollicitudin et.</p>
+      <div className="my-8 lg:w-8/12 md:w-full px-4 sm:px-8 lg:mx-auto">
+      <MDEditor.Markdown
+              source= {
+                post.details
+               }
+              style={{ whiteSpace: "pre-wrap" }}
+            />
+      
      
-  <div className="bg-teal-300 my-8">
-    <div className="p-8">
-      <p>Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh facilisis, at malesuada orci congue.</p>
-      <p className="mt-5">Luis Pickford</p>
-    </div>
-  </div>
-  <div>
-  {/* <!-- learn --> */}
-  <h2 className="my-6 text-lg font-semibold text-gray-900 dark:text-white">What you'll learn</h2>
-  <div className="grid lg:grid-cols-2  lg:grid-cols-1 gap-4">
-    <ul className="max-w-md space-y-1 ">
-      <li className="flex items-center">
-          <svg className="w-4 h-4 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-          Become a UI/UX designer.
-      </li>
-      <li className="flex items-center">
-          <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-          You will be able to start earning money Figma skills.
-      </li>
-      <li className="flex items-center">
-        <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        You will create your own UI Kit.
-      </li>
-      <li className="flex items-center">
-        <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        Become a UI/UX designer.
-    </li>
-    <li className="flex items-center">
-        <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        You will be able to start earning money Figma skills.
-    </li>
-   
-  </ul>
-  <ul className="max-w-md space-y-1 ">
-    <li className="flex items-center">
-        <svg className="w-4 h-4 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        Become a UI/UX designer.
-    </li>
-    <li className="flex items-center">
-        <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-        You will be able to start earning money Figma skills.
-    </li>
-    <li className="flex items-center">
-      <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      You will create your own UI Kit.
-    </li>
-    <li className="flex items-center">
-      <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      Become a UI/UX designer.
-  </li>
-  <li className="flex items-center">
-      <svg className="w-4 h-4 mr-3  flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-      You will be able to start earning money Figma skills.
-  </li>
-  
-  </ul>
-  </div>
-  
-  </div>
-  
-  <img className="w-full my-8" src="https://media.istockphoto.com/id/1335941248/photo/shot-of-a-handsome-young-man-standing-against-a-grey-background.jpg?b=1&s=170667a&w=0&k=20&c=Dl9uxPY_Xn159JiazEj0bknMkLxFdY7f4tK1GtOGmis=" alt=""/>
-  {/* <!-- Requirements --> */}
-  <div className="my-8">
-    <p className="my-5 font-bold">Requirements</p>
-    <li className="my-5">
-      We do not require any previous experience or pre-defined skills to take this course. A great orientation would be enough to master UI/UX design.
-    </li>
-    <li className="my-5">
-      A computer with a good internet connection.
-    </li>
-    <li className="my-5">
-      Adobe Photoshop OPTIONAL
-    </li>
-  </div>
+
+ 
   <hr/>
+  {/* Tags */}
+  <div className="my-6">
+    <p>Tags:</p>
+        {
+          post.tags.map(tag=> <button type="button" className=" mx-1 px-2 py-1 font-bold bg-blue-100 text-blue-700  rounded focus:outline-none hover:bg-blue-400 hover:text-white " >{tag.label}</button> )
+        }
+         </div>
   {/* <!-- Share this post --> */}
   <div className="my-8">
     <div className="flex justify-between items-center"> 
@@ -103,10 +45,7 @@ const SingelArticles = () => {
       <button type="button" className=" px-4 py-2 font-bold text-white bg-blue-800 rounded focus:outline-none hover:bg-blue-900">Facebook</button> 
       <button type="button" className=" px-4 py-2 font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-800">Google</button>
       <button type="button" className=" px-4 py-2 font-bold text-white bg-blue-500 rounded focus:outline-none hover:bg-blue-900" >Twitter</button>
-      <div className="my-6">
-        <button type="button" className=" mx-1 p-2 font-bold bg-gray-400 rounded focus:outline-none hover:bg-blue-900" >Design</button> 
-        <button type="button" className=" mx-1 p-2 font-bold bg-gray-400 rounded focus:outline-none hover:bg-blue-900">Digital</button> 
-         </div>
+      
        
   
     </div>

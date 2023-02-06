@@ -25,7 +25,7 @@ const Candidate = () => {
 
   const [candidate, setCandidate] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/candidate/${candidateId}`)
+    fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/${candidateId}`)
       .then((res) => res.json())
       .then((data) => setCandidate(data));
   }, []);
