@@ -44,7 +44,7 @@ const JobFeauters = () => {
       )}
 
       <div className=" flex justify-center mt-8">
-        <Link to={'/find-jobs'} >
+        <Link to={'/jobs'} >
 
           <button className="btn-normal bg-blue-500 hover:bg-blue-700 flex  items-center gap-2 ">
            See All Jobs<FaArrowRight />

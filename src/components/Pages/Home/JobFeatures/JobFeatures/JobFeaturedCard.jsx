@@ -7,7 +7,7 @@ const JobFeaturedCard = ({ data }) => {
 	// console.log(data)
 	const { company, location, logo, title, jobType, companyType, urgent } = data;
 	return (
-		<Link to={`/find-jobs/single-job/${data._id}`}>
+		<Link to={`/jobs/${data._id}`}>
 			<div className='job-card w-full  mx-auto  py-2 '>
 				<div className=''>
 					<div className='flex justify-between'>
