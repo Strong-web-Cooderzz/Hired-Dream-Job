@@ -33,6 +33,14 @@ const DashboardSidebar = () => {
     </li>
   </>
 }
+{
+  dbUser?.type==='Candidate' && <>
+   <li className="relative">
+      <NavLink to='/dashboard/add_blog' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">   Add 
+      New Blog </NavLink>
+    </li>
+  </>
+}
    
     <li className="relative">
       <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> All Applicants  </NavLink>

@@ -36,6 +36,8 @@ import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/
 import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
 
 import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
+import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
+
 
 export const router = createBrowserRouter([
 	{
@@ -128,6 +130,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
 				element: <EditJob />
+			},
+			{
+				path: '/singelArticles/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				element: <SingelArticles />
 			}
 		]
 	},
@@ -174,6 +180,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/my_allpost',
 				element: <MyAllPost> </MyAllPost>
+			},
+			{
+				path: '/dashboard/add_blog',
+				element: <CandidateAddpost> </CandidateAddpost>
 			}
 		]
 	},
