@@ -44,6 +44,9 @@ const CandidateAddpost = () => {
   let day = date.getDate();
   let month = date.getMonth() + 1;
   let year = date.getFullYear();
+	const handlePostChange = ({html, text}) => {
+		setValue(text);
+	}
 
   // This arrangement can be altered based on how we want the date's format to appear.
   let currentDate = `${day}-${month}-${year}`;
@@ -52,43 +55,56 @@ const CandidateAddpost = () => {
   const [postCategory, setPostCategory] = useState([]);
   const handleAddPost = (data) => {
     const image = data.image[0];
+		console.log(image)
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "hired-dream-job");
     formData.append("cloud_name", "dcckbmhft");
+		const postDetails = {
+			title: data.title,
+			email: user?.email,
+			userID: dbUser._id,
+			userImage: dbUser.photo,
+			name: dbUser.fullName,
+			// image: thumb,
+			details: value,
+			date: currentDate,
+			categories: postCategory,
+			tags: postTags,
+		};
 
-    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageData) => {
-        const thumb = imageData.url;
-        const postDetails = {
-          title: data.title,
-          email: user.email,
-          userID: dbUser._id,
-          userImage: dbUser.photo,
-          name: dbUser.fullName,
-          image: thumb,
-          details: value,
-          date: currentDate,
-          categories: postCategory,
-          tags: postTags,
-        };
-        fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(postDetails),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          });
-      });
+    // const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
+		fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(postDetails),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+			});
+    // fetch(url, {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((res) => res.json())
+    //   .then((imageData) => {
+    //     const thumb = imageData.url;
+    //     const postDetails = {
+    //       title: data.title,
+    //       email: user.email,
+    //       userID: dbUser._id,
+    //       userImage: dbUser.photo,
+    //       name: dbUser.fullName,
+    //       image: thumb,
+    //       details: value,
+    //       date: currentDate,
+    //       categories: postCategory,
+    //       tags: postTags,
+    //     };
+    //   });
   };
 
   return (
@@ -202,7 +218,7 @@ const CandidateAddpost = () => {
           </div>
         </div>
         <div className="w-full gap-3">
-						<MdEditor className="h-96" renderHTML={text => mdParser.render(text)} />
+						<MdEditor className="h-96" renderHTML={text => mdParser.render(text)} onChange={handlePostChange}/>
         </div>
         <button
           type="submit"
