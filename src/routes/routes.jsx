@@ -132,7 +132,7 @@ export const router = createBrowserRouter([
 				element: <EditJob />
 			},
 			{
-				path: '/singelArticles/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
+				path: '/blogs/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
 				element: <SingelArticles />
 			}
 		]

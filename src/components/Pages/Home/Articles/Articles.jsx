@@ -78,7 +78,7 @@ const Articles = () => {
 									<div className="font-bold text-xl mb-2 flex gap-2">
 										{post.title}
 									</div>
-									<p className='flex gap-2 text-xs text-blue-400'>  {post.categories?.map(category => <p className='capitalize '>
+									<p className='flex gap-2 text-xs text-blue-400'>  {post.categories?.map(category => <p className='capitalize'>
 										{category.label}
 									</p>)}</p>
 									<div className="flex mt-3">
@@ -89,7 +89,7 @@ const Articles = () => {
 									</p>
 								</div>
 								<div className="px-4 pb-4">
-									<Link className='w-full rounded-md bg-blue-100 flex justify-center py-3' to={`/singelArticles/${post._id}`}>
+									<Link className='w-full rounded-md bg-blue-100 flex justify-center py-3' to={`/blogs/${post._id}`}>
 										<button className="text-md font-semibold text-sky-400">Read the article</button>
 									</Link>
 								</div>
