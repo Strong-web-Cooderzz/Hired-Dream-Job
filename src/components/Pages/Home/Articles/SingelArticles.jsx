@@ -1,8 +1,12 @@
 import MDEditor from '@uiw/react-md-editor';
 import React from 'react';
+import { useContext } from 'react';
 import { useLoaderData } from 'react-router';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const SingelArticles = () => {
+  const {user,dbUser} = useContext(AuthContext)
   const post = useLoaderData();
   console.log(post);
   return (
@@ -55,6 +59,14 @@ const SingelArticles = () => {
   <div>
   <h1 className="font-bold">Comment</h1>
   </div>
+  {
+    user? <div className='sm:flex   w-full gap-1 items-center'>
+    <textarea name="" id="" className='w-full h-24 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
+    <button className='bg-blue-100 text-blue-700 h-12 w-48 px-6 rounded-md'>Add Comment</button>
+  </div>
+  :
+  <Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
+  }
   <div className="flex my-8">
     <img className="h-32 w-32 rounded-full ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt=""/>
   <div className="mx-4">  

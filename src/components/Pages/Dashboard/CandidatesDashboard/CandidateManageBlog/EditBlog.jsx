@@ -8,106 +8,107 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+const EditBlog = () => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        watch,
+        formState: { errors },
+      } = useForm();
 
-const CandidateAddpost = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const { user, dbUser } = useContext(AuthContext);
-  const navigate = useNavigate()
-  const [preview,setPreview] = useState(false)
-
-  const [loading,setLoading] = useState(false)
-
-  const animatedComponents = makeAnimated();
-
-  const [value, setValue] = React.useState("");
-  
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/categories")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
-
-  const [tags, setTags] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/tags")
-      .then((res) => res.json())
-      .then((data) => setTags(data));
-  }, []);
-
-  const date = new Date();
-
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  // This arrangement can be altered based on how we want the date's format to appear.
-  let currentDate = `${day}-${month}-${year}`;
-
-  const [postTags, setPostTags] = useState([]);
-  const [postCategory, setPostCategory] = useState([]);
-  const handleAddPost = (data) => {
-    setLoading(true)
-    const image = data.image[0];
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "hired-dream-job");
-    formData.append("cloud_name", "dcckbmhft");
-
-    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageData) => {
-        const thumb = imageData.url;
-        const postDetails = {
-          title: data.title,
-          email: user.email,
-          userID: dbUser._id,
-          userImage: dbUser.photo,
-          name: dbUser.fullName,
-          image: thumb,
-          details: value,
-          date: currentDate,
-          categories: postCategory,
-          tags: postTags,
-        };
-        fetch("http://localhost:5000/postBlog", {
+      const editPost = useLoaderData()
+console.log(editPost)
+      const { user, dbUser } = useContext(AuthContext);
+      const navigate = useNavigate()
+      const [preview,setPreview] = useState(false)
+    
+      const [loading,setLoading] = useState(false)
+    
+      const animatedComponents = makeAnimated();
+    
+      const [value, setValue] = React.useState(`${editPost.details}`);
+      
+      const [categories, setCategories] = useState([]);
+      useEffect(() => {
+        fetch("http://localhost:5000/categories")
+          .then((res) => res.json())
+          .then((data) => setCategories(data));
+      }, []);
+    
+      const [tags, setTags] = useState([]);
+      useEffect(() => {
+        fetch("http://localhost:5000/tags")
+          .then((res) => res.json())
+          .then((data) => setTags(data));
+      }, []);
+    
+      const date = new Date();
+    
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+    
+      // This arrangement can be altered based on how we want the date's format to appear.
+      let currentDate = `${day}-${month}-${year}`;
+    
+      const [postTags, setPostTags] = useState([]);
+      const [postCategory, setPostCategory] = useState([]);
+      const handleAddPost = (data) => {
+        setLoading(true)
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "hired-dream-job");
+        formData.append("cloud_name", "dcckbmhft");
+    
+        const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
+        fetch(url, {
           method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(postDetails),
+          body: formData,
         })
           .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            toast.success('Post Added!')
-            setLoading(false)
-            reset()
-            navigate('/dashboard/my_blogs')
+          .then((imageData) => {
+            const thumb = imageData.url;
+            const postDetails = {
+              title: data.title,
+              email: user.email,
+              userID: dbUser._id,
+              userImage: dbUser.photo,
+              name: dbUser.fullName,
+              image: thumb,
+              details: value,
+              date: currentDate,
+              categories: postCategory,
+              tags: postTags,
+            };
+            fetch(`http://localhost:5000/editPost/${editPost._id}`, {
+              method: "PATCH",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(postDetails),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                toast.success('Post Updated!')
+                setLoading(false)
+                reset()
+                navigate('/dashboard/my_blogs')
+              });
           });
-      });
-  };
-
-  return (
-    <div className="w-[90%] mx-12">
+      };
+    return (
+        <div className="w-[90%] mx-12">
     <div className="flex justify-start">
         {/* <h2 className="text-2xl">Add new Blog</h2> */}
     </div>
     <div className=" mx-auto bg-gray-100 my-6 px-3 rounded-xl">
       <div className="w-full">
         
-        <h2 className="text-xl px-3 py-5">Add a new blog</h2>
+        <h2 className="text-xl px-3 py-5">Update Blog</h2>
       </div>
       <form onSubmit={handleSubmit(handleAddPost)} action="">
         <div className=" w-full sm:flex gap-3 my-3 ">
@@ -118,7 +119,7 @@ const CandidateAddpost = () => {
             >
               Title
             </label>
-            <input
+            <input defaultValue={editPost.title}
               {...register("title", { required: true })}
               type="text"
               class="
@@ -237,12 +238,12 @@ const CandidateAddpost = () => {
   <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-</div>:' Add Post'}
+</div>:' Update Post'}
         </button>
       </form>
     </div>
     </div>
-  );
+    );
 };
 
-export default CandidateAddpost;
+export default EditBlog;

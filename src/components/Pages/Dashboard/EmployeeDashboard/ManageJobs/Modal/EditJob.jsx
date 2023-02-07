@@ -69,7 +69,7 @@ const EditJob = () => {
             
         }
         console.log(jobDetails);
-        fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobsUpdate/${editData._id}`,{
+        fetch(`http://localhost:5000/jobsUpdate/${editData._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

@@ -37,6 +37,8 @@ import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/
 
 import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
 import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
+import CandidateManageBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/CandidateManageBlog";
+import EditBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/EditBlog";
 
 
 export const router = createBrowserRouter([
@@ -108,12 +110,12 @@ export const router = createBrowserRouter([
 			{
 				path: "/jobs/:id",
 				element: <SingleJobs />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/pay/:id",
 				element: <Payment />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
@@ -128,11 +130,11 @@ export const router = createBrowserRouter([
 				element: <Employer />,
 			},
 			{
-				path: '/edit-job/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`),
+				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
 				element: <EditJob />
 			},
 			{
-				path: '/singelArticles/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
+				path: '/singelArticles/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <SingelArticles />
 			}
 		]
@@ -184,6 +186,14 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/add_blog',
 				element: <CandidateAddpost> </CandidateAddpost>
+			},
+			{
+				path: '/dashboard/my_blogs',
+				element: <CandidateManageBlog> </CandidateManageBlog>
+			},
+			{
+				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				element: <EditBlog> </EditBlog>
 			}
 		]
 	},

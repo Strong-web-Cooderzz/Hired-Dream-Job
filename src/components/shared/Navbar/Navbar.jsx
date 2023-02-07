@@ -95,7 +95,7 @@ export default function Navbar() {
 												}`}
 										>
 											{
-												user.reloadUserInfo.providerUserInfo[0].providerId === 'google.com' ? <div>
+												user.reloadUserInfo?.providerUserInfo[0]?.providerId === 'google.com' ? <div>
 													<FaUserCircle className="text-black text-3xl" />
 												</div>
 													:

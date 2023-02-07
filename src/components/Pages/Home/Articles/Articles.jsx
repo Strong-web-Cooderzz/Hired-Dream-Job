@@ -10,7 +10,7 @@ const Articles = () => {
   
   const [posts,setPosts] = useState([])
   useEffect(()=>{
-    fetch('https://hired-dream-job-server-sparmankhan.vercel.app/blogPosts')
+    fetch('http://localhost:5000/blogPosts')
     .then(res=>res.json())
     .then(data=>{
       setPosts(data)

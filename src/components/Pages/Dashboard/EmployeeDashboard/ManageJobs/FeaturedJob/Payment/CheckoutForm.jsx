@@ -14,7 +14,7 @@ console.log(price);
 
     useEffect(() => {
     
-      fetch("https://hired-dream-job-server-sparmankhan.vercel.app/create-payment-intent", {
+      fetch("http://localhost:5000/create-payment-intent", {
         method: "POST",
         headers: {
            "Content-Type": "application/json"

@@ -66,7 +66,7 @@ const FindJob = () => {
 
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		// fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime) {
 			setDataLoading(true);
 			formRef.current.search.value = dataFromForm.title;

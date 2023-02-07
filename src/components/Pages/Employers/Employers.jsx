@@ -10,7 +10,7 @@ export default function Employers() {
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/employ?type=Agency`)
+		fetch(`http://localhost:5000/employ?type=Agency`)
 			.then(res => res.json())
 			.then(data => {
 				setEmploy(data);
@@ -26,7 +26,7 @@ export default function Employers() {
 		const search = form.search.value;
 		const location = form.location.value;
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/find-employer?search=${search}&location=${location}`)
+		fetch(`http://localhost:5000/find-employer?search=${search}&location=${location}`)
 			.then(res => res.json())
 			.then(data => {
 				setEmploy(data);
@@ -38,7 +38,7 @@ export default function Employers() {
 		return (
 			<>
 				{
-					employ.map(data => <div className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
+					employ.map(data => <div key={data._id} className="rounded-md border border-gray-200 flex flex-col justify-center items-center py-6 text-sm relative hover:shadow-sm group">
 
 						<img src={data?.employData?.photo || data?.photo} className="rounded-full w-20 h-20 object-cover" />
 						<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data?.employData?.companyName || data?.fullName}</Link>
