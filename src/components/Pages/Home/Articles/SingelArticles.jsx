@@ -1,4 +1,3 @@
-import MDEditor from '@uiw/react-md-editor';
 import React from 'react';
 import { useLoaderData } from 'react-router';
 
@@ -19,15 +18,6 @@ const SingelArticles = () => {
         <img className="" src={post.image} alt=""/>
       </div>
       <div className="my-8 lg:w-8/12 md:w-full px-4 sm:px-8 lg:mx-auto">
-      <MDEditor.Markdown
-              source= {
-                post.details
-               }
-              style={{ whiteSpace: "pre-wrap" }}
-            />
-      
-     
-
  
   <hr/>
   {/* Tags */}

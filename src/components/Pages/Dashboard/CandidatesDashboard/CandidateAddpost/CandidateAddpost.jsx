@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
-import MDEditor from "@uiw/react-md-editor";
-import rehypeSanitize from "rehype-sanitize";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import CreatableSelect from "react-select/creatable";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
+import MdEditor from 'react-markdown-editor-lite';
+import MarkdownIt from "markdown-it";
+import 'react-markdown-editor-lite/lib/index.css';
 
 const CandidateAddpost = () => {
+	const mdParser = new MarkdownIt();
   const {
     register,
     handleSubmit,
@@ -160,7 +162,7 @@ const CandidateAddpost = () => {
                 Featured Image
               </label>
               <input
-                {...register("image", { required: true })}
+                {...register("image", { required: false })}
                 class="form-control
     block
     w-full
@@ -200,24 +202,7 @@ const CandidateAddpost = () => {
           </div>
         </div>
         <div className="w-full gap-3">
-          {/* Textarea Body */}
-          <MDEditor
-          height={600}
-            className=" w-full"
-            value={value}
-            preview="edit"
-            onChange={setValue}
-          />
-          <div className=" w-full px-2">
-           <div className="w-44 mx-auto">
-           <p onClick={()=>setPreview(!preview)} className="cursor-pointer w-full select-none p-4 bg-blue-100 text-blue-700 my-3 text-center rounded-md">{preview?'Hide Preview':'Show Preview'}</p>
-           </div>
-            <MDEditor.Markdown
-            className={`${preview?'block':'hidden'} border`}
-              source={value}
-              style={{ whiteSpace: "pre-wrap" }}
-            />
-          </div>
+						<MdEditor className="h-96" renderHTML={text => mdParser.render(text)} />
         </div>
         <button
           type="submit"
