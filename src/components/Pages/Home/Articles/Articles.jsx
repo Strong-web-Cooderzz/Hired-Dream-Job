@@ -16,6 +16,16 @@ const Articles = () => {
 			})
 	}, [loading])
 	console.log(posts);
+
+	const showDate = (date) => {
+		const newDate = new Date();
+		const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(newDate);
+		const day = newDate.getDay();
+		const year = newDate.getFullYear();
+		const fullDate = `${month} ${day}, ${year}`;
+		return fullDate;
+	}
+
 	return (
 		<div className="px-4 mt-10  w-full mb-8  mx-auto">
 			<h2 className="text-3xl font-semibold text-center">Recent News Articles</h2>
@@ -65,32 +75,27 @@ const Articles = () => {
 								</div>
 								{/* text */}
 								<div className="p-4">
-									<div className="flex mb-3">
-										<p className="mr-5 font-bold text-gray-400   ">{post.date}</p>
-										<p className="font-bold  text-gray-400  ">12 Comment</p>
-									</div>
-									<p className='flex gap-2 font-bold text-blue-300'>  {post.categories.map(category => <p className='capitalize '>
-										{category.label}
-									</p>)}</p>
 									<div className="font-bold text-xl mb-2 flex gap-2">
-
 										{post.title}
 									</div>
+									<p className='flex gap-2 text-xs text-blue-400'>  {post.categories?.map(category => <p className='capitalize '>
+										{category.label}
+									</p>)}</p>
+									<div className="flex mt-3">
+										<p className="mr-5 font-semibold text-gray-400">{showDate(post.date)}</p>
+										<p className="font-semibold text-gray-400">12 Comments</p>
+									</div>
 									<p className="text-gray-700 text-base">
-										{post.details.slice(0, 140)}
 									</p>
 								</div>
 								<div className="px-4 pb-4">
 									<Link className='w-full rounded-md bg-blue-100 flex justify-center py-3' to={`/singelArticles/${post._id}`}>
-										<button className="text-md font-semibold text-sky-400">Read More </button>
+										<button className="text-md font-semibold text-sky-400">Read the article</button>
 									</Link>
 								</div>
 							</div>)
 
 						}
-
-
-
 					</div>
 			}
 

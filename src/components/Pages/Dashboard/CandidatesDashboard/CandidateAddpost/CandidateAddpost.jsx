@@ -8,6 +8,8 @@ import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import MdEditor from 'react-markdown-editor-lite';
 import MarkdownIt from "markdown-it";
 import 'react-markdown-editor-lite/lib/index.css';
+import fetchData from "../../../../../api/fetchData";
+import { toast } from "react-hot-toast";
 
 const CandidateAddpost = () => {
 	const mdParser = new MarkdownIt();
@@ -40,26 +42,19 @@ const CandidateAddpost = () => {
   }, []);
 
   const date = new Date();
-
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
 	const handlePostChange = ({html, text}) => {
 		setValue(text);
 	}
 
-  // This arrangement can be altered based on how we want the date's format to appear.
-  let currentDate = `${day}-${month}-${year}`;
-
   const [postTags, setPostTags] = useState([]);
   const [postCategory, setPostCategory] = useState([]);
   const handleAddPost = (data) => {
-    const image = data.image[0];
-		console.log(image)
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "hired-dream-job");
-    formData.append("cloud_name", "dcckbmhft");
+    // const image = data.image[0];
+		// console.log(image)
+    // const formData = new FormData();
+    // formData.append("file", image);
+    // formData.append("upload_preset", "hired-dream-job");
+    // formData.append("cloud_name", "dcckbmhft");
 		const postDetails = {
 			title: data.title,
 			email: user?.email,
@@ -68,23 +63,38 @@ const CandidateAddpost = () => {
 			name: dbUser.fullName,
 			// image: thumb,
 			details: value,
-			date: currentDate,
+			date,
 			categories: postCategory,
 			tags: postTags,
 		};
 
-    // const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-		fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
-			method: "POST",
-			headers: {
-				"content-type": "application/json",
-			},
-			body: JSON.stringify(postDetails),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
+		async function postBlog() {
+			const response = await fetchData.post('/postBlog', JSON.stringify(postDetails), {
+				headers: {
+					"Content-Type": "application/json"
+				}
 			});
+
+			if (response.data.acknowledged) {
+				toast.success("Successfully added blog");
+			}
+		}
+
+		postBlog();
+
+
+    // const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
+		// fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"content-type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(postDetails),
+		// })
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		console.log(data);
+		// 	});
     // fetch(url, {
     //   method: "POST",
     //   body: formData,
