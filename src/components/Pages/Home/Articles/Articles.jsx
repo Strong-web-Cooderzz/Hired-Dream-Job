@@ -19,7 +19,7 @@ const Articles = () => {
 
 	const showDate = (date) => {
 		const newDate = new Date();
-		const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(newDate);
+		const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
 		const day = newDate.getDay();
 		const year = newDate.getFullYear();
 		const fullDate = `${month} ${day}, ${year}`;
@@ -98,7 +98,6 @@ const Articles = () => {
 						}
 					</div>
 			}
-
 			<div className='mt-4 flex justify-center'>
 				<button className=' bg-blue-500 hover:bg-blue-700 btn-normal  text-white  flex items-center gap-3  ' > Load more articles <FaArrowRight className='text-white ' />   </button>
 			</div>
