@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
@@ -61,6 +62,20 @@ const SingelArticles = () => {
 							:
 							<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
 					}
+					<div className="flex my-8">
+						<img className="h-32 w-32 rounded-full ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
+						<div className="mx-4">
+							<h2 className="font-bold">Oscar Cafeo</h2>
+							<h3>Beautiful courses</h3>
+							<p className="mt-6">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p></div>
+					</div>
+					<div className="flex my-8">
+						<img className="h-32 w-32 rounded-full ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
+						<div className="mx-4">
+							<h2 className="font-bold">Oscar Cafeo</h2>
+							<h3>Beautiful courses</h3>
+							<p className="mt-6">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p></div>
+					</div>
 					{/* <!-- Contact --> */}
 					<div>
 						<section className="bg-white dark:bg-gray-900 ">
