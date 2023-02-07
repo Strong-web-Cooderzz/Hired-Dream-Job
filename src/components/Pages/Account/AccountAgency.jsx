@@ -10,7 +10,7 @@ const AccountAgency = () => {
 	const [userData, setUserData] = useState('')
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
+		fetch(`http://localhost:5000/user?email=${user?.email}`)
 			.then(res => res.json())
 			.then(data => {
 				setUserData(data)
@@ -32,7 +32,7 @@ const AccountAgency = () => {
 			'employData': data
 		}
 		console.log(employInfo);
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user/${userData._id}`, {
+		fetch(`http://localhost:5000/user/${userData._id}`, {
 			method: "PUT",
 			headers: {
 				'content-type': 'application/json'

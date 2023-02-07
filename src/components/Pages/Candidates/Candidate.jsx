@@ -22,12 +22,15 @@ import { FiFacebook, FiTwitter } from "react-icons/fi";
 
 const Candidate = () => {
   const candidateId = useParams().id;
-
+  const [loading,setLoading] = useState(true)
   const [candidate, setCandidate] = useState([]);
   useEffect(() => {
-    fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/${candidateId}`)
+    fetch(`http://localhost:5000/candidate/${candidateId}`)
       .then((res) => res.json())
-      .then((data) => setCandidate(data));
+      .then((data) => {
+        setCandidate(data)
+        setLoading(false)
+      });
   }, []);
   console.log(candidate);
   return (

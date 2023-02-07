@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 
 const Articles = () => {
 	const [loading, setLoading] = useState(true)
-
 	const [posts, setPosts] = useState([])
+
 	useEffect(() => {
 		fetch('https://hired-dream-job-server-sparmankhan.vercel.app/blogPosts')
 			.then(res => res.json())
