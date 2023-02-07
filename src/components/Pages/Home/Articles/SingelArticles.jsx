@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const SingelArticles = () => {
+	const { user, dbUser } = useContext(AuthContext)
 	const post = useLoaderData();
 	console.log(post);
 	return (
@@ -52,15 +53,14 @@ const SingelArticles = () => {
 					<div>
 						<h1 className="font-bold">Comment</h1>
 					</div>
-					<div className="flex my-8 gap-2">
-						<div className=''>
-							<img className="h-12 w-12 rounded-full min-w-12" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
+					{
+						user ? <div className='sm:flex   w-full gap-1 items-center'>
+							<textarea name="" id="" className='w-full h-24 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
+							<button className='bg-blue-100 text-blue-700 h-12 w-48 px-6 rounded-md'>Add Comment</button>
 						</div>
-						<div className="bg-gray-200 rounded-lg px-4 py-2 w-full">
-							<h2 className="font-bold">Oscar Cafeo</h2>
-							<p className="mt-3">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p>
-						</div>
-					</div>
+							:
+							<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
+					}
 					{/* <!-- Contact --> */}
 					<div>
 						<section className="bg-white dark:bg-gray-900 ">
@@ -91,7 +91,6 @@ const SingelArticles = () => {
 						</section>
 					</div>
 				</div>
-
 			</div>
 		</section>
 	);

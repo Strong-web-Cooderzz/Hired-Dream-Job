@@ -10,6 +10,8 @@ import MarkdownIt from "markdown-it";
 import 'react-markdown-editor-lite/lib/index.css';
 import fetchData from "../../../../../api/fetchData";
 import { useNavigate } from "react-router-dom";
+import MarkdownIt from "markdown-it";
+import 'react-markdown-editor-lite/lib/index.css';
 
 const CandidateAddpost = () => {
 	const mdParser = new MarkdownIt();
@@ -104,7 +106,6 @@ const CandidateAddpost = () => {
 			</div>
 			<div className=" mx-auto bg-gray-100 my-6 px-3 rounded-xl">
 				<div className="w-full">
-
 					<h2 className="text-xl px-3 py-5">Add a new blog</h2>
 				</div>
 				<form onSubmit={handleSubmit(handleAddPost)} action="">
@@ -220,9 +221,9 @@ const CandidateAddpost = () => {
 							</div>
 						</div> : ' Add Post'}
 					</button>
-				</form >
-			</div >
-		</div >
+				</form>
+			</div>
+		</div>
 	);
 };
 
