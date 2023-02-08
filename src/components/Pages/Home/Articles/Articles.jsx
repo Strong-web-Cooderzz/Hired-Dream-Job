@@ -18,9 +18,9 @@ const Articles = () => {
 	console.log(posts);
 
 	const showDate = (date) => {
-		const newDate = new Date();
+		const newDate = new Date(date);
 		const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
-		const day = newDate.getDay();
+		const day = newDate.getDate();
 		const year = newDate.getFullYear();
 		const fullDate = `${month} ${day}, ${year}`;
 		return fullDate;
