@@ -1,9 +1,7 @@
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { useLoaderData } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const SingelArticles = () => {
@@ -25,7 +23,7 @@ const SingelArticles = () => {
 					</div>
 				</div>
 				<div className="my-8 w-full flex justify-center">
-					<img className="" src={post.image} alt="" />
+					<img className="md:w-9/12 mx-auto h-96" src={post.image} alt="" />
 				</div>
 				<div className="my-8 lg:w-8/12 md:w-full px-4 sm:px-8 lg:mx-auto">
 					<div className='prose lg:prose-xl'>
