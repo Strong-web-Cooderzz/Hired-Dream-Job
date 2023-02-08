@@ -9,12 +9,21 @@ import MdEditor from 'react-markdown-editor-lite';
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
+
+import MdEditor from 'react-markdown-editor-lite';
+import MarkdownIt from "markdown-it";
+import 'react-markdown-editor-lite/lib/index.css';
+import { useNavigate } from "react-router-dom";
+import 'react-markdown-editor-lite/lib/index.css';
+import fetchData from "../../../../../api/fetchData";
+
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const CandidateAddpost = () => {
+
   const {
     register,
     handleSubmit,
@@ -46,6 +55,7 @@ const CandidateAddpost = () => {
       .then((res) => res.json())
       .then((data) => setTags(data));
   }, []);
+
 
 	const date = new Date();
 
