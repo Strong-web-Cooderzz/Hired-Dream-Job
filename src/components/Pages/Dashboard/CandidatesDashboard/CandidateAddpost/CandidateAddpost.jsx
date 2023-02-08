@@ -38,6 +38,13 @@ const CandidateAddpost = () => {
 			.then((data) => setCategories(data));
 	}, []);
 
+	const [tags, setTags] = useState([]);
+	useEffect(() => {
+		fetch("http://localhost:5000/tags")
+			.then((res) => res.json())
+			.then((data) => setTags(data));
+	}, []);
+
 	const date = new Date();
 	const handlePostChange = ({ html, text }) => {
 		setValue(text);
@@ -78,40 +85,54 @@ const CandidateAddpost = () => {
 		}
 
 		postBlog();
+		const [postTags, setPostTags] = useState([]);
+		const [postCategory, setPostCategory] = useState([]);
+		const handleAddPost = (data) => {
+			setLoading(true)
+			const image = data.image[0];
+			const formData = new FormData();
+			formData.append("file", image);
+			formData.append("upload_preset", "hired-dream-job");
+			formData.append("cloud_name", "dcckbmhft");
 
+			const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
+			fetch(url, {
+				method: "POST",
+				body: formData,
+			})
+				.then((res) => res.json())
+				.then((imageData) => {
+					const thumb = imageData.url;
+					const postDetails = {
+						title: data.title,
+						email: user.email,
+						userID: dbUser._id,
+						userImage: dbUser.photo,
+						name: dbUser.fullName,
+						image: thumb,
+						details: value,
+						date: currentDate,
+						categories: postCategory,
+						tags: postTags,
+					};
+					fetch("http://localhost:5000/postBlog", {
+						method: "POST",
+						headers: {
+							"content-type": "application/json",
+						},
+						body: JSON.stringify(postDetails),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							console.log(data);
+							toast.success('Post Added!')
+							setLoading(false)
+							reset()
+							navigate('/dashboard/my_blogs')
+						});
+				});
+		};
 
-		// const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-		// fetch("https://hired-dream-job-server-sparmankhan.vercel.app/postBlog", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"content-type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(postDetails),
-		// })
-		// 	.then((res) => res.json())
-		// 	.then((data) => {
-		// 		console.log(data);
-		// 	});
-		// fetch(url, {
-		//   method: "POST",
-		//   body: formData,
-		// })
-		//   .then((res) => res.json())
-		//   .then((imageData) => {
-		//     const thumb = imageData.url;
-		//     const postDetails = {
-		//       title: data.title,
-		//       email: user.email,
-		//       userID: dbUser._id,
-		//       userImage: dbUser.photo,
-		//       name: dbUser.fullName,
-		//       image: thumb,
-		//       details: value,
-		//       date: currentDate,
-		//       categories: postCategory,
-		//       tags: postTags,
-		//     };
-		//   });
 
 		const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
 		fetch(url, {

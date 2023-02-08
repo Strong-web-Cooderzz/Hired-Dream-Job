@@ -51,13 +51,6 @@ const EditBlog = () => {
 
 	const date = new Date();
 
-	let day = date.getDate();
-	let month = date.getMonth() + 1;
-	let year = date.getFullYear();
-
-	// This arrangement can be altered based on how we want the date's format to appear.
-	let currentDate = `${day}-${month}-${year}`;
-
 	const [postTags, setPostTags] = useState([]);
 	const [postCategory, setPostCategory] = useState([]);
 	const handleAddPost = (data) => {
@@ -84,7 +77,7 @@ const EditBlog = () => {
 					name: dbUser.fullName,
 					image: thumb,
 					details: value,
-					date: currentDate,
+					date,
 					categories: postCategory,
 					tags: postTags,
 				};
