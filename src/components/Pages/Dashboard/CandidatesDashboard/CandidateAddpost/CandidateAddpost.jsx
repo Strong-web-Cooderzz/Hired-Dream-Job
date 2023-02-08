@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import CreatableSelect from "react-select/creatable";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import MdEditor from 'react-markdown-editor-lite';
@@ -14,126 +13,47 @@ import fetchData from "../../../../../api/fetchData";
 import { toast } from "react-hot-toast";
 
 const CandidateAddpost = () => {
-	const mdParser = new MarkdownIt();
-	const {
-		register,
-		handleSubmit,
-		reset,
-		watch,
-		formState: { errors },
-	} = useForm();
+	// use states
+	const [value, setValue] = useState("");
+	const [categories, setCategories] = useState([]);
+	const [tags, setTags] = useState([]);
+	const [postTags, setPostTags] = useState([]);
+	const [postCategory, setPostCategory] = useState([]);
+
 	const { user, dbUser } = useContext(AuthContext);
+	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+	const mdParser = new MarkdownIt();
 	const navigate = useNavigate()
 
-	const [loading, setLoading] = useState(false)
-
+	const date = new Date();
 	const animatedComponents = makeAnimated();
 
-	const [value, setValue] = React.useState("");
-
-	const [categories, setCategories] = useState([]);
+	// sends two request in one use effect
 	useEffect(() => {
-		fetch("http://localhost:5000/categories")
-			.then((res) => res.json())
-			.then((data) => setCategories(data));
-	}, []);
+		fetchData.all([
+			fetchData.get('/categories'),
+			fetchData.get('/tags')
+		])
+			.then(fetchData.spread((data1, data2) => {
+				setCategories(data1);
+				setTags(data2);
+			}))
+	}, [])
 
-	const [tags, setTags] = useState([]);
-	useEffect(() => {
-		fetch("http://localhost:5000/tags")
-			.then((res) => res.json())
-			.then((data) => setTags(data));
-	}, []);
-
-	const date = new Date();
 	const handlePostChange = ({ html, text }) => {
 		setValue(text);
 	}
 
-	const [postTags, setPostTags] = useState([]);
-	const [postCategory, setPostCategory] = useState([]);
 	const handleAddPost = (data) => {
-		// const image = data.image[0];
-		// console.log(image)
-		// const formData = new FormData();
-		// formData.append("file", image);
-		// formData.append("upload_preset", "hired-dream-job");
-		// formData.append("cloud_name", "dcckbmhft");
-		const postDetails = {
-			title: data.title,
-			email: user?.email,
-			userID: dbUser._id,
-			userImage: dbUser.photo,
-			name: dbUser.fullName,
-			// image: thumb,
-			details: value,
-			date,
-			categories: postCategory,
-			tags: postTags,
-		};
+		const image = data.image[0];
+		console.log(image)
+		const formData = new FormData();
+		formData.append("file", image);
+		formData.append("upload_preset", "hired-dream-job");
+		formData.append("cloud_name", "dcckbmhft");
 
-		async function postBlog() {
-			const response = await fetchData.post('/postBlog', JSON.stringify(postDetails), {
-				headers: {
-					"Content-Type": "application/json"
-				}
-			});
-
-			if (response.data.acknowledged) {
-				toast.success("Successfully added blog");
-			}
-		}
-
-		postBlog();
-		const [postTags, setPostTags] = useState([]);
-		const [postCategory, setPostCategory] = useState([]);
-		const handleAddPost = (data) => {
-			setLoading(true)
-			const image = data.image[0];
-			const formData = new FormData();
-			formData.append("file", image);
-			formData.append("upload_preset", "hired-dream-job");
-			formData.append("cloud_name", "dcckbmhft");
-
-			const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-			fetch(url, {
-				method: "POST",
-				body: formData,
-			})
-				.then((res) => res.json())
-				.then((imageData) => {
-					const thumb = imageData.url;
-					const postDetails = {
-						title: data.title,
-						email: user.email,
-						userID: dbUser._id,
-						userImage: dbUser.photo,
-						name: dbUser.fullName,
-						image: thumb,
-						details: value,
-						date: currentDate,
-						categories: postCategory,
-						tags: postTags,
-					};
-					fetch("http://localhost:5000/postBlog", {
-						method: "POST",
-						headers: {
-							"content-type": "application/json",
-						},
-						body: JSON.stringify(postDetails),
-					})
-						.then((res) => res.json())
-						.then((data) => {
-							console.log(data);
-							toast.success('Post Added!')
-							setLoading(false)
-							reset()
-							navigate('/dashboard/my_blogs')
-						});
-				});
-		};
-
-
+		// save image to cloud
 		const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
 		fetch(url, {
 			method: "POST",
@@ -150,30 +70,30 @@ const CandidateAddpost = () => {
 					name: dbUser.fullName,
 					image: thumb,
 					details: value,
-					date: currentDate,
+					date: new Date(),
 					categories: postCategory,
 					tags: postTags,
 				};
-				fetch("http://localhost:5000/postBlog", {
-					method: "POST",
-					headers: {
-						"content-type": "application/json",
-					},
-					body: JSON.stringify(postDetails),
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						console.log(data);
-						toast.success('Post Added!')
-						setLoading(false)
-						reset()
-						navigate('/dashboard/my_blogs')
+
+				// post blog with image
+				async function postBlog() {
+					const response = await fetchData.post('/postBlog', JSON.stringify(postDetails), {
+						headers: {
+							"Content-Type": "application/json"
+						}
 					});
+
+					if (response.data.acknowledged) {
+						toast.success("Successfully added blog");
+					}
+				}
+
+				postBlog();
 			});
 	};
 
 	return (
-		<div className="md:w-[90%] md:mx-12">
+		<div className="w-[90%] mx-12">
 			<div className="flex justify-start">
 				{/* <h2 className="text-2xl">Add new Blog</h2> */}
 			</div>
@@ -193,28 +113,11 @@ const CandidateAddpost = () => {
 							<input
 								{...register("title", { required: true })}
 								type="text"
-								class="
-        form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-      "
+								class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-30 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 								id="title"
 								placeholder="Title"
 							/>
 						</div>
-
 						<div className=" w-full">
 							<label
 								for="title"
@@ -242,22 +145,8 @@ const CandidateAddpost = () => {
 									Featured Image
 								</label>
 								<input
-									{...register("image", { required: false })}
-									class="form-control
-    block
-    w-full
-    px-3
-    py-1.5
-    text-base
-    font-normal
-    text-gray-700
-    bg-white bg-clip-padding
-    border border-solid border-gray-300
-    rounded
-    transition
-    ease-in-out
-    m-0
-    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+									{...register("image", { required: true })}
+									class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 									type="file"
 									id="formFile"
 								/>
@@ -283,7 +172,7 @@ const CandidateAddpost = () => {
 					</div>
 					<div className="w-full gap-3">
 						<MdEditor className="h-96" renderHTML={text => mdParser.render(text)} onChange={handlePostChange} />
-					</div >
+					</div>
 					<button
 						type="submit"
 						className="w-full bg-blue-100 text-blue-700 my-6 py-2 flex justify-center "
@@ -297,7 +186,7 @@ const CandidateAddpost = () => {
 				</form>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default CandidateAddpost;
