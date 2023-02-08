@@ -69,8 +69,12 @@ const FindJob = () => {
 		// fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime) {
 			setDataLoading(true);
-			formRef.current.search.value = dataFromForm.title;
-			formRef.current.location.value = dataFromForm.location;
+			if (dataFromForm.title || dataFromForm.location) {
+				formRef.current.search.value = dataFromForm.title;
+				formRef.current.location.value = dataFromForm.location;
+			} else if (dataFromForm.category) {
+				setCategory(dataFromForm.category);
+			}
 			fetchFromServer();
 			setFirstTime(false);
 		} else {
@@ -160,17 +164,17 @@ const FindJob = () => {
 								</span>
 								<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 bg-white focus:text-gray-900">
 									<option value="">Select One Category</option>
-									<option value="Accounting / Finance">
+									<option value="Accounting / Finance" selected={dataFromForm?.category === "Accounting / Finance"}>
 										Accounting / Finance
 									</option>
-									<option value="Marketing">Marketing</option>
-									<option value="Design">Design</option>
-									<option value="Development">Development</option>
-									<option value="Human Resource">Human Resource</option>
-									<option value="Automotive Jobs">Automotive Jobs</option>
-									<option value="Customer Service">Customer Service</option>
-									<option value="Health and Care">Health and Care</option>
-									<option value="Project Management">Project Management</option>
+									<option value="Marketing" selected={dataFromForm.category === "Marketing"}>Marketing</option>
+									<option value="Design" selected={dataFromForm.category === "Design"}>Design</option>
+									<option value="Development" selected={dataFromForm.category === "Development"}>Development</option>
+									<option value="Human Resource" selected={dataFromForm.category === "Human Resource"}>Human Resource</option>
+									<option value="Automotive Jobs" selected={dataFromForm.category === "Automotive Jobs"}>Automotive Jobs</option>
+									<option value="Customer Service" selected={dataFromForm.category === "Customer Service"}>Customer Service</option>
+									<option value="Health and Care" selected={dataFromForm.category === "Health and Care"}>Health and Care</option>
+									<option value="Project Management" selected={dataFromForm.category === "Project Management"}>Project Management</option>
 								</select>
 							</div>
 						</div>

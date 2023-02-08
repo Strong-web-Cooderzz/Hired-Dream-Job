@@ -37,6 +37,7 @@ import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/
 
 import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
 import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
+import { jobFormAction } from "../components/Pages/Home/JobCategory/JobCategory";
 
 
 export const router = createBrowserRouter([
@@ -64,6 +65,7 @@ export const router = createBrowserRouter([
 				path: "/jobs",
 				element: <FindJob />,
 				action: formAction,
+				action: jobFormAction
 			},
 			{
 				path: "/contact",
