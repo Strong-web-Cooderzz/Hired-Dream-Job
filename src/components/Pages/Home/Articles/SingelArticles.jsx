@@ -1,7 +1,6 @@
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
