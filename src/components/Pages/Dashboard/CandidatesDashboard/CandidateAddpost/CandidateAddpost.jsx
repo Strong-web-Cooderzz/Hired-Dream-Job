@@ -24,7 +24,6 @@ const CandidateAddpost = () => {
 	} = useForm();
 	const { user, dbUser } = useContext(AuthContext);
 	const navigate = useNavigate()
-	const [preview, setPreview] = useState(false)
 
 	const [loading, setLoading] = useState(false)
 
