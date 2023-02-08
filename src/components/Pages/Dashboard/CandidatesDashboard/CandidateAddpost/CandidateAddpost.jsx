@@ -173,7 +173,7 @@ const CandidateAddpost = () => {
 	};
 
 	return (
-		<div className="w-[90%] mx-12">
+		<div className="md:w-[90%] md:mx-12">
 			<div className="flex justify-start">
 				{/* <h2 className="text-2xl">Add new Blog</h2> */}
 			</div>
