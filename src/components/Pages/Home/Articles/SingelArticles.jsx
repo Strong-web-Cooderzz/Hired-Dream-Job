@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const SingelArticles = () => {
 	const { user, dbUser } = useContext(AuthContext)
@@ -31,52 +32,49 @@ const SingelArticles = () => {
 						<ReactMarkdown children={post.details} />
 					</div>
 					<hr />
-					{/* Tags */}
-					<div className="my-6">
-						<p>Tags:</p>
-						{
-							post.tags.map(tag => <button type="button" className=" mx-1 px-2 py-1 font-bold bg-blue-100 text-blue-700  rounded focus:outline-none hover:bg-blue-400 hover:text-white " >{tag.label}</button>)
-						}
-					</div>
-					{/* <!-- Share this post --> */}
-					<div className="my-8">
-						<div className="flex justify-between items-center">
-							<h3 className="font-bold">Share this post
-							</h3>
-							<button type="button" className=" px-4 py-2 font-bold text-white bg-blue-800 rounded focus:outline-none hover:bg-blue-900">Facebook</button>
-							<button type="button" className=" px-4 py-2 font-bold text-white bg-red-600 rounded focus:outline-none hover:bg-red-800">Google</button>
-							<button type="button" className=" px-4 py-2 font-bold text-white bg-blue-500 rounded focus:outline-none hover:bg-blue-900" >Twitter</button>
+					<div className="my-6 flex items-center justify-between">
+						{/* Tags */}
+						<div className='flex items-center'>
+							<p>Tags:</p>
+							{
+								post.tags.map(tag => <button type="button" className="mx-1 px-2 py-1 bg-blue-100 text-blue-700 text-sm rounded focus:outline-none hover:bg-blue-400 hover:text-white" >{tag.label}</button>)
+							}
 						</div>
-						<hr className="mt-8" />
+						{/* <!-- Share this post --> */}
+						<div className="">
+							<div className="flex items-center">
+								<h3 className="text-md mr-4">Share on</h3>
+								<div className='flex gap-2 items-center'>
+									<button type="button" className="text-lg"><FaFacebookF /></button>
+									<button type="button" className="text-lg"><FaTwitter /></button>
+									<button type="button" className="text-lg"><FaLinkedinIn /></button>
+								</div>
+							</div>
+						</div>
 					</div>
 					{/* <!-- Comment --> */}
 					<div>
-						<h1 className="font-bold">Comment</h1>
+						<h1 className="font-bold">Comments</h1>
 					</div>
 					{
-						user ? <div className='sm:flex   w-full gap-1 items-center'>
+						user ? <div className='sm:flex w-full gap-1 items-center flex-col'>
 							<textarea name="" id="" className='w-full h-24 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
-							<button className='bg-blue-100 text-blue-700 h-12 w-48 px-6 rounded-md'>Add Comment</button>
+							<button className='mr-auto bg-blue-100 text-sm text-blue-700 px-4 py-2 rounded-md'>Add Comment</button>
 						</div>
 							:
 							<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
 					}
 					<div className="flex my-8">
-						<img className="h-32 w-32 rounded-full ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
-						<div className="mx-4">
+						<div className='w-1/12'>
+							<img className="h-14 w-14 rounded-full" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
+						</div>
+						<div className="w-11/12 bg-gray-200 rounded-lg px-4 py-2">
 							<h2 className="font-bold">Oscar Cafeo</h2>
-							<h3>Beautiful courses</h3>
-							<p className="mt-6">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p></div>
-					</div>
-					<div className="flex my-8">
-						<img className="h-32 w-32 rounded-full ring-white" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
-						<div className="mx-4">
-							<h2 className="font-bold">Oscar Cafeo</h2>
-							<h3>Beautiful courses</h3>
-							<p className="mt-6">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p></div>
+							<p className="mt-3">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p>
+						</div>
 					</div>
 					{/* <!-- Contact --> */}
-					<div>
+					{/*<div>
 						<section className="bg-white dark:bg-gray-900 ">
 							<div className="py-8 lg:py-16 px-4 border-gray-600">
 								<h2 className="my-6 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">Leave your thought here</h2>
@@ -103,7 +101,7 @@ const SingelArticles = () => {
 								</form>
 							</div>
 						</section>
-					</div>
+					</div>*/}
 				</div>
 			</div>
 		</section>
