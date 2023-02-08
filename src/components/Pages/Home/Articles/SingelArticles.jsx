@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
@@ -9,7 +9,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 const SingelArticles = () => {
 	const { user, dbUser } = useContext(AuthContext)
 	const post = useLoaderData();
-	console.log(post);
+	const location = useLocation();
 	return (
 		<section>
 			<div>
@@ -45,7 +45,7 @@ const SingelArticles = () => {
 							<div className="flex items-center">
 								<h3 className="text-md mr-4">Share on</h3>
 								<div className='flex gap-2 items-center'>
-									<button type="button" className="text-lg"><FaFacebookF /></button>
+									<Link target={"_blank"} to={`https://facebook.com/sharer.php?u=https://hired-dream-job.vercel.app${location.pathname}`} className="text-lg"><FaFacebookF /></Link>
 									<button type="button" className="text-lg"><FaTwitter /></button>
 									<button type="button" className="text-lg"><FaLinkedinIn /></button>
 								</div>
