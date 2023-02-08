@@ -19,7 +19,7 @@ const Articles = () => {
 
 	const showDate = (date) => {
 		const newDate = new Date(date);
-		const month = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(newDate);
+		const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
 		const day = newDate.getDate();
 		const year = newDate.getFullYear();
 		const fullDate = `${month} ${day}, ${year}`;
@@ -66,12 +66,15 @@ const Articles = () => {
 					:
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
 						{
-
-
-							posts.map(post => <div key={post._id} className="w-full mt-5 rounded-md overflow-hidden border-2">
+							posts.map(post => <div key={post._id} className="relative w-full h-[404px] mt-5 rounded-md overflow-hidden border-2">
 								{/* image */}
 								<div className="overflow-hidden">
-									<img className="w-full hover:scale-110 transition-transform h-40 object-cover" src={post.image} alt="Mountain" />
+									{
+										post.image ?
+											<img className="w-full hover:scale-110 transition-transform h-40 object-cover" src={post.image} alt="Mountain" />
+											:
+											<div className='h-40'>No image found</div>
+									}
 								</div>
 								{/* text */}
 								<div className="p-4">
@@ -88,13 +91,12 @@ const Articles = () => {
 									<p className="text-gray-700 text-base">
 									</p>
 								</div>
-								<div className="px-4 pb-4">
+								<div className="absolute bottom-4 left-4 right-4">
 									<Link className='w-full rounded-md bg-blue-100 flex justify-center py-3' to={`/blogs/${post._id}`}>
 										<button className="text-md font-semibold text-sky-400">Read the article</button>
 									</Link>
 								</div>
 							</div>)
-
 						}
 					</div>
 			}
