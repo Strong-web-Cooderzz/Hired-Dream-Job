@@ -13,6 +13,7 @@ const SingelArticles = () => {
 	const { user, dbUser } = useContext(AuthContext)
 	const location = useLocation();
 	const postId = useParams().id;
+	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
 
 	useEffect(() => {
 		async function fetchPost() {
@@ -70,8 +71,8 @@ const SingelArticles = () => {
 							<div className="flex items-center">
 								<h3 className="text-md mr-4">Share on</h3>
 								<div className='flex gap-2 items-center'>
-									<Link target={"_blank"} to={`https://facebook.com/sharer.php?u=https://hired-dream-job.vercel.app${location.pathname}`} className="text-lg"><FaFacebookF /></Link>
-									<button type="button" className="text-lg"><FaTwitter /></button>
+									<Link target={"_blank"} to={`https://facebook.com/sharer.php?u=${shareURL}`} className="text-lg"><FaFacebookF /></Link>
+									<Link target={"_blank"} to={`https://twitter.com/share?u=${shareURL}`} className="text-lg"><FaTwitter /></Link>
 									<button type="button" className="text-lg"><FaLinkedinIn /></button>
 								</div>
 							</div>
