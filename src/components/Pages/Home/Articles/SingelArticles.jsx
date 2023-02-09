@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
 import { useLoaderData, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import fetchData from '../../../../api/fetchData';
 
 const SingelArticles = () => {
+	const [isEmpty, setIsEmpty] = useState(true);
 	const { user, dbUser } = useContext(AuthContext)
 	const post = useLoaderData();
 	const location = useLocation();
+
+	const handlePostComment = async e => {
+		e.preventDefault();
+		const comment = e.target.comment.value;
+		const commentDetails = {
+			userId: '63e1e4069373fe50be0ca471',
+			comment,
+		}
+		const response = await fetchData.post('/post-comment', commentDetails)
+		console.log(response.data);
+	}
+
 	return (
 		<section>
 			<div>
@@ -57,10 +71,15 @@ const SingelArticles = () => {
 						<h1 className="font-bold">Comments</h1>
 					</div>
 					{
-						user ? <div className='sm:flex w-full gap-1 items-center flex-col'>
-							<textarea name="" id="" className='w-full h-24 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
-							<button className='mr-auto bg-blue-100 text-sm text-blue-700 px-4 py-2 rounded-md'>Add Comment</button>
-						</div>
+						!user ?
+							<form onSubmit={handlePostComment} className='mt-4'>
+								<div className='sm:flex w-full gap-1 items-center flex-col'>
+									<textarea onChange={e => {
+										e.target.value.length > 0 ? setIsEmpty(false) : setIsEmpty(true)
+									}} required name="comment" className='resize-none p-2 w-full h-16 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
+									<button disabled={isEmpty} className={`mt-2 mr-auto ${isEmpty ? 'bg-gray-300 text-white cursor-not-allowed': 'bg-blue-100 text-blue-700'} text-sm px-4 py-2 rounded-md`}>Add Comment</button>
+								</div>
+							</form>
 							:
 							<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
 					}
