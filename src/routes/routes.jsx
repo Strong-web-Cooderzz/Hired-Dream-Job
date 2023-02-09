@@ -136,7 +136,7 @@ export const router = createBrowserRouter([
 				element: <EditJob />
 			},
 			{
-				path: '/blogs/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
+				path: '/blogs/:id',
 				element: <SingelArticles />
 			}
 		]
@@ -194,7 +194,7 @@ export const router = createBrowserRouter([
 				element: <CandidateManageBlog> </CandidateManageBlog>
 			},
 			{
-				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				path: '/dashboard/edit_blog/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <EditBlog> </EditBlog>
 			}
 		]
