@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SingleBlog = ({blog}) => {
     const handleDeletePost = id =>{
-        fetch(`http://localhost:5000/deletePost/${id}`,{
+        fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/deletePost/${id}`,{
             method:'DELETE',
         })
         .then(res=>res.json())
