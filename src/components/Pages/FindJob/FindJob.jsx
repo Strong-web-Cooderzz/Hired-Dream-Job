@@ -172,14 +172,14 @@ const FindJob = () => {
 									<option value="Accounting / Finance" selected={dataFromForm?.category === "Accounting / Finance"}>
 										Accounting / Finance
 									</option>
-									<option value="Marketing" selected={dataFromForm.category === "Marketing"}>Marketing</option>
-									<option value="Design" selected={dataFromForm.category === "Design"}>Design</option>
-									<option value="Development" selected={dataFromForm.category === "Development"}>Development</option>
-									<option value="Human Resource" selected={dataFromForm.category === "Human Resource"}>Human Resource</option>
-									<option value="Automotive Jobs" selected={dataFromForm.category === "Automotive Jobs"}>Automotive Jobs</option>
-									<option value="Customer Service" selected={dataFromForm.category === "Customer Service"}>Customer Service</option>
-									<option value="Health and Care" selected={dataFromForm.category === "Health and Care"}>Health and Care</option>
-									<option value="Project Management" selected={dataFromForm.category === "Project Management"}>Project Management</option>
+									<option value="Marketing" selected={dataFromForm?.category === "Marketing"}>Marketing</option>
+									<option value="Design" selected={dataFromForm?.category === "Design"}>Design</option>
+									<option value="Development" selected={dataFromForm?.category === "Development"}>Development</option>
+									<option value="Human Resource" selected={dataFromForm?.category === "Human Resource"}>Human Resource</option>
+									<option value="Automotive Jobs" selected={dataFromForm?.category === "Automotive Jobs"}>Automotive Jobs</option>
+									<option value="Customer Service" selected={dataFromForm?.category === "Customer Service"}>Customer Service</option>
+									<option value="Health and Care" selected={dataFromForm?.category === "Health and Care"}>Health and Care</option>
+									<option value="Project Management" selected={dataFromForm?.category === "Project Management"}>Project Management</option>
 								</select>
 							</div>
 						</div>
