@@ -27,6 +27,7 @@
     "react-markdown-editor-lite": "^1.3.4",
     "react-router-dom": "^6.6.2",
     "react-select": "^5.7.0",
+    "sslcommerz-nodejs": "^1.0.8",
     "swiper": "^8.4.5",
     "tw-elements": "^1.0.0-alpha13"
   },

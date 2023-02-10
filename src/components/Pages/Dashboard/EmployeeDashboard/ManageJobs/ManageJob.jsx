@@ -44,12 +44,30 @@ const ManageJob = ({job,setUpdate,update}) => {
       })
       .then(res=>res.json())
       .then(data=>{
+        console.log(data);
+      })
+
+      fetch(`http://localhost:5000/featured/${job?._id}`,{
+        method:'DELETE',
+      })
+      .then(res=>res.json())
+      .then(data=>{
         setUpdate(!update)
         console.log(data);
         setDLoading(false)
       })
-    }
+        }
     const [paymentData,setPaymentData] = useState('')
+
+const [isFeatured,setIsFeatured] = useState(false)
+
+    useEffect(()=>{
+      fetch(`http://localhost:5000/featured/${job?._id}`)
+      .then(res=>res.json())
+      .then(data=>{
+        setIsFeatured(data._id === job._id);
+      })
+    },[job?._id])
 
     return (
             <tr class="bg-white border-b">
@@ -95,8 +113,10 @@ const ManageJob = ({job,setUpdate,update}) => {
                         {/* Edit Job */}
                     <Link to={`/edit-job/${job._id}`} title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
                     {/* Payment For Featured Job */}
-                  
-                    <Link to={`/pay/${job._id}`} title="Add To Featured" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><RiFireLine /></Link>
+                  {
+                    isFeatured ? <Link  title="Already Featured" className='bg-green-50 p-2 text-green-700 hover:bg-green-500 hover:text-white rounded-md'><RiFireLine /></Link>:<Link to={`/pay/${job._id}`} title="Add To Featured" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><RiFireLine /></Link>
+                  }
+                    
 
 
                     <div class="flex justify-center">
