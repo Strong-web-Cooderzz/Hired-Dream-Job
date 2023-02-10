@@ -31,7 +31,6 @@ import Fqa from "../components/Pages/FQA/Fqa";
 import UserProfile from "../components/Pages/UserProfile/UserProfile";
 import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
-import { formAction } from "../components/Pages/Home/Hero/Hero";
 import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
 import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
 
@@ -65,7 +64,15 @@ export const router = createBrowserRouter([
 			{
 				path: "/jobs",
 				element: <FindJob />,
-				action: formAction,
+				action: async ({ request }) => {
+					const data = await request.formData();
+					const form = {
+						title: data.get('job-title') || '',
+						location: data.get('job-location') || '',
+						category: data.get('job-category') || ''
+					}
+					return form;
+				}
 			},
 			{
 				path: "/contact",
@@ -134,7 +141,7 @@ export const router = createBrowserRouter([
 				element: <EditJob />
 			},
 			{
-				path: '/blogs/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
+				path: '/blogs/:id',
 				element: <SingelArticles />
 			}
 		]
@@ -192,7 +199,7 @@ export const router = createBrowserRouter([
 				element: <CandidateManageBlog> </CandidateManageBlog>
 			},
 			{
-				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				path: '/dashboard/edit_blog/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <EditBlog> </EditBlog>
 			}
 		]

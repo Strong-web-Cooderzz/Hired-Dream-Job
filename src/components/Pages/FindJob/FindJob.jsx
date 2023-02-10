@@ -11,7 +11,8 @@ import fetchData from "../../../api/fetchData";
 const FindJob = () => {
 	const dataFromForm = useActionData();
 	// requires when searching from home page
-	const [firstTime, setFirstTime] = useState(true);
+	// const [firstTime, setFirstTime] = useState(true);
+	const firstTime = useRef(true);
 	const formRef = useRef();
 	const [newer, setNewer] = useState(true);
 	const [jobType, setJobType] = useState('');
@@ -20,13 +21,13 @@ const FindJob = () => {
 	const [perPage, setPerPage] = useState(10);
 	// which page user currently in
 	const [page, setPage] = useState(1);
-	const [category, setCategory] = useState('');
 	// 1 seconds = 1000 miliseconds
 	const second = 1000;
 	const [experience, setExperience] = useState(0);
 	const [isOpen, setIsOpen] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
+	const categoryRef = useRef();
 	const navigate = useNavigate();
 
 	const fetchFromServer = async (e) => {
@@ -49,7 +50,7 @@ const FindJob = () => {
 					'per-page': perPage,
 					page,
 					experience,
-					category
+					category: categoryRef.current || ''
 				}
 			})
 			setData(response.data);
@@ -67,16 +68,21 @@ const FindJob = () => {
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
 		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
-		if (dataFromForm && firstTime) {
+		if (dataFromForm && firstTime.current) {
+			console.log(dataFromForm)
 			setDataLoading(true);
-			formRef.current.search.value = dataFromForm.title;
-			formRef.current.location.value = dataFromForm.location;
+			if (dataFromForm.title || dataFromForm.location) {
+				formRef.current.search.value = dataFromForm.title;
+				formRef.current.location.value = dataFromForm.location;
+			} else if (dataFromForm.category) {
+				categoryRef.current = dataFromForm.category;
+			}
 			fetchFromServer();
-			setFirstTime(false);
+			firstTime.current = false;
 		} else {
 			fetchFromServer();
 		}
-	}, [time, jobType, newer, perPage, experience, category]);
+	}, [time, jobType, newer, perPage, experience]);
 
 	return (
 		<main className="mb-16">
@@ -149,7 +155,10 @@ const FindJob = () => {
 						</form>
 						<div className="mt-8">
 							<h1 className="text-md mb-1">Category</h1>
-							<div onChange={e => setCategory(e.target.value)} className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
+							<div onChange={e => {
+								categoryRef.current = e.target.value;
+								fetchFromServer();
+							}} className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
 								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
 									<button
 										type="submit"
@@ -160,17 +169,17 @@ const FindJob = () => {
 								</span>
 								<select className="py-3 text-sm w-full rounded-md pl-10 focus:outline-blue-500 bg-white focus:text-gray-900">
 									<option value="">Select One Category</option>
-									<option value="Accounting / Finance">
+									<option value="Accounting / Finance" selected={dataFromForm?.category === "Accounting / Finance"}>
 										Accounting / Finance
 									</option>
-									<option value="Marketing">Marketing</option>
-									<option value="Design">Design</option>
-									<option value="Development">Development</option>
-									<option value="Human Resource">Human Resource</option>
-									<option value="Automotive Jobs">Automotive Jobs</option>
-									<option value="Customer Service">Customer Service</option>
-									<option value="Health and Care">Health and Care</option>
-									<option value="Project Management">Project Management</option>
+									<option value="Marketing" selected={dataFromForm?.category === "Marketing"}>Marketing</option>
+									<option value="Design" selected={dataFromForm?.category === "Design"}>Design</option>
+									<option value="Development" selected={dataFromForm?.category === "Development"}>Development</option>
+									<option value="Human Resource" selected={dataFromForm?.category === "Human Resource"}>Human Resource</option>
+									<option value="Automotive Jobs" selected={dataFromForm?.category === "Automotive Jobs"}>Automotive Jobs</option>
+									<option value="Customer Service" selected={dataFromForm?.category === "Customer Service"}>Customer Service</option>
+									<option value="Health and Care" selected={dataFromForm?.category === "Health and Care"}>Health and Care</option>
+									<option value="Project Management" selected={dataFromForm?.category === "Project Management"}>Project Management</option>
 								</select>
 							</div>
 						</div>

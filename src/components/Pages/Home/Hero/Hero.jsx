@@ -98,13 +98,4 @@ const Hero = () => {
 	);
 };
 
-export const formAction = async ({ request }) => {
-	const data = await request.formData();
-	const form = {
-		title: data.get('job-title'),
-		location: data.get('job-location')
-	}
-	return form;
-}
-
 export default Hero;
