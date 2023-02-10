@@ -17,7 +17,7 @@ console.log(price);
 
  
 useEffect(() => {
-  fetch("http://localhost:5000/payment_intents", {
+  fetch("https://hired-dream-job-server-sparmankhan.vercel.app/payment_intents", {
     method: "POST",
     headers: {
        "Content-Type": "application/json"
@@ -88,7 +88,7 @@ useEffect(() => {
           ...jobManage,
           tId,
         }
-        fetch('http://localhost:5000/featured',{
+        fetch('https://hired-dream-job-server-sparmankhan.vercel.app/featured',{
           method:"POST",
           headers:{
             'content-type':'application/json'

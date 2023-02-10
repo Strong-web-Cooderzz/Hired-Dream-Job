@@ -27,7 +27,7 @@ console.log(jobManage);
       dbUser:dbUser
     }
     console.log(payJob);
-    fetch('http://localhost:5000/sslPay',{
+    fetch('https://hired-dream-job-server-sparmankhan.vercel.app/sslPay',{
       method:'POST',
       headers:{
         'Content-type':'application/json'
