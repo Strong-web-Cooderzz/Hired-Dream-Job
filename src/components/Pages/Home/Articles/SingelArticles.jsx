@@ -71,8 +71,8 @@ const SingelArticles = () => {
 							<div className="flex items-center">
 								<h3 className="text-md mr-4">Share on</h3>
 								<div className='flex gap-2 items-center'>
-									<Link target={"_blank"} to={`https://facebook.com/sharer.php?u=${shareURL}`} className="text-lg"><FaFacebookF /></Link>
-									<Link target={"_blank"} to={`https://twitter.com/share?u=${shareURL}`} className="text-lg"><FaTwitter /></Link>
+									<a target={"_blank"} href={`https://facebook.com/sharer.php?u=${shareURL}`} className="text-lg"><FaFacebookF /></a>
+									<a target={"_blank"} href={`https://twitter.com/share?u=${shareURL}`} className="text-lg"><FaTwitter /></a>
 									<button type="button" className="text-lg"><FaLinkedinIn /></button>
 								</div>
 							</div>
