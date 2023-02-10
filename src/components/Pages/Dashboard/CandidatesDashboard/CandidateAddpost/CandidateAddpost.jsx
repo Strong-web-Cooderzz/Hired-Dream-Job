@@ -31,14 +31,17 @@ const CandidateAddpost = () => {
 
 	// sends two request in one use effect
 	useEffect(() => {
-		fetchData.all([
-			fetchData.get('/categories'),
-			fetchData.get('/tags')
-		])
-			.then(fetchData.spread((data1, data2) => {
-				setCategories(data1);
-				setTags(data2);
-			}))
+		fetchData.get('/categories').then(response => setCategories(response.data))
+		fetchData.get('/tags').then(response => setTags(response.data))
+		// fetchData.all([
+		// 	fetchData.get('/categories'),
+		// 	fetchData.get('/tags')
+		// ])
+		// 	.then(fetchData.spread((data1, data2) => {
+		// 		console.log(data1, data2)
+		// 		setCategories(data1);
+		// 		setTags(data2);
+		// 	}))
 	}, [])
 
 	const handlePostChange = ({ html, text }) => {
@@ -105,7 +108,7 @@ const CandidateAddpost = () => {
 					<div className=" w-full sm:flex gap-3 my-3 ">
 						<div class="w-full">
 							<label
-								for="title"
+								htmlFor="title"
 								class="form-label inline-block mb-2 text-gray-700"
 							>
 								Title
@@ -120,7 +123,7 @@ const CandidateAddpost = () => {
 						</div>
 						<div className=" w-full">
 							<label
-								for="title"
+								htmlFor="title"
 								class="form-label inline-block w-full text-gray-700"
 							>
 								Select Category
@@ -139,7 +142,7 @@ const CandidateAddpost = () => {
 						<div class=" w-full">
 							<div class="mb-3">
 								<label
-									for="formFile"
+									htmlFor="formFile"
 									class="form-label inline-block mb-2 text-gray-700"
 								>
 									Featured Image
