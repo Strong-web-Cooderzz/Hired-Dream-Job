@@ -135,12 +135,4 @@ const JobCategory = () => {
 	);
 };
 
-export const jobFormAction = async ({ request }) => {
-	const data = await request.formData();
-	const form = {
-		category: data.get('job-category')
-	}
-	return form;
-}
-
 export default JobCategory;

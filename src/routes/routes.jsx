@@ -31,7 +31,6 @@ import Fqa from "../components/Pages/FQA/Fqa";
 import UserProfile from "../components/Pages/UserProfile/UserProfile";
 import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
-import { formAction } from "../components/Pages/Home/Hero/Hero";
 import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
 import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
 
@@ -39,7 +38,6 @@ import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDa
 import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
 import CandidateManageBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/CandidateManageBlog";
 import EditBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/EditBlog";
-import { jobFormAction } from "../components/Pages/Home/JobCategory/JobCategory";
 
 
 export const router = createBrowserRouter([
@@ -66,8 +64,15 @@ export const router = createBrowserRouter([
 			{
 				path: "/jobs",
 				element: <FindJob />,
-				action: formAction,
-				action: jobFormAction
+				action: async ({ request }) => {
+					const data = await request.formData();
+					const form = {
+						title: data.get('job-title') || '',
+						location: data.get('job-location') || '',
+						category: data.get('job-category') || ''
+					}
+					return form;
+				}
 			},
 			{
 				path: "/contact",
