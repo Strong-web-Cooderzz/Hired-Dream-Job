@@ -35,7 +35,7 @@ const SingelArticles = () => {
 					<div className="my-6">
 						<p>Tags:</p>
 						{
-							post.tags.map(tag => <button type="button" className=" mx-1 px-2 py-1 font-bold bg-blue-100 text-blue-700  rounded focus:outline-none hover:bg-blue-400 hover:text-white " >{tag.label}</button>)
+							post.tags?.map(tag => <button type="button" className=" mx-1 px-2 py-1 font-bold bg-blue-100 text-blue-700  rounded focus:outline-none hover:bg-blue-400 hover:text-white " >{tag.label}</button>)
 						}
 					</div>
 					{/* <!-- Share this post --> */}

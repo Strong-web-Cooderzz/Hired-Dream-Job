@@ -11,7 +11,7 @@ const JobFeauters = () => {
   useEffect(() => {
 		async function fetchJobs() {
 			try {
-				const response = await api.get("/jobs", {params: {limit: 6}});
+				const response = await api.get("/featured");
 				setJobFeaturesData(response.data);
 				setLoading(false);
 			} catch (err) {
