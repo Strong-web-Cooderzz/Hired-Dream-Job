@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { useContext } from 'react';
-import { useLoaderData, useLocation, useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
@@ -18,7 +18,7 @@ const SingelArticles = () => {
 	useEffect(() => {
 		async function fetchPost() {
 			const response = await fetchData.get(`/blogPost/${postId}`)
-			setPost(response.data)
+			setPost(response.data[0])
 		}
 
 		fetchPost();
@@ -83,7 +83,7 @@ const SingelArticles = () => {
 						<h1 className="font-bold">Comments</h1>
 					</div>
 					{
-						!user ?
+						user ?
 							<form onSubmit={handlePostComment} className='mt-4'>
 								<div className='sm:flex w-full gap-1 items-center flex-col'>
 									<textarea onChange={e => {
@@ -95,15 +95,17 @@ const SingelArticles = () => {
 							:
 							<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
 					}
-					<div className="flex my-8">
-						<div className='w-1/12'>
-							<img className="h-14 w-14 rounded-full" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="" />
+					{
+						post.comments?.map(comment => <div className="flex my-8">
+							<div className='w-1/12'>
+								<img className="h-14 w-14 rounded-full object-cover" src={comment.user.photo} alt={comment.user.fullName} />
+							</div>
+							<div className="w-11/12 bg-gray-200 rounded-lg px-4 py-2">
+								<h2 className="font-bold">{comment.user.fullName}</h2>
+								<p className="mt-3">{comment.comment}</p>
+							</div>
 						</div>
-						<div className="w-11/12 bg-gray-200 rounded-lg px-4 py-2">
-							<h2 className="font-bold">Oscar Cafeo</h2>
-							<p className="mt-3">Far much that one rank beheld bluebird after outside ignobly allegedly more when oh arrogantly vehement tantaneously eel valiantly petted this along across highhandedly much.</p>
-						</div>
-					</div>
+						)}
 					{/* <!-- Contact --> */}
 					{/*<div>
 						<section className="bg-white dark:bg-gray-900 ">
