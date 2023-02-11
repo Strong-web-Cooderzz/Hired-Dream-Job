@@ -100,9 +100,15 @@ const SingelArticles = () => {
 							<div className='w-1/12'>
 								<img className="h-14 w-14 rounded-full object-cover" src={comment.user.photo} alt={comment.user.fullName} />
 							</div>
-							<div className="w-11/12 bg-gray-200 rounded-lg px-4 py-2">
-								<h2 className="font-bold">{comment.user.fullName}</h2>
-								<p className="mt-3">{comment.comment}</p>
+							<div className='w-11/12'>
+								<div className="bg-gray-200 rounded-lg px-4 py-2">
+									<h2 className="font-bold">{comment.user.fullName}</h2>
+									<p className="mt-3">{comment.comment}</p>
+								</div>
+								<div className='text-sm mt-1 flex gap-2 text-gray-700'>
+									<button>Report</button>
+									<button>Delete</button>
+								</div>
 							</div>
 						</div>
 						)}
