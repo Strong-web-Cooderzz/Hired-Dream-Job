@@ -6,10 +6,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import fetchData from '../../../../api/fetchData';
+import ConfirmModal from '../../../shared/Modal/ConfirmModal';
 
 const SingelArticles = () => {
 	const [post, setPost] = useState({});
 	const [isEmpty, setIsEmpty] = useState(true);
+	// delete confirmation modal
+	const [hidden, setHidden] = useState(true);
 	const { user, dbUser } = useContext(AuthContext)
 	const location = useLocation();
 	const postId = useParams().id;
@@ -107,7 +110,8 @@ const SingelArticles = () => {
 								</div>
 								<div className='text-sm mt-1 flex gap-2 text-gray-700'>
 									<button>Report</button>
-									<button>Delete</button>
+									<button className='hover:text-red-500' onClick={() => setHidden(false)}>Delete</button>
+									<ConfirmModal hidden={hidden} setHidden={setHidden} />
 								</div>
 							</div>
 						</div>
