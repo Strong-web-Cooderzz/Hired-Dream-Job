@@ -20,7 +20,7 @@ const SingelArticles = () => {
 	const postId = useParams().id;
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
 	const userInfo = useSelector(state => state.auth.authInfo)
-	const token = userInfo.stsTokenManager.accessToken
+	const token = userInfo.stsTokenManager?.accessToken
 	const dispatch = useDispatch()
 	const [commentId, setCommentId] = useState('');
 
@@ -130,7 +130,7 @@ const SingelArticles = () => {
 								</div>
 								<div className='text-sm mt-1 flex gap-2 text-gray-700'>
 									<button>Report</button>
-									<button className='hover:text-red-500' onClick={() => {
+									<button className={`${userInfo.email !== comment.user.email && 'hidden'} hover:text-red-500`} onClick={() => {
 										setHidden(false)
 										setCommentId(comment._id)
 									}}>Delete</button>
