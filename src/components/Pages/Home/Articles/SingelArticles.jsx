@@ -74,7 +74,7 @@ const SingelArticles = () => {
 							<h3 className="text-lg">Alison Dawn</h3>
 							<span className="mr-2 text-gray-600">August 31, 2021</span>
 							<span className='text-sm mr-2 text-gray-600'>&#x2022;</span>
-							<span className='text-gray-600'>12 Comment</span>
+							<span className='text-gray-600'>{post.comments?.length} Comment{post.comments?.length ? 's' : ''}</span>
 						</div>
 						{/* <!-- Share this post --> */}
 						<div className="ml-auto">
