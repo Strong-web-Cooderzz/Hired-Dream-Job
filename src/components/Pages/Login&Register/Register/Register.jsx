@@ -52,16 +52,19 @@ const Register = () => {
 				})
 					.then(res => res.json())
 					.then(data => {
-						signInWithCustomToken(auth, data.token);
+						signInWithCustomToken(auth, data.token)
+							.then(userCredential => {
+								toast.success("Successfully created account");
+								if (data.type === "Candidate") {
+									navigate("/accountClient");
+								} else {
+									navigate("/accountAgency");
+								}
+							})
+							.catch(err => console.log(err));
 						console.log(data);
 						reset();
 					})
-				toast.success("Successfully created account");
-				if (data.type === "Candidate") {
-					navigate("/accountClient");
-				} else {
-					navigate("/accountAgency");
-				}
 			});
 	};
 
