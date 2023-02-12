@@ -1,17 +1,21 @@
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { setAuthInfo, setLogOut } from "../../../features/auth/authSlice";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
 	const user = useSelector(state => state.auth.authInfo)
+	console.log(user)
+	const dispatch = useDispatch()
 	const { logOut, dbUser, loading } = useContext(AuthContext);
 	const handleLogOut = () => {
 		logOut();
+		dispatch(setLogOut())
 	};
 
 	return (

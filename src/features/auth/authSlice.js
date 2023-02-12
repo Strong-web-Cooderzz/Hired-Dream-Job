@@ -5,10 +5,11 @@ export function getUserInfoFromLocalStorage() {
 	for (let i in window.localStorage) {
 		if (i.match(/firebase:authUser:.*/)) return JSON.parse(window.localStorage.getItem(i))
 	}
+	return {}
 }
 
 const initialState = {
-	authInfo: getUserInfoFromLocalStorage() || {},
+	authInfo: getUserInfoFromLocalStorage(),
 }
 
 export const authSlice = createSlice({
@@ -18,10 +19,15 @@ export const authSlice = createSlice({
 		// this actually resets since jwt expires after few moments
 		setAuthInfo: state => {
 			state.authInfo = getUserInfoFromLocalStorage()
+		},
+
+		// this is for log out
+		setLogOut: state => {
+			state.authInfo = {}
 		}
 	}
 })
 
-export const { setAuthInfo } = authSlice.actions;
+export const { setAuthInfo, setLogOut } = authSlice.actions;
 
 export default authSlice.reducer;
