@@ -83,7 +83,7 @@ export default function Navbar() {
 							</li>
 
 							<li className="text-white">
-								{user ? (
+								{user.email ? (
 									<div className="relative">
 										<input
 											type="checkbox"
