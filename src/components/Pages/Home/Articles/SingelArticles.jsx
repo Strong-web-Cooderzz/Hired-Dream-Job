@@ -7,6 +7,8 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import fetchData from '../../../../api/fetchData';
 import ConfirmModal from '../../../shared/Modal/ConfirmModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAuthInfo } from '../../../../features/auth/authSlice';
 
 const SingelArticles = () => {
 	const [post, setPost] = useState({});
@@ -17,6 +19,10 @@ const SingelArticles = () => {
 	const location = useLocation();
 	const postId = useParams().id;
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
+	const userInfo = useSelector(state => state.auth.authInfo)
+	const token = userInfo.stsTokenManager.accessToken
+	const dispatch = useDispatch()
+	const [commentId, setCommentId] = useState('');
 
 	useEffect(() => {
 		async function fetchPost() {
@@ -37,6 +43,20 @@ const SingelArticles = () => {
 		}
 		const response = await fetchData.post('/post-comment', commentDetails)
 		console.log(response.data);
+	}
+
+	const handleDeleteComment = async () => {
+		dispatch(setAuthInfo());
+		const response = await fetchData.delete('/delete-comment', {
+			headers: {
+				Authorization: `Bearer ${token}`
+			},
+			params: {
+				commentId,
+				postId: post._id,
+			}
+		})
+		console.log(response.data)
 	}
 
 	return (
@@ -110,8 +130,11 @@ const SingelArticles = () => {
 								</div>
 								<div className='text-sm mt-1 flex gap-2 text-gray-700'>
 									<button>Report</button>
-									<button className='hover:text-red-500' onClick={() => setHidden(false)}>Delete</button>
-									<ConfirmModal hidden={hidden} setHidden={setHidden} />
+									<button className='hover:text-red-500' onClick={() => {
+										setHidden(false)
+										setCommentId(comment._id)
+									}}>Delete</button>
+									<ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={handleDeleteComment} />
 								</div>
 							</div>
 						</div>

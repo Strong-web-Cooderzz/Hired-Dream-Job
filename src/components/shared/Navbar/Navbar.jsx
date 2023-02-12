@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
@@ -7,9 +8,9 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
-	const { logOut, user, dbUser, loading } = useContext(AuthContext);
-	console.log(user);
-	const LogOut = () => {
+	const user = useSelector(state => state.auth.authInfo)
+	const { logOut, dbUser, loading } = useContext(AuthContext);
+	const handleLogOut = () => {
 		logOut();
 	};
 
@@ -101,7 +102,7 @@ export default function Navbar() {
 													:
 													<div>
 														{user?.photoURL ? (
-															<img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="" />
+															<img className="w-8 h-8 rounded-full object-cover" src={user?.photoURL} alt="" />
 														) : (
 															<FaUserCircle className="text-black text-3xl" />
 														)}
@@ -128,7 +129,7 @@ export default function Navbar() {
 												</li>
 												<li className="block px-3 py-2">
 													<button
-														onClick={LogOut}
+														onClick={handleLogOut}
 														className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600 w-full"
 													>
 														Log Out
