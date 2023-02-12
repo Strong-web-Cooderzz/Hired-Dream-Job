@@ -46,7 +46,7 @@ const Register = () => {
 				}
 				fetchData.post('register', userData)
 					.then(data => {
-						signInWithCustomToken(auth, data.token)
+						signInWithCustomToken(auth, data.data.token)
 							.then(userCredential => {
 								console.log(userCredential)
 								toast.success("Successfully created account");
