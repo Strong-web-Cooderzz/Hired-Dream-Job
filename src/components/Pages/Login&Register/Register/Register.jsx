@@ -54,6 +54,7 @@ const Register = () => {
 					.then(data => {
 						signInWithCustomToken(auth, data.token)
 							.then(userCredential => {
+								console.log(userCredential)
 								toast.success("Successfully created account");
 								if (data.type === "Candidate") {
 									navigate("/accountClient");
