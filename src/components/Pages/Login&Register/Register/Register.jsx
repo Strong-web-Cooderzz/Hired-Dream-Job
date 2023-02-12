@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import fetchData from "../../../../api/fetchData";
 import AuthProvider, { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
@@ -43,14 +44,7 @@ const Register = () => {
 					'photo': imageData.url,
 					'password': data.password
 				}
-				fetch('https://hired-dream-job-server-sparmankhan.vercel.app/user', {
-					method: 'POST',
-					headers: {
-						'content-type': 'application/json'
-					},
-					body: JSON.stringify(userData)
-				})
-					.then(res => res.json())
+				fetchData.post('register', userData)
 					.then(data => {
 						signInWithCustomToken(auth, data.token)
 							.then(userCredential => {
