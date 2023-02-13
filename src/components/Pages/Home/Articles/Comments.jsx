@@ -14,7 +14,7 @@ export default function Comments({ post, hideComments, setHideComments }) {
 	// delete confirmation modal
 	const [hidden, setHidden] = useState(true);
 	const { user } = useContext(AuthContext);
-	const token = user.accessToken
+	const token = user?.accessToken
 
 	const userInfo = useSelector(state => state.user.userInfo)
 
