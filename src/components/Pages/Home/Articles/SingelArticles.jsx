@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { useContext } from 'react';
 import { useLocation, useParams } from 'react-router';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaRegComment } from 'react-icons/fa';
-import { FiThumbsUp } from 'react-icons/fi';
 import fetchData from '../../../../api/fetchData';
-import ConfirmModal from '../../../shared/Modal/ConfirmModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAuthInfo } from '../../../../features/auth/authSlice';
-import { toast } from 'react-hot-toast';
+import Comments from './Comments';
+import { FiThumbsUp } from 'react-icons/fi';
 
 const SingelArticles = () => {
 	const [post, setPost] = useState({});
 	const [dataLoading, setDataLoading] = useState(true);
-	const [isEmpty, setIsEmpty] = useState(true);
-	// delete confirmation modal
-	const [hidden, setHidden] = useState(true);
-	const { user, dbUser } = useContext(AuthContext)
+	const [hideComments, setHideComments] = useState(true);
 	const location = useLocation();
 	const postId = useParams().id;
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
-	const authInfo = useSelector(state => state.auth.authInfo)
-	const userInfo = useSelector(state => state.user.userInfo)
-	const token = authInfo.stsTokenManager?.accessToken
-	const dispatch = useDispatch()
-	const [commentId, setCommentId] = useState('');
 
 	useEffect(() => {
 		async function fetchPost() {
@@ -37,35 +23,6 @@ const SingelArticles = () => {
 
 		fetchPost();
 	}, [])
-
-	const handlePostComment = async e => {
-		e.preventDefault();
-		const comment = e.target.comment.value;
-		const commentDetails = {
-			userId: userInfo._id,
-			postId: post._id,
-			comment,
-		}
-		const response = await fetchData.post('/post-comment', commentDetails)
-		console.log(response.data);
-	}
-
-	const handleDeleteComment = async () => {
-		dispatch(setAuthInfo());
-		const response = await fetchData.delete('/delete-comment', {
-			headers: {
-				Authorization: `Bearer ${token}`
-			},
-			params: {
-				commentId,
-				postId: post._id,
-			}
-		})
-		if (response.data.deletedCount > 0) {
-			setHidden(true)
-			toast.success('Comment deleted')
-		} else toast.error('An error occured. Please try again or try to re-login again.')
-	}
 
 	const showDate = (date) => {
 		if (date) {
@@ -79,7 +36,7 @@ const SingelArticles = () => {
 	}
 
 	return (
-		<section>
+		<section className='relative overflow-x-hidden'>
 			{/* spinner */}
 			{
 				dataLoading && <>
@@ -89,9 +46,9 @@ const SingelArticles = () => {
 			}
 			{
 				!dataLoading &&
-				<div>
+				<div className='mb-16'>
 					<div className='w-11/12 mx-auto md:w-full px-8 lg:w-8/12'>
-						<div className="flex items-center mt-12 gap-2 text-sm">
+						<div className="flex items-center gap-2 text-sm pt-16">
 							<img className="h-12 w-12 rounded-full ring-2 ring-white object-cover" src={post.author?.photo} alt="" />
 							<div>
 								<h3 className="text-lg">{post.author?.fullName}</h3>
@@ -127,45 +84,13 @@ const SingelArticles = () => {
 								}
 							</div>
 						</div>
-						{/* <!-- Comment --> */}
-						<div className='text-xl text-gray-600 flex gap-6 items-center'>
+						<div className='text-xl text-gray-600 flex gap-6 items-center overflow-scroll'>
 							<span><FiThumbsUp /></span>
-							<span className='flex items-center gap-2'><FaRegComment /> <span>{post.comments?.length}</span></span>
+							<span className='flex items-center gap-2'><span onClick={() => setHideComments(!hideComments)} className="cursor-pointer"><FaRegComment /></span> <span>{post.comments?.length}</span></span>
 						</div>
-						{
-							userInfo.email ?
-								<form onSubmit={handlePostComment} className='mt-4'>
-									<div className='sm:flex w-full gap-1 items-center flex-col'>
-										<textarea onChange={e => {
-											e.target.value.length > 0 ? setIsEmpty(false) : setIsEmpty(true)
-										}} required name="comment" className='resize-none p-2 w-full h-16 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
-										<button disabled={isEmpty} className={`mt-2 mr-auto ${isEmpty ? 'bg-gray-300 text-white cursor-not-allowed' : 'bg-blue-100 text-blue-700'} text-sm px-4 py-2 rounded-md`}>Add Comment</button>
-									</div>
-								</form>
-								:
-								<Link className='text-blue-600 font-bold' to={'/login'}>Please Login To Comment</Link>
-						}
-						{
-							post.comments?.map(comment => <div className="flex my-8">
-								<div className='w-1/12'>
-									<img className="h-14 w-14 rounded-full object-cover" src={comment.user.photo} alt={comment.user.fullName} />
-								</div>
-								<div className='w-11/12'>
-									<div className="bg-gray-200 rounded-lg px-4 py-2">
-										<h2 className="font-bold">{comment.user.fullName}</h2>
-										<p className="mt-3">{comment.comment}</p>
-									</div>
-									<div className='text-sm mt-1 flex gap-2 text-gray-700'>
-										<button>Report</button>
-										<button className={`${userInfo.email !== comment.user.email && 'hidden'} hover:text-red-500`} onClick={() => {
-											setHidden(false)
-											setCommentId(comment._id)
-										}}>Delete</button>
-										<ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={handleDeleteComment} />
-									</div>
-								</div>
-							</div>
-							)}
+						<div>
+							<Comments post={post} hideComments={hideComments} setHideComments={setHideComments} />
+						</div>
 						{/* <!-- Contact --> */}
 						{/*<div>
 						<section className="bg-white dark:bg-gray-900 ">

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import 'react-markdown-editor-lite/lib/index.css';
 import fetchData from "../../../../../api/fetchData";
 import { toast } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const CandidateAddpost = () => {
 	// use states
@@ -20,28 +21,19 @@ const CandidateAddpost = () => {
 	const [postTags, setPostTags] = useState([]);
 	const [postCategory, setPostCategory] = useState([]);
 
-	const { user, dbUser } = useContext(AuthContext);
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-	const mdParser = new MarkdownIt();
-	const navigate = useNavigate()
+	const authInfo = useSelector(state => state.auth.authInfo)
+	const token = authInfo.stsTokenManager?.accessToken
 
-	const date = new Date();
+	const mdParser = new MarkdownIt();
+
 	const animatedComponents = makeAnimated();
 
 	// sends two request in one use effect
 	useEffect(() => {
 		fetchData.get('/categories').then(response => setCategories(response.data))
 		fetchData.get('/tags').then(response => setTags(response.data))
-		// fetchData.all([
-		// 	fetchData.get('/categories'),
-		// 	fetchData.get('/tags')
-		// ])
-		// 	.then(fetchData.spread((data1, data2) => {
-		// 		console.log(data1, data2)
-		// 		setCategories(data1);
-		// 		setTags(data2);
-		// 	}))
 	}, [])
 
 	const handlePostChange = ({ html, text }) => {
@@ -67,13 +59,8 @@ const CandidateAddpost = () => {
 				const thumb = imageData.url;
 				const postDetails = {
 					title: data.title,
-					email: user.email,
-					userID: dbUser._id,
-					userImage: dbUser.photo,
-					name: dbUser.fullName,
 					image: thumb,
 					details: value,
-					date: new Date(),
 					categories: postCategory,
 					tags: postTags,
 				};
@@ -82,7 +69,8 @@ const CandidateAddpost = () => {
 				async function postBlog() {
 					const response = await fetchData.post('/postBlog', JSON.stringify(postDetails), {
 						headers: {
-							"Content-Type": "application/json"
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${token}`
 						}
 					});
 
