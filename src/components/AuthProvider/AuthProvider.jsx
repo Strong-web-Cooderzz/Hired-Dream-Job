@@ -52,15 +52,6 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-			setUser(currentUser);
-			setLoading(false);
-		});
-		return () => unSubscribe();
-	}, []);
-
-
-	useEffect(() => {
 		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
 			.then(res => res.json())
 			.then(data => setDbUser(data))

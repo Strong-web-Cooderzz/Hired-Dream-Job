@@ -9,6 +9,7 @@ import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
+import { login } from "../../../../features/auth/authSlice";
 import { setUserInfo } from "../../../../features/user/userSlice";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
