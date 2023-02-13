@@ -15,12 +15,12 @@ export const userSlice = createSlice({
 		setUserInfo: (state, action) => {
 			state.userInfo = action.payload
 		},
-		resetUserInf: state => {
+		resetUserInfo: state => {
 			state.userInfo = {}
 		}
 	}
 })
 
-export const { setUserInfo, resetUserInf } = userSlice.actions;
+export const { setUserInfo, resetUserInfo } = userSlice.actions;
 
 export default userSlice.reducer;
