@@ -5,6 +5,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaRegComment } from 'react-icons/
 import fetchData from '../../../../api/fetchData';
 import Comments from './Comments';
 import { FiThumbsUp } from 'react-icons/fi';
+import moment from 'moment';
 
 const SingelArticles = () => {
 	const [post, setPost] = useState({});
@@ -53,7 +54,7 @@ const SingelArticles = () => {
 							<img className="h-12 w-12 rounded-full ring-2 ring-white object-cover" src={post.author?.photo} alt="" />
 							<div>
 								<h3 className="text-lg">{post.author?.fullName}</h3>
-								<span className="mr-2 text-gray-600">{showDate(post.date)}</span>
+								<span className="mr-2 text-gray-600">{moment(post.date).fromNow()}</span>
 								<span className='text-sm mr-2 text-gray-600'>&#x2022;</span>
 								<span className='text-gray-600'>{post.comments?.length} Comment{post.comments?.length ? 's' : ''}</span>
 							</div>
