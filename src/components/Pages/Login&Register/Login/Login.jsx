@@ -6,7 +6,7 @@ import {
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
 import { setUserInfo } from "../../../../features/user/userSlice";

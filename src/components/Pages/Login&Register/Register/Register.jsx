@@ -53,7 +53,6 @@ const Register = () => {
 						localStorage.setItem('userInfo', JSON.stringify(user))
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
-								// localStorage.setItem(`firebase:authUser:AIzaSyCyooty3MgCBzDW9A_iZDGdQk0-jGGoqTo:[DEFAULT]`)
 								toast.success("Successfully created account");
 								if (data.type === "Candidate") {
 									navigate("/accountClient");

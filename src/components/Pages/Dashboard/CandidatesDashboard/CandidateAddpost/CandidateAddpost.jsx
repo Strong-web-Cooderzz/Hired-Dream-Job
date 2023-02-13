@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import 'react-markdown-editor-lite/lib/index.css';
 import fetchData from "../../../../../api/fetchData";
 import { toast } from "react-hot-toast";
-import { useSelector } from "react-redux";
 
 const CandidateAddpost = () => {
 	// use states
@@ -22,9 +21,8 @@ const CandidateAddpost = () => {
 	const [postCategory, setPostCategory] = useState([]);
 
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
-	const authInfo = useSelector(state => state.auth.authInfo)
-	const token = authInfo.stsTokenManager?.accessToken
+	const { user } = useContext(AuthContext);
+	const token = user.accessToken
 
 	const mdParser = new MarkdownIt();
 
