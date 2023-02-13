@@ -50,6 +50,7 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 				}
 			})
 			if (response.data.success) {
+				fetchPost()
 				setHidden(true)
 				toast.success('Comment deleted')
 			} else toast.error('An error occured. Please try again or try to re-login again.')
