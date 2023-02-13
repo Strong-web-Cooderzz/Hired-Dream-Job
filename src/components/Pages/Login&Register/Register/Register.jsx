@@ -4,6 +4,7 @@ import { set, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
+import { setUserInfo } from "../../../../features/user/userSlice";
 import AuthProvider, { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
@@ -29,7 +30,6 @@ const Register = () => {
 		formData.append("cloud_name", "dcckbmhft")
 
 		const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-		const { email, password } = data;
 		fetch(url, {
 			method: "POST",
 			body: formData,
@@ -45,10 +45,14 @@ const Register = () => {
 					'password': data.password
 				}
 				fetchData.post('register', userData)
-					.then(data => {
-						signInWithCustomToken(auth, data.data.token)
+					.then(response => {
+						const user = response.data
+						user.token = ''
+						setUserInfo(user)
+						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
 								console.log(userCredential)
+								// localStorage.setItem(`firebase:authUser:AIzaSyCyooty3MgCBzDW9A_iZDGdQk0-jGGoqTo:[DEFAULT]`)
 								toast.success("Successfully created account");
 								if (data.type === "Candidate") {
 									navigate("/accountClient");

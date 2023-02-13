@@ -1,15 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 // this collects directly from localstorage instead of waiting for ouAuthStateChange
-export function getUserInfoFromLocalStorage() {
-	for (let i in window.localStorage) {
-		if (i.match(/firebase:authUser:.*/)) return JSON.parse(window.localStorage.getItem(i))
-	}
-	return {}
+export function getAuthInfoFromLocalStorage() {
+	return JSON.parse(window.localStorage.getItem('firebase:authUser:AIzaSyCyooty3MgCBzDW9A_iZDGdQk0-jGGoqTo:[DEFAULT]')) || {}
 }
 
 const initialState = {
-	authInfo: getUserInfoFromLocalStorage(),
+	authInfo: getAuthInfoFromLocalStorage(),
 }
 
 export const authSlice = createSlice({
@@ -18,16 +15,16 @@ export const authSlice = createSlice({
 	reducers: {
 		// this actually resets since jwt expires after few moments
 		setAuthInfo: state => {
-			state.authInfo = getUserInfoFromLocalStorage()
+			state.authInfo = getAuthInfoFromLocalStorage()
 		},
 
 		// this is for log out
-		setLogOut: state => {
+		resetAuthInfo: state => {
 			state.authInfo = {}
 		}
 	}
 })
 
-export const { setAuthInfo, setLogOut } = authSlice.actions;
+export const { setAuthInfo, resetAuthInfo } = authSlice.actions;
 
 export default authSlice.reducer;

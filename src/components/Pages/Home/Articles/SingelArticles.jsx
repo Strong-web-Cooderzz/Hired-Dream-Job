@@ -21,8 +21,9 @@ const SingelArticles = () => {
 	const location = useLocation();
 	const postId = useParams().id;
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
-	const userInfo = useSelector(state => state.auth.authInfo)
-	const token = userInfo.stsTokenManager?.accessToken
+	const authInfo = useSelector(state => state.auth.authInfo)
+	const userInfo = useSelector(state => state.user.userInfo)
+	const token = authInfo.stsTokenManager?.accessToken
 	const dispatch = useDispatch()
 	const [commentId, setCommentId] = useState('');
 
@@ -39,7 +40,7 @@ const SingelArticles = () => {
 		e.preventDefault();
 		const comment = e.target.comment.value;
 		const commentDetails = {
-			userId: '63e1e4069373fe50be0ca471',
+			userId: userInfo._id,
 			postId: post._id,
 			comment,
 		}
@@ -110,7 +111,7 @@ const SingelArticles = () => {
 						<span className='flex items-center gap-2'><FaRegComment /> <span>{post.comments?.length}</span></span>
 					</div>
 					{
-						user ?
+						userInfo.email ?
 							<form onSubmit={handlePostComment} className='mt-4'>
 								<div className='sm:flex w-full gap-1 items-center flex-col'>
 									<textarea onChange={e => {

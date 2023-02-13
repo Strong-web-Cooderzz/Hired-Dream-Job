@@ -9,7 +9,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
-	const user = useSelector(state => state.auth.authInfo)
+	const user = useSelector(state => state.user.userInfo)
 	console.log(user)
 	const dispatch = useDispatch()
 	const { logOut, dbUser, loading } = useContext(AuthContext);
@@ -105,8 +105,8 @@ export default function Navbar() {
 												</div>
 													:
 													<div>
-														{user?.photoURL ? (
-															<img className="w-8 h-8 rounded-full object-cover" src={user?.photoURL} alt="" />
+														{user?.photo ? (
+															<img className="w-8 h-8 rounded-full object-cover" src={user?.photo} alt="" />
 														) : (
 															<FaUserCircle className="text-black text-3xl" />
 														)}
@@ -122,7 +122,7 @@ export default function Navbar() {
 											<ul className="block text-gray-900">
 												<li className="block px-3 py-2 hover:bg-gray-200">
 													<p>
-														{user?.displayName ? user?.displayName : "Unknown"}
+														{user?.fullName ? user?.fullName : "Unknown"}
 													</p>
 												</li>
 												<li className="block px-3 py-2 hover:bg-gray-200">
