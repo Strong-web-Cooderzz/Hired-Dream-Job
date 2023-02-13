@@ -3,7 +3,6 @@ import { FaUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { resetAuthInfo } from "../../../features/auth/authSlice";
 import { resetUserInfo } from "../../../features/user/userSlice";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -16,7 +15,6 @@ export default function Navbar() {
 	const { logOut, dbUser, loading } = useContext(AuthContext);
 	const handleLogOut = () => {
 		logOut();
-		dispatch(resetAuthInfo())
 		dispatch(resetUserInfo())
 	};
 

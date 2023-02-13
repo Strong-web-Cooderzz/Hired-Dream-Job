@@ -1,29 +1,27 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ConfirmModal from '../../../shared/Modal/ConfirmModal';
-import { setAuthInfo } from '../../../../features/auth/authSlice';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import fetchData from '../../../../api/fetchData';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 export default function Comments({ post, hideComments, setHideComments }) {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [commentId, setCommentId] = useState('');
 	// delete confirmation modal
 	const [hidden, setHidden] = useState(true);
+	const { user } = useContext(AuthContext);
+	const token = user.accessToken
 
-	const authInfo = useSelector(state => state.auth.authInfo)
 	const userInfo = useSelector(state => state.user.userInfo)
-	const token = authInfo.stsTokenManager?.accessToken
-	console.log(post)
 
 	const dispatch = useDispatch()
 
 	const handlePostComment = async e => {
 		e.preventDefault();
-		dispatch(setAuthInfo());
 		const comment = e.target.comment.value;
 		const commentDetails = {
 			postId: post._id,
