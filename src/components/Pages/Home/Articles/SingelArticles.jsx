@@ -30,6 +30,7 @@ const SingelArticles = () => {
 	useEffect(() => {
 		async function fetchPost() {
 			const response = await fetchData.get(`/blogPost/${postId}`)
+			console.log(response.data[0])
 			setPost(response.data[0])
 		}
 
@@ -65,15 +66,24 @@ const SingelArticles = () => {
 		} else toast.error('An error occured. Please try again or try to re-login again.')
 	}
 
+	const showDate = (date) => {
+		const newDate = new Date(date);
+		const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
+		const day = newDate.getDate();
+		const year = newDate.getFullYear();
+		const fullDate = `${month} ${day}, ${year}`;
+		return fullDate;
+	}
+
 	return (
 		<section>
 			<div>
 				<div className='w-11/12 mx-auto md:w-full px-8 lg:w-8/12'>
 					<div className="flex items-center mt-12 gap-2 text-sm">
-						<img className="h-12 w-12 rounded-full ring-2 ring-white" src={post.userImage} alt="" />
+						<img className="h-12 w-12 rounded-full ring-2 ring-white object-cover" src={post.author?.photo} alt="" />
 						<div>
-							<h3 className="text-lg">Alison Dawn</h3>
-							<span className="mr-2 text-gray-600">August 31, 2021</span>
+							<h3 className="text-lg">{post.author?.fullName}</h3>
+							<span className="mr-2 text-gray-600">{showDate(post.date)}</span>
 							<span className='text-sm mr-2 text-gray-600'>&#x2022;</span>
 							<span className='text-gray-600'>{post.comments?.length} Comment{post.comments?.length ? 's' : ''}</span>
 						</div>
