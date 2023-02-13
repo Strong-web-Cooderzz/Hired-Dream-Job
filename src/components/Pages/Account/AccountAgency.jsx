@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -9,6 +11,21 @@ const AccountAgency = () => {
 
 	const [userData, setUserData] = useState('')
 
+	 //creating IP state
+	 const [ip,setIP] = useState('');
+      
+	 //creating function to load ip address from the API
+	 const getData = async()=>{
+		 const res = await axios.get('https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba')
+		 console.log(res.data);
+		 setIP(res.data.ip)
+	 }
+	 useEffect(()=>{
+	   //passing getData method to the lifecycle method
+	   getData()
+	},[])
+
+	
 	useEffect(() => {
 		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
 			.then(res => res.json())
@@ -29,7 +46,8 @@ const AccountAgency = () => {
 			'fullName': userData.fullName,
 			'photo': userData.photo,
 			'type': userData.type,
-			'employData': data
+			'ip':ip,
+			'employData': data,
 		}
 		console.log(employInfo);
 		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user/${userData._id}`, {
@@ -39,6 +57,7 @@ const AccountAgency = () => {
 			},
 			body: JSON.stringify(employInfo)
 		})
+		toast.success('Account Updated!')
 		navigate("/");
 	};
 

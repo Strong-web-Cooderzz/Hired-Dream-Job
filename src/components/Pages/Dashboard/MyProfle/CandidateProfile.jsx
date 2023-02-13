@@ -8,10 +8,33 @@ import CreatableSelect from 'react-select/creatable';
 import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from 'react-select';
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import axios from "axios";
 
 const CandidateProfile = () => {
   const [loading,setLoading] = useState(false)
   const { user,dbUser } = useContext(AuthContext);
+
+
+
+  //creating IP state
+  const [ip,setIP] = useState('');
+      
+  //creating function to load ip address from the API
+  const getData = async()=>{
+    const res = await axios.get('https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba')
+    console.log(res.data);
+    setIP(res.data.ip)
+  }
+  useEffect(()=>{
+    //passing getData method to the lifecycle method
+    getData()
+ },[])
+
+
+
+
+
+
   const animatedComponents = makeAnimated();
   const skillsOptions = [
     { value: 'HTML', label: 'HTML'},
@@ -87,6 +110,7 @@ const CandidateProfile = () => {
         'fullName':data.candidateName,
         'photo': imageUrl,
         'type': dbUser.type,
+        'ip':ip,
         'candidateData': updateData
       } 
       if(imageUrl){

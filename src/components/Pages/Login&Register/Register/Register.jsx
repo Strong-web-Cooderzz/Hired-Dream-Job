@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { set, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -14,8 +15,21 @@ const Register = () => {
     reset,
   } = useForm();
 
+ //creating IP state
+ const [ip,setIP] = useState('');
+      
+ //creating function to load ip address from the API
+ const getData = async()=>{
+     const res = await axios.get('https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba')
+     console.log(res.data);
+     setIP(res.data.ip)
+ }
+ useEffect(()=>{
+   //passing getData method to the lifecycle method
+   getData()
+},[])
 
-
+console.log(ip)
 
   const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
   const navigate = useNavigate();
@@ -38,7 +52,7 @@ const Register = () => {
       method: "POST",
       body: formData,
     })
-      .then((res) => res?.json())
+      .then((res) => res.json())
       .then((imageData) => {
         console.log(imageData);
         createAccount(email, password)
@@ -55,7 +69,8 @@ const Register = () => {
                   'email':data.email,
                   'fullName': data.firstName + ' ' + data.lastName,
                   'type':data.type,
-                  'photo':imageData.url
+                  'photo':imageData.url,
+                  'ip':ip
                 }
                 fetch('https://hired-dream-job-server-sparmankhan.vercel.app/user',{
                   method:'POST',
@@ -86,6 +101,7 @@ const Register = () => {
       });
   };
 
+   
   return (
     <>
       <div className="container mx-auto">

@@ -38,6 +38,14 @@ import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDa
 import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
 import CandidateManageBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/CandidateManageBlog";
 import EditBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/EditBlog";
+import Users from "../components/Pages/Dashboard/AdminDashboard/Routes/Users";
+import Jobs from "../components/Pages/Dashboard/AdminDashboard/Routes/Jobs";
+
+import DashboardDetails from "../components/Pages/Dashboard/AdminDashboard/Routes/DashboardDetails";
+import ManageUsers from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageUsers";
+import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJob";
+import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageJob";
+import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 
 
 export const router = createBrowserRouter([
@@ -206,7 +214,14 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/dashboard/admin',
-		element: <AdminDashboard />
+		element: <AdminDashboard />,children:[
+			{path:'',element:<DashboardDetails />},
+			{path:'users',element:<Users />},
+			{path:'jobs',element:<Jobs />},
+			{path:'blogs',element:<Blogs />},
+			{path:'users/edit/:id',element:<ManageUsers />, loader: ({params})=> fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)},
+			{path:'jobs/edit/:id',element:<MangeAdminJob />, loader: ({params})=> fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)},
+		]
 	},
 	{
 		path: "*",
