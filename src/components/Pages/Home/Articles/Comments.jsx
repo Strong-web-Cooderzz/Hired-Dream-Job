@@ -18,8 +18,6 @@ export default function Comments({ post, hideComments, setHideComments }) {
 
 	const userInfo = useSelector(state => state.user.userInfo)
 
-	const dispatch = useDispatch()
-
 	const handlePostComment = async e => {
 		e.preventDefault();
 		const comment = e.target.comment.value;
@@ -36,8 +34,6 @@ export default function Comments({ post, hideComments, setHideComments }) {
 	}
 
 	const handleDeleteComment = async () => {
-		dispatch(setAuthInfo());
-		console.log(commentId)
 		if (token) {
 			const response = await fetchData.delete('/delete-comment', {
 				headers: {
