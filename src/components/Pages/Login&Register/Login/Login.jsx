@@ -16,8 +16,6 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 export default function Login() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate()
-	const authInfo = useSelector(state => state.auth.authInfo)
-	const token = authInfo.stsTokenManager?.accessToken
 	const { FacebookSignIn, GoogleSignIn, GithubSignIn, Login } =
 		useContext(AuthContext);
 	const FacebookProvider = new FacebookAuthProvider();

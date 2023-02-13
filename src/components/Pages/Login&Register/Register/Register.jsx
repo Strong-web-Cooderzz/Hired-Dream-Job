@@ -44,11 +44,12 @@ const Register = () => {
 					'photo': imageData.url,
 					'password': data.password
 				}
-				fetchData.post('register', userData)
+				fetchData.post('/register', userData)
 					.then(response => {
 						const user = response.data
 						user.token = ''
 						setUserInfo(user)
+						localStorage.setItem('userInfo', JSON.stringify(user))
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
 								console.log(userCredential)
