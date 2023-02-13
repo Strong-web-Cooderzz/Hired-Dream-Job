@@ -12,6 +12,7 @@ const SingelArticles = () => {
 	const [hideComments, setHideComments] = useState(true);
 	const location = useLocation();
 	const postId = useParams().id;
+	console.log(post)
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
 
 	useEffect(() => {

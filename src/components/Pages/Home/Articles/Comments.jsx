@@ -6,6 +6,7 @@ import ConfirmModal from '../../../shared/Modal/ConfirmModal';
 import { setAuthInfo } from '../../../../features/auth/authSlice';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCloseCircle } from "react-icons/ai"
+import fetchData from '../../../../api/fetchData';
 
 export default function Comments({ post, hideComments, setHideComments }) {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -16,23 +17,29 @@ export default function Comments({ post, hideComments, setHideComments }) {
 	const authInfo = useSelector(state => state.auth.authInfo)
 	const userInfo = useSelector(state => state.user.userInfo)
 	const token = authInfo.stsTokenManager?.accessToken
+	console.log(post)
 
 	const dispatch = useDispatch()
 
 	const handlePostComment = async e => {
 		e.preventDefault();
+		dispatch(setAuthInfo());
 		const comment = e.target.comment.value;
 		const commentDetails = {
-			userId: userInfo._id,
 			postId: post._id,
 			comment,
 		}
-		const response = await fetchData.post('/post-comment', commentDetails)
+		const response = await fetchData.post('/post-comment', commentDetails, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
 		console.log(response.data);
 	}
 
 	const handleDeleteComment = async () => {
 		dispatch(setAuthInfo());
+		console.log(commentId)
 		if (token) {
 			const response = await fetchData.delete('/delete-comment', {
 				headers: {
@@ -42,7 +49,7 @@ export default function Comments({ post, hideComments, setHideComments }) {
 					commentId,
 				}
 			})
-			if (response.data.deletedCount > 0) {
+			if (response.data.success) {
 				setHidden(true)
 				toast.success('Comment deleted')
 			} else toast.error('An error occured. Please try again or try to re-login again.')

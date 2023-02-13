@@ -23,6 +23,7 @@ const Register = () => {
 		useContext(AuthContext);
 
 	const onSubmit = (data) => {
+
 		const image = data.image[0];
 		const formData = new FormData();
 		formData.append("file", image)
@@ -46,13 +47,12 @@ const Register = () => {
 				}
 				fetchData.post('/register', userData)
 					.then(response => {
-						const user = response.data
+						const user = { ...response.data }
 						user.token = ''
 						setUserInfo(user)
 						localStorage.setItem('userInfo', JSON.stringify(user))
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
-								console.log(userCredential)
 								// localStorage.setItem(`firebase:authUser:AIzaSyCyooty3MgCBzDW9A_iZDGdQk0-jGGoqTo:[DEFAULT]`)
 								toast.success("Successfully created account");
 								if (data.type === "Candidate") {
@@ -63,7 +63,6 @@ const Register = () => {
 							})
 							.catch(err => console.log(err));
 						console.log(data);
-						reset();
 					})
 			});
 	};
@@ -157,11 +156,11 @@ const Register = () => {
 									</label>
 									<label>
 										<input
-											type="file"
+											type="text"
 											id="photo"
 											accept="image/*"
 											{...register("image", {
-												required: "Photo Is Required",
+												// required: "Photo Is Required",
 											})}
 											className="text-sm text-gray-700 file:mr-5 file:py-2 file:px-6 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-500 hover:file:cursor-pointer hover:file:bg-amber-50 hover:file:text-amber-700 w-full bg-gray-50 rounded-lg border shadow"
 										/>
