@@ -4,11 +4,15 @@ import App from "./App";
 import AuthProvider from "./components/AuthProvider/AuthProvider";
 import "./index.css";
 import 'tw-elements';
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<AuthProvider>
+				<App />
+			</AuthProvider>
+		</Provider>
+	</React.StrictMode>
 );

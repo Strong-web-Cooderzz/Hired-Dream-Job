@@ -1,16 +1,21 @@
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
+import { resetUserInfo } from "../../../features/user/userSlice";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
-	const { logOut, user, dbUser, loading } = useContext(AuthContext);
-	console.log(user);
-	const LogOut = () => {
+	const user = useSelector(state => state.user.userInfo)
+	console.log(user)
+	const dispatch = useDispatch()
+	const { logOut, dbUser, loading } = useContext(AuthContext);
+	const handleLogOut = () => {
 		logOut();
+		dispatch(resetUserInfo())
 	};
 
 	return (
@@ -82,7 +87,7 @@ export default function Navbar() {
 							</li>
 
 							<li className="text-white">
-								{user ? (
+								{user.email ? (
 									<div className="relative">
 										<input
 											type="checkbox"
@@ -100,8 +105,8 @@ export default function Navbar() {
 												</div>
 													:
 													<div>
-														{user?.photoURL ? (
-															<img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="" />
+														{user?.photo ? (
+															<img className="w-8 h-8 rounded-full object-cover" src={user?.photo} alt="" />
 														) : (
 															<FaUserCircle className="text-black text-3xl" />
 														)}
@@ -117,7 +122,7 @@ export default function Navbar() {
 											<ul className="block text-gray-900">
 												<li className="block px-3 py-2 hover:bg-gray-200">
 													<p>
-														{user?.displayName ? user?.displayName : "Unknown"}
+														{user?.fullName ? user?.fullName : "Unknown"}
 													</p>
 												</li>
 												<li className="block px-3 py-2 hover:bg-gray-200">
@@ -128,7 +133,7 @@ export default function Navbar() {
 												</li>
 												<li className="block px-3 py-2">
 													<button
-														onClick={LogOut}
+														onClick={handleLogOut}
 														className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600 w-full"
 													>
 														Log Out
