@@ -8,7 +8,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai"
 import fetchData from '../../../../api/fetchData';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
-export default function Comments({ post, hideComments, setHideComments }) {
+export default function Comments({ post, hideComments, setHideComments, fetchPost }) {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [commentId, setCommentId] = useState('');
 	// delete confirmation modal
@@ -30,6 +30,12 @@ export default function Comments({ post, hideComments, setHideComments }) {
 				Authorization: `Bearer ${token}`
 			}
 		})
+		if (response.data.acknowledged) {
+			console.log('running')
+			fetchPost();
+			setIsEmpty(true)
+			e.target.reset();
+		}
 		console.log(response.data);
 	}
 

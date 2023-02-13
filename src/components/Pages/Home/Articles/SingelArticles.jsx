@@ -16,14 +16,13 @@ const SingelArticles = () => {
 	console.log(post)
 	const shareURL = `https://hired-dream-job.vercel.app${location.pathname}`
 
-	useEffect(() => {
-		async function fetchPost() {
-			const response = await fetchData.get(`/blogPost/${postId}`)
-			setPost(response.data[0])
-			setDataLoading(false)
-		}
+	async function fetchPost() {
+		const response = await fetchData.get(`/blogPost/${postId}`)
+		setPost(response.data[0])
+	}
 
-		fetchPost();
+	useEffect(() => {
+		fetchPost().then(() => setDataLoading(false));
 	}, [])
 
 	return (
@@ -80,7 +79,7 @@ const SingelArticles = () => {
 							<span className='flex items-center gap-2'><span onClick={() => setHideComments(!hideComments)} className="cursor-pointer"><FaRegComment /></span> <span>{post.comments?.length}</span></span>
 						</div>
 						<div>
-							<Comments post={post} hideComments={hideComments} setHideComments={setHideComments} />
+							<Comments post={post} hideComments={hideComments} setHideComments={setHideComments} fetchPost={fetchPost} />
 						</div>
 					</div>
 				</div>
