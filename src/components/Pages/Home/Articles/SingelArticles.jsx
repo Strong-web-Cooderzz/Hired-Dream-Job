@@ -67,12 +67,14 @@ const SingelArticles = () => {
 	}
 
 	const showDate = (date) => {
-		const newDate = new Date(date);
-		const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
-		const day = newDate.getDate();
-		const year = newDate.getFullYear();
-		const fullDate = `${month} ${day}, ${year}`;
-		return fullDate;
+		if (date) {
+			const newDate = new Date(date);
+			const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(newDate);
+			const day = newDate.getDate();
+			const year = newDate.getFullYear();
+			const fullDate = `${month} ${day}, ${year}`;
+			return fullDate;
+		}
 	}
 
 	return (
