@@ -335,7 +335,7 @@ const FindJob = () => {
 														<div key={job._id}>
 															<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
 																<img
-																	src={job.company?.photo}
+																	src={job.company[0]?.photo}
 																	className="w-24 h-24 rounded-full mx-auto object-cover"
 																	alt=""
 																/>
