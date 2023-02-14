@@ -59,6 +59,7 @@ const FindJob = () => {
 			setCount(response.data.count)
 			setDataLoading(false);
 			setIsOpen(false);
+			console.log(response.data)
 		} catch (err) {
 			console.log(err);
 		}
