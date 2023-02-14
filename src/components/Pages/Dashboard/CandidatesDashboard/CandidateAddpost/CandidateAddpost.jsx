@@ -22,7 +22,7 @@ const CandidateAddpost = () => {
 
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
 	const { user } = useContext(AuthContext);
-	const token = user.accessToken
+	const token = user?.accessToken
 
 	const mdParser = new MarkdownIt();
 

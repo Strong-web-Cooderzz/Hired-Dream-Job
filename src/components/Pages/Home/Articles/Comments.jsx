@@ -1,22 +1,18 @@
 import { useContext, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ConfirmModal from '../../../shared/Modal/ConfirmModal';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCloseCircle } from "react-icons/ai"
 import fetchData from '../../../../api/fetchData';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import moment from 'moment';
 
 export default function Comments({ post, hideComments, setHideComments, fetchPost }) {
+	const { user, token } = useContext(AuthContext);
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [commentId, setCommentId] = useState('');
 	// delete confirmation modal
 	const [hidden, setHidden] = useState(true);
-	const authInfo = useSelector(state => state.auth.authInfo)
-	const token = authInfo?.accessToken
-
-	const userInfo = useSelector(state => state.user.userInfo)
 
 	const handlePostComment = async e => {
 		e.preventDefault();
@@ -60,13 +56,10 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 	}
 
 	return (
-		<section className={`${hideComments ? 'translate-x-full' : ''}  transition-all absolute top-0 right-0 bg-gray-100 w-1/2 p-4 h-full overflow-scroll`}>
-			<div onClick={() => setHideComments(true)} className='absolute top-4 right-4 text-3xl'>
-				<AiOutlineCloseCircle />
-			</div>
+		<section className={`p-4 h-full overflow-scroll mx-auto`}>
 			{/* <!-- Comment --> */}
 			{
-				userInfo.email ?
+				user?.email ?
 					<form onSubmit={handlePostComment} className='mt-4'>
 						<div className='sm:flex w-full gap-1 items-center flex-col'>
 							<textarea onChange={e => {
@@ -82,20 +75,25 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 			}
 			{
 				post.comments?.map(comment => <div className="flex my-8 gap-2">
-					<div className='w-12 h-12'>
-						<img className="h-12 w-12 rounded-full object-cover" src={comment.user.photo} alt={comment.user.fullName} />
+					<div className=''>
+						<img className="h-8 w-8 rounded-full object-cover" src={comment.user.photo} alt={comment.user.fullName} />
 					</div>
-					<div className='flex-grow'>
-						<div className="bg-gray-200 rounded-lg px-4 py-2">
-							<h2 className="font-bold">{comment.user.fullName}</h2>
-							<p className="mt-3">{comment.comment}</p>
+					<div className='flex-grow border-2 border-r-0 border-t-0 border-l-0 pb-2'>
+						<div className="rounded-lg">
+							<h2 className="">{comment.user.fullName}</h2>
+							<p className="mt-3 text-sm text-gray-600">{comment.comment}</p>
 						</div>
-						<div className='text-sm mt-1 flex gap-2 text-gray-700'>
-							<button>Report</button>
-							<button className={`${userInfo.email !== comment.user.email && 'hidden'} hover:text-red-500`} onClick={() => {
-								setHidden(false)
-								setCommentId(comment._id)
-							}}>Delete</button>
+						<div className='text-xs mt-1 grid text-gray-700 justify-items-end'>
+							<div className='flex gap-4'>
+								<span>{moment(comment.date).fromNow()}</span>
+								<div className='flex gap-2'>
+									<button>Report</button>
+									<button className={`${user?.email !== comment.user.email && 'hidden'} hover:text-red-500`} onClick={() => {
+										setHidden(false)
+										setCommentId(comment._id)
+									}}>Delete</button>
+								</div>
+							</div>
 							<ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={handleDeleteComment} />
 						</div>
 					</div>

@@ -6,18 +6,13 @@ import {
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
-import { login } from "../../../../features/auth/authSlice";
-import { setUserInfo } from "../../../../features/user/userSlice";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Login() {
-	const dispatch = useDispatch();
 	const navigate = useNavigate()
-	const { FacebookSignIn, GoogleSignIn, GithubSignIn, Login } =
-		useContext(AuthContext);
+	const { FacebookSignIn, GoogleSignIn, GithubSignIn, login } = useContext(AuthContext);
 	const FacebookProvider = new FacebookAuthProvider();
 	const GoogleProvider = new GoogleAuthProvider();
 	const GithubProvider = new GithubAuthProvider();
@@ -59,19 +54,9 @@ export default function Login() {
 	const onSubmit = (data) => {
 		// console.log(data);
 		const { email, password } = data;
-		Login(email, password)
+		login(email, password)
 			.then((result) => {
-				console.log(result.user);
 				reset();
-				fetchData.get('/login', {
-					headers: {
-						'Authorization': `Bearer ${result.user.accessToken}`
-					}
-				})
-					.then(response => {
-						localStorage.setItem('userInfo', JSON.stringify(response.data))
-						dispatch(setUserInfo(response.data))
-					})
 				navigate('/')
 			})
 			.catch((err) => console.error(err));

@@ -4,7 +4,6 @@ import { set, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
-import { setUserInfo } from "../../../../features/user/userSlice";
 import AuthProvider, { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
@@ -49,8 +48,6 @@ const Register = () => {
 					.then(response => {
 						const user = { ...response.data }
 						user.token = ''
-						setUserInfo(user)
-						localStorage.setItem('userInfo', JSON.stringify(user))
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
 								toast.success("Successfully created account");

@@ -1,21 +1,17 @@
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
-import { resetUserInfo } from "../../../features/user/userSlice";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
-	const user = useSelector(state => state.user.userInfo)
-	console.log(user)
-	const dispatch = useDispatch()
-	const { logOut, dbUser, loading } = useContext(AuthContext);
+	const [open, setOpen] = useState(false);
+	const { user, logOut, dbUser, loading, token } = useContext(AuthContext);
+	console.log(token)
 	const handleLogOut = () => {
 		logOut();
-		dispatch(resetUserInfo())
 	};
 
 	return (
@@ -87,7 +83,7 @@ export default function Navbar() {
 							</li>
 
 							<li className="text-white">
-								{user.email ? (
+								{user?.email ? (
 									<div className="relative">
 										<input
 											type="checkbox"
@@ -96,6 +92,7 @@ export default function Navbar() {
 										/>
 										<label
 											htmlFor="sortbox"
+											onClick={() => setOpen(!open)}
 											className={`flex items-center space-x-1 cursor-pointer ${user?.photoURL ? "!w-8 rounded-full !h-8" : "w-full"
 												}`}
 										>
@@ -117,12 +114,12 @@ export default function Navbar() {
 
 										<div
 											id="sortboxmenu"
-											className="absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out z-10 font-semibold"
+											className={`${!open ? 'z-[-10]' : 'z-0'}  absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out font-semibold`}
 										>
 											<ul className="block text-gray-900">
 												<li className="block px-3 py-2 hover:bg-gray-200">
 													<p>
-														{user?.fullName ? user?.fullName : "Unknown"}
+														{user?.displayName ? user?.displayName : "Unknown"}
 													</p>
 												</li>
 												<li className="block px-3 py-2 hover:bg-gray-200">

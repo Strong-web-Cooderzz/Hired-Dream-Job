@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
+	const [token, setToken] = useState('')
 
 	const FacebookSignIn = (facebook) => {
 		return signInWithPopup(auth, facebook);
@@ -35,7 +36,7 @@ const AuthProvider = ({ children }) => {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
-	const Login = (email, password) => {
+	const login = (email, password) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
@@ -65,12 +66,23 @@ const AuthProvider = ({ children }) => {
 		GoogleSignIn,
 		GithubSignIn,
 		createAccount,
-		Login,
+		login,
 		dbUser,
 		logOut,
 		changePass,
 		updateUserProfile,
+		token
 	};
+
+	useEffect(() => {
+		const unSubscribe = onAuthStateChanged(auth, currentUser => {
+			currentUser ? setUser(currentUser) : setUser(null)
+			setToken(currentUser.accessToken)
+			setLoading(false)
+		})
+		return unSubscribe
+	}, [])
+
 	return (
 		<AuthContext.Provider value={authInfo}>
 			{children}

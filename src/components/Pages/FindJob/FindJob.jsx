@@ -18,7 +18,7 @@ const FindJob = () => {
 	const [jobType, setJobType] = useState('');
 	const [time, setTime] = useState(0);
 	// how many cards will be shown per page
-	const [perPage, setPerPage] = useState(10);
+	const [perPage, setPerPage] = useState('10');
 	// which page user currently in
 	const [page, setPage] = useState(1);
 	// 1 seconds = 1000 miliseconds
@@ -56,6 +56,7 @@ const FindJob = () => {
 			setData(response.data);
 			setDataLoading(false);
 			setIsOpen(false);
+			console.log(response.data)
 		} catch (err) {
 			console.log(err);
 		}
@@ -85,7 +86,7 @@ const FindJob = () => {
 	}, [time, jobType, newer, perPage, experience]);
 
 	return (
-		<main className="mb-16">
+		<main className="">
 			<div className="bg-gradient-to-r from-sky-400 to-purple-400 flex flex-col justify-center items-center py-6">
 				<h1 className="font-semibold text-2xl text-white">Find Jobs</h1>
 				<p className="text-white flex gap-2">
@@ -107,7 +108,7 @@ const FindJob = () => {
 					</div>
 				</div>
 				<div className="rounded-md grid lg:grid-cols-4">
-					<div className={`left-0 ${isOpen ? 'left-0' : '-translate-x-full'} bg-slate-100 lg:translate-x-0 transition-transform lg:col-span-1 p-6 pt-10 md:pt-6 absolute lg:static top-16 right-0 lg:top-auto lg:right-auto z-10`}>
+					<div className={`left-0 ${isOpen ? 'left-0' : '-translate-x-full'} bg-gray-50 lg:translate-x-0 transition-transform lg:col-span-1 p-6 pt-10 md:pt-6 absolute lg:static top-16 right-0 lg:top-auto lg:right-auto z-10`}>
 						<div>
 							<button onClick={() => setIsOpen(!isOpen)} type="button" className="absolute top-3 right-3 text-4xl lg:hidden"><AiOutlineCloseCircle /></button>
 						</div>
@@ -301,9 +302,9 @@ const FindJob = () => {
 									<option value="Oldest">Oldest</option>
 								</select>
 								<select onChange={e => setPerPage(e.target.value)} className="bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
-									<option value="10">10 per Page</option>
-									<option value="20">20 per Page</option>
-									<option value="30">30 per Page</option>
+									<option value="10">10 per page</option>
+									<option value="20">20 per page</option>
+									<option value="30">30 per page</option>
 								</select>
 							</div>
 
@@ -323,7 +324,7 @@ const FindJob = () => {
 							{/* Single Job */}
 							{
 								!dataLoading && <>
-									<div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5">
+									<div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5 pb-16">
 										{
 											data.map(job =>
 												<>
