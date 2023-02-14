@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
     </li>
     :
     <li className="relative">
-    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Profile   </NavLink>
+    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200">My Profile</NavLink>
   </li>
 }
   
@@ -36,17 +36,17 @@ const DashboardSidebar = () => {
 {
   dbUser?.type==='Candidate' && <>
    <li className="relative">
-      <NavLink to='/dashboard/add_blog' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">   Add 
+      <NavLink to='/dashboard/add_blog' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!">   Add 
       New Blog </NavLink>
     </li>
    <li className="relative">
-      <NavLink to='/dashboard/my_blogs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> Manage Blogs</NavLink>
+      <NavLink to='/dashboard/my_blogs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!"> Manage Blogs</NavLink>
     </li>
   </>
 }
    
     <li className="relative">
-      <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> All Applicants  </NavLink>
+      <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!">All Applied Jobs</NavLink>
     </li>
   </ul>
 </div>
