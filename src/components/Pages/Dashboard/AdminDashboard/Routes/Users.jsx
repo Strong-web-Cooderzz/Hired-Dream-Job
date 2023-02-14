@@ -20,7 +20,7 @@ const Users = () => {
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://hired-dream-job-server-sparmankhan.vercel.app/api/v1/get/users?type=${userType}`
+      `http://localhost:5000/api/v1/get/users?type=${userType}`
     )
       .then((res) => res.json())
       .then((data) => {

@@ -37,14 +37,14 @@ const EditBlog = () => {
 
 	const [categories, setCategories] = useState([]);
 	useEffect(() => {
-		fetch("https://hired-dream-job-server-sparmankhan.vercel.app/categories")
+		fetch("http://localhost:5000/categories")
 			.then((res) => res.json())
 			.then((data) => setCategories(data));
 	}, []);
 
 	const [tags, setTags] = useState([]);
 	useEffect(() => {
-		fetch("https://hired-dream-job-server-sparmankhan.vercel.app/tags")
+		fetch("http://localhost:5000/tags")
 			.then((res) => res.json())
 			.then((data) => setTags(data));
 	}, []);
@@ -81,7 +81,7 @@ const EditBlog = () => {
 					categories: postCategory,
 					tags: postTags,
 				};
-				fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/editPost/${editPost._id}`, {
+				fetch(`http://localhost:5000/editPost/${editPost._id}`, {
 					method: "PATCH",
 					headers: {
 						"content-type": "application/json",

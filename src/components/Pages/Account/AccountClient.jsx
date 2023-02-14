@@ -30,7 +30,7 @@ const AccountClient = () => {
 			'candidateData': data
 		}
 		console.log(userData);
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user/${dbUser?._id}`, {
+		fetch(`http://localhost:5000/user/${dbUser?._id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json'

@@ -17,7 +17,7 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 
 		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType, applyDate, jobTitle: title, companyId: _id, companyLocation: location }
 		// send and save  data in database 
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/applyjobs`, {
+		fetch(`http://localhost:5000/candidate/applyjobs`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'
