@@ -26,7 +26,7 @@ export default function Footer() {
 	};
 
 	return (
-		<footer className="text-gray-600 w-full 2xl:mx-auto">
+		<footer className="text-gray-600 w-full 2xl:mx-auto bg-gray-50">
 			{/* links and logo, first part */}
 			<div className="flex  flex-col lg:flex-row  md:px-12 border-solid border-2 border-gray-100 border-l-0 border-t-0 border-r-0 gap-6 ">
 				{/* logo, phone and address */}
