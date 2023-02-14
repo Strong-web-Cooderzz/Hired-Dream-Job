@@ -4,20 +4,22 @@ import { BsBookmark, BsSearch } from "react-icons/bs";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
+import fetchData from '../../../api/fetchData';
 
 export default function Employers() {
 	const [employ, setEmploy] = useState([])
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/employ?type=Agency`)
-			.then(res => res.json())
-			.then(data => {
-				setEmploy(data);
-				setDataLoading(false);
-			})
-			.finally(() => {
-			})
+		fetchData.get('/employ', {
+			params: {
+				type: 'Agency'
+			}
+		})
+		.then(response => {
+				setEmploy(response.data)
+				setDataLoading(false)
+		})
 	}, []);
 
 	function searchJob(e) {
