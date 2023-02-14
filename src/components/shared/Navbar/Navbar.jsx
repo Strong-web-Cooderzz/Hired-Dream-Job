@@ -114,7 +114,7 @@ export default function Navbar() {
 
 										<div
 											id="sortboxmenu"
-											className={`${!open ? 'z-[-10]' : 'z-0'}  absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out font-semibold`}
+											className={`${!open ? 'z-[-10]' : 'z-10'} absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out font-semibold`}
 										>
 											<ul className="block text-gray-900">
 												<li className="block px-3 py-2 hover:bg-gray-200">
