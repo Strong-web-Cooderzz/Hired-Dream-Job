@@ -111,13 +111,8 @@ export const router = createBrowserRouter([
 				element: <Pricing />,
 			},
 			{
-				path: "/find-jobs/single-job",
-				element: <SingleJobs />
-			},
-			{
 				path: "/jobs/:id",
 				element: <SingleJobs />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
 			},
 			{
 				path: "/pay/:id",
