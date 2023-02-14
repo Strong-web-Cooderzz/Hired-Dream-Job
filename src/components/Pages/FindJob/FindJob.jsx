@@ -234,61 +234,61 @@ const FindJob = () => {
 							} else {
 								setTime(0);
 							}
-						}} className="mt-6 [&>div>label]:text-sm [&>div>label]:text-gray-600 [&>div>label]:ml-2">
+						}} className="mt-6 [&>div>label]:text-md [&>div>label]:text-gray-600 [&>div>label]:ml-2">
 							<h1 className="text-md mb-1">Date Posted</h1>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="all-date" type="radio" value="all" name="date-posted" />
 								<label htmlFor="all-date">All</label>
 							</div>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="last-hour" type="radio" value="last-hour" name="date-posted" />
 								<label htmlFor="last-hour">Last Hour</label>
 							</div>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="last-day" type="radio" name="date-posted" value="last-day" />
 								<label htmlFor="last-day">Last 24 Hour</label>
 							</div>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="seven-day" type="radio" name="date-posted" value="seven-day" />
 								<label htmlFor="seven-day">Last 7 Days</label>
 							</div>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="fourteen-day" type="radio" name="date-posted" value="fourteen-day" />
 								<label htmlFor="fourteen-day">Last 14 days</label>
 							</div>
-							<div className="my-1">
+							<div className="my-0">
 								<input id="one-month" type="radio" name="date-posted" value="one-month" />
 								<label htmlFor="one-month">Last 30 Days</label>
 							</div>
 						</div>
 						<div>
-							<div onChange={e => setExperience(parseInt(e.target.value))} className="mt-6 [&>div>label]:text-sm [&>div>label]:text-gray-500 [&>div>label]:ml-2">
+							<div onChange={e => setExperience(parseInt(e.target.value))} className="mt-6 [&>div>label]:text-md [&>div>label]:text-gray-600 [&>div>label]:ml-2">
 								<h1 className="text-md mb-1">Experience Level</h1>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-0" type="radio" name="experience" value="0" />
 									<label htmlFor="xp-0">No Experience</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-1" type="radio" name="experience" value="1" />
 									<label htmlFor="xp-1">1 Year</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-2" type="radio" name="experience" value="2" />
 									<label htmlFor="xp-2">2 Year</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-3" type="radio" name="experience" value="3" />
 									<label htmlFor="xp-3">3 Year</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-4" type="radio" name="experience" value="4" />
 									<label htmlFor="xp-4">4 Year</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-5" type="radio" name="experience" value="5" />
 									<label htmlFor="xp-5">5 Year</label>
 								</div>
-								<div className="flex my-1">
+								<div className="flex my-0">
 									<input id="xp-6" type="radio" name="experience" value="6" />
 									<label htmlFor="xp-6">5 Year+</label>
 								</div>
