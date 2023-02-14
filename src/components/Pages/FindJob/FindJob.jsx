@@ -3,7 +3,7 @@ import { BiCategory } from "react-icons/bi";
 import { BsFilter } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
-import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiOutlineCloseCircle, AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { Link, useActionData, useNavigate } from "react-router-dom";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import fetchData from "../../../api/fetchData";
@@ -27,6 +27,7 @@ const FindJob = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [data, setData] = useState([]);
 	const [dataLoading, setDataLoading] = useState(true);
+	const [count, setCount] = useState(0);
 	const categoryRef = useRef();
 	const navigate = useNavigate();
 
@@ -53,10 +54,10 @@ const FindJob = () => {
 					category: categoryRef.current || ''
 				}
 			})
-			setData(response.data);
+			setData(response.data.data);
+			setCount(response.data.count)
 			setDataLoading(false);
 			setIsOpen(false);
-			console.log(response.data)
 		} catch (err) {
 			console.log(err);
 		}
@@ -83,7 +84,7 @@ const FindJob = () => {
 		} else {
 			fetchFromServer();
 		}
-	}, [time, jobType, newer, perPage, experience]);
+	}, [time, jobType, newer, perPage, experience, page]);
 
 	return (
 		<main className="">
@@ -367,6 +368,14 @@ const FindJob = () => {
 												</>
 											)
 										}
+									</div>
+									{/* pagination */}
+									<div className="flex itemx-center justify-center gap-4 mb-16">
+										<button onClick={() => {
+											setPage(Number(page) - 1)
+										}} disabled={page === 1} className="w-8 h-8 rounded-full grid place-content-center" type="button"><AiOutlineArrowLeft /></button>
+										<button className="bg-blue-600 text-white w-8 h-8 rounded-full" type="button">{page}</button>
+										<button onClick={() => setPage(Number(page) + 1)} disabled={page === Math.ceil(count / perPage)} className="w-8 h-8 rounded-full grid place-content-center" type="button"><AiOutlineArrowRight /></button>
 									</div>
 								</>
 							}
