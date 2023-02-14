@@ -11,6 +11,8 @@ import DashboardSidebar from "../components/shared/DashboardSidebar/DashboardSid
 
 const DashboardLayout = () => {
   const {dbUser} = useContext(AuthContext)
+	const {loading} = useContext(AuthContext)
+	console.log(loading)
   console.log(dbUser);
   const [side, setSide] = useState(false);
   return (

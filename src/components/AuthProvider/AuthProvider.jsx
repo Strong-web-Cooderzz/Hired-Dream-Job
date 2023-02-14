@@ -71,16 +71,21 @@ const AuthProvider = ({ children }) => {
 		logOut,
 		changePass,
 		updateUserProfile,
-		token
+		token,
+		setDbUser
 	};
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, currentUser => {
-			currentUser ? setUser(currentUser) : setUser(null)
+			if (currentUser) {
+				setUser(currentUser)
+			} else {
+				setUser(null)
+			}
 			setToken(currentUser.accessToken)
 			setLoading(false)
 		})
-		return unSubscribe
+		return () => unSubscribe()
 	}, [])
 
 	return (
