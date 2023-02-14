@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -8,6 +9,22 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
   
+
+  //creating IP state
+  const [ip,setIP] = useState('');
+      
+  //creating function to load ip address from the API
+  const getData = async()=>{
+    const res = await axios.get('https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba')
+    console.log(res.data);
+    setIP(res.data.ip)
+  }
+  useEffect(()=>{
+    //passing getData method to the lifecycle method
+    getData()
+ },[])
+
+
   const [userData,setUserData] = useState('')
   
     useEffect(()=>{
@@ -66,6 +83,7 @@ const MyProfile = () => {
         'fullName':userData.fullName,
         'photo': userData.photo,
         'type': userData.type,
+        'ip':ip,
         'employData': updateData
       } 
       if(imageUrl){

@@ -18,8 +18,10 @@ const Register = () => {
 	const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
 	const navigate = useNavigate();
 
-	const { auth, setDbUser, createAccount, user, loading, updateUserProfile } =
-		useContext(AuthContext);
+	const { auth, setDbUser, createAccount, user, loading, updateUserProfile } = useContext(AuthContext);
+
+	// I, Abid Hasan removed function that sends ip address
+	// we don't need it. Cause express can do that. So it will improve user experience
 
 	const onSubmit = (data) => {
 
@@ -153,11 +155,11 @@ const Register = () => {
 									</label>
 									<label>
 										<input
-											type="text"
+											type="file"
 											id="photo"
 											accept="image/*"
 											{...register("image", {
-												// required: "Photo Is Required",
+												required: "Photo Is Required",
 											})}
 											className="text-sm text-gray-700 file:mr-5 file:py-2 file:px-6 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-500 hover:file:cursor-pointer hover:file:bg-amber-50 hover:file:text-amber-700 w-full bg-gray-50 rounded-lg border shadow"
 										/>
@@ -195,7 +197,6 @@ const Register = () => {
 										</label>
 									</div>
 								</div>
-
 								<div className="mb-4 md:flex md:justify-between">
 									<div className="mb-4 md:mr-2 md:mb-0 w-full">
 										<label

@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import makeAnimated from 'react-select/animated';
 import { toast } from "react-hot-toast";
 import CreatableSelect from 'react-select/creatable';
-
 import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from 'react-select';
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
@@ -13,6 +12,10 @@ import fetchData from "../../../../api/fetchData";
 const CandidateProfile = () => {
   const [loading,setLoading] = useState(false)
   const { user,dbUser } = useContext(AuthContext);
+
+	// I, Abid Hasan removed function that sends ip address
+	// we don't need it. Cause express can do that. So it will improve user experience
+
   const animatedComponents = makeAnimated();
   const skillsOptions = [
     { value: 'HTML', label: 'HTML'},
@@ -59,6 +62,8 @@ const CandidateProfile = () => {
       const imageUrl = imageData.url
       const updateData = {
         'photo':imageUrl,
+        'fullName':data.candidateName,
+        'type': dbUser.type,
 					'address': {
 						'Postal':data.zipCode,
 						'Street': data.streetAddress,
