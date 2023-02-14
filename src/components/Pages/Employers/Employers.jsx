@@ -22,18 +22,22 @@ export default function Employers() {
 		})
 	}, []);
 
-	function searchJob(e) {
+	function searchEmployers(e) {
 		e.preventDefault();
 		const form = e.target;
 		const search = form.search.value;
 		const location = form.location.value;
 		setDataLoading(true);
-		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/find-employer?search=${search}&location=${location}`)
-			.then(res => res.json())
-			.then(data => {
-				setEmploy(data);
-				setDataLoading(false);
-			});
+		fetchData.get('/find-employer', {
+			params: {
+				search,
+				location
+			}
+		})
+		.then(response => {
+				setEmploy(response.data)
+				setDataLoading(false)
+		})
 	}
 
 	function SearchResultCard() {
@@ -65,7 +69,7 @@ export default function Employers() {
 			{/* search form starts here */}
 			<section className="bg-gradient-to-r from-blue-400 to-purple-400 w-full justify-center py-12 px-4 md:p-12 md:py-6 grid items-center gap-3">
 				{/* search form */}
-				<form onSubmit={e => searchJob(e)} className="w-[90vw] bg-transparent text-sm lg:w-full flex flex-col lg:flex-row gap-8 lg:px-4 lg:py-2 rounded-md lg:bg-white">
+				<form onSubmit={e => searchEmployers(e)} className="w-[90vw] bg-transparent text-sm lg:w-full flex flex-col lg:flex-row gap-8 lg:px-4 lg:py-2 rounded-md lg:bg-white">
 					{/* search by name */}
 					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
 						<div className='text-gray-600'>
