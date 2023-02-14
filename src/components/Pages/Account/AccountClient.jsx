@@ -7,16 +7,16 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const AccountClient = () => {
 	const { user } = useContext(AuthContext);
-	const [dbUser, setDbUser] = useState('')
+	const [dbUser] = useState('')
 
-	useEffect(() => {
-		fetchData.get('/user', {
-			params: {
-				email: user?.email
-			}
-		})
-		.then(response => setDbUser(response.data))
-	}, [user?.email])
+	// useEffect(() => {
+	// 	fetchData.get('/user', {
+	// 		params: {
+	// 			email: user?.email
+	// 		}
+	// 	})
+	// 	.then(response => setDbUser(response.data))
+	// }, [user?.email])
 
 	const navigate = useNavigate();
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
