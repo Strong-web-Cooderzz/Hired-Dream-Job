@@ -8,6 +8,7 @@ import CreatableSelect from 'react-select/creatable';
 import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from 'react-select';
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import fetchData from "../../../../api/fetchData";
 
 const CandidateProfile = () => {
   const [loading,setLoading] = useState(false)
@@ -57,20 +58,22 @@ const CandidateProfile = () => {
     .then(imageData=>{
       const imageUrl = imageData.url
       const updateData = {
-        'companyName': data.compnayName, 
         'photo':imageUrl,
-        'email':data.emailAddress,
-        'City':data.city,
-        'Country':data.country,
+					'address': {
+						'Postal':data.zipCode,
+						'Street': data.streetAddress,
+						'City':data.city,
+						'Country':data.country,
+					},
+					'social': {
+						'github': data.github,
+						'facebook':data.facebook,
+						'twitter':data.twitter,
+						'linkedin':data.linkedin,
+					},
         'phoneNumber':data.phoneNumber,
         'expectedSalary': data.expectedSalary,
         'salary': data.salary,
-        'Postal':data.zipCode,
-        'Street': data.streetAddress,
-        'github': data.github,
-        'facebook':data.facebook,
-        'twitter':data.twitter,
-        'linkedin':data.linkedin,
         'rate':data.rate,
         'bio':data.candidateBio,
         'age':data.age,
@@ -82,28 +85,18 @@ const CandidateProfile = () => {
         'gender':data.gender,
         'Category':data.category
       }
-      const employInfo = {
-        'email':dbUser.email,
-        'fullName':data.candidateName,
-        'photo': imageUrl,
-        'type': dbUser.type,
-        'candidateData': updateData
-      } 
       if(imageUrl){
-        fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate?email=${user?.email}`,{
-          method:'PUT',
-          headers:{
-            'content-type':'application/json'
-          },
-          body: JSON.stringify(employInfo)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data);
-          reset()
-          setLoading(false)
-          toast.success('Updated!')
-        })
+					fetchData.put(`/user/${user.uid}`, updateData, {
+						headers: {
+							'Authorization': `Bearer ${user.accessToken}`
+						}
+						})
+						.then(response=>{
+							console.log(response.data);
+							reset()
+							setLoading(false)
+							toast.success('Profile updated!')
+						})
       }
     })
   };
@@ -154,9 +147,9 @@ const CandidateProfile = () => {
         <div class="flex">
           <div className="md:flex w-full gap-5">
             <div className="md:w-1/2">
-              <p>Candidate Name</p>
+              <p>Your Name</p>
               <div class="form-floating mb-3 w-full">
-                <input {...register("candidateName", { required: true })}
+                <input defaultValue={dbUser?.fullName} {...register("candidateName", { required: true })}
                   type="text"
                   class="form-control
        block
@@ -177,13 +170,13 @@ const CandidateProfile = () => {
                   placeholder="name@example.com"
                 />
                 <label for="floatingInput" class="text-gray-700">
-                  Candidate Name
+                  Name
                 </label>
               </div>
             </div>
             {/* Email address */}
             <div className="md:w-1/2">
-              <p>Email address (this email show only profile) </p>
+              <p>Email address (can't be changed) </p>
               <div class="form-floating mb-3 w-full">
                 <input disabled defaultValue={dbUser.email} {...register("emailAddress", { required: false })}
                   type="email"
@@ -540,10 +533,10 @@ const CandidateProfile = () => {
           {/* Category */}
 <div className="w-full lg:w-full px-1">
                   <label
-                    className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-blueGray-600 text-sm mb-1"
                     htmlFor="grid-password"
                   >
-                    Category
+                    Sector you are best in
                   </label>
                   <div className="flex justify-center">
                     <div className="mb-3 w-full">

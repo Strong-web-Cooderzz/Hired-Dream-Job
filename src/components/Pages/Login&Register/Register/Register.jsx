@@ -18,7 +18,7 @@ const Register = () => {
 	const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
 	const navigate = useNavigate();
 
-	const { auth, createAccount, user, loading, updateUserProfile } =
+	const { auth, setDbUser, createAccount, user, loading, updateUserProfile } =
 		useContext(AuthContext);
 
 	const onSubmit = (data) => {
@@ -48,6 +48,7 @@ const Register = () => {
 					.then(response => {
 						const user = { ...response.data }
 						user.token = ''
+						setDbUser(user)
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
 								toast.success("Successfully created account");

@@ -54,6 +54,7 @@ const FindJob = () => {
 					category: categoryRef.current || ''
 				}
 			})
+			console.log(response.data)
 			setData(response.data.data);
 			setCount(response.data.count)
 			setDataLoading(false);
@@ -333,7 +334,7 @@ const FindJob = () => {
 														<div key={job._id}>
 															<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
 																<img
-																	src={job.logo}
+																	src={job.company?.photo}
 																	className="w-24 h-24 rounded-full mx-auto object-cover"
 																	alt=""
 																/>
