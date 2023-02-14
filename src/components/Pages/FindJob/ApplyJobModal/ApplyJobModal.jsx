@@ -1,12 +1,11 @@
 import React from 'react';
-import { useContext } from 'react';
-import { AuthContext } from './../../../AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useRef } from 'react';
 
-const ApplyJobModal = ({ singleJobData }) => {
+const ApplyJobModal = ({ singleJobData, user }) => {
 	const closeButton = useRef()
-	const { company, companyType, expireDate, jobType, location, logo, title, workingHours, _id } = singleJobData;
+	console.log(singleJobData)
+	const { company, companyType, expireDate, jobType, location, title, workingHours, _id } = singleJobData;
 	//  get data from input form 
 	const jobApplyFormHandlar = (e) => {
 		e.preventDefault()
@@ -16,7 +15,7 @@ const ApplyJobModal = ({ singleJobData }) => {
 		const candidateResume = form.resume.value;
 		const candidateMessage = form.message.value;
 
-		const jobApplyInfo = { candidateName, candidateEmail, candidateResume, candidateId: user?.uid, candidateMessage, company, companyType, jobType, applyDate, jobTitle: title, companyId: _id, companyLocation: location }
+		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType, applyDate, jobTitle: title, companyId: _id, companyLocation: location }
 		// send and save  data in database 
 		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/applyjobs`, {
 			method: 'POST',
@@ -52,7 +51,7 @@ const ApplyJobModal = ({ singleJobData }) => {
 						className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
 						<div
 							className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-							<h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel"> {company} </h5>
+							<h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalLabel"> {company.fullName} </h5>
 							<button ref={closeButton} type="button"
 								className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
 								data-bs-dismiss="modal" aria-label="Close"></button>
@@ -82,7 +81,7 @@ const ApplyJobModal = ({ singleJobData }) => {
         ease-in-out
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
-											defaultValue={user?.fullName}
+											defaultValue={user?.displayName}
 											placeholder="Enter your name" />
 									</div>
 									<div className="form-group mb-3">
