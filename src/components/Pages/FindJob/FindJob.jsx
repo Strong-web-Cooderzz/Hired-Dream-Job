@@ -161,6 +161,7 @@ const FindJob = () => {
 							<h1 className="text-md mb-1">Category</h1>
 							<div onChange={e => {
 								categoryRef.current = e.target.value;
+								setPage(1)
 								fetchFromServer();
 							}} className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
 								<span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -190,6 +191,7 @@ const FindJob = () => {
 						<div>
 							<div onChange={e => {
 								const value = e.target.value;
+								setPage(1)
 								if (value === 'full-time') {
 									setJobType('Full Time');
 								} else if (value === 'part-time') {
@@ -221,6 +223,7 @@ const FindJob = () => {
 						</div>
 						<div onChange={e => {
 							const value = e.target.value;
+							setPage(1)
 							if (value === 'all') {
 								setTime(0);
 							} else if (value === 'last-hour') {
@@ -264,7 +267,10 @@ const FindJob = () => {
 							</div>
 						</div>
 						<div>
-							<div onChange={e => setExperience(parseInt(e.target.value))} className="mt-6 [&>div>label]:text-md [&>div>label]:text-gray-600 [&>div>label]:ml-2">
+							<div onChange={e => {
+								setExperience(parseInt(e.target.value))
+								setPage(1)
+							}} className="mt-6 [&>div>label]:text-md [&>div>label]:text-gray-600 [&>div>label]:ml-2">
 								<h1 className="text-md mb-1">Experience Level</h1>
 								<div className="flex my-0">
 									<input id="xp-0" type="radio" name="experience" value="0" />
@@ -300,11 +306,17 @@ const FindJob = () => {
 					<div className="lg:col-span-3">
 						<div className="px-5">
 							<div className="flex lg:justify-end items-center justify-center lg:my-4 my-5">
-								<select onChange={() => setNewer(!newer)} className="mr-3 bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
+								<select onChange={() => {
+									setNewer(!newer)
+									setPage(1)
+								}} className="mr-3 bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="Newest">Newest</option>
 									<option value="Oldest">Oldest</option>
 								</select>
-								<select onChange={e => setPerPage(e.target.value)} className="bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
+								<select onChange={e => {
+									setPerPage(e.target.value)
+									setPage(1)
+								}} className="bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm">
 									<option value="10">10 per page</option>
 									<option value="20">20 per page</option>
 									<option value="30">30 per page</option>
