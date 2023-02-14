@@ -5,14 +5,14 @@ import CandidateProfile from './CandidateProfile';
 import MyProfile from './MyProfile';
 
 const Profile = () => {
-    const {dbUser} = useContext(AuthContext)
-    return (
-        <div>
-            {
-dbUser?.type==='Agency' ? <MyProfile /> : <CandidateProfile />
-            }
-        </div>
-    );
+	const { dbUser } = useContext(AuthContext)
+	return (
+		<div>
+			{
+				dbUser?.type === 'Agency' ? <MyProfile /> : <CandidateProfile />
+			}
+		</div>
+	);
 };
 
 export default Profile;
