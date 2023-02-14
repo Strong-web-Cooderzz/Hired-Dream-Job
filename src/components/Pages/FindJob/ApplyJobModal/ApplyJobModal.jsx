@@ -4,13 +4,11 @@ import { AuthContext } from './../../../AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-``
+
 const ApplyJobModal = ({ singleJobData }) => {
 	const closeButton = useRef()
 	const { company, companyType, expireDate, jobType, location, logo, title, workingHours, _id } = singleJobData;
 	const user = useSelector(state => state.user.userInfo)
-	console.log(user)
-	const applyDate = new Date().toString()
 	//  get data from input form 
 	const jobApplyFormHandlar = (e) => {
 		e.preventDefault()

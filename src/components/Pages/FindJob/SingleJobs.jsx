@@ -14,6 +14,7 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { FiTwitter } from "react-icons/fi";
 import ApplyJobModal from "./ApplyJobModal/ApplyJobModal";
+import moment from "moment";
 
 const SingleJobs = () => {
   const singleJob = useLoaderData()
@@ -29,34 +30,8 @@ const SingleJobs = () => {
     <div className="w-[98%] mx-auto">
       <div className="lg:flex block mt-10 gap-10">
         <div className="basis-2/3">
-          <div className="m-6 lg:m-0">
+          <div className="m-6 lg:m-6">
             <h1 className="text-2xl font-medium ">{title}</h1>
-            <div className="flex items-center gap-5 flex-wrap">
-              <p className="flex items-center gap-1">
-                <span>
-                  <TfiBag />
-                </span>
-                {company}
-              </p>
-              <p className="flex items-center gap-1">
-                <span>
-                  <GoLocation />
-                </span>
-                {location}
-              </p>
-              <p className="flex items-center gap-1">
-                <span>
-                  <BsClock />
-                </span>
-                {postTime}
-              </p>
-              <p className="flex items-center gap-1">
-                <span>
-                  <GiMoneyStack />
-                </span>
-                ${salaryMin} - ${salaryMax}
-              </p>
-            </div>
             <div className="mt-4 flex gap-2">
               <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-500">
                {jobType}
@@ -80,9 +55,9 @@ const SingleJobs = () => {
                     </p>
                     <p className="text-black/75">
                       <span className="block font-semibold text-black">
-                        Date Posted:
+                        Date Posted
                       </span>
-                      Posted {postTime}
+                      {moment(postTime).fromNow()}
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -91,9 +66,9 @@ const SingleJobs = () => {
                     </p>
                     <p className="text-black/75">
                       <span className="block font-semibold text-black">
-                        Expiration date:
+                        Expiration date
                       </span>
-                     {expireDate.slice(0,10)}
+                     {moment(expireDate).fromNow()}
                     </p>
                   </div>
                   <div className="flex items-center gap-5">
@@ -102,7 +77,7 @@ const SingleJobs = () => {
                     </p>
                     <p className="text-black/75">
                       <span className="block font-semibold text-black">
-                        Location:
+                        Location
                       </span>
                       {location}
                     </p>
@@ -113,7 +88,7 @@ const SingleJobs = () => {
                     </p>
                     <p className="text-black/75">
                       <span className="block font-semibold text-black">
-                        Job Title:
+                        Job Title
                       </span>
                       {title}
                     </p>
