@@ -137,7 +137,7 @@ const Users = () => {
                           <td class="px-6 py-4 text-sm font-medium text-gray-900">
                             <img
                               src={user.photo}
-                              className="w-12 h-12 rounded-full"
+                              className="w-12 h-12 rounded-full object-cover"
                               alt=""
                             />
                           </td>

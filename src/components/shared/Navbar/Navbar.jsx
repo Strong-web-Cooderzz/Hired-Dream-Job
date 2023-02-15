@@ -8,8 +8,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 export default function Navbar() {
 	const [navbar, setNavbar] = useState(false);
 	const [open, setOpen] = useState(false);
-	const { user, logOut, dbUser, loading, token } = useContext(AuthContext);
-	console.log(token)
+	const { authUser, user, logOut, dbUser, loading, token } = useContext(AuthContext);
 	const handleLogOut = () => {
 		logOut();
 	};
