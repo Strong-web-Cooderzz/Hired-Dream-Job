@@ -23,11 +23,12 @@ const SingleJobs = () => {
 	const [singleJobData, setSingleJobData] = useState({});
 	useEffect(() => {
 		fetchData.get(`/jobs/${id}`)
-		.then(response => setSingleJobData(response.data[0]))
+			.then(response => {
+				setSingleJobData(response.data[0])
+			})
 	}, [id])
-	console.log(singleJobData)
 
-	const user = useContext(AuthContext)
+	const { user } = useContext(AuthContext)
 
 	// console.log(singleJob);
 	const { company, companyType, expireDate, jobDescription, jobType, location, logo, postTime, rateMax, rateMin, responsibilities, salaryMax, salaryMin, skills, title, trems, urgent, workingHours, _id } = singleJobData;
