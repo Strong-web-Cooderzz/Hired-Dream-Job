@@ -219,7 +219,7 @@ const CandidateProfile = () => {
               <div class="form-floating mb-3 w-full">
                 {/* Phone */}
                 <input {...register("phoneNumber", { required: true })}
-                  type="number"
+                  type="tel"
                   class="form-control
        block
        w-full
