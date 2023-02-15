@@ -27,7 +27,6 @@ const DashboardAddPost = () => {
             'skills':data.skills,
             'jobEmail':user.email,
             'location':data.location,
-            'logo': dbUser.employData.photo,
             'urgent':urgent,
             'category': data.category,
             'jobType':jobType,
