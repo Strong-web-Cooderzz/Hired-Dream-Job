@@ -11,13 +11,14 @@ import { BiUser } from "react-icons/bi";
 import { RiCoinsFill } from "react-icons/ri";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsFacebook, BsTwitter, BsLinkedin } from 'react-icons/bs'
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import ApplyJobModal from "./ApplyJobModal/ApplyJobModal";
 import moment from "moment";
 import fetchData from "../../../api/fetchData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SingleJobs = () => {
+	const navigate = useNavigate()
 	const id = useParams().id;
 	const [jobData, setJobData] = useState({});
 	const [dataLoading, setDataLoading] = useState(true)
@@ -62,9 +63,18 @@ const SingleJobs = () => {
 								</div>
 								<div className="flex items-center">
 									<div className="flex items-center gap-4">
-										<button className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-											Apply To Job
-										</button>
+										{
+											user &&
+											<button className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+												Apply to job
+											</button>
+										}
+										{
+											!user &&
+											<button onClick={() => navigate('/login')}className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+												Login to apply
+											</button>
+										}
 										<button className="p-4 text-blue-500 bg-blue-50 rounded-md">
 											<BsBookmark />
 										</button>
