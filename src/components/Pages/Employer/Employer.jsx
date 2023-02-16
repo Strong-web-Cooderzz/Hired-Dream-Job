@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom"
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { BsFillBagFill, BsBagFill, BsClock, BsFacebook, BsGithub } from "react-icons/bs";
+import { BsFillBagFill, BsBagFill, BsClock, BsFacebook, BsGithub, BsJournalBookmark } from "react-icons/bs";
 import { BsTelephone, BsLinkedin, BsBookmark } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { GiCash } from "react-icons/gi";
@@ -15,7 +15,14 @@ export default function Employer() {
 			.then(data => setEmployer(data));
 	}, []);
 
-	console.log(employer);
+const [employerJobs,setEmployerJobs] = useState([])
+	useEffect(()=>{
+		fetch(`http://localhost:5000/jobsFindByEmail?email=${employer?.email}`)
+		.then(res=>res.json())
+		.then(data=>setEmployerJobs(data))
+	  },[employer])
+
+	console.log(employerJobs);
 	return (
 		<>
 		<main className="flex flex-col-reverse lg:flex-col mb-16">
@@ -39,61 +46,39 @@ export default function Employer() {
 
 				{/* button */}
 				<div className="ml-auto">
-					<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800">Private Message</button>
+					<button className="btn_primary w-full">Private Message</button>
 				</div>
 			</section>
 
-			{/* details */}
+			{/* Employer  Posted Jobs */}
 			<secction className="px-6 md:px-12 flex flex-col lg:flex-row gap-8 md:gap-16 mt-16">
 				<div className="lg:w-9/12 flex flex-col">
 					<span className="text-lg font-bold">About Company</span>
 					<span className="text-sm mt-4 text-gray-600">{employer.employData?.Company_Bio}</span>
-					<span className="text-xl font-medium mt-6">3 others jobs available</span>
-					<span className="text-gray-600 text-xs">2020 jobs live - 293 added today</span>
+
+					{/* Available jobs */}
+					{
+						employerJobs.length >0 && 
+					<span className="text-xl font-medium mt-6">{employerJobs.length} jobs available</span>
+					}
 					{/* cards */}
 					<div className="flex flex-col gap-8 mt-4">
-						<div className="p-5 border rounded-md flex flex-col gap-4">
-							<span className="font-medium">Software Engineer</span>
+						{
+							employerJobs.map(job => <Link to={`/jobs/${job._id}`} key={job._id} className="p-5 border rounded-md flex flex-col gap-4">
+							<span className="font-medium">{job.title}</span>
 							<div className="flex text-xs text-gray-600 gap-4">
-								<span className="flex items-center gap-2"><BsBagFill /> <span>Segment</span></span>
-								<span className="flex items-center gap-2"><FaMapMarkerAlt /> <span>Segment</span></span>
-								<span className="md:flex items-center gap-2 hidden"><BsClock /> <span>11 hours ago</span></span>
-								<span className="md:flex items-center gap-2 hidden"><GiCash /> <span>$35k -$45k</span></span>
+								<span className="flex items-center gap-2"><BsBagFill /> <span>{job.companyType}</span></span>
+								<span className="flex items-center gap-2"><FaMapMarkerAlt /> <span>{job.location}</span></span>
+								<span className="md:flex items-center gap-2 hidden"><BsClock /> <span>{job.workingHours}</span></span>
+								<span className="md:flex items-center gap-2 hidden"><GiCash /> <span>{`$${job.salaryMax} - $${job.salaryMin}`}</span></span>
 							</div>
 							<div className="text-xs flex gap-4">
-								<span className="py-1 px-4 bg-blue-100 rounded-full text-blue-700">Full Time</span>
-								<span className="py-1 px-4 bg-green-100 rounded-full text-green-700">Private</span>
-								<span className="py-1 px-4 bg-yellow-100 rounded-full text-yellow-700">Urgent</span>
+								<span className="py-1 px-4 bg-blue-100 rounded-full text-blue-700">{job.jobType}</span>
+								<span className="py-1 px-4 bg-green-100 rounded-full text-green-700">{job.companyType}</span>
+								<span className="py-1 px-4 bg-yellow-100 rounded-full text-yellow-700">{job.urgent ?'Urgent':'Any Time'}</span>
 							</div>
-						</div>
-						<div className="p-5 border rounded-md flex flex-col gap-4">
-							<span className="font-medium">Software Engineer</span>
-							<div className="flex text-xs text-gray-600 gap-4">
-								<span className="flex items-center gap-2"><BsBagFill /> <span>Segment</span></span>
-								<span className="flex items-center gap-2"><FaMapMarkerAlt /> <span>Segment</span></span>
-								<span className="md:flex items-center gap-2 hidden"><BsClock /> <span>11 hours ago</span></span>
-								<span className="md:flex items-center gap-2 hidden"><GiCash /> <span>$35k -$45k</span></span>
-							</div>
-							<div className="text-xs flex gap-4">
-								<span className="py-1 px-4 bg-blue-100 rounded-full text-blue-700">Full Time</span>
-								<span className="py-1 px-4 bg-green-100 rounded-full text-green-700">Private</span>
-								<span className="py-1 px-4 bg-yellow-100 rounded-full text-yellow-700">Urgent</span>
-							</div>
-						</div>
-						<div className="p-5 border rounded-md flex flex-col gap-4">
-							<span className="font-medium">Software Engineer</span>
-							<div className="flex text-xs text-gray-600 gap-4">
-								<span className="flex items-center gap-2"><BsBagFill /> <span>Segment</span></span>
-								<span className="flex items-center gap-2"><FaMapMarkerAlt /> <span>Segment</span></span>
-								<span className="md:flex items-center gap-2 hidden"><BsClock /> <span>11 hours ago</span></span>
-								<span className="md:flex items-center gap-2 hidden"><GiCash /> <span>$35k -$45k</span></span>
-							</div>
-							<div className="text-xs flex gap-4">
-								<span className="py-1 px-4 bg-blue-100 rounded-full text-blue-700">Full Time</span>
-								<span className="py-1 px-4 bg-green-100 rounded-full text-green-700">Private</span>
-								<span className="py-1 px-4 bg-yellow-100 rounded-full text-yellow-700">Urgent</span>
-							</div>
-						</div>
+						</Link>)
+						}
 					</div>
 				</div>
 
@@ -137,4 +122,12 @@ export default function Employer() {
 		</main>
 		</>
 	)
+}
+
+
+
+// single Employer job
+
+export const singleEmployerJob = (job) =>{
+	
 }

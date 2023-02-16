@@ -68,9 +68,9 @@ const Hero = () => {
 											name="job-location"
 										/>
 									</div>
-									<button type="submit" className={`bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 ${formLoading && 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed lg:w-32'}`} disabled={formLoading}>
+									<button type="submit" className={`btn_round ${formLoading && 'bg-gray-300 hover:bg-gray-300 cursor-not-allowed lg:w-32'}`} disabled={formLoading}>
 										<div className={`w-5 h-5 rounded-full border-2 border-t-gray-600 border-x-transparent border-b-transparent animate-spin ${!formLoading && 'hidden'}`}></div>
-										<span>Find jobs</span>
+										<span >Find jobs</span>
 									</button>
 								</Form>
 							</div>

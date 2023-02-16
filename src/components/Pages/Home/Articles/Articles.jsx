@@ -92,8 +92,8 @@ const Articles = () => {
 									</p>
 								</div>
 								<div className="absolute bottom-4 left-4 right-4">
-									<Link className='w-full rounded-md bg-blue-100 flex justify-center py-3' to={`/blogs/${post._id}`}>
-										<button className="text-md font-semibold text-sky-400">Read the article</button>
+									<Link to={`/blogs/${post._id}`}>
+										<button className="btn_bookmark w-full py-3">Read the article</button>
 									</Link>
 								</div>
 							</div>)
@@ -101,7 +101,7 @@ const Articles = () => {
 					</div>
 			}
 			<div className='mt-4 flex justify-center'>
-				<button className=' bg-blue-500 hover:bg-blue-700 btn-normal  text-white  flex items-center gap-3  ' > Load more articles <FaArrowRight className='text-white ' />   </button>
+				<button className='btn_round w-52' > Load more articles <FaArrowRight className='text-white ' />   </button>
 			</div>
 		</div>
 	);

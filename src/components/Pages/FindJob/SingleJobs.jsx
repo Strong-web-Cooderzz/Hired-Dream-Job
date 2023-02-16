@@ -19,11 +19,12 @@ import fetchData from "../../../api/fetchData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SingleJobs = () => {
-	const id = useParams().id;
+	const id = useParams()?.id;
 	const [singleJobData, setSingleJobData] = useState({});
+	console.log(singleJobData);
 	useEffect(() => {
 		fetchData.get(`/jobs/${id}`)
-		.then(response => setSingleJobData(response.data[0]))
+		.then(response => setSingleJobData(response?.data[0]))
 	}, [id])
 	console.log(singleJobData)
 
@@ -178,10 +179,10 @@ const SingleJobs = () => {
 
 						{/* Job apply button part  */}
 						<div className="flex gap-5 items-center">
-							<button className="bg-blue-500 w-full hover:bg-blue-600 py-3 rounded-md text-white cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+							<button className="btn_primary w-full" data-bs-toggle="modal" data-bs-target="#exampleModal" >
 								Apply To Job
 							</button>
-							<button className="p-4 text-blue-500 bg-blue-50 rounded-md">
+							<button className="btn_bookmark py-4 px-5">
 								<BsBookmark />
 							</button>
 							<ApplyJobModal singleJobData={singleJobData} user={user}></ApplyJobModal>
@@ -239,7 +240,7 @@ const SingleJobs = () => {
 										<FaLinkedinIn />
 									</p>
 								</div>
-								<button className="text-blue-500 bg-blue-200 w-full py-3 rounded-md">
+								<button className="btn_bookmark w-full">
 									https://hdj.netlify.app/
 								</button>
 							</div>
@@ -266,7 +267,7 @@ const SingleJobs = () => {
 								></textarea>
 							</div>
 							<div className="mt-8">
-								<button className="uppercase text-sm font-bold tracking-wide bg-blue-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+								<button className="btn_primary w-full">
 									Send Message
 								</button>
 							</div>

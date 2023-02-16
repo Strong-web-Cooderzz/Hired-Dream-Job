@@ -91,7 +91,7 @@ export default function Employers() {
 						<div className='text-gray-600'>
 							<BiShoppingBag />
 						</div>
-						<select className="bg-transparent text-gray-500 w-content">
+						<select className="select_ghost">
 							<option value="">Choose a category</option>
 							<option>Test</option>
 							<option>Test</option>
@@ -101,12 +101,12 @@ export default function Employers() {
 
 					{/* search button */}
 					<div className="w-full">
-						<button className="bg-blue-600 text-white py-4 px-12 rounded-md w-full text-sm">Find Jobs</button>
+						<button className="btn_primary">Find Jobs</button>
 					</div>
 				</form>
 
 				<div className="grid place-content-center text-xs">
-					<select className="bg-white text-gray-500 px-6 py-3 rounded-md" name="founded-date" id="founded-date">
+					<select className="select_primary" name="founded-date" id="founded-date">
 						<option value="">Founded Date</option>
 						<option value="">Test</option>
 						<option value="">Test</option>
