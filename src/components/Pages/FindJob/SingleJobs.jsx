@@ -10,6 +10,7 @@ import {
 import { BiUser } from "react-icons/bi";
 import { RiCoinsFill } from "react-icons/ri";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { BsFacebook, BsTwitter, BsLinkedin } from 'react-icons/bs'
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import ApplyJobModal from "./ApplyJobModal/ApplyJobModal";
 import moment from "moment";
@@ -24,6 +25,7 @@ const SingleJobs = () => {
 		fetchData.get(`/jobs/${id}`)
 			.then(response => {
 				setJobData(response.data[0])
+				console.log(response.data)
 				setDataLoading(false)
 			})
 	}, [id])
@@ -41,7 +43,7 @@ const SingleJobs = () => {
 			{
 				!dataLoading &&
 				<div className="w-[98%] mx-auto">
-					<div className="lg:flex block mt-10 gap-10">
+					<div className="lg:flex block mt-10 mb-16 gap-10">
 						<div className="basis-2/3">
 							<div className="m-6 flex justify-between lg:m-6">
 								<div>
@@ -192,16 +194,10 @@ const SingleJobs = () => {
 								</div>
 								<div className="mt-6 flex flex-col">
 									<span className="text-xl font-medium mb-2">Share this job</span>
-									<div className="flex gap-2">
-										<button className="bg-indigo-900 py-2 px-4 text-white rounded-md">
-											Facebook
-										</button>
-										<button className="bg-indigo-400 py-2 px-4 text-white rounded-md">
-											Twitter
-										</button>
-										<button className="bg-indigo-600 py-2 px-4 text-white rounded-md">
-											Linkedin
-										</button>
+									<div className="flex gap-4 items-center text-xl text-gray-600">
+										<span><BsFacebook /></span>
+										<span><BsTwitter /></span>
+										<span><BsLinkedin /></span>
 									</div>
 								</div>
 							</div>
@@ -219,44 +215,38 @@ const SingleJobs = () => {
 										<img className="w-16 h-16 object-cover" src={jobData.company?.photo} alt="" />
 										<div>
 											<h3 className="text-lg font-medium">{jobData.company?.fullName}</h3>
-											<Link to="/" className="text-blue-500 text-sm">
+											<Link to={`/employer/${jobData.company._id}`} className="text-blue-500 text-sm">
 												View company profile
 											</Link>
 										</div>
 									</div>
 									<div className="mt-6 flex flex-col gap-4">
-										<div className="flex justify-between">
-											<p className="text-md text-black/80 font-medium">
-												Primary industry:
-											</p>
-											<p className="font-medium text-md text-black/50">Software</p>
-										</div>
 										<div className="flex justify-between ">
 											<p className="text-md text-black/80 font-medium">
 												Company size:
 											</p>
-											<p className="font-medium text-black/50">501-1,000</p>
+											<p className="font-medium text-black/50">{jobData.company?.team}</p>
 										</div>
 										<div className="flex justify-between ">
 											<p className="text-md text-black/80 font-medium">
 												Founded in:
 											</p>
-											<p className="font-medium text-black/50">2011</p>
+											<p className="font-medium text-md text-black/50">{jobData.company.founded || 'N/A'}</p>
 										</div>
 										<div className="flex justify-between ">
-											<p className="text-lg text-black/80 font-medium">Phone:</p>
-											<p className="font-medium text-black/50">{jobData.company?.phoneNumber}</p>
+											<p className="text-md text-black/80 font-medium">Phone:</p>
+											<p className="font-medium text-md text-black/50">{jobData.company?.phoneNumber || 'N/A'}</p>
 										</div>
 										<div className="flex justify-between ">
-											<p className="text-lg text-black/80 font-medium">Email:</p>
-											<p className="font-medium text-black/50">{jobData.company?.email}</p>
+											<p className="text-md text-black/80 font-medium">Email:</p>
+											<p className="font-medium text-md text-black/50">{jobData.company?.email}</p>
 										</div>
 										<div className="flex justify-between ">
-											<p className="text-lg text-black/80 font-medium">Location:</p>
-											<p className="font-medium text-black/50">{jobData.location}</p>
+											<p className="text-md text-black/80 font-medium">Location:</p>
+											<p className="font-medium text-md text-black/50">{jobData.company.address.city}, {jobData.company.address.country}</p>
 										</div>
 										<div className="flex justify-between ">
-											<p className="text-lg text-black/80 font-medium">
+											<p className="text-md text-black/80 font-medium">
 												Social media:
 											</p>
 											<p className="font-medium flex items-center gap-1 text-black/50">
@@ -266,35 +256,8 @@ const SingleJobs = () => {
 												<FaLinkedinIn />
 											</p>
 										</div>
-										<button className="text-blue-500 bg-blue-200 w-full py-3 rounded-md">
-											https://hdj.netlify.app/
-										</button>
-									</div>
-								</div>
-								<div className="bg-black/5 p-5 rounded-lg mt-8">
-									<div>
-										<input
-											className="w-full bg-white text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-											type="text"
-											placeholder="Your Name"
-										/>
-									</div>
-									<div className="mt-8">
-										<input
-											className="w-full bg-white text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-											type="email"
-											placeholder="Your Email"
-										/>
-									</div>
-									<div className="mt-8">
-										<textarea
-											className="w-full h-32 bg-white resize-none text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-											placeholder="Message"
-										></textarea>
-									</div>
-									<div className="mt-8">
-										<button className="uppercase text-sm font-bold tracking-wide bg-blue-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-											Send Message
+										<button className="text-blue-500 bg-blue-200 w-full py-2 rounded-md">
+											{jobData?.company.website}
 										</button>
 									</div>
 								</div>
