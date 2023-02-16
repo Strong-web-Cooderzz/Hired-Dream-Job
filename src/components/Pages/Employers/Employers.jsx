@@ -11,12 +11,9 @@ export default function Employers() {
 	const [dataLoading, setDataLoading] = useState(true);
 
 	useEffect(() => {
-		fetchData.get('/employ', {
-			params: {
-				type: 'Agency'
-			}
-		})
+		fetchData.get('/employ')
 		.then(response => {
+				console.log(response.data)
 				setEmploy(response.data)
 				setDataLoading(false)
 		})
@@ -48,10 +45,10 @@ export default function Employers() {
 
 						<img src={data?.employData?.photo || data?.photo} className="rounded-full w-20 h-20 object-cover" />
 						<Link to={`/employer/${data._id}`} className="mt-2 text-lg hover:text-blue-600">{data?.employData?.companyName || data?.fullName}</Link>
-						<span className="mt-4 text-gray-500 flex items-center gap-2"><FaMapMarkerAlt />{data.employData?.City + ',' + data.employData?.Country}</span>
+						<span className="mt-4 text-gray-500 flex items-center gap-1"><FaMapMarkerAlt />{data.address?.city + ', ' + data.address?.country}</span>
 
-						<span className="mt-2 text-gray-500 flex items-center gap-2"><BiShoppingBag />{data.type}</span>
-						<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {data.available}</span>
+						<span className="mt-2 text-gray-500 flex items-center gap-1"><BiShoppingBag />{data.type}</span>
+						<span className="mt-3 text-blue-800 bg-blue-200 py-1 px-4 rounded-full text-xs">Open Jobs - {data.jobsCount}</span>
 
 						{/* featured */}
 						<span className="absolute top-2 left-2 bg-green-100 text-green-700 py-1 px-4 text-xs rounded-full">Featured</span>
