@@ -40,7 +40,6 @@ const [employerJobs,setEmployerJobs] = useState([])
 						<span className="flex items-center gap-1"><HiOutlineMail />{employer?.email}</span>
 					</div>
 					<div>
-						<span className="text-xs text-blue-700 bg-blue-200 px-6 py-1 rounded-full">Open Jobs - {employer?.available}</span>
 					</div>
 				</div>
 
@@ -97,7 +96,7 @@ const [employerJobs,setEmployerJobs] = useState([])
 							</div>
 							<div className="flex flex-col">
 								<span className="text-xl font-bold">{employer?.name}</span>
-								<span className="bg-blue-200 px-4 rounded-full py-1 text-xs">Open Jobs - {employer?.available}</span>
+							
 							</div>
 						</div>
 						<span className="flex items-center justify-between text-md">Primary industry: <span className="text-gray-500 text-sm">Software</span></span>

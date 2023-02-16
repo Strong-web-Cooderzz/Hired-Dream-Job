@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.svg";
+import logo from "/logo.svg";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -19,8 +19,8 @@ export default function Navbar() {
 			<div className="justify-between px-4 md:items-center md:flex md:px-8">
 				<div>
 					<div className="flex items-center justify-between py-3 md:py-2 md:block">
-						<Link to="/">
-							<img src={logo} alt="" className="w-12" />
+						<Link className="w-24 h-7 inline-block" to="/">
+							<img src={logo} alt="" className="w-24" />
 						</Link>
 						<div className="md:hidden">
 							<button
