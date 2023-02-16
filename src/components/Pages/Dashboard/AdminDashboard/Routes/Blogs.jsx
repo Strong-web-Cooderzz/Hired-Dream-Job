@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { BiTrash } from 'react-icons/bi';
-import { BsPen, BsPencil } from 'react-icons/bs';
-import { FiDelete } from 'react-icons/fi';
-import { IoWarningOutline } from 'react-icons/io5';
-import { TbUserOff } from 'react-icons/tb';
+import { BsPencil } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import fetchData from '../../../../../api/fetchData';
 import Loading from '../../../../Loading/Loading';
 
 const Blogs = () => {
-    const [jobType, setJobType] = useState(true);
+  const [jobType, setJobType] = useState(true);
 	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [dataType, setDataType] = useState('user');
 	const [blogs, setBlogs] = useState([]);
 
 	useEffect(() => {
-        setLoading(true)
-			fetch(`http://localhost:5000/blogPosts`)
-				.then(res => res.json())
-				.then(data => {
-					setBlogs(data);
-					setLoading(false);
-				});
-		
-	}, [dataType,jobType]);
+pe,jobType]);
+		setLoading(true)
+		fetchData.get('/blogPosts')
+			.then(response => {
+				setBlogs(response.data)
+				setLoading(false)
+	})}, [dataType,jobType]);
 
     // Delete Blog post
     const handleDelete = id =>{
@@ -90,7 +86,7 @@ const Blogs = () => {
                 </thead>
                 <tbody>
                     {
-                        blogs.map(blog=> 
+                        !loading && blogs.map(blog=> 
                        <>
                        
                         <tr key={blog._id} class="border-b">
@@ -101,7 +97,7 @@ const Blogs = () => {
                          {blog.title} 
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          {blog.email}
+                          {blog.author.email}
                         </td>
                         {/* <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           {blog.isVisible ? 'Active':'Dective'}

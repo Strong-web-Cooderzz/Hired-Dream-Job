@@ -4,7 +4,6 @@ import { useRef } from 'react';
 
 const ApplyJobModal = ({ singleJobData, user }) => {
 	const closeButton = useRef()
-	console.log(singleJobData)
 	const { company, companyType, expireDate, jobType, location, title, workingHours, _id } = singleJobData;
 	//  get data from input form 
 	const jobApplyFormHandlar = (e) => {

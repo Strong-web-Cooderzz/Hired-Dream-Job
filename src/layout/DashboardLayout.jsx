@@ -12,7 +12,6 @@ import DashboardSidebar from "../components/shared/DashboardSidebar/DashboardSid
 const DashboardLayout = () => {
   const {dbUser} = useContext(AuthContext)
 	const {loading} = useContext(AuthContext)
-	console.log(loading)
   console.log(dbUser);
   const [side, setSide] = useState(false);
   return (
@@ -22,7 +21,7 @@ const DashboardLayout = () => {
       <div className="flex gap-4 ">
        <div >
         <div className="w-full p-0 m-0 hidden lg:inline-block">
-         <DashboardSidebar > </DashboardSidebar>
+						{!loading && <DashboardSidebar></DashboardSidebar>}
         </div>
      
        </div>
@@ -43,17 +42,17 @@ const DashboardLayout = () => {
 
           {
   dbUser?.type==='Agency' ?   <li className="relative">
-      <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Profile   </NavLink>
+      <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
     </li>
     :
     <li className="relative">
-    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="dark"> My Profile   </NavLink>
+    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
   </li>
 }
   
 {
   dbUser?.type==='Agency' &&  <li className="relative">
-      <NavLink to='/dashboard/addpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> Add 
+      <NavLink to='/dashboard/addpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!"> Add 
       New Job </NavLink>
     </li>
 }

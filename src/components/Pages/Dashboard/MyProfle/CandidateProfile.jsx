@@ -65,12 +65,12 @@ const CandidateProfile = () => {
         'fullName':data.candidateName,
         'type': dbUser.type,
 					'address': {
-						'Postal':data.zipCode,
-						'Street': data.streetAddress,
-						'City':data.city,
-						'Country':data.country,
+						'postal':data.zipCode,
+						'street': data.streetAddress,
+						'city':data.city,
+						'country':data.country,
 					},
-					'social': {
+					'socail': {
 						'github': data.github,
 						'facebook':data.facebook,
 						'twitter':data.twitter,
@@ -219,7 +219,7 @@ const CandidateProfile = () => {
               <div class="form-floating mb-3 w-full">
                 {/* Phone */}
                 <input {...register("phoneNumber", { required: true })}
-                  type="number"
+                  type="tel"
                   class="form-control
        block
        w-full

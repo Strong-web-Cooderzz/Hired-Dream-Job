@@ -13,6 +13,7 @@ import app from "../../firebase/firebase.config";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
+const authUser = auth.currentUser;
 
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
@@ -72,18 +73,19 @@ const AuthProvider = ({ children }) => {
 		changePass,
 		updateUserProfile,
 		token,
-		setDbUser
+		setDbUser,
+		authUser
 	};
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, currentUser => {
+			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
 			} else {
 				setUser(null)
 			}
 			setToken(currentUser.accessToken)
-			setLoading(false)
 		})
 		return () => unSubscribe()
 	}, [])

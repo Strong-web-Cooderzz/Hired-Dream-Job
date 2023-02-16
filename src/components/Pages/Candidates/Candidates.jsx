@@ -38,11 +38,14 @@ const Candidates = () => {
 	return (
 		<div className="bg-[#e5ecfa]">
 			<div>
-				<div className="text-center w-full h-44 flex justify-center items-center">
+				<div className="bg-gradient-to-r from-sky-400 to-purple-400 flex flex-col justify-center items-center py-6">
 					<div>
-						<h3 className="text-2xl font-semibold">Candidates</h3>
-						<p className="text-sm">
-							<Link to="/">Home</Link> / Candidates
+						<h3 className="font-semibold text-2xl text-white text-center">Candidates</h3>
+						<p className="items-center justify-center text-white flex gap-2">
+							<Link to="/" className="text-white underline">
+								Home
+							</Link>
+							/<span className="text-white underline">Candidates</span>
 						</p>
 					</div>
 				</div>

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { BsListOl, BsPen, BsPencil } from "react-icons/bs";
-import { FiDelete } from "react-icons/fi";
 import { IoWarningOutline } from "react-icons/io5";
-import { TbUser, TbUserOff } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import fetchData from "../../../../../api/fetchData";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
-import axios from 'axios'
 import Loading from "../../../../Loading/Loading";
+import ConfirmModal from "../../../../shared/Modal/ConfirmModal";
 
 const Users = () => {
   const {dbUser} = useContext(AuthContext)
@@ -16,6 +16,8 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const [dataType, setDataType] = useState("user");
   const [jobs, setJobs] = useState([]);
+	const [hidden, setHidden] = useState(true)
+	const [toBeDeletedUserId, setToBeDeletedUserId] = useState('')
 
   useEffect(() => {
     setLoading(true);
@@ -28,14 +30,21 @@ const Users = () => {
         setLoading(false);
       });
   }, [userType, dataType]);
-  
      
-   
-      
-     
+	const deleteUser = async () => {
+		fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`)
+			.then(response => {
+				console.log(response)
+				if (response.data.acknowledged) {
+					setHidden(true)
+					toast.success('User deleted successfully')
+				}
+		})
+	}
   
   return (
     <>
+			<ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={deleteUser}/>
       {loading ? (
         <>
           <Loading />
@@ -128,7 +137,7 @@ const Users = () => {
                           <td class="px-6 py-4 text-sm font-medium text-gray-900">
                             <img
                               src={user.photo}
-                              className="w-12 h-12 rounded-full"
+                              className="w-12 h-12 rounded-full object-cover"
                               alt=""
                             />
                           </td>
@@ -336,7 +345,12 @@ const Users = () => {
               text-rose-700
               hover:bg-red-100
             "
-            href="#"
+            href=""
+																					onClick={e => {
+																						e.preventDefault()
+																						setHidden(false)
+																						setToBeDeletedUserId(user._id)
+																					}}
             >
                Delete User
               </a

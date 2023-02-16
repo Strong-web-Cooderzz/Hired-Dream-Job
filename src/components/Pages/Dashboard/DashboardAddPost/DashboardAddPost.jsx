@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import fetchData from '../../../../api/fetchData';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 
@@ -13,7 +14,7 @@ const DashboardAddPost = () => {
     const [urgent,setUrgent] = useState(false)
     const [companyType,setCompanyType] = useState('')
     const { register, handleSubmit,reset ,watch, formState: { errors } } = useForm();
-    const { logOut, user, dbUser } = useContext(AuthContext);
+    const { logOut, user, dbUser, token } = useContext(AuthContext);
     
     const [loading,setLoading] = useState(false)
 
@@ -27,7 +28,6 @@ const DashboardAddPost = () => {
             'skills':data.skills,
             'jobEmail':user.email,
             'location':data.location,
-            'logo': dbUser.employData.photo,
             'urgent':urgent,
             'category': data.category,
             'jobType':jobType,
@@ -47,19 +47,17 @@ const DashboardAddPost = () => {
 
         }
         console.log(jobDetails);
-        fetch('http://localhost:5000/jobs',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
-              },
-              body: JSON.stringify(jobDetails)             
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          toast.success('Job Added')
-          setLoading(false)
-          reset()
-        })
+
+		fetchData.post('/jobs', jobDetails, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+			})
+			.then(response=>{
+				toast.success('Job Added')
+				setLoading(false)
+				reset()
+			})
     }
 
 
