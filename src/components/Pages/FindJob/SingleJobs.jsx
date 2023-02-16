@@ -16,12 +16,15 @@ import ApplyJobModal from "./ApplyJobModal/ApplyJobModal";
 import moment from "moment";
 import fetchData from "../../../api/fetchData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const SingleJobs = () => {
 	const navigate = useNavigate()
 	const id = useParams().id;
 	const [jobData, setJobData] = useState({});
 	const [dataLoading, setDataLoading] = useState(true)
+	const { user } = useContext(AuthContext)
+
 	useEffect(() => {
 		fetchData.get(`/jobs/${id}`)
 			.then(response => {
@@ -31,7 +34,11 @@ const SingleJobs = () => {
 			})
 	}, [id])
 
-	const { user } = useContext(AuthContext)
+	const handleBookMark = () => {
+		if (!user) {
+			toast.error('Login to add this job to bookmark')
+		}
+	}
 
 	// console.log(singleJob);
 	// const { company, companyType, expireDate, jobDescription, jobType, location, logo, postTime, rateMax, rateMin, responsibilities, salaryMax, salaryMin, skills, title, trems, urgent, workingHours, _id } = singleJobData;
@@ -71,11 +78,11 @@ const SingleJobs = () => {
 										}
 										{
 											!user &&
-											<button onClick={() => navigate('/login')}className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+											<button onClick={() => navigate('/login')}className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer">
 												Login to apply
 											</button>
 										}
-										<button className="p-4 text-blue-500 bg-blue-50 rounded-md">
+										<button onClick={handleBookMark} className="p-4 text-blue-500 bg-blue-50 rounded-md">
 											<BsBookmark />
 										</button>
 									</div>
@@ -266,9 +273,9 @@ const SingleJobs = () => {
 												<FaLinkedinIn />
 											</p>
 										</div>
-										<button className="text-blue-500 bg-blue-200 w-full py-2 rounded-md">
+										<a href={jobData?.company.website} target="_blank" className="text-blue-500 bg-blue-200 text-center px-auto w-full py-2 rounded-md">
 											{jobData?.company.website}
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
