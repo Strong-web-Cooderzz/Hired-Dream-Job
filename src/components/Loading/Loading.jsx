@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from "lottie-react";
-import profile from "../../../public/Loatte/data.json";
+import profile from "../../assets/Loatte/profile.json";
 const Loading = () => {
     return (
         <div className='h-screen fixed-top bg-white  flex items-center'>
