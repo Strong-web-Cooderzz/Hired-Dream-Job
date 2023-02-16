@@ -65,12 +65,12 @@ const CandidateProfile = () => {
         'fullName':data.candidateName,
         'type': dbUser.type,
 					'address': {
-						'Postal':data.zipCode,
-						'Street': data.streetAddress,
-						'City':data.city,
-						'Country':data.country,
+						'postal':data.zipCode,
+						'street': data.streetAddress,
+						'city':data.city,
+						'country':data.country,
 					},
-					'social': {
+					'socail': {
 						'github': data.github,
 						'facebook':data.facebook,
 						'twitter':data.twitter,
