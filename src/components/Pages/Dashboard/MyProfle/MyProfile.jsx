@@ -4,36 +4,21 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
+import fetchData from "../../../../api/fetchData";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const MyProfile = () => {
-  const { user } = useContext(AuthContext);
-  
-
-  //creating IP state
-  const [ip,setIP] = useState('');
-      
-  //creating function to load ip address from the API
-  const getData = async()=>{
-    const res = await axios.get('https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba')
-    console.log(res.data);
-    setIP(res.data.ip)
-  }
-  useEffect(()=>{
-    //passing getData method to the lifecycle method
-    getData()
- },[])
-
-
+  const { user, token } = useContext(AuthContext);
   const [userData,setUserData] = useState('')
   
-    useEffect(()=>{
-  fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
-  .then(res=>res.json())
-  .then(data=>{
-    setUserData(data)
-  })
-},[user?.email])
+	useEffect(()=>{
+		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
+			.then(res=>res.json())
+			.then(data=>{
+				setUserData(data)
+			})
+	},[user?.email])
+
   const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
 
   const {
@@ -60,47 +45,52 @@ const MyProfile = () => {
     .then(res=>res.json())
     .then(imageData=>{
       const imageUrl = imageData.url
-      const updateData = {
-        'companyName': data.compnayName, 
-        'photo':imageUrl,
-        'email':data.emailAddress,
-        'City':data.city,
-        'Country':data.country,
-        'phoneNumber':data.phoneNumber,
-        'team': data.teamSize,
-        'Postal':data.zipCode,
-        'Street': data.streetAddress,
-        'github': data.github,
-        'facebook':data.facebook,
-        'twitter':data.twitter,
-        'linkedin':data.linkedin,
-        'website':data.website,
-        'Company_Bio':data.companyBio,
-        'build':data.established,
-      }
-      const employInfo = {
-        'email':userData.email,
-        'fullName':userData.fullName,
-        'photo': userData.photo,
-        'type': userData.type,
-        'ip':ip,
-        'employData': updateData
-      } 
-      if(imageUrl){
-        fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/employ?email=${user?.email}`,{
-          method:'PUT',
-          headers:{
-            'content-type':'application/json'
-          },
-          body: JSON.stringify(employInfo)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          console.log(data);
-          reset()
-          toast.success('Updated!')
-        })
-      }
+				const updateData = {
+					'fullName': data.compnayName, 
+					'photo':imageUrl,
+					'address': {
+						'City':data.city,
+						'Country':data.country,
+						'Postal':data.zipCode,
+						'Street': data.streetAddress,
+					},
+					'phoneNumber':data.phoneNumber,
+					'team': data.teamSize,
+					'socail': {
+						'github': data.github,
+						'facebook':data.facebook,
+						'twitter':data.twitter,
+						'linkedin':data.linkedin,
+					},
+					'website':data.website,
+					'Company_Bio':data.companyBio,
+					'founded':data.established,
+				}
+				if (imageUrl) {
+					fetchData.put('/employ', updateData, {
+						headers: {
+							'Authorization': `Bearer ${token}`
+						}
+						})
+						.then(response => {
+							console.log(response.data)
+							reset()
+							toast.success('Updated!')
+					})
+				}
+      // if(imageUrl){
+      //   fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/employ?email=${user?.email}`,{
+      //     method:'PUT',
+      //     headers:{
+      //       'content-type':'application/json'
+      //     },
+      //     body: JSON.stringify(employInfo)
+      //   })
+      //   .then(res=>res.json())
+      //   .then(data=>{
+      //     console.log(data);
+      //   })
+      // }
     })
   };
 
@@ -281,7 +271,7 @@ const MyProfile = () => {
               <div class="form-floating mb-3 w-full">
                 {/* Est. Since */}
                 <input {...register("established", { required: true })}
-                  type="text"
+                  type="date"
                   class="form-control
        block
        w-full
@@ -298,7 +288,7 @@ const MyProfile = () => {
        m-0
        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="floatingInput"
-                  placeholder="name@example.com"
+                  placeholder=""
                 />
                 <label for="floatingInput" class="text-gray-700">
                   06.04.2023{" "}
