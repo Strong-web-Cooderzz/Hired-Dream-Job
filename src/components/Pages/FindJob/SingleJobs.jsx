@@ -19,6 +19,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const SingleJobs = () => {
+
 	const navigate = useNavigate()
 	const id = useParams().id;
 	const [jobData, setJobData] = useState({});

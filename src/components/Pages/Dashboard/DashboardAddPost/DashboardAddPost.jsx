@@ -47,6 +47,7 @@ const DashboardAddPost = () => {
 
         }
         console.log(jobDetails);
+
 		fetchData.post('/jobs', jobDetails, {
 			headers: {
 				'Authorization': `Bearer ${token}`

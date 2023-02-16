@@ -5,10 +5,52 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+	.btn_round{
+		@apply	bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 
+		
+	}
+	.btn_primary{
+		@apply bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-md px-4 py-2 flex items-center justify-center gap-2 
+	}
+
+	.btn_page{
+		@apply bg-blue-500 px-4 py-1 text-white rounded-full
+	}
+
+	.btn_none{
+		@apply bg-gray-200 px-4 py-1 text-gray-500 rounded-full
+	}
+
+	.btn_bookmark{
+		@apply bg-blue-100 text-blue-700 py-4 px-5 rounded-md hover:bg-blue-500 hover:text-white transition duration-300 hover:transition hover:duration-300 
+	}
+
+	/* ====== Input */
+
+	.input_primary {
+		@apply py-3 text-sm text-gray-600 w-full border-2 border-gray-200 rounded-md pl-10 focus:outline-blue-500 focus:bg-white focus:text-gray-900
+	}
+
+	/* Select */
+	.select_primary {
+		@apply py-3 text-sm w-full rounded-md px-3 focus:outline-blue-500 bg-white focus:text-gray-900
+	}
+	.select_secondary{
+		@apply mr-3 bg-white border-2 focus:outline-none py-3 px-4 rounded-md text-sm
+	}
+
+	.select_ghost{
+		@apply bg-transparent text-gray-500 
+	}
+}
+
 @layer utilities {
 	body {
 		font-family: 'Kanit', sans-serif;
 	}
+
+	
 
 	input[type='number'] {
 		-moz-appearance: textfield;

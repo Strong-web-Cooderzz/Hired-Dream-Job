@@ -13,6 +13,7 @@ const Blogs = () => {
 	const [blogs, setBlogs] = useState([]);
 
 	useEffect(() => {
+pe,jobType]);
 		setLoading(true)
 		fetchData.get('/blogPosts')
 			.then(response => {

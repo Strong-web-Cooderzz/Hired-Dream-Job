@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom"
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { BsFillBagFill, BsBagFill, BsClock, BsFacebook, BsGithub } from "react-icons/bs";
+import { BsFillBagFill, BsBagFill, BsClock, BsFacebook, BsGithub, BsJournalBookmark } from "react-icons/bs";
 import { BsTelephone, BsLinkedin, BsBookmark } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { GiCash } from "react-icons/gi";
@@ -12,19 +12,28 @@ export default function Employer() {
 	const employerId = useParams().id;
 	const [employer, setEmployer] = useState([]);
 	useEffect(() => {
+
 		fetchData.get(`/employ/${employerId}`)
 			.then(response => {
 				setEmployer(response.data[0])
 			})
 	}, []);
 
-	console.log(employer);
+const [employerJobs,setEmployerJobs] = useState([])
+	useEffect(()=>{
+		fetch(`http://localhost:5000/jobsFindByEmail?email=${employer?.email}`)
+		.then(res=>res.json())
+		.then(data=>setEmployerJobs(data))
+	  },[employer])
+
+	console.log(employerJobs);
 	return (
 		<>
 			<main className="flex flex-col-reverse lg:flex-col mb-16">
 				{/* short details */}
 				<div className="bg-gradient-to-r from-sky-400 to-purple-400 hidden lg:flex items-center px-12 py-6">
 					<img src={employer?.employData?.photo || employer?.photo} className="w-24 h-24 rounded-full object-cover" />
+
 
 					{/* name */}
 					<div className="ml-4 flex flex-col gap-3">
@@ -42,8 +51,9 @@ export default function Employer() {
 
 					{/* button
 				<div className="ml-auto">
-					<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800">Private Message</button>
+					<button className="btn_primary w-full">Private Message</button>
 				</div>
+					</div>
 					*/}
 				</div>
 
@@ -80,12 +90,14 @@ export default function Employer() {
 						</div>
 					</div>
 
+
 					<div className="lg:w-3/12">
 						{/* shows only on mobile device */}
 						<div className="lg:hidden">
 							<div className="ml-auto mb-4 text-xs flex items-center gap-4">
 								<button className="bg-blue-600 py-3 px-12 rounded-lg text-white hover:bg-blue-800 w-full">Private Message</button>
 								<span className="text-lg text-blue-700 bg-blue-100 p-3 rounded-lg"><BsBookmark /></span>
+
 							</div>
 						</div>
 						<div className="flex flex-col bg-gray-50 p-6 gap-4">
@@ -118,4 +130,12 @@ export default function Employer() {
 			</main>
 		</>
 	)
+}
+
+
+
+// single Employer job
+
+export const singleEmployerJob = (job) =>{
+	
 }

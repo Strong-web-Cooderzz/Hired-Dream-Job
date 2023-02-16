@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 
 const ManageUsers = () => {
+
 	const editData = useLoaderData()
 	const navigate = useNavigate('')
 	const [startDate, setStartDate] = useState(new Date());
@@ -99,6 +100,7 @@ const ManageUsers = () => {
 					<form className='p-6 ' onSubmit={handleSubmit(handleAddNewJob)}>
 						<div className="form-group mb-6 w-full">
 							<input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" className="form-control block
+
         w-full
         px-3
         py-1.5

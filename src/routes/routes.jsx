@@ -125,7 +125,7 @@ export const router = createBrowserRouter([
 			{
 				path: "/pay/:id",
 				element: <Payment />,
-				loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)
+				loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`)
 			},
 			{
 				path: "/resetPass",
@@ -140,7 +140,7 @@ export const router = createBrowserRouter([
 				element: <Employer />,
 			},
 			{
-				path: '/edit-job/:id', loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`),
+				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
 				element: <EditJob />
 			},
 			{
@@ -202,7 +202,7 @@ export const router = createBrowserRouter([
 				element: <CandidateManageBlog> </CandidateManageBlog>
 			},
 			{
-				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost/${params.id}`),
+				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <EditBlog> </EditBlog>
 			}
 		]
@@ -214,8 +214,8 @@ export const router = createBrowserRouter([
 			{path:'users',element:<Users />},
 			{path:'jobs',element:<Jobs />},
 			{path:'blogs',element:<Blogs />},
-			{path:'users/edit/:id',element:<ManageUsers />, loader: ({params})=> fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)},
-			{path:'jobs/edit/:id',element:<MangeAdminJob />, loader: ({params})=> fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/jobs/${params.id}`)},
+			{path:'users/edit/:id',element:<ManageUsers />, loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)},
+			{path:'jobs/edit/:id',element:<MangeAdminJob />, loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)},
 		]
 	},
 	{

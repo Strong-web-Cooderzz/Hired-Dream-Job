@@ -11,6 +11,7 @@ const MyProfile = () => {
   const { user, token } = useContext(AuthContext);
   const [userData,setUserData] = useState('')
   
+
 	useEffect(()=>{
 		fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/user?email=${user?.email}`)
 			.then(res=>res.json())

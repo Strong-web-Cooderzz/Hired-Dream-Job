@@ -10,7 +10,7 @@ const CandidateManageBlog = () => {
     const [deleted,setDeleted] = useState(false)
     const [blogs,setBlogs] = useState([])
     useEffect(() => {
-        fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/blogPost?email=${user?.email}`)
+        fetch(`http://localhost:5000/blogPost?email=${user?.email}`)
         .then(res=>res.json())
         .then(data=>{
             setBlogs(data)
