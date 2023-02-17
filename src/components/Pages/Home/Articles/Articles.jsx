@@ -2,19 +2,19 @@ import { Link } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa";
 import { useState } from 'react';
 import { useEffect } from 'react';
+import fetchData from '../../../../api/fetchData';
 
 const Articles = () => {
 	const [loading, setLoading] = useState(true)
 	const [posts, setPosts] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:5000/blogPosts')
-			.then(res => res.json())
-			.then(data => {
-				setPosts(data)
+		fetchData.get('/blogPosts')
+		.then(response => {
+				setPosts(response.data)
 				setLoading(false)
-			})
-	}, [loading])
+		})
+	}, [])
 	console.log(posts);
 
 	const showDate = (date) => {
@@ -27,7 +27,7 @@ const Articles = () => {
 	}
 
 	return (
-		<div className="px-4 mt-10  w-full mb-8  mx-auto">
+		<div className="px-4 mt-10  w-full mb-10  mx-auto">
 			<h2 className="text-3xl font-semibold text-center">Recent News Articles</h2>
 			<p className="text-center mt-2 mb-4">Fresh job related news content posted each day.</p>
 			{

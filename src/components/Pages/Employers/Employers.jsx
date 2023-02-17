@@ -1,7 +1,7 @@
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { BiShoppingBag } from 'react-icons/bi';
 import { BsBookmark, BsSearch } from "react-icons/bs";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
 import fetchData from '../../../api/fetchData';
@@ -9,14 +9,15 @@ import fetchData from '../../../api/fetchData';
 export default function Employers() {
 	const [employ, setEmploy] = useState([])
 	const [dataLoading, setDataLoading] = useState(true);
+	const submitButtonRef = useRef();
 
 	useEffect(() => {
 		fetchData.get('/employ')
-		.then(response => {
+			.then(response => {
 				console.log(response.data)
 				setEmploy(response.data)
 				setDataLoading(false)
-		})
+			})
 	}, []);
 
 	function searchEmployers(e) {
@@ -31,10 +32,10 @@ export default function Employers() {
 				location
 			}
 		})
-		.then(response => {
+			.then(response => {
 				setEmploy(response.data)
 				setDataLoading(false)
-		})
+			})
 	}
 
 	function SearchResultCard() {
@@ -84,21 +85,63 @@ export default function Employers() {
 					</div>
 
 					{/* category list */}
-					<div className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
+					<div onChange={() => submitButtonRef.current.click()} className="flex items-center gap-4 w-full bg-white p-4 lg:p-0 rounded-md lg:rounded-none shadow lg:shadow-none">
 						<div className='text-gray-600'>
 							<BiShoppingBag />
 						</div>
 						<select className="select_ghost">
-							<option value="">Choose a category</option>
-							<option>Test</option>
-							<option>Test</option>
-							<option>Test</option>
+							<option value="">Choose a segment</option>
+							<option
+								value="Accounting / Finance"
+							>
+								Accounting / Finance
+							</option>
+							<option
+								value="Marketing"
+							>
+								Marketing
+							</option>
+							<option
+								value="Design"
+							>
+								Design
+							</option>
+							<option
+								value="Development"
+							>
+								Development
+							</option>
+							<option
+								value="Human Resource"
+							>
+								Human Resource
+							</option>
+							<option
+								value="Automotive Jobs"
+							>
+								Automotive Jobs
+							</option>
+							<option
+								value="Customer Service"
+							>
+								Customer Service
+							</option>
+							<option
+								value="Health and Care"
+							>
+								Health and Care
+							</option>
+							<option
+								value="Project Management"
+							>
+								Project Management
+							</option>
 						</select>
 					</div>
 
 					{/* search button */}
 					<div className="w-full">
-						<button className="btn_primary">Find Jobs</button>
+						<button ref={submitButtonRef} className="btn_primary w-fit">Find Employers</button>
 					</div>
 				</form>
 
@@ -125,9 +168,9 @@ export default function Employers() {
 				!dataLoading && <>
 					<section className="px-12 py-12">
 						<div className="grid grid-cols-2 gap-y-6 md:gap-y-0 md:flex justify-between items-center">
-							{/* shows how many jobs available */}
+							{/* shows how many employers available */}
 							<span className="col-start-1 col-end-3 text-center text-sm md:text-md">
-								<span className="font-medium">{employ.length}</span> jobs
+								<span className="font-medium">{employ.length}</span> employers
 							</span>
 
 							{/* sorting options */}
