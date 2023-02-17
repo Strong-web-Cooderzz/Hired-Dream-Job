@@ -133,7 +133,7 @@ const Candidates = () => {
 											{
 												candidates.map(job =>
 													<div key={job._id}>
-														<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
+														<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg border min-h-[12] bg-white shadow border-1 py-6 flex flex-col">
 															<img
 																src={job.photo}
 																className="w-24 h-24 rounded-full mx-auto object-cover"
