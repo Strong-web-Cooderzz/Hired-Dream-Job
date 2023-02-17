@@ -19,18 +19,26 @@ import { GoLocation } from "react-icons/go";
 import { GrMoney } from "react-icons/gr";
 import { Link, useParams } from "react-router-dom";
 import { FiFacebook, FiTwitter } from "react-icons/fi";
+import fetchData from "../../../api/fetchData";
+import moment from "moment";
 
 const Candidate = () => {
   const candidateId = useParams().id;
   const [loading,setLoading] = useState(true)
   const [candidate, setCandidate] = useState([]);
   useEffect(() => {
-    fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/${candidateId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setCandidate(data)
-        setLoading(false)
-      });
+		fetchData.get(`/candidate/${candidateId}`)
+		.then(response => {
+				setCandidate(response.data)
+				setLoading(false)
+				console.log(response.data)
+		})
+    // fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/${candidateId}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setCandidate(data)
+    //     setLoading(false)
+    //   });
   }, []);
   console.log(candidate);
   return (
@@ -43,7 +51,7 @@ const Candidate = () => {
           >
             <div>
               <img
-                className="w-24 h-24 rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
                 src={candidate.photo}
                 alt=""
               />
@@ -52,35 +60,34 @@ const Candidate = () => {
               <div className="text-gray-700 md:text-left text-center ">
                 <h2 className="text-xl font-semibold">{candidate?.fullName}</h2>
                 <div className="flex flex-wrap items-center gap-3">
-                  <p>{candidate?.candidateData?.Category}</p>
+                  <p>{candidate?.segment}</p>
                   <p className="flex items-center gap-1">
-                    <GoLocation /> {candidate?.candidateData?.City},{" "}
-                    {candidate?.candidateData?.Country}
+                    <GoLocation /> {candidate?.address?.city},{" "}
+                    {candidate?.address?.country}
                   </p>
                   <p className="flex items-center gap-1">
                     <GrMoney /> $99 / hour
                   </p>
                   <p className="flex items-center gap-1">
-                    <BsClock /> Member Since,Aug 19, 2020
+                    <BsClock /> Account created {moment(candidate?.createdAt).fromNow()}
                   </p>
                 </div>
                 <div className="flex my-2 items-center gap-3 flex-wrap">
+									<p className="px-2 text-blue-500 bg-blue-200 rounded-full">
+										{
+											candidate?.skills?.length>0 && candidate?.skills[0].value
+										}
+									</p>
                     <p
                       className="px-2 text-blue-500 bg-blue-200 rounded-full"
                     >{
-                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[0].value
+                      candidate?.skills?.length>0 && candidate?.skills[1].value
                     }
                     </p>
                     <p
                       className="px-2 text-blue-500 bg-blue-200 rounded-full"
                     >{
-                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[1].value
-                    }
-                    </p>
-                    <p
-                      className="px-2 text-blue-500 bg-blue-200 rounded-full"
-                    >{
-                      candidate?.candidateData?.skills?.length>0 && candidate?.candidateData?.skills[2].value
+                      candidate?.skills?.length>0 && candidate?.skills[2].value
                     }
                     </p>
                 </div>
@@ -88,8 +95,8 @@ const Candidate = () => {
             </div>
           </div>
           <div>
-            <div className="flex  gap-3">
-              <a href={candidate.candidateData?.resumeUrl}   className="bg-blue-600 text-white px-8 rounded-md py-4">
+            <div className="flex gap-3">
+              <a href={candidate.resumeURL} className="bg-blue-600 text-white px-8 rounded-md py-4">
                 Download CV
               </a>
               <button className="bg-blue-100 flex text-blue-500 justify-center items-center w-16 text-xl rounded-md">
