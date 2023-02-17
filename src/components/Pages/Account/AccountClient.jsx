@@ -30,7 +30,7 @@ const AccountClient = () => {
 			'candidateData': data
 		}
 		console.log(userData);
-		fetch(`http://localhost:5000/user/${dbUser?._id}`, {
+		fetch(`https://hdj-server.vercel.app/user/${dbUser?._id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json'
