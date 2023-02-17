@@ -455,84 +455,98 @@ const FindJob = () => {
 								</span>
 							)}
 
-							{/* Single Job */}
-							{
-								!dataLoading && <>
-									<div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5 pb-16">
-										{
-											data.map(job =>
-												<div key={job._id}>
-													<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col">
-														<img
-															src={job.company[0]?.photo}
-															className="w-24 h-24 rounded-full mx-auto object-cover"
-															alt=""
-														/>
-														<div className="p-4 flex flex-col flex-grow">
-															<h3 className="text-md text-center font-medium text-gray-900">
-																<Link to={`${job._id}`}>
-																	{job.title}
-																</Link>
-															</h3>
-															<p className="mt-3 text-sm text-gray-500 text-justify">
-																{job.jobDescription.slice(0, 100)}
-																{job.jobDescription.length >= 100 && <span>...</span>}
-															</p>
-															<div className="flex gap-2 mt-auto">
-																<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
-																	{job.jobType}
-																</span>
-																{
-																	job.urgent &&
-																	<span hidden={job.urgent} className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500">
-																		{job.urgent ? 'Urgent' : ''}
-																	</span>
-																}
-																<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
-																	{job?.company?.type}
-																</span>
-															</div>
-														</div>
-													</div>
-												</div>)
-										}
-									</div>
-									{/* pagination */}
-									<div className="flex itemx-center justify-center gap-4 mb-16">
-										<button
-											onClick={() => {
-												setPage(Number(page) - 1);
-											}}
-											disabled={page === 1}
-											className={`${page === 1 ? 'btn_none' : 'btn_page'}`}
-											type="button"
-										>
-											<AiOutlineArrowLeft />
-										</button>
-										<button
-											className="btn_page"
-											type="button"
-										>
-											{page}
-										</button>
-										<button
-											onClick={() => setPage(Number(page) + 1)}
-											disabled={page === Math.ceil(count / perPage)}
-											className={`${page === Math.ceil(count / perPage) ? 'btn_none' : 'btn_page'}`}
-											type="button"
-										>
-											<AiOutlineArrowRight />
-										</button>
-									</div>
-								</>
-							}
-						</div>
-					</div>
-				</div>
-			</div>
-			<ScrollToTop />
-		</main>
-	);
+              {/* Single Job */}
+              {!dataLoading && (
+                <>
+                  <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5 pb-16">
+                    {data.map((job) => (
+                      <>
+                        {
+                          <div key={job._id}>
+                            <div
+                              onClick={() => navigate(`${job._id}`)}
+                              className="hover:shadow-xl cursor-pointer rounded-lg h-[310px] border min-h-[12] bg-white shadow border-1 pt-6 flex flex-col"
+                            >
+                              <img
+                                src={job.company[0]?.photo}
+                                className="w-24 h-24 rounded-full mx-auto object-cover"
+                                alt=""
+                              />
+                              <div className="p-4 flex flex-col flex-grow">
+                                <h3 className="text-md text-center font-medium text-gray-900">
+                                  <Link to={`${job._id}`}>{job.title}</Link>
+                                </h3>
+                                <p className="mt-3 text-sm text-gray-500 text-justify">
+                                  {job.jobDescription.slice(0, 100)}
+                                  {job.jobDescription.length >= 100 && (
+                                    <span>...</span>
+                                  )}
+                                </p>
+                                <div className="flex gap-2 mt-auto">
+                                  <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+                                    {job.jobType}
+                                  </span>
+                                  {job.urgent && (
+                                    <span
+                                      hidden={job.urgent}
+                                      className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-500"
+                                    >
+                                      {job.urgent ? "Urgent" : ""}
+                                    </span>
+                                  )}
+                                  <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-600">
+                                    Private
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </>
+                    ))}
+                  </div>
+                  {/* pagination */}
+                  {
+                     count > 11 && <div className="flex itemx-center justify-center gap-4 mb-16">
+                    <button
+                      onClick={() => {
+                        setPage(Number(page) - 1);
+                      }}
+                      disabled={page === 1}
+                      className={`${page === 1?'btn_none':'btn_page'}`}
+                      type="button"
+                    >
+                      <AiOutlineArrowLeft />
+                    </button>
+                    <button
+                      className="btn_page"
+                      type="button"
+                    >
+                      {page}
+                    </button>
+                    
+                      <button
+                      onClick={() => setPage(Number(page) + 1)}
+                      disabled={page === Math.ceil(count / perPage) || count===0 }
+                      className={`${page === Math.ceil(count / perPage) || count===0 ? 'btn_none':'btn_page'}`}
+                      type="button"
+                    >
+                      <AiOutlineArrowRight />
+                    </button>
+                    
+                    
+                  </div>
+                  }
+                  
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <ScrollToTop />
+    </main>
+  );
 };
 
 export default FindJob;
