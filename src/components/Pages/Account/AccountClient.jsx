@@ -43,7 +43,7 @@ const AccountClient = () => {
 		console.log(userData);
 		fetchData.put('/user', userData, {
 			headers: {
-				'Authorization': `Bearer ${token}`
+				'Authorization': `Bearer ${user?.accessToken}`
 			}
 		})
 			.then(response => {
