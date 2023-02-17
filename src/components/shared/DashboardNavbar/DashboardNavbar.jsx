@@ -71,7 +71,7 @@ export default function AdminNavbar() {
               <Link to="/">Home</Link>
             </li>
             <li className="text-gray-600 hover:text-blue-600">
-              <Link to="/find-jobs">Find Jobs</Link>
+              <Link to="/jobs">Find Jobs</Link>
             </li>
             <li className="text-gray-600 hover:text-blue-600">
               <Link to="/employers">Employers</Link>
@@ -80,7 +80,7 @@ export default function AdminNavbar() {
               <Link to="/candidates">Candidates</Link>
             </li>
             <li className="text-gray-600 hover:text-blue-600">
-              <Link to="/blogs">Blog</Link>
+              <Link to="/blogs">Blogs</Link>
             </li>
 
             <li className="text-white">
