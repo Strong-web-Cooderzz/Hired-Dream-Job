@@ -10,6 +10,7 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
+import fetchData from "../../api/fetchData";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -54,9 +55,15 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/user?email=${user?.email}`)
-			.then(res => res.json())
-			.then(data => setDbUser(data))
+		fetchData.get('/user', {
+			params: {
+				email: user?.email
+			}
+		})
+		.then(response => setDbUser(response.data))
+		// fetch(`http://localhost:5000/user?email=${user?.email}`)
+		// 	.then(res => res.json())
+		// 	.then(data => setDbUser(data))
 	}, [user?.email])
 
 	const authInfo = {

@@ -10,7 +10,7 @@ import Loading from "../../../../Loading/Loading";
 import ConfirmModal from "../../../../shared/Modal/ConfirmModal";
 
 const Users = () => {
-  const {dbUser} = useContext(AuthContext)
+	const { token} = useContext(AuthContext)
   const [userType, setUserType] = useState("candidates");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,23 +21,28 @@ const Users = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `http://localhost:5000/api/v1/get/users?type=${userType}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
+		fetchData(`/api/v1/get/users?type=${userType}`)
+		.then(response => {
+        setUsers(response.data);
         setLoading(false);
-      });
+		})
   }, [userType, dataType]);
      
 	const deleteUser = async () => {
-		fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`)
+		fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`, {
+			headers: {
+				'Authorization': `Bearer ${token}`
+			}
+			})
 			.then(response => {
 				console.log(response)
 				if (response.data.acknowledged) {
 					setHidden(true)
 					toast.success('User deleted successfully')
+				}
+				if (result.status = 401) {
+					setHidden(true)
+					toast.error('You are not an admin')
 				}
 		})
 	}

@@ -12,7 +12,7 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Login() {
 	const navigate = useNavigate()
-	const { FacebookSignIn, GoogleSignIn, GithubSignIn, login } = useContext(AuthContext);
+	const { FacebookSignIn, GoogleSignIn, GithubSignIn, login, setDbUser } = useContext(AuthContext);
 	const FacebookProvider = new FacebookAuthProvider();
 	const GoogleProvider = new GoogleAuthProvider();
 	const GithubProvider = new GithubAuthProvider();
@@ -56,14 +56,18 @@ export default function Login() {
 		const { email, password } = data;
 		login(email, password)
 			.then((result) => {
-				reset();
-				navigate('/')
+				fetchData(`/user?email=${result?.user?.email}`)
+					.then(response => {
+						setDbUser(response.data)
+						reset();
+						navigate('/')
+					})
 			})
 			.catch((err) => console.error(err));
 	};
 
 	return (
-		<section className="h-screen max-w-[85%] mx-auto">
+		<section className="h-full max-w-[85%] mx-auto my-16">
 			<div className="px-6 h-full text-gray-800">
 				<div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
 					<div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">

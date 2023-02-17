@@ -1,15 +1,19 @@
 import { AiOutlineCloseCircle, } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
+import { BiCategory } from 'react-icons/bi';
+import { useRef, useState } from "react";
 
 const Leftside = ({ setCandidates, fetchData, setLoading, isOpen }) => {
+	const submitButtonRef = useRef()
 	const handleFormSubmit = e => {
 		e.preventDefault()
 		setLoading(true)
 		fetchData.get('/candidate', {
 			params: {
 				candidate: e.target.candidate.value,
-				location: e.target.location.value
+				location: e.target.location.value,
+				segment: e.target.segment.value
 			}
 		})
 			.then(response => {
@@ -64,16 +68,69 @@ const Leftside = ({ setCandidates, fetchData, setLoading, isOpen }) => {
 						/>
 					</div>
 				</div>
-			</form>
-			<div className="mt-8">
-				<h1 className="text-md mb-1">Category</h1>
-				<div onChange={e => {
-					categoryRef.current = e.target.value;
-					setPage(1)
-					fetchFromServer();
-				}} className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
+				<div className="mt-8">
+					<h1 className="text-md mb-1">Segment</h1>
+					<div onChange={() => submitButtonRef.current.click()}  className="border-2 border-gray-200 relative text-gray-600 focus-within:text-gray-400">
+						<span className="absolute inset-y-0 left-0 flex items-center pl-2">
+							<button
+								type="submit"
+								className="p-1 focus:outline-none focus:shadow-outline"
+							>
+								<BiCategory className="text-xl" />
+							</button>
+						</span>
+						<select name="segment" className="select_primary pl-10">
+							<option value="">Select One Segment</option>
+							<option
+								value="Accounting / Finance"
+							>
+								Accounting / Finance
+							</option>
+							<option
+								value="Marketing"
+							>
+								Marketing
+							</option>
+							<option
+								value="Design"
+							>
+								Design
+							</option>
+							<option
+								value="Development"
+							>
+								Development
+							</option>
+							<option
+								value="Human Resource"
+							>
+								Human Resource
+							</option>
+							<option
+								value="Automotive Jobs"
+							>
+								Automotive Jobs
+							</option>
+							<option
+								value="Customer Service"
+							>
+								Customer Service
+							</option>
+							<option
+								value="Health and Care"
+							>
+								Health and Care
+							</option>
+							<option
+								value="Project Management"
+							>
+								Project Management
+							</option>
+						</select>
+					</div>
 				</div>
-			</div>
+				<button ref={submitButtonRef} className="hiddedn" type="submit"></button>
+			</form>
 		</div>
 	);
 };

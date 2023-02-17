@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { AiOutlineCheck } from "react-icons/ai";
-import { FiBookmark } from "react-icons/fi";
-import { GiMoneyStack } from "react-icons/gi";
-import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import { CategorySelect } from "./Select/CategorySelect";
 import { GenderSelect } from "./Select/GenderSelect";
 import Leftside from "./Sidebar/Leftside";
 import SingleCandidate from "./SIngleCandidate";
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 const Candidates = () => {
-	const [loading, setLoading] = useState(true);
+	const [dataLoading, setDataLoading] = useState(true);
 	const [candidates, setCandidates] = useState([]);
+	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		fetchData.get('/candidate', {
@@ -22,8 +20,9 @@ const Candidates = () => {
 			}
 		})
 			.then(response => {
+				console.log(response.data)
 				setCandidates(response.data)
-				setLoading(false)
+				setDataLoading(false)
 			})
 		// fetch(
 		// 	"http://localhost:5000/candidate?type=Candidate"
@@ -50,11 +49,11 @@ const Candidates = () => {
 					</div>
 				</div>
 
-				<div className="md:flex bg-white px-6 py-6 gap-8 relative">
+				<div className="md:grid lg:grid-cols-4 bg-white relative justify-between">
 					{/* Left Side */}
-					<Leftside setCandidates={setCandidates} fetchData={fetchData} setLoading={setLoading} />
+					<Leftside isOpen={isOpen} setCandidates={setCandidates} fetchData={fetchData} setLoading={setDataLoading} />
 					{/* Right side */}
-					<div className="md:w-8/12 ">
+					<div className="col-start-2 col-end-5">
 						<div className="flex md:block justify-center">
 							<div className="p-4 md:flex  justify-between">
 								<div className="flex gap-2">
@@ -63,11 +62,10 @@ const Candidates = () => {
 								</div>
 								<div className="flex gap-2">
 									<CategorySelect />
-									<CategorySelect />
 								</div>
 							</div>
 						</div>
-						{loading ? (
+						{dataLoading ? (
 							<div>
 								<div className="py-4 rounded shadow-md w-full sm:w-full animate-pulse bg-gray-50">
 									<div className="flex p-4 space-x-4 sm:px-8">
@@ -128,11 +126,37 @@ const Candidates = () => {
 								</div>
 							</div>
 						) : (
-							<div className="flex flex-col gap-4">
-								{candidates.map((candidate) => (
-									<SingleCandidate key={candidate._id} candidate={candidate} />
-								))}
-							</div>
+							<>
+								{
+									!dataLoading && <>
+										<div className="px-5 grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-2 mt-0 lg:mt-5 pb-16">
+											{
+												candidates.map(job =>
+													<div key={job._id}>
+														<div onClick={() => navigate(`${job._id}`)} className="hover:shadow-xl cursor-pointer rounded-lg border min-h-[12] bg-white shadow border-1 py-6 flex flex-col">
+															<img
+																src={job.photo}
+																className="w-24 h-24 rounded-full mx-auto object-cover"
+																alt=""
+															/>
+															<div className="p-4 flex flex-col flex-grow">
+																<h3 className="text-md text-center font-medium text-gray-900">
+																	<Link to={`${job._id}`}>
+																		{job.fullName}
+																	</Link>
+																</h3>
+																<div className="flex items-center gap-2 justify-center">
+																	<span><FaMapMarkerAlt /></span>
+																	<span>{job.address?.city || 'N/A'}</span>
+																</div>
+															</div>
+														</div>
+													</div>)
+											}
+										</div>
+									</>
+								}
+							</>
 						)}
 					</div>
 				</div>

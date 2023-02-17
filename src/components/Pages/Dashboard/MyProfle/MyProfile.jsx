@@ -57,7 +57,7 @@ const MyProfile = () => {
 					},
 					'phoneNumber':data.phoneNumber,
 					'team': data.teamSize,
-					'socail': {
+					'social': {
 						'github': data.github,
 						'facebook':data.facebook,
 						'twitter':data.twitter,
