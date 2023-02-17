@@ -1,46 +1,53 @@
+import MarkdownIt from "markdown-it";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import MdEditor from 'react-markdown-editor-lite';
 
 const AccountClient = () => {
-	const { user } = useContext(AuthContext);
-	const [dbUser] = useState('')
+	const { user, token } = useContext(AuthContext);
+	const [value, setValue] = useState("");
+	const mdParser = new MarkdownIt();
 
-	// useEffect(() => {
-	// 	fetchData.get('/user', {
-	// 		params: {
-	// 			email: user?.email
-	// 		}
-	// 	})
-	// 	.then(response => setDbUser(response.data))
-	// }, [user?.email])
+	const handlePostChange = ({ html, text }) => {
+		setValue(text);
+	}
 
 	const navigate = useNavigate();
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
 	const handleFormSubmit = (data) => {
 		const userData = {
-			'email': user.email,
 			'fullName': user.displayName,
-			'type': dbUser?.type,
 			'photo': user.photoURL,
-			'candidateData': data
+			phoneNumber: data.phoneNumber,
+			title: data.title,
+			experience: data.experience,
+			segment: data.segment,
+			salary: data.salary,
+			expectedSalary: data.expectedSalary,
+			age: data.age,
+			education: data.education,
+			language: data.language,
+			about: value,
+			address: {
+				city: data.city,
+				country: data.country,
+				postal: data.postal,
+				street: data.street
+			}
 		}
 		console.log(userData);
-		fetch(`https://hdj-server.vercel.app/user/${dbUser?._id}`, {
-			method: 'PUT',
+		fetchData.put('/user', userData, {
 			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify(userData)
+				'Authorization': `Bearer ${token}`
+			}
 		})
-			.then(res => res.json())
-			.then(data => {
-				console.log(data);
-				if (data) {
+			.then(response => {
+				if (response.data) {
 					toast.success('Profile Data Updated')
 					navigate('/')
 				}
@@ -114,7 +121,7 @@ const AccountClient = () => {
 											Phone Number
 										</label>
 										<input
-											type="number"
+											type="tel"
 											className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
 											placeholder="+880 123456789"
 											{...register("phoneNumber", {
@@ -300,7 +307,7 @@ const AccountClient = () => {
 											<select
 												className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 												aria-label="Default select example"
-												{...register("category", { required: 'Category Required' })}
+												{...register("segment", { required: 'Category Required' })}
 											>
 												<option defaultValue value="Accounting / Finance">
 													Accounting / Finance
@@ -355,15 +362,7 @@ const AccountClient = () => {
 												>
 													About me
 												</label>
-												<textarea
-													type="text"
-													className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-													rows="4"
-													placeholder="BIO"
-													{...register("bio", {
-														required: "You BIO Is Required",
-													})}
-												></textarea>
+												<MdEditor className="h-96" renderHTML={text => mdParser.render(text)} onChange={handlePostChange} />
 											</div>
 										</div>
 									</div>
