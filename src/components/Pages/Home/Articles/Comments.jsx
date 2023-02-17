@@ -14,8 +14,8 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 	// delete confirmation modal
 	const [hidden, setHidden] = useState(true);
 
-	const [loading,setLoading]  = useState(false)
-	const [commentLoading,setCommentLoading]  = useState(false)
+	const [loading, setLoading] = useState(false)
+	const [commentLoading, setCommentLoading] = useState(false)
 
 	const handlePostComment = async e => {
 		e.preventDefault();
@@ -58,7 +58,7 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 				toast.success('Comment deleted')
 				setCommentLoading(false)
 			} else toast.error('An error occured. Please try again or try to re-login again.')
-			
+
 		} else {
 			toast.error('Something went wrong. Please login again.')
 		}
@@ -74,7 +74,7 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 							<textarea onChange={e => {
 								e.target.value.length > 0 ? setIsEmpty(false) : setIsEmpty(true)
 							}} required name="comment" className='resize-none p-2 w-full h-16 border border-blue-400 focus-visible:outline-blue-600 rounded-xl'></textarea>
-							<button disabled={isEmpty} className={`mt-2 w-44 mr-auto ${isEmpty ? 'bg-gray-300 text-white cursor-not-allowed' : 'bg-blue-100 text-blue-700'} text-sm px-4 py-2 rounded-md`}>{loading?'loading...':'Add Comment'}</button>
+							<button disabled={isEmpty} className={`mt-2 w-44 mr-auto ${isEmpty ? 'bg-gray-300 text-white cursor-not-allowed' : 'bg-blue-100 text-blue-700'} text-sm px-4 py-2 rounded-md`}>{loading ? 'loading...' : 'Add Comment'}</button>
 						</div>
 					</form>
 					:
