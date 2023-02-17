@@ -101,8 +101,8 @@ export default function Navbar() {
 												</div>
 													:
 													<div>
-														{user?.photo ? (
-															<img className="w-8 h-8 rounded-full object-cover" src={user?.photo} alt="" />
+														{user?.photoURL ? (
+															<img className="w-8 h-8 rounded-full object-cover" src={user?.photoURL} alt="" />
 														) : (
 															<FaUserCircle className="text-black text-3xl" />
 														)}
