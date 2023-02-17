@@ -31,11 +31,11 @@ const Hero = () => {
 						{/* Title */}
 						<h2 className="lg:text-4xl md:text-3xl sm:text-3xl text-3xl font-bold">
 							There Are <span className="sm:text-[#1967d2] text-blue-200">{jobCount}</span> <br />
-							Postings Here For you!
+							Postings Here For You!
 						</h2>
 						{/* Small title */}
 						<p className="lg:py-6 md:py-4 py-3 text-sm">
-							Postings Here For you! Find Jobs, Employment & Career
+							Postings Here For You! Find Jobs, Employment & Career
 							Opportunities
 						</p>
 

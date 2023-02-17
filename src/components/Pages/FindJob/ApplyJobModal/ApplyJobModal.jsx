@@ -1,6 +1,7 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
 import { useRef } from 'react';
+import fetchData from '../../../../api/fetchData';
 
 const ApplyJobModal = ({ singleJobData, user }) => {
 	const closeButton = useRef()
@@ -16,25 +17,37 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 
 		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType, applyDate, jobTitle: title, companyId: _id, companyLocation: location }
 		// send and save  data in database 
-		fetch(`http://localhost:5000/candidate/applyjobs`, {
-			method: 'POST',
+		fetchData.post('/candidate/applyjobs', jobApplyInfo, {
 			headers: {
-				'content-type': 'application/json'
-			},
-			body: JSON.stringify(jobApplyInfo)
-
-		})
-			.then(res => res.json())
-			.then(data => {
-				if (data.acknowledged === true) {
+				'Authorization': `Bearer ${user?.token}`
+			}
+			})
+			.then(response => {
+				if (response.data.acknowledged) {
 					toast.success(`${user?.displayName} Your job apply hasbeen submitted `)
 					form.reset()
 					closeButton.current.click();
-
 				}
-				console.log(data)
-			})
-			.catch(err => console.log(err))
+		})
+		// fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/applyjobs`, {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'content-type': 'application/json'
+		// 	},
+		// 	body: JSON.stringify(jobApplyInfo)
+		//
+		// 	})
+		// 	.then(res => res.json())
+		// 	.then(data => {
+		// 		if (data.acknowledged === true) {
+		// 			toast.success(`${user?.displayName} Your job apply hasbeen submitted `)
+		// 			form.reset()
+		// 			closeButton.current.click();
+		//
+		// 		}
+		// 		console.log(data)
+		// 	})
+		// 	.catch(err => console.log(err))
 	}
 
 	return (
@@ -104,7 +117,7 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 									</div>
 
 									<div className="form-group mb-3">
-										<label>Resume  drive link : </label>
+										<label>Resume drive link:</label>
 										<input type="text" name='resume' accept='application/pdf' className="form-control block
         w-full
         px-3

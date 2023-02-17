@@ -6,8 +6,6 @@ import { toast } from 'react-hot-toast';
 import fetchData from '../../../../api/fetchData';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
-
-
 const DashboardAddPost = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [jobType,setJobType] = useState('')
@@ -15,39 +13,38 @@ const DashboardAddPost = () => {
     const [companyType,setCompanyType] = useState('')
     const { register, handleSubmit,reset ,watch, formState: { errors } } = useForm();
     const { logOut, user, dbUser, token } = useContext(AuthContext);
-    
     const [loading,setLoading] = useState(false)
 
-    const handleAddNewJob = (data) =>{ 
-        console.log(data);
-        setLoading(true)
-        const jobDetails = {
-            'title':data.title,
-            'jobDescription':data.jobDescription,
-            'responsibilities':data.responsibilities,
-            'skills':data.skills,
-            'jobEmail':user.email,
-            'location':data.location,
-            'urgent':urgent,
-            'category': data.category,
-            'jobType':jobType,
-            'companyType':companyType,
-            'company':dbUser.employData.companyName   ,
-            'postTime':'1 hours ago',
-            'expireDate':startDate,
-            'trems':data.trems,
-            'workingHours':data.workingHours,
-            'salaryMin':data.salaryMin,
-            'salaryMax':data.salaryMax,
-            'rateMin':data.rateMin,
-            'rateMax':data.rateMax,
-            timestamp:1,
-            isVisible:true
-               
-
-        }
-        console.log(jobDetails);
-
+	const handleAddNewJob = (data) =>{ 
+		console.log(data);
+		setLoading(true)
+		const jobDetails = {
+			'title':data.title,
+			'jobDescription':data.jobDescription,
+			'responsibilities':data.responsibilities,
+			'skills':data.skills,
+			'jobEmail':user.email,
+			'location':data.location,
+			'urgent':urgent,
+			'category': data.category,
+			'jobType':jobType,
+			'companyType':companyType,
+			'company':dbUser.employData.companyName,
+			'postTime':'1 hours ago',
+			'expireDate':startDate,
+			'trems':data.trems,
+			'workingHours':data.workingHours,
+			'salaryMin':data.salaryMin,
+			'salaryMax':data.salaryMax,
+			'rateMin':data.rateMin,
+			'rateMax':data.rateMax,
+			timestamp:1,
+			isVisible:true
+		}
+		if (!token) {
+			return toast.error('Please login to post job')
+		}
+		console.log(jobDetails);
 		fetchData.post('/jobs', jobDetails, {
 			headers: {
 				'Authorization': `Bearer ${token}`
@@ -57,8 +54,8 @@ const DashboardAddPost = () => {
 				toast.success('Job Added')
 				setLoading(false)
 				reset()
-			})
-    }
+		})
+	}
 
 
     return (
