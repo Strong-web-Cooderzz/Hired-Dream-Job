@@ -13,7 +13,7 @@ const AppliedCandidates = () => {
     
     // find candidate who is applied of my job post 
     useEffect(()=>  {
-        fetch(`http://localhost:5000/get_applied_candidate/${user?.email}`)
+        fetch(`https://hdj-server.vercel.app/get_applied_candidate/${user?.email}`)
         .then(res => res.json())
         .then(data => {
             setCandidateData(data)
