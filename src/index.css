@@ -7,11 +7,11 @@
 
 @layer components{
 	.btn_round{
-		@apply	bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 
+		@apply	bg-blue-500  md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-full px-4 py-2 flex items-center justify-center gap-2 
 		
 	}
 	.btn_primary{
-		@apply bg-blue-500 mt-4 md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-md px-4 py-2 flex items-center justify-center gap-2 
+		@apply bg-blue-500  md:mt-0 md:w-24 lg:w-28 w-full sm:w-full hover:bg-blue-400 h-12 mr-[2px] text-white rounded-md px-4 py-2 flex items-center justify-center gap-2 
 	}
 
 	.btn_page{
@@ -50,7 +50,17 @@
 		font-family: 'Kanit', sans-serif;
 	}
 
-	
+	@import url('https://fonts.googleapis.com/css2?family=Macondo&family=Montserrat+Alternates:wght@400;500;600&display=swap');
+
+
+	.hero-font{
+		
+font-family: 'Montserrat Alternates', sans-serif;
+
+
+	} 
+		
+
 
 	input[type='number'] {
 		-moz-appearance: textfield;

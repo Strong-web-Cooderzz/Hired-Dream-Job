@@ -9,16 +9,16 @@ const JobFeauters = () => {
   const [jobFeaturesData, setJobFeaturesData] = useState([]);
 
   useEffect(() => {
-		async function fetchJobs() {
-			try {
-				const response = await api.get("/featured");
-				setJobFeaturesData(response.data);
-				setLoading(false);
-			} catch (err) {
-				console.log(err);
-			}
-		}
-		fetchJobs();
+    async function fetchJobs() {
+      try {
+        const response = await api.get("/featured");
+        setJobFeaturesData(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchJobs();
   }, []);
 
   return (
@@ -31,11 +31,94 @@ const JobFeauters = () => {
         </p>
       </div>
       {loading ? (
-        <div className="w-full  mx-auto ">
-          <div className="w-36 h-36 flex justify-center bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-transparent animate-spin mt-16"></div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-2  gap-y-8">
+          <div className="border rounded-lg py-4 animate-pulse bg-gray-50">
+            <div className="flex p-4 space-x-4 sm:px-8">
+              <div className="flex-1 py-2 space-y-4">
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gray-300"></div>
+            </div>
+            <div className="p-4 space-y-4 sm:px-8">
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+            </div>
+          </div>
+          <div className="border rounded-lg py-4 animate-pulse bg-gray-50">
+            <div className="flex p-4 space-x-4 sm:px-8">
+              <div className="flex-1 py-2 space-y-4">
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gray-300"></div>
+            </div>
+            <div className="p-4 space-y-4 sm:px-8">
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+            </div>
+          </div>
+          <div className="border rounded-lg py-4 animate-pulse bg-gray-50">
+            <div className="flex p-4 space-x-4 sm:px-8">
+              <div className="flex-1 py-2 space-y-4">
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gray-300"></div>
+            </div>
+            <div className="p-4 space-y-4 sm:px-8">
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+            </div>
+          </div>
+          <div className="border rounded-lg py-4 animate-pulse bg-gray-50">
+            <div className="flex p-4 space-x-4 sm:px-8">
+              <div className="flex-1 py-2 space-y-4">
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+                <div className="flex justify-center gap-12">
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                  <div className="w-full h-3 rounded bg-gray-300"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="flex-shrink-0 w-16 h-16 rounded-full bg-gray-300"></div>
+            </div>
+            <div className="p-4 space-y-4 sm:px-8">
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+              <div className="w-full h-4 rounded bg-gray-300"></div>
+            </div>
+          </div>
         </div>
       ) : (
-        <div className="w-full  mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-6  gap-y-8">
+        <div className="w-full  mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-2  gap-y-8">
           {/*  job featured card section   */}
           {jobFeaturesData.map((data) => (
             <JobFeaturedCard key={data.id} data={data}></JobFeaturedCard>
@@ -44,10 +127,10 @@ const JobFeauters = () => {
       )}
 
       <div className=" flex justify-center mt-8">
-        <Link to={'/jobs'} >
-
+        <Link to={"/jobs"}>
           <button className="btn_round w-full">
-           See All Jobs<FaArrowRight />
+            See All Jobs
+            <FaArrowRight />
           </button>
         </Link>
       </div>

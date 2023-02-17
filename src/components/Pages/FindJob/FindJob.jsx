@@ -507,7 +507,8 @@ const FindJob = () => {
                     ))}
                   </div>
                   {/* pagination */}
-                  <div className="flex itemx-center justify-center gap-4 mb-16">
+                  {
+                     count > 11 && <div className="flex itemx-center justify-center gap-4 mb-16">
                     <button
                       onClick={() => {
                         setPage(Number(page) - 1);
@@ -524,15 +525,20 @@ const FindJob = () => {
                     >
                       {page}
                     </button>
-                    <button
+                    
+                      <button
                       onClick={() => setPage(Number(page) + 1)}
-                      disabled={page === Math.ceil(count / perPage)}
-                      className={`${page === Math.ceil(count / perPage)?'btn_none':'btn_page'}`}
+                      disabled={page === Math.ceil(count / perPage) || count===0 }
+                      className={`${page === Math.ceil(count / perPage) || count===0 ? 'btn_none':'btn_page'}`}
                       type="button"
                     >
                       <AiOutlineArrowRight />
                     </button>
+                    
+                    
                   </div>
+                  }
+                  
                 </>
               )}
             </div>
