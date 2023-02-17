@@ -53,6 +53,7 @@ const Register = () => {
 						setDbUser(user)
 						signInWithCustomToken(auth, response.data.token)
 							.then(userCredential => {
+								console.log(userCredential)
 								toast.success("Successfully created account");
 								if (data.type === "Candidate") {
 									navigate("/accountClient");

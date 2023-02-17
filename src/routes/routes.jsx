@@ -46,6 +46,7 @@ import ManageUsers from "../components/Pages/Dashboard/AdminDashboard/Routes/Man
 import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJob";
 import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageJob";
 import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
+import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
 
 
 export const router = createBrowserRouter([
@@ -196,6 +197,11 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/add_blog',
 				element: <CandidateAddpost> </CandidateAddpost>
+			},
+			{
+       path: '/dashboard/applied_candidates',
+			 element: <AppliedCandidates/>
+			
 			},
 			{
 				path: '/dashboard/my_blogs',
