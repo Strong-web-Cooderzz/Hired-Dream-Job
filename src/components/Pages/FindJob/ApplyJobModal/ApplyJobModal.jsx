@@ -15,7 +15,7 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 		const candidateResume = form.resume.value;
 		const candidateMessage = form.message.value;
 
-		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType, applyDate, jobTitle: title, companyId: _id, companyLocation: location }
+		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType,  jobTitle: title, companyId: _id, companyLocation: location }
 		// send and save  data in database 
 		fetchData.post('/candidate/applyjobs', jobApplyInfo, {
 			headers: {
