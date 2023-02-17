@@ -17,20 +17,20 @@ const CandidateProfile = () => {
 	// we don't need it. Cause express can do that. So it will improve user experience
 
   const animatedComponents = makeAnimated();
-  const skillsOptions = [
-    { value: 'HTML', label: 'HTML'},
-    { value: 'CSS', label: 'CSS'},
-    { value: 'Bootstrap', label: 'Bootstrap' },
-    { value: 'Tailwind', label: 'Tailwind' },
-    { value: 'Javascript', label: 'Javascript' },
-    { value: 'React', label: 'React' },
-    { value: 'NextJS', label: 'NextJS' },
-    { value: 'Redux', label: 'Redux' },
-    { value: 'NodeJS', label: 'NodeJS' },
-    { value: 'Express', label: 'Express' },
-    { value: 'Mongodb', label: 'Mongodb' },
-    { value: 'MySQL', label: 'MySQL' },
-  ];
+	const skillsOptions = [
+		{ value: 'HTML', label: 'HTML'},
+		{ value: 'CSS', label: 'CSS'},
+		{ value: 'Bootstrap', label: 'Bootstrap' },
+		{ value: 'Tailwind', label: 'Tailwind' },
+		{ value: 'Javascript', label: 'Javascript' },
+		{ value: 'React', label: 'React' },
+		{ value: 'NextJS', label: 'NextJS' },
+		{ value: 'Redux', label: 'Redux' },
+		{ value: 'NodeJS', label: 'NodeJS' },
+		{ value: 'Express', label: 'Express' },
+		{ value: 'Mongodb', label: 'Mongodb' },
+		{ value: 'MySQL', label: 'MySQL' },
+	];
   const [skills,setSkills] = useState([])
 
   const imgbbAPIKEY = "baca7cebf7d1365bf97c10bb391342f9";
@@ -51,7 +51,6 @@ const CandidateProfile = () => {
     formData.append("upload_preset", "hired-dream-job")
     formData.append("cloud_name","dcckbmhft")
 
-
     const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
     fetch(url,{
       method:'POST',
@@ -70,7 +69,7 @@ const CandidateProfile = () => {
 						'city':data.city,
 						'country':data.country,
 					},
-					'socail': {
+					'social': {
 						'github': data.github,
 						'facebook':data.facebook,
 						'twitter':data.twitter,
@@ -83,12 +82,12 @@ const CandidateProfile = () => {
         'bio':data.candidateBio,
         'age':data.age,
         'education':data.education,
-        'resumeUrl':data.resumeUrl,
+        'resumeURL':data.resumeUrl,
         'skills':skills,
         'language':data.language,
         'experience':data.experience,
         'gender':data.gender,
-        'Category':data.category
+        'segment':data.category
       }
       if(imageUrl){
 					fetchData.put(`/user/${user.uid}`, updateData, {
