@@ -19,7 +19,7 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 		// send and save  data in database 
 		fetchData.post('/candidate/applyjobs', jobApplyInfo, {
 			headers: {
-				'Authorization': `Bearer ${user?.token}`
+				'Authorization': `Bearer ${user?.accessToken}`
 			}
 			})
 			.then(response => {
