@@ -29,7 +29,6 @@ const DashboardAddPost = () => {
 			'category': data.category,
 			'jobType':jobType,
 			'companyType':companyType,
-			'company':dbUser.employData.companyName,
 			'postTime':'1 hours ago',
 			'expireDate':startDate,
 			'trems':data.trems,
