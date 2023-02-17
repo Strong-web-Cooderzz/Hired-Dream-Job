@@ -40,9 +40,6 @@ const DashboardAddPost = () => {
 			timestamp:1,
 			isVisible:true
 		}
-		if (!token) {
-			return toast.error('Please login to post job')
-		}
 		console.log(jobDetails);
 		fetchData.post('/jobs', jobDetails, {
 			headers: {
