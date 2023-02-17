@@ -8,7 +8,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import moment from 'moment';
 
 export default function Comments({ post, hideComments, setHideComments, fetchPost }) {
-	const { user, token } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [commentId, setCommentId] = useState('');
 	// delete confirmation modal
@@ -27,7 +27,7 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 		}
 		const response = await fetchData.post('/post-comment', commentDetails, {
 			headers: {
-				Authorization: `Bearer ${token}`
+				Authorization: `Bearer ${user?.accessToken}`
 			}
 		})
 		if (response.data.acknowledged) {

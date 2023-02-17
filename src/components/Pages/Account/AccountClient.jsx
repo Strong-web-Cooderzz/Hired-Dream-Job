@@ -8,7 +8,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import MdEditor from 'react-markdown-editor-lite';
 
 const AccountClient = () => {
-	const { user, token } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 	const [value, setValue] = useState("");
 	const mdParser = new MarkdownIt();
 
