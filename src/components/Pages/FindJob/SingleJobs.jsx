@@ -25,6 +25,7 @@ const SingleJobs = () => {
 	const [jobData, setJobData] = useState({});
 	const [dataLoading, setDataLoading] = useState(true)
 	const { user } = useContext(AuthContext)
+	console.log(jobData)
 
 	useEffect(() => {
 		fetchData.get(`/jobs/${id}`)
@@ -56,7 +57,7 @@ const SingleJobs = () => {
 						<div className="basis-2/3">
 							<div className="m-6 flex justify-between lg:m-6">
 								<div>
-									<h1 className="text-2xl font-medium ">{jobData.title}</h1>
+									<h1 className="text-2xl font-medium ">{jobData.title} {new Date() > new Date(jobData.expireDate) && '(Expired)'}</h1>
 									<div className="mt-2 flex gap-2">
 										<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-500">
 											{jobData.jobType}
@@ -79,7 +80,7 @@ const SingleJobs = () => {
 										}
 										{
 											!user &&
-											<button onClick={() => navigate('/login')}className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer">
+											<button disabled={new Date() > new Date(jobData.expireDate)} onClick={() => navigate('/login')} className={`${new Date() > new Date(jobData.expireDate) ? 'cursor-not-allowed bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} w-full px-6 py-3 text-sm rounded-md text-white cursor-pointer`}>
 												Login to apply
 											</button>
 										}
