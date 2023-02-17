@@ -9,6 +9,7 @@ import hero from "../../../../assets/Loatte/hero4.json";
 import blob from '../../../../assets/Hero/1.svg'
 import blob2 from '../../../../assets/Hero/2.svg'
 import bg from '../../../../assets/Hero/bg.svg'
+import { MouseParallax } from "react-just-parallax";
 
 const Hero = () => {
   const [formLoading, setFormLoading] = useState(false);
@@ -30,7 +31,9 @@ const Hero = () => {
 
   return (
     <div className="md:pl-20 overflow-hidden lg:pl-24 ">
+        <MouseParallax>
 		<img className="absolute  w-full opacity-25 " src={bg} alt="" />
+    </MouseParallax>
       <div className="w-full flex flex-col-reverse sm:flex-row text-black text-center sm:text-left  relative">
 		<img className="absolute bottom-0 sm:top-0 w-44 opacity-20" src={blob} alt="" />
 		{/* <img className="absolute top-20 left-96 w-44 opacity-20" src={blob2} alt="" /> */}
