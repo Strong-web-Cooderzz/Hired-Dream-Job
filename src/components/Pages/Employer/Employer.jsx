@@ -36,7 +36,7 @@ export default function Employer() {
 							<span className="flex items-center gap-1"><HiOutlineMail />{employer?.email}</span>
 						</div>
 						<div>
-							<span className="text-xs text-blue-700 bg-blue-200 px-6 py-1 mt-1 rounded-full">Open Jobs - {employer?.jobs.length}</span>
+							<span className="text-xs text-blue-700 bg-blue-200 px-6 py-1 mt-1 rounded-full">Open Jobs - {employer?.jobs?.length}</span>
 						</div>
 					</div>
 
@@ -52,11 +52,11 @@ export default function Employer() {
 					<div className="lg:w-9/12 flex flex-col">
 						<span className="text-2xl font-bold">About Company</span>
 						<span className="text-md mt-2 text-gray-600">{employer.employData?.Company_Bio}</span>
-						<span className="text-xl font-medium mt-8">{employer.jobs.length} other jobs available</span>
+						<span className="text-xl font-medium mt-8">{employer.jobs?.length} other jobs available</span>
 						{/* cards */}
 						<div className="flex flex-col gap-4 mt-4">
 							{
-								employer.jobs.map(job => <>
+								employer.jobs?.map(job => <>
 									<div className="p-5 border rounded-md flex flex-col gap-4">
 										<span className="font-medium">{job.title}</span>
 										<div className="flex text-xs text-gray-600 gap-4">
@@ -98,7 +98,7 @@ export default function Employer() {
 									<span className="bg-blue-200 px-4 rounded-full py-1 text-xs">Open Jobs - {employer?.available}</span>
 								</div>
 							</div>
-							<span className="flex items-center justify-between text-md">Company Size: <span className="text-gray-500 text-md">{employer.employData?.team}</span></span>
+							<span className="flex items-center justify-between text-md">Company Size: <span className="text-gray-500 text-md">{employer?.team}</span></span>
 							<span className="flex items-center justify-between text-md">Founded in: <span className="text-gray-500 text-md">{moment(employer.founded).fromNow()}</span></span>
 							<span className="flex items-center justify-between text-md">Phone: <span className="text-gray-500 text-md">{employer.employData?.phoneNumber}</span></span>
 							<span className="flex items-center justify-between text-md">Location: <span className="text-gray-500 text-md">{employer.address?.city + ', ' + employer.address?.country}</span></span>
