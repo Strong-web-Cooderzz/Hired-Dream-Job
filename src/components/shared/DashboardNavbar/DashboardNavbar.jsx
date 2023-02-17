@@ -84,68 +84,118 @@ export default function AdminNavbar() {
             </li>
 
             <li className="text-white">
-              {user ? (
-                <div className="relative">
-                  <input
-                    type="checkbox"
-                    id="sortbox"
-                    className="hidden absolute"
-                  />
-                  <label
-                    htmlFor="sortbox"
-                    className={`flex items-center space-x-1 cursor-pointer ${
-                      dbUser?.photo  ? "!w-8 rounded-full !h-8" : "w-full"
-                    }`}
-                  >
-                    {
-                      user.reloadUserInfo?.providerUserInfo[0].providerId==='google.com' ? <div>
-                          <FaUserCircle className="text-black text-3xl" />
-                      </div>
-                      :
-                      <div title="Company Logo">
-                          {dbUser?.photo ? (
-                 <img className="w-8 h-8 rounded-full border border-black" src={dbUser?.employData?.photo} alt="" />
-                    ) : (
-                      <FaUserCircle className="text-black text-3xl" />
-                    )}
-                      </div>
-                    }
-                  
-                  </label>
-
-                  <div
-                    id="sortboxmenu"
-                    className="absolute mt-1 right-1 top-full min-w-max shadow rounded opacity-0 bg-gray-300 border border-white transition delay-75 ease-in-out z-10 font-semibold"
-                  >
-                    <ul className="block text-gray-900">
-                      <li className="block px-3 py-2 hover:bg-gray-200">
-                        <p>
-                          {user?.displayName ? user?.displayName : "Unknown"}
-                        </p>
-                      </li>
-                      <li className="block px-3 py-2 hover:bg-gray-200">
-                        <p>Account Settings</p>
-                      </li>
-                      <li className="block px-3 py-2 hover:bg-gray-200">
-                        <Link to="/dashboard"> Dashboard </Link>
-                      </li>
-                      <li className="block px-3 py-2">
-                        <button
-                          onClick={LogOut}
-                          className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600 w-full"
-                        >
-                          Log Out
-                        </button>
-                      </li>
-                    </ul>
+                {user?.email ? (
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      id="sortbox"
+                      className="hidden absolute"
+                    />
+					<div class="dropdown relative">
+                      <a
+                        class="dropdown-toggle flex items-center hidden-arrow"
+                        href="#"
+                        id="dropdownMenuButton2"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                       {user?.photo ? (
+                            <img
+                              className="w-8 h-8 rounded-full object-cover"
+                              src={user?.photo}
+                              alt=""
+                            />
+                          ) : (
+                            <FaUserCircle className="text-black text-3xl" />
+                          )}
+                      </a>
+                      <ul
+                        class="
+    dropdown-menu
+    min-w-max
+    absolute
+    bg-white
+    text-base
+    z-50
+    float-left
+    py-2
+    list-none
+    text-left
+    rounded-lg
+    shadow-lg
+    mt-1
+    hidden
+    m-0
+    bg-clip-padding
+    border-none
+    left-auto
+    right-0
+  "
+                        aria-labelledby="dropdownMenuButton2"
+                      >
+                        <li>
+                          <a
+                            class="
+        dropdown-item
+        text-sm
+        py-2
+        px-4
+        font-normal
+        block
+        w-full
+        whitespace-nowrap
+        bg-transparent
+        text-gray-700
+        hover:bg-gray-100
+      "
+                            href="#"
+                          >
+                            {user?.displayName ? user?.displayName : "Unknown"}
+                          </a>
+                        </li>
+                        <li>
+                          <Link
+                            class="
+        dropdown-item
+        text-sm
+        py-2
+        px-4
+        font-normal
+        block
+        w-full
+        whitespace-nowrap
+        bg-transparent
+        text-gray-700
+        hover:bg-gray-100
+      "
+                            to="/dashboard"
+                          >
+                            {" "}
+                            Dashboard{" "}
+                          </Link>
+                        </li>
+                        <li>
+                          <button
+                            onClick={logOut}
+                            class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-rose-700 hover:bg-rose-100 " >
+                            Log Out
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                   
                   </div>
-                </div>
-              ) : (
-                <button className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600">
-                  <Link to="/login">LogIn</Link>
-                </button>
-              )}
-            </li>
+                ) : (
+                  <Link
+                    className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600"
+                    to="/login"
+                  >
+                    Log in
+                  </Link>
+                )}
+              </li>
           </ul>
         </div>
       </div>
