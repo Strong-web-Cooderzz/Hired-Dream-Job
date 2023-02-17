@@ -262,7 +262,7 @@ const SingleJobs = () => {
 										</div>
 										<div className="flex justify-between ">
 											<p className="text-md text-black/80 font-medium">Location:</p>
-											<p className="font-medium text-md text-black/50">{jobData.company.address.city}, {jobData.company.address.country}</p>
+											<p className="font-medium text-md text-black/50">{jobData?.company?.address?.city}, {jobData?.company?.address?.country}</p>
 										</div>
 										<div className="flex justify-between ">
 											<p className="text-md text-black/80 font-medium">
