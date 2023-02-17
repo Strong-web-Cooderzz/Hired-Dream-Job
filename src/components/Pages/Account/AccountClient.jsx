@@ -47,6 +47,7 @@ const AccountClient = () => {
 			}
 		})
 			.then(response => {
+				console.log(response.data)
 				if (response.data) {
 					toast.success('Profile Data Updated')
 					navigate('/')

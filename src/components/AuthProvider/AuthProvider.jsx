@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
-	const [token, setToken] = useState('')
+	// const [token, setToken] = useState('')
 
 	const FacebookSignIn = (facebook) => {
 		return signInWithPopup(auth, facebook);
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
 		logOut,
 		changePass,
 		updateUserProfile,
-		token,
+		// token,
 		setDbUser,
 		authUser
 	};
@@ -92,7 +92,7 @@ const AuthProvider = ({ children }) => {
 			} else {
 				setUser(null)
 			}
-			setToken(currentUser.accessToken)
+			// setToken(currentUser.accessToken)
 		})
 		return () => unSubscribe()
 	}, [])

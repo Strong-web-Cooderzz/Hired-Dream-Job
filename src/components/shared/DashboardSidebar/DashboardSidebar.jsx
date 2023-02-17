@@ -32,6 +32,10 @@ const DashboardSidebar = () => {
     <li className="relative">
       <NavLink to='/dashboard/manage_jobs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Manage Jobs</NavLink>
     </li>
+
+    <li className="relative">
+      <NavLink to='/dashboard/applied_candidates' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark"> Applied candidates </NavLink>
+    </li>
   </>
 }
 {
@@ -43,12 +47,13 @@ const DashboardSidebar = () => {
    <li className="relative">
       <NavLink to='/dashboard/my_blogs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!"> Manage Blogs</NavLink>
     </li>
-  </>
-}
-   
     <li className="relative">
       <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!">All Applied Jobs</NavLink>
     </li>
+  </>
+}
+   
+    
   </ul>
 </div>
  </div>
