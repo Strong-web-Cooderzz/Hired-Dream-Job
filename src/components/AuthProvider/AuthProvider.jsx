@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (user.accessToken) {
-			socket = io('ws://hdj-server.vercel.app', {
+			socket = io('wss://hdj-server.vercel.app', {
 				auth: {
 					token: user.accessToken
 				}
