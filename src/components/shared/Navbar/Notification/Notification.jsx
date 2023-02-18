@@ -5,17 +5,18 @@ import { VscBellDot } from "react-icons/vsc";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Notification() {
-	const { socket } = useContext(AuthContext)
+	const { socket, user } = useContext(AuthContext)
 	const [newNotification, setNewNotification] = useState(false);
 
 	useEffect(() => {
+		if (user?.email)
 		return () => {
 			socket.on("notification", (data) => {
 				toast.success(data);
 				setNewNotification(true);
 			});
 		}
-	}, [])
+	}, [user])
 
 	return (
 		<section>
