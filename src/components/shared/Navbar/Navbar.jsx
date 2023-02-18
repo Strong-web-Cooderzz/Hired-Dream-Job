@@ -106,10 +106,10 @@ export default function Navbar() {
 												data-bs-toggle="dropdown"
 												aria-expanded="false"
 											>
-												{user?.photo ? (
+												{user?.photoURL ? (
 													<img
 														className="w-8 h-8 rounded-full object-cover"
-														src={user?.photo}
+														src={user?.photoURL}
 														alt=""
 													/>
 												) : (

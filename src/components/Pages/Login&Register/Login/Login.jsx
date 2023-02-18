@@ -12,7 +12,7 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Login() {
 	const navigate = useNavigate()
-	const { FacebookSignIn, GoogleSignIn, GithubSignIn, login, setDbUser } = useContext(AuthContext);
+	const { FacebookSignIn, GoogleSignIn, GithubSignIn, login, setDbUser, socket } = useContext(AuthContext);
 	const FacebookProvider = new FacebookAuthProvider();
 	const GoogleProvider = new GoogleAuthProvider();
 	const GithubProvider = new GithubAuthProvider();
@@ -60,7 +60,7 @@ export default function Login() {
 					.then(response => {
 						setDbUser(response.data)
 						reset();
-						navigate('/')
+						// navigate('/')
 					})
 			})
 			.catch((err) => console.error(err));

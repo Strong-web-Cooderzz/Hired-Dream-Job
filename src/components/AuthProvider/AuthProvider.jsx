@@ -13,14 +13,14 @@ import app from "../../firebase/firebase.config";
 import fetchData from "../../api/fetchData";
 import { io } from "socket.io-client";
 
-const socket = io('ws://hdj-server.vercel.app');
+let socket = io('ws://hdj-server.vercel.app');
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const authUser = auth.currentUser;
 
 const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
 	// const [token, setToken] = useState('')
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
 				email: user?.email
 			}
 		})
-		.then(response => setDbUser(response.data))
+			.then(response => setDbUser(response.data))
 		// fetch(`http://localhost:5000/user?email=${user?.email}`)
 		// 	.then(res => res.json())
 		// 	.then(data => setDbUser(data))
@@ -85,8 +85,18 @@ const AuthProvider = ({ children }) => {
 		// token,
 		setDbUser,
 		authUser,
-		socket
+		socket,
 	};
+
+	useEffect(() => {
+		if (user.accessToken) {
+			socket = io('ws://hdj-server.vercel.app', {
+				auth: {
+					token: user.accessToken
+				}
+			})
+		}
+	}, [user])
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, currentUser => {
@@ -94,7 +104,7 @@ const AuthProvider = ({ children }) => {
 			if (currentUser) {
 				setUser(currentUser)
 			} else {
-				setUser(null)
+				setUser({})
 			}
 			// setToken(currentUser.accessToken)
 		})
