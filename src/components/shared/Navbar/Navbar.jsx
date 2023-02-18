@@ -83,7 +83,7 @@ export default function Navbar() {
 								<Link to="/blogs">Blogs</Link>
 							</li>
 							{
-								!user?.email &&
+								user?.email &&
 								<li>
 									<Notification />
 								</li>
