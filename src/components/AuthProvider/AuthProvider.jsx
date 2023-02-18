@@ -11,6 +11,9 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 import fetchData from "../../api/fetchData";
+import { io } from "socket.io-client";
+
+const socket = io('ws://localhost:5000');
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -81,7 +84,8 @@ const AuthProvider = ({ children }) => {
 		updateUserProfile,
 		// token,
 		setDbUser,
-		authUser
+		authUser,
+		socket
 	};
 
 	useEffect(() => {
