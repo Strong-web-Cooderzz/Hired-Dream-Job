@@ -9,12 +9,13 @@ export default function Notification() {
 	const [newNotification, setNewNotification] = useState(false);
 
 	useEffect(() => {
-		if (user?.email)
-		return () => {
-			socket.on("notification", (data) => {
-				toast.success(data);
-				setNewNotification(true);
-			});
+		if (user?.email) {
+			return () => {
+				socket.on("notification", (data) => {
+					toast.success(data);
+					setNewNotification(true);
+				});
+			}
 		}
 	}, [user])
 
