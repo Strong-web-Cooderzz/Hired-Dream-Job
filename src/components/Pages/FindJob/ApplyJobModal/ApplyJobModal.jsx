@@ -15,20 +15,20 @@ const ApplyJobModal = ({ singleJobData, user }) => {
 		const candidateResume = form.resume.value;
 		const candidateMessage = form.message.value;
 
-		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType,  jobTitle: title, companyId: _id, companyLocation: location }
+		const jobApplyInfo = { candidateResume, candidateMessage, company, companyType, jobType, jobTitle: title, companyId: company.id, companyLocation: location }
 		// send and save  data in database 
 		fetchData.post('/candidate/applyjobs', jobApplyInfo, {
 			headers: {
 				'Authorization': `Bearer ${user?.accessToken}`
 			}
-			})
+		})
 			.then(response => {
 				if (response.data.acknowledged) {
 					toast.success(`${user?.displayName} Your job apply hasbeen submitted `)
 					form.reset()
 					closeButton.current.click();
 				}
-		})
+			})
 		// fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/applyjobs`, {
 		// 	method: 'POST',
 		// 	headers: {

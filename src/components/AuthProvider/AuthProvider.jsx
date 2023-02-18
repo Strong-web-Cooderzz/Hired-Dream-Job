@@ -13,7 +13,7 @@ import app from "../../firebase/firebase.config";
 import fetchData from "../../api/fetchData";
 import { io } from "socket.io-client";
 
-let socket = {};
+let socket = io('ws://hdj-server.vercel.app');
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
