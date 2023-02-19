@@ -92,7 +92,7 @@ const AuthProvider = ({ children }) => {
 			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
-				setSocket(io('ws://hdj-server.onrender.com', {
+				setSocket(io('wss://hdj-server.onrender.com', {
 					auth: {
 						token: currentUser.accessToken
 					}
@@ -104,6 +104,10 @@ const AuthProvider = ({ children }) => {
 		})
 		return () => unSubscribe()
 	}, [])
+
+	useEffect(() => {
+		if (socket.on) socket.on('connect', () => console.log('new connection'))
+	}, [socket])
 
 	return (
 		<AuthContext.Provider value={authInfo}>
