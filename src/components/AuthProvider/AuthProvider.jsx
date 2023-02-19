@@ -13,7 +13,7 @@ import app from "../../firebase/firebase.config";
 import fetchData from "../../api/fetchData";
 import { io } from "socket.io-client";
 
-let socket = io('ws://hdj-server.vercel.app');
+let socket = io('ws://hdj-server.onrender.com');
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -89,12 +89,15 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		if (user.accessToken) {
-			socket = io('wss://hdj-server.vercel.app', {
-				auth: {
-					token: user.accessToken
-				}
-			})
+		return () => {
+			if (user.accessToken) {
+				socket.disconnect();
+				socket = io('ws://hdj-server.onrender.com', {
+					auth: {
+						token: user.accessToken
+					}
+				})
+			}
 		}
 	}, [user])
 
