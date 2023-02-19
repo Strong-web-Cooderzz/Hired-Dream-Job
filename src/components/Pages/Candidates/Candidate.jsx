@@ -58,12 +58,18 @@ const Candidate = () => {
 						</div>
 						<div className="flex gap-2 justify-center">
 							<div className="text-gray-700 md:text-left text-center ">
-								<h2 className="text-xl font-semibold">{candidate?.fullName}</h2>
+								<h2 className="text-xl ml-4 capitalize font-semibold">{candidate?.fullName}</h2>
 								<div className="flex flex-wrap items-center gap-3">
 									<p>{candidate?.segment}</p>
 									<p className="flex items-center gap-1">
-										<GoLocation /> {candidate?.address?.city},{" "}
+										<GoLocation /> 
+										{
+											candidate?.address?.city &&  candidate?.address?.country ? <>
+											{candidate?.address?.city},{" "}
 										{candidate?.address?.country}
+											</>: 'No Location'
+										}
+										
 									</p>
 									<p className="flex items-center gap-1">
 										<GrMoney /> $99 / hour
@@ -96,10 +102,10 @@ const Candidate = () => {
 					</div>
 					<div>
 						<div className="flex gap-3">
-							<a href={candidate.resumeURL} className="bg-blue-600 text-white px-8 rounded-md py-4">
+							<a href={candidate.resumeURL} className="btn_primary w-40">
 								Download CV
 							</a>
-							<button className="bg-blue-100 flex text-blue-500 justify-center items-center w-16 text-xl rounded-md">
+							<button className="btn_bookmark">
 								<BiBookmark />
 							</button>
 						</div>
@@ -305,28 +311,28 @@ const Candidate = () => {
 					</div>
 				</div>
 				{/* Right side */}
-				<div className="md:w-4/12 mx-3 mt-12 flex flex-col gap-3">
+				<div className="md:w-4/12 mx-3 mt-12 flex text-gray-700 flex-col gap-3">
 					<div className="w-full flex-col flex gap-4 bg-blue-50 rounded-md p-5">
 						<div className="flex gap-2">
 							<BiCalendar className="text-blue-500 text-3xl" />
 							<div>
-								<h3 className="text-lg">Experience:</h3>
-								<p>{candidate?.candidateData?.experience}</p>
+								<h3 className="text-lg font-normal">Experience:</h3>
+								<p className="text-sm">{candidate?.candidateData?.experience}</p>
 							</div>
 						</div>
 						<div className="flex gap-2">
 							<GiSandsOfTime className="text-blue-500 text-3xl" />
 							<div>
-								<h3 className="text-lg">Age:</h3>
-								<p>{candidate?.candidateData?.age} Years</p>
+								<h3 className="text-lg font-normal">Age:</h3>
+								<p className="text-sm">{candidate?.candidateData?.age} Years</p>
 							</div>
 						</div>
 						{candidate?.candidateData?.salary > 0 && (
 							<div className="flex gap-2 w-full">
 								<BsCurrencyExchange className="text-blue-500 text-3xl" />
 								<div>
-									<h3 className="text-lg">Current Salary:</h3>
-									<p>{candidate?.candidateData?.salary}</p>
+									<h3 className="text-lg font-normal">Current Salary:</h3>
+									<p className="text-sm">{candidate?.candidateData?.salary}</p>
 								</div>
 							</div>
 						)}
@@ -334,22 +340,22 @@ const Candidate = () => {
 						<div className="flex gap-2">
 							<GiMoneyStack className="text-blue-500 text-3xl" />
 							<div>
-								<h3 className="text-lg">Expected Salary:</h3>
-								<p>{candidate?.candidateData?.expectedSalary}</p>
+								<h3 className="text-lg font-normal">Expected Salary:</h3>
+								<p className="text-sm">{candidate?.candidateData?.expectedSalary}</p>
 							</div>
 						</div>
 						<div className="flex gap-2">
 							<BiUser className="text-blue-500 text-3xl" />
 							<div>
-								<h3 className="text-lg">Gender:</h3>
-								<p>{candidate?.candidateData?.gender}</p>
+								<h3 className="text-lg font-normal">Gender:</h3>
+								<p className="text-sm">{candidate?.candidateData?.gender}</p>
 							</div>
 						</div>
 						<div className="flex gap-2">
 							<IoLanguage className="text-blue-500 text-3xl" />
 							<div>
-								<h3 className="text-lg">Language:</h3>
-								<p>{candidate?.candidateData?.language}</p>
+								<h3 className="text-lg font-normal">Language:</h3>
+								<p className="text-sm">{candidate?.candidateData?.language}</p>
 							</div>
 						</div>
 						<div className="flex gap-2">
@@ -361,13 +367,13 @@ const Candidate = () => {
 						</div>
 					</div>
 					<div className="w-full flex-col flex gap-4 bg-blue-50 rounded-md p-5">
-						<div className="flex items-center justify-between">
+						<div className="flex items-center  justify-between">
 							<h3>Social media</h3>
 							<div className="flex items-center gap-2">
-								<a className="hover:text-blue-500" href={candidate?.candidateData?.facebook}> <FaFacebookF /></a>
-								<a className="hover:text-blue-500" href={candidate.candidateData?.twitter}><FaTwitter /></a>
-								<a className="hover:text-blue-500" href={candidate.candidateData?.github}> <FaGithub /></a>
-								<a className="hover:text-blue-500" href={candidate.candidateData?.linkedin}> <FaLinkedinIn /></a>
+								<a className="hover:text-blue-100 text-blue-600 bg-blue-100 p-3 rounded-md hover:bg-blue-400" href={candidate?.candidateData?.facebook}> <FaFacebookF /></a>
+								<a className="hover:text-blue-100 text-blue-600 bg-blue-100 p-3 rounded-md hover:bg-blue-400" href={candidate.candidateData?.twitter}><FaTwitter /></a>
+								<a className="hover:text-blue-100 text-blue-600 bg-blue-100 p-3 rounded-md hover:bg-blue-400" href={candidate.candidateData?.github}> <FaGithub /></a>
+								<a className="hover:text-blue-100 text-blue-600 bg-blue-100 p-3 rounded-md hover:bg-blue-400" href={candidate.candidateData?.linkedin}> <FaLinkedinIn /></a>
 
 
 
@@ -389,7 +395,7 @@ const Candidate = () => {
 							</div>
 						</div>
 					</div>
-					<div className="w-full flex-col flex gap-4 bg-blue-50 rounded-md p-5">
+					{/* <div className="w-full flex-col flex gap-4 bg-blue-50 rounded-md p-5">
 						<div className=" items-center justify-between">
 							<h3 className="py-3">Contact Us</h3>
 							<div className="flex flex-wrap items-center gap-2">
@@ -416,7 +422,7 @@ const Candidate = () => {
 								</button>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
