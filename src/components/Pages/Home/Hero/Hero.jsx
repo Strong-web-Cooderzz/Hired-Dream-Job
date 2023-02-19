@@ -9,6 +9,7 @@ import hero from "../../../../assets/Loatte/hero4.json";
 import blob from '../../../../assets/Hero/1.svg'
 import blob2 from '../../../../assets/Hero/2.svg'
 import bg from '../../../../assets/Hero/bg.svg'
+import Loading from "../../../Loading/Loading";
 
 const Hero = () => {
   const [formLoading, setFormLoading] = useState(false);
@@ -40,7 +41,7 @@ const Hero = () => {
             <h2 className="lg:text-4xl hero-font md:text-3xl sm:text-3xl text-3xl font-bold">
               There Are{" "}
               <span className="sm:text-[#1967d2] text-blue-200">
-                {jobCount}
+                {jobCount? jobCount:<Loading />}
               </span>{" "}
               <br />
               Postings Here For you!

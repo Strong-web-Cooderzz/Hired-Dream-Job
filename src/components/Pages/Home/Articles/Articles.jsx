@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import fetchData from '../../../../api/fetchData';
+import Loading from '../../../Loading/Loading';
 
 const Articles = () => {
 	const [loading, setLoading] = useState(true)
@@ -61,6 +62,7 @@ const Articles = () => {
 								<div className="w-3/4 h-6 rounded bg-gray-300"></div>
 							</div>
 						</div>
+						<Loading />
 					</div>
 
 					:
