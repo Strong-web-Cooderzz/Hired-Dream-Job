@@ -8,17 +8,17 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 
 export default function Notification() {
-	const { user, socket } = useContext(AuthContext)
+	const { user, socket, socketConnected } = useContext(AuthContext)
 	const [newNotification, setNewNotification] = useState(false);
 
 	useEffect(() => {
-		return () => {
+		if (socketConnected) {
 			socket.on("notification", (data) => {
 				toast.success(data);
 				setNewNotification(true);
 			});
 		}
-	}, [])
+	}, [socketConnected])
 
 	return (
 		<section>

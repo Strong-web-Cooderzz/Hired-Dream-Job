@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import {
 	createUserWithEmailAndPassword,
@@ -17,9 +17,10 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 const authUser = auth.currentUser;
 
-let socket = {}
+let socket;
 
 const AuthProvider = ({ children }) => {
+	const [socketConnected, setSocketConnected] = useState(false)
 	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
@@ -85,7 +86,8 @@ const AuthProvider = ({ children }) => {
 		// token,
 		setDbUser,
 		authUser,
-		socket
+		socket,
+		socketConnected
 	};
 
 	useEffect(() => {
@@ -96,7 +98,6 @@ const AuthProvider = ({ children }) => {
 				socket = io('wss://hdj-server.onrender.com', {
 					timeout: 5000,
 					auth: {
-						user: user.uid,
 						token: currentUser.accessToken
 					}
 				})
@@ -109,7 +110,12 @@ const AuthProvider = ({ children }) => {
 	}, [])
 
 	useEffect(() => {
-		if (socket?.on) socket.on('connect', () => console.log('new connection'))
+		if (socket) {
+			socket.on('connect', socket => {
+				console.log('new connection')
+				setSocketConnected(true)
+			})
+		}
 	}, [socket])
 
 	return (
