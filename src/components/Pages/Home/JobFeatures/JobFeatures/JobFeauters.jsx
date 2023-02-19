@@ -3,6 +3,7 @@ import JobFeaturedCard from "./JobFeaturedCard";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import api from "../../../../../api/fetchData";
+import Loading from "../../../../Loading/Loading";
 
 const JobFeauters = () => {
   const [loading, setLoading] = useState(true);
@@ -116,6 +117,7 @@ const JobFeauters = () => {
               <div className="w-full h-4 rounded bg-gray-300"></div>
             </div>
           </div>
+          <Loading />
         </div>
       ) : (
         <div className="w-full  mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-2  gap-y-8">

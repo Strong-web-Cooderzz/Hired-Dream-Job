@@ -1,14 +1,15 @@
-import React from 'react';
-import Lottie from "lottie-react";
-import profile from "../../assets/Loatte/profile.json";
+import TopBarProgress from "react-topbar-progress-indicator";
+
+TopBarProgress.config({
+  barColors: {
+    "0": "#3b82f6",
+    "1.0": "#3b49f6"
+  },
+  shadowBlur: 5
+});
+
 const Loading = () => {
-    return (
-        <div className='h-screen fixed-top bg-white  flex items-center'>
-            <div className=' md:w-1/3 mx-auto'>
-            <Lottie animationData={profile} loop={true} />
-            </div>
-        </div>
-    );
+  return  <TopBarProgress />
 };
 
-export default Loading;
+export default Loading

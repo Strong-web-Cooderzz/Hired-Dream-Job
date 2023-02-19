@@ -30,6 +30,7 @@
     "react-minimal-pie-chart": "^8.4.0",
     "react-router-dom": "^6.6.2",
     "react-select": "^5.7.0",
+    "react-topbar-progress-indicator": "^4.1.1",
     "recharts": "^2.4.1",
     "socket.io-client": "^4.6.0",
     "swiper": "^8.4.5",

@@ -11,6 +11,7 @@ import {
 import { Link, useActionData, useNavigate } from "react-router-dom";
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import fetchData from "../../../api/fetchData";
+import Loading from "../../Loading/Loading";
 
 const FindJob = () => {
 	const dataFromForm = useActionData();
@@ -78,7 +79,7 @@ const FindJob = () => {
 		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime.current) {
 			console.log(dataFromForm);
-			setDataLoading(true);
+			setDataLoading(false);
 			if (dataFromForm.title || dataFromForm.location) {
 				formRef.current.search.value = dataFromForm.title;
 				formRef.current.location.value = dataFromForm.location;
@@ -445,6 +446,7 @@ const FindJob = () => {
 							{/* spinner */}
 							{dataLoading && (
 								<>
+								<Loading />
 									<div className="w-24 h-24 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-gray-200 border-b-gray-200 animate-spin mt-16"></div>
 								</>
 							)}

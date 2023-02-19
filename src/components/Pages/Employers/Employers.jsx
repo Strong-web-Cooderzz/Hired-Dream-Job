@@ -5,6 +5,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthProvider, { AuthContext } from '../../AuthProvider/AuthProvider';
 import fetchData from '../../../api/fetchData';
+import Loading from '../../Loading/Loading';
 
 export default function Employers() {
 	const [employ, setEmploy] = useState([])
@@ -160,6 +161,7 @@ export default function Employers() {
 				dataLoading && <>
 					<div className='w-24 h-24 bg-transparent rounded-full mx-auto border-[5px] border-blue-300 border-x-gray-200 border-b-gray-200 animate-spin mt-16'>
 					</div>
+					<Loading />
 				</>
 			}
 
