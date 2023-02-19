@@ -89,15 +89,13 @@ const AuthProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		return () => {
-			if (user.accessToken) {
-				socket.disconnect();
-				socket = io('ws://hdj-server.onrender.com', {
-					auth: {
-						token: user.accessToken
-					}
-				})
-			}
+		if (user.accessToken) {
+			socket.disconnect();
+			socket = io('ws://hdj-server.onrender.com', {
+				auth: {
+					token: user.accessToken
+				}
+			})
 		}
 	}, [user])
 
