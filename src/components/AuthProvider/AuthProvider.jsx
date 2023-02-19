@@ -17,11 +17,12 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 const authUser = auth.currentUser;
 
+let socket = {}
+
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
-	const [socket, setSocket] = useState({})
 	// const [token, setToken] = useState('')
 
 	const FacebookSignIn = (facebook) => {
@@ -92,11 +93,13 @@ const AuthProvider = ({ children }) => {
 			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
-				setSocket(io('wss://hdj-server.onrender.com', {
+				socket = io('wss://hdj-server.onrender.com', {
+					timeout: 5000,
 					auth: {
+						user: user.uid,
 						token: currentUser.accessToken
 					}
-				}))
+				})
 			} else {
 				setUser({})
 			}
@@ -106,7 +109,7 @@ const AuthProvider = ({ children }) => {
 	}, [])
 
 	useEffect(() => {
-		if (socket.on) socket.on('connect', () => console.log('new connection'))
+		if (socket?.on) socket.on('connect', () => console.log('new connection'))
 	}, [socket])
 
 	return (
