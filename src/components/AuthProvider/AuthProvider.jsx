@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { io } from "socket.io-client";
 import {
 	createUserWithEmailAndPassword,
 	getAuth,
@@ -11,9 +12,6 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 import fetchData from "../../api/fetchData";
-import { io } from "socket.io-client";
-
-let socket = io('ws://hdj-server.onrender.com');
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -23,6 +21,7 @@ const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [dbUser, setDbUser] = useState([])
+	const [socket, setSocket] = useState({})
 	// const [token, setToken] = useState('')
 
 	const FacebookSignIn = (facebook) => {
@@ -85,25 +84,19 @@ const AuthProvider = ({ children }) => {
 		// token,
 		setDbUser,
 		authUser,
-		socket,
+		socket
 	};
-
-	useEffect(() => {
-		if (user.accessToken) {
-			socket.disconnect();
-			socket = io('ws://hdj-server.onrender.com', {
-				auth: {
-					token: user.accessToken
-				}
-			})
-		}
-	}, [user])
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, currentUser => {
 			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
+				setSocket(io('ws://hdj-server.onrender.com', {
+					auth: {
+						token: currentUser.accessToken
+					}
+				}))
 			} else {
 				setUser({})
 			}
