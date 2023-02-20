@@ -19,7 +19,6 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { toast } from "react-hot-toast";
 
 const SingleJobs = () => {
-
 	const navigate = useNavigate()
 	const id = useParams().id;
 	const [jobData, setJobData] = useState({});
@@ -62,9 +61,12 @@ const SingleJobs = () => {
 										<span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-500">
 											{jobData.jobType}
 										</span>
-										<span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-500">
-											{jobData.urgent ? 'Urgent' : ''}
-										</span>
+										{
+											jobData.urgent &&
+											<span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-500">
+												{jobData.urgent ? 'Urgent' : ''}
+											</span>
+										}
 										<span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-500">
 											{jobData.companyType}
 										</span>
@@ -276,7 +278,7 @@ const SingleJobs = () => {
 											</p>
 										</div>
 										<a href={jobData?.company.website} target="_blank" className="text-blue-500 bg-blue-200 text-center px-auto w-full py-2 rounded-md">
-											{jobData?.company.website}
+											{jobData?.company.website || 'N/A'}
 										</a>
 									</div>
 								</div>
