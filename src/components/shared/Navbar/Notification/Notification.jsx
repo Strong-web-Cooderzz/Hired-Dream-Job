@@ -24,9 +24,9 @@ export default function Notification() {
 		<section>
 			{newNotification ? (
 				<span className="text-xl">
-					<div class="dropdown relative">
+					<div className="dropdown relative">
 						<a
-							class="dropdown-toggle flex items-center hidden-arrow"
+							className="dropdown-toggle flex items-center hidden-arrow"
 							href="#"
 							id="dropdownMenuButton2"
 							role="button"
@@ -37,14 +37,14 @@ export default function Notification() {
 						</a>
 
 						<ul
-							class="dropdown-menu w-96 p-3 absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg border-3 mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
+							className="dropdown-menu w-96 p-3 absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg border-3 mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
 							aria-labelledby="dropdownMenuButton2"
 						>
 							<div className="border-b pb-2">
 								<h3 className="text-xl">Notifications</h3>
 							</div>
 							<Link
-								class="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
+								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
 								href="#"
 							>
 								<li className="border-b pb-2">
@@ -56,7 +56,7 @@ export default function Notification() {
 							</Link>
 
 							<Link
-								class="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
+								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
 								href="#"
 							>
 								<li className="border-b pb-2">
@@ -79,9 +79,9 @@ export default function Notification() {
 				<span className="text-xl">
 					{/* Notigication Without Dot */}
 
-					<div class="dropdown relative">
+					<div className="dropdown relative">
 						<a
-							class="dropdown-toggle flex items-center hidden-arrow"
+							className="dropdown-toggle flex items-center hidden-arrow"
 							href="#"
 							id="dropdownMenuButton2"
 							role="button"
@@ -92,36 +92,14 @@ export default function Notification() {
 						</a>
 
 						<ul
-							class="
-    dropdown-menu
-	w-96
-	p-3
-    absolute
-    bg-white
-    text-base
-    z-50
-    float-left
-    py-2
-    list-none
-    text-left
-    rounded-lg
-    shadow-lg
-	border-3
-    mt-1
-    hidden
-    m-0
-    bg-clip-padding
-    border-none
-    left-auto
-    right-0
-  "
+							className="dropdown-menu w-96 p-3 absolute bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg border-3 mt-1 hidden m-0 bg-clip-padding border-none left-auto right-0"
 							aria-labelledby="dropdownMenuButton2"
 						>
 							<div className="border-b pb-2">
 								<h3 className="text-xl">Notifications</h3>
 							</div>
 							<Link
-								class="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
+								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
 								href="#"
 							>
 								<li className="border-b pb-2">
@@ -133,7 +111,7 @@ export default function Notification() {
 							</Link>
 
 							<Link
-								class="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
+								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
 								href="#"
 							>
 								<li className="border-b pb-2">
