@@ -95,7 +95,7 @@ const AuthProvider = ({ children }) => {
 			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
-				socket = io('wss://hdj-server.onrender.com', {
+				socket = io('ws://localhost:5000', {
 					timeout: 5000,
 					auth: {
 						token: currentUser.accessToken
