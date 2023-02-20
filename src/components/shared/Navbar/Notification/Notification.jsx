@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-// import { io } from "socket.io-client";
 import { toast } from "react-hot-toast";
 import { BsBell } from "react-icons/bs";
 import { VscBellDot } from "react-icons/vsc";
-import { Link } from "react-router-dom";
-// import { socket } from "../../../../api/socket";
+import fetchData from "../../../../api/fetchData";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Notification() {
 	const { user, socket, socketConnected } = useContext(AuthContext);
+	const [notifications, setNotifications] = useState([])
 	const [newNotification, setNewNotification] = useState(false);
+	let notificationCount = 0;
 
 	useEffect(() => {
 		if (socketConnected) {
@@ -20,6 +20,27 @@ export default function Notification() {
 		}
 	}, [socketConnected]);
 
+	function fetchNotification() {
+		fetchData.get('/notifications', {
+			headers: {
+				'Authorization': `Bearer ${user.accessToken}`
+			},
+			params: {
+				skip: notificationCount
+			}
+		})
+			.then(response => {
+				console.log(response.data)
+				const oldNotifications = [...notifications]
+				const newNotifications = oldNotifications.concat(response.data)
+				setNotifications(newNotifications)
+			})
+	}
+
+	useEffect(() => {
+		fetchNotification()
+	}, [])
+
 	return (
 		<section>
 			{newNotification ? (
@@ -27,7 +48,6 @@ export default function Notification() {
 					<div className="dropdown relative">
 						<a
 							className="dropdown-toggle flex items-center hidden-arrow"
-							href="#"
 							id="dropdownMenuButton2"
 							role="button"
 							data-bs-toggle="dropdown"
@@ -43,41 +63,32 @@ export default function Notification() {
 							<div className="border-b pb-2">
 								<h3 className="text-xl">Notifications</h3>
 							</div>
-							<Link
-								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
-								href="#"
+							<span
+								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
 							>
-								<li className="border-b pb-2">
-									Arman Khan applied your job{" "}
-									<span className="text-blue-400">
-										Senior Full Stack Engineer...
-									</span>
-								</li>
-							</Link>
+								{
+									notifications.map(notification =>
+										<li key={notification._id} className="border-b pb-2">
+											{notification.notification}
+										</li>)
+								}
+							</span>
 
-							<Link
-								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
-								href="#"
+							<button
+								onClick={() => {
+									notificationCount++
+									fetchNotification()
+								}}
+								className="flex justify-center px-4 py-1 hover:underline mx-auto"
 							>
-								<li className="border-b pb-2">
-									Arman Ali Khan applied your job{" "}
-									<span className="text-blue-400">
-										Senior Full Stack Engineer...
-									</span>
-								</li>
-							</Link>
-							<Link
-								to={"#"}
-								className="flex justify-center px-4 py-1 hover:underline"
-							>
-								See All Notifications
-							</Link>
+								See more notifications
+							</button>
 						</ul>
 					</div>
 				</span>
 			) : (
 				<span className="text-xl">
-					{/* Notigication Without Dot */}
+					{/* Notification Without Dot */}
 
 					<div className="dropdown relative">
 						<a
@@ -98,35 +109,26 @@ export default function Notification() {
 							<div className="border-b pb-2">
 								<h3 className="text-xl">Notifications</h3>
 							</div>
-							<Link
-								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
-								href="#"
+							<span
+								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
 							>
-								<li className="border-b pb-2">
-									Arman Khan applied your job{" "}
-									<span className="text-blue-400">
-										Senior Full Stack Engineer...
-									</span>
-								</li>
-							</Link>
+								{
+									notifications.map(notification =>
+										<li className="border-b pb-2">
+											{notification.notification}
+										</li>)
+								}
+							</span>
 
-							<Link
-								className="dropdown-itemtext-smpy-2px-4font-normalblockw-fullwhitespace-nowrapbg-transparenttext-gray-700hover:bg-gray-100"
-								href="#"
+							<button
+								onClick={() => {
+									notificationCount++
+									fetchNotification()
+								}}
+								className="flex justify-center px-4 py-1 hover:underline mx-auto"
 							>
-								<li className="border-b pb-2">
-									Arman Ali Khan applied your job{" "}
-									<span className="text-blue-400">
-										Senior Full Stack Engineer...
-									</span>
-								</li>
-							</Link>
-							<Link
-								to={"#"}
-								className="flex justify-center px-4 py-1 hover:underline"
-							>
-								See All Notifications
-							</Link>
+								See more notifications
+							</button>
 						</ul>
 					</div>
 				</span>
