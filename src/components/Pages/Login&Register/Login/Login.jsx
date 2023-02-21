@@ -9,6 +9,8 @@ import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../../api/fetchData";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import Lottie from "lottie-react";
+import loginForm from '../../../../assets/Loatte/login.json';
 
 export default function Login() {
 	const navigate = useNavigate()
@@ -71,11 +73,7 @@ export default function Login() {
 			<div className="px-6 h-full text-gray-800">
 				<div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
 					<div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-						<img
-							src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-							className="w-full"
-							alt="Sample image"
-						/>
+					<Lottie className="w-full" animationData={loginForm} loop={true} />
 					</div>
 					<div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
 						<form onSubmit={handleSubmit(onSubmit)}>
