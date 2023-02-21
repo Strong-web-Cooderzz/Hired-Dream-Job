@@ -16,6 +16,10 @@ export default function Notification() {
 			socket.on("notification", (data) => {
 				toast.success(data);
 				setNewNotification(true);
+				let newNotifications = [];
+				if (notifications.length) newNotifications = [...notifications]
+				newNotifications.unshift(data)
+				setNotifications(newNotifications)
 			});
 		}
 	}, [socketConnected]);
@@ -33,6 +37,7 @@ export default function Notification() {
 				console.log(response.data)
 				const oldNotifications = [...notifications]
 				const newNotifications = oldNotifications.concat(response.data)
+				console.log(newNotifications)
 				setNotifications(newNotifications)
 			})
 	}
@@ -47,6 +52,7 @@ export default function Notification() {
 				<span className="text-xl">
 					<div className="dropdown relative">
 						<a
+							onClick={() => setNewNotification(false)}
 							className="dropdown-toggle flex items-center hidden-arrow"
 							id="dropdownMenuButton2"
 							role="button"
