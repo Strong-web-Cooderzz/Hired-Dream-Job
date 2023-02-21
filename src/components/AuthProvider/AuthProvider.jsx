@@ -59,17 +59,16 @@ const AuthProvider = ({ children }) => {
 		return updateProfile(auth.currentUser, info);
 	};
 
-	// useEffect(() => {
-	// 	fetchData.get('/user', {
-	// 		params: {
-	// 			email: user?.email
-	// 		}
-	// 	})
-	// 		.then(response => setDbUser(response.data))
-	// 	// fetch(`http://localhost:5000/user?email=${user?.email}`)
-	// 	// 	.then(res => res.json())
-	// 	// 	.then(data => setDbUser(data))
-	// }, [user?.email])
+	useEffect(() => {
+		if (user?.email) {
+			fetchData.get('/user', {
+				params: {
+					email: user?.email
+				}
+			})
+				.then(response => setDbUser(response.data))
+		}
+	}, [user])
 
 	const authInfo = {
 		auth,
@@ -102,12 +101,6 @@ const AuthProvider = ({ children }) => {
 						token: currentUser.accessToken
 					}
 				})
-				fetchData.get('/user', {
-					params: {
-						email: user?.email
-					}
-				})
-					.then(response => setDbUser(response.data))
 			} else {
 				setUser({})
 			}
