@@ -59,17 +59,17 @@ const AuthProvider = ({ children }) => {
 		return updateProfile(auth.currentUser, info);
 	};
 
-	useEffect(() => {
-		fetchData.get('/user', {
-			params: {
-				email: user?.email
-			}
-		})
-			.then(response => setDbUser(response.data))
-		// fetch(`http://localhost:5000/user?email=${user?.email}`)
-		// 	.then(res => res.json())
-		// 	.then(data => setDbUser(data))
-	}, [user?.email])
+	// useEffect(() => {
+	// 	fetchData.get('/user', {
+	// 		params: {
+	// 			email: user?.email
+	// 		}
+	// 	})
+	// 		.then(response => setDbUser(response.data))
+	// 	// fetch(`http://localhost:5000/user?email=${user?.email}`)
+	// 	// 	.then(res => res.json())
+	// 	// 	.then(data => setDbUser(data))
+	// }, [user?.email])
 
 	const authInfo = {
 		auth,
@@ -96,12 +96,18 @@ const AuthProvider = ({ children }) => {
 			setLoading(false)
 			if (currentUser) {
 				setUser(currentUser)
-				socket = io('wss://hdj-server.onrender.com', {
+				socket = io('ws://localhost:5000', {
 					timeout: 5000,
 					auth: {
 						token: currentUser.accessToken
 					}
 				})
+				fetchData.get('/user', {
+					params: {
+						email: user?.email
+					}
+				})
+					.then(response => setDbUser(response.data))
 			} else {
 				setUser({})
 			}
