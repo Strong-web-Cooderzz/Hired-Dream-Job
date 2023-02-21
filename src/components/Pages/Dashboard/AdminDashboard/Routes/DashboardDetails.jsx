@@ -9,14 +9,17 @@ import PieChart from "./PieChart";
 
 const DashboardDetails = () => {
 	const [loading, setLoading] = useState(true)
-	const [jobs, setJobs] = useState([])
+	const [jobs, setJobs] = useState(null)
 	const [users, setUsers] = useState([])
 
 	useEffect(() => {
 		setLoading(true)
-		fetchData.get('/jobs')
+		fetchData.get('/job-counter', {
+
+			})
 			.then(response => {
 				setJobs(response.data)
+				console.log(response.data)
 				setLoading(false)
 			})
 	}, [])
@@ -51,7 +54,7 @@ const DashboardDetails = () => {
 									<BiUser className="text-5xl bg-emerald-200 p-2 md:w-12 lg:w-24 rounded-md " />
 									<p className="flex flex-col w-full">
 										Totol Jobs
-										<span>{jobs.length}</span>
+										<span>{jobs}</span>
 									</p>
 								</div>
 							</div>
