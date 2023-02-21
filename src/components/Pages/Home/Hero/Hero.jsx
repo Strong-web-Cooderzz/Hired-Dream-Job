@@ -21,7 +21,7 @@ const Hero = () => {
       try {
         const response = await fetchData.get("/job-counter");
         console.log(response);
-        setJobCount(response.data);
+        setJobCount(response.data[0].count);
       } catch (err) {
         console.log(err);
       }
