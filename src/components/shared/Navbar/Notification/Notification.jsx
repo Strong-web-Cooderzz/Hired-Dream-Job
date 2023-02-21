@@ -17,8 +17,11 @@ export default function Notification() {
 				toast.success(data);
 				setNewNotification(true);
 				let newNotifications = [];
+				const notificationObject = {};
+				notificationObject._id = Math.round(Math.random() * 1000000)
+				notificationObject.notification = data
 				if (notifications.length) newNotifications = [...notifications]
-				newNotifications.unshift(data)
+				newNotifications.unshift(notificationObject)
 				setNotifications(newNotifications)
 			});
 		}
@@ -44,7 +47,7 @@ export default function Notification() {
 
 	useEffect(() => {
 		fetchNotification()
-	}, [])
+	}, [user])
 
 	return (
 		<section>
