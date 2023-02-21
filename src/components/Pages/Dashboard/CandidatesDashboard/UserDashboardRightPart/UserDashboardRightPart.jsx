@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider' ;
 
 const UserDashboardRightPart = () => {
-const {user} = useContext(AuthContext);
+const {user,dbUser} = useContext(AuthContext);
     return (
         <section >
         <div>
@@ -15,17 +15,32 @@ const {user} = useContext(AuthContext);
           {/* dashboard right top section  */}
           <div className='grid  mt-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  gap-4 
           '>
-           <Link to="/" >  
-           <div className='bg-white  flex  p-2 lg:w-10/12 md:w-11/12 sm:w-full w-full justify-between rounded-sm cursor-pointer hover:bg-yellow-50'>
-             <div className='h-12 w-12 flex justify-center items-center   bg-slate-200'>
-               <FaBriefcase  className='text-blue-500 text-2xl ' />
-             </div>
-             <div>
-                <h2 className='text-xl font-semibold text-blue-600 m-0'> 24</h2>
-                <h3 className='py-0 m-0'> Job applied </h3>
-             </div>
+         {
+          dbUser.type==='Candidate' &&   <Link to="#" >  
+          <div className='bg-white  flex  p-2 lg:w-10/12 md:w-11/12 sm:w-full w-full justify-between rounded-sm cursor-pointer hover:bg-yellow-50'>
+            <div className='h-12 w-12 flex justify-center items-center   bg-slate-200'>
+              <FaBriefcase  className='text-blue-500 text-2xl ' />
             </div>
-           </Link>
+            <div>
+               <h2 className='text-xl font-semibold text-blue-600 m-0'> 24</h2>
+               <h3 className='py-0 m-0'> Job applied </h3>
+            </div>
+           </div>
+          </Link>
+         }
+         {
+          dbUser.type==='Agency' &&   <Link to="#" >  
+          <div className='bg-white  flex  p-2 lg:w-10/12 md:w-11/12 sm:w-full w-full justify-between rounded-sm cursor-pointer hover:bg-yellow-50'>
+            <div className='h-12 w-12 flex justify-center items-center   bg-slate-200'>
+              <FaBriefcase  className='text-blue-500 text-2xl ' />
+            </div>
+            <div>
+               <h2 className='text-xl font-semibold text-blue-600 m-0'> 24</h2>
+               <h3 className='py-0 m-0'>Posted Job  </h3>
+            </div>
+           </div>
+          </Link>
+         }
 
             <Link to="/" >  
             <div className='bg-white flex  p-2  justify-between lg:w-10/12 md:w-11/12 sm:w-full w-full  rounded-sm  hover:bg-yellow-50 '>
