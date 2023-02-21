@@ -4,6 +4,7 @@ import {
 	createUserWithEmailAndPassword,
 	getAuth,
 	onAuthStateChanged,
+	onIdTokenChanged,
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
@@ -107,6 +108,18 @@ const AuthProvider = ({ children }) => {
 			// setToken(currentUser.accessToken)
 		})
 		return () => unSubscribe()
+	}, [])
+
+	useEffect(() => {
+		const unSubscribe = onIdTokenChanged(auth, {
+			next(currentUser) {
+				setUser(currentUser)
+			},
+			error(err) {
+				console.log(err)
+			}
+		})
+		return unSubscribe
 	}, [])
 
 	useEffect(() => {
