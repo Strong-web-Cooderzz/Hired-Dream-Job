@@ -63,7 +63,7 @@ const CheckoutForm = ({order}) => {
                     .then(res=>res.json())
                     .then(data=>{
                         toast.success('Payment Successful!')
-                        navigate('/dashboard/manage_jobs')
+                        navigate('/dashboard/manage-jobs')
                     })
                     console.log(data);
                   })

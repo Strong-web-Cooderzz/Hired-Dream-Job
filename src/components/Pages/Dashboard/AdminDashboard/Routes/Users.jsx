@@ -55,46 +55,46 @@ const Users = () => {
           <Loading />
         </>
       ) : (
-        <div class="flex flex-col">
-          <div class="overflow-x-auto ">
-            <div class="py-2 inline-block min-w-full ">
-              <div class="overflow-hidden">
-                <table class="min-w-full">
-                  <thead class="border-b">
+        <div className="flex flex-col">
+          <div className="overflow-x-auto ">
+            <div className="py-2 inline-block min-w-full ">
+              <div className="overflow-hidden">
+                <table className="min-w-full">
+                  <thead className="border-b">
                     <tr>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         Thumb
                       </th>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         Name({users.length})
                       </th>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         Email
                       </th>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         IP
                       </th>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        <div class="">
-                          <div class="w-32">
+                        <div className="">
+                          <div className="w-32">
                             <select
                               onChange={(e) => setUserType(e.target.value)}
-                              class="form-select appearance-none
+                              className="form-select appearance-none
       block
       w-full
       px-3
@@ -129,7 +129,7 @@ const Users = () => {
                       </th>
                       <th
                         scope="col"
-                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                        className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
                         Action
                       </th>
@@ -138,8 +138,8 @@ const Users = () => {
                   <tbody>
                     {users.map((user) => (
                       <>
-                        <tr key={user._id} class="border-b">
-                          <td class="px-6 py-4 text-sm font-medium text-gray-900">
+                        <tr key={user._id} className="border-b">
+                          <td className="px-6 py-4 text-sm font-medium text-gray-900">
                             <img
                               src={user.photo}
                               className="w-12 h-12 rounded-full object-cover"
@@ -147,25 +147,25 @@ const Users = () => {
                             />
                           </td>
                           {/* Full Name */}
-                          <td class="text-sm text-gray-900 text-left font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 text-left font-light px-6 py-4 whitespace-nowrap">
                             {user.fullName}{" "}
                             <span className="bg-orange-100 text-orange-600 px-2 rounded-md ">
                               3
                             </span>
                           </td>
                           {/* Email */}
-                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {user.email}
                           </td>
                           {/* IP */}
-                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {user?.ip}
                           </td>
                           {/* User type */}
-                          <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {user.type}
                           </td>
-                          <td class="text-sm flex gap-1 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm flex gap-1 font-light px-6 py-4 whitespace-nowrap">
                             <Link
                               to={`edit/${user._id}`}
                               className="inline-block bg-blue-100 px-2 py-2 rounded-md text-blue-600 shadow-md hover:bg-blue-400 hover:text-white"
@@ -185,11 +185,11 @@ const Users = () => {
                             {/* User Action */}
  
 
-                           <div class="flex justify-center">
+                           <div className="flex justify-center">
   <div>
-    <div class="dropstart relative">
+    <div className="dropstart relative">
       {/* <button
-        class="
+        className="
           dropdown-toggle
           px-6
           py-2.5
@@ -228,7 +228,7 @@ const Users = () => {
                                 <BsListOl />
                               </Link>
       <ul
-        class="
+        className="
           dropdown-menu
           min-w-max
           absolute
@@ -251,7 +251,7 @@ const Users = () => {
       >
         <li>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2
@@ -273,7 +273,7 @@ const Users = () => {
         </li>
         <li>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2
@@ -293,7 +293,7 @@ const Users = () => {
         </li>
         <li>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2
@@ -315,7 +315,7 @@ const Users = () => {
         </li>
         <li>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2
@@ -337,7 +337,7 @@ const Users = () => {
         </li>
         <li>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2
@@ -371,7 +371,7 @@ const Users = () => {
 
 
 
-                            <div class="flex justify-center">
+                            <div className="flex justify-center">
                               <div></div>
                             </div>
                           </td>
@@ -385,38 +385,38 @@ const Users = () => {
           </div>
           {/* Warning Modal */}
           <div
-            class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+            className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
             id="UserWarning"
             tabindex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
-            <div class="modal-dialog relative w-auto pointer-events-none">
-              <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-                <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+            <div className="modal-dialog relative w-auto pointer-events-none">
+              <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
                   <h5
-                    class="text-xl font-medium leading-normal text-gray-800"
+                    className="text-xl font-medium leading-normal text-gray-800"
                     id="exampleModalLabel"
                   >
                     User Warning...
                   </h5>
                   <button
                     type="button"
-                    class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                    className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="modal-body relative p-4">
+                <div className="modal-body relative p-4">
                   <textarea
                     className="h-64 w-full border border-blue-400 rounded-md p-4"
                     placeholder="Write Report"
                   ></textarea>
                 </div>
-                <div class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                   <button
                     type="button"
-                    class="px-6
+                    className="px-6
           py-2.5
           bg-blue-600
           text-white
@@ -438,7 +438,7 @@ const Users = () => {
                   </button>
                   <button
                     type="button"
-                    class="px-6
+                    className="px-6
       py-2.5
       bg-orange-100
       text-orange-700

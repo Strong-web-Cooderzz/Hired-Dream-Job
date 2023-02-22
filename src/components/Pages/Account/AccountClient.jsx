@@ -48,7 +48,6 @@ const AccountClient = () => {
 			education: data.education,
 			language: data.language,
 			about: value,
-			ip:ip,
 			address: {
 				city: data.city,
 				country: data.country,

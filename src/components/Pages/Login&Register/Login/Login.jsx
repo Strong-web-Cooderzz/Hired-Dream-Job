@@ -11,6 +11,8 @@ import fetchData from "../../../../api/fetchData";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Lottie from "lottie-react";
 import loginForm from '../../../../assets/Loatte/login.json';
+import { toast } from "react-hot-toast";
+import loginSuccess from '../../../../assets/Loatte/success.json'
 
 export default function Login() {
 	const navigate = useNavigate()
@@ -62,7 +64,8 @@ export default function Login() {
 					.then(response => {
 						setDbUser(response.data)
 						reset();
-						// navigate('/')
+						navigate('/')
+						toast.success('Welcome Back 💕')
 					})
 			})
 			.catch((err) => console.error(err));

@@ -70,8 +70,8 @@ const [isFeatured,setIsFeatured] = useState(false)
     },[job?._id])
 
     return (
-            <tr class="bg-white border-b">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            <tr className="bg-white border-b">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <div className='flex items-center gap-2 '>
                     <img className='w-[54px] h-[54px] rounded-md' src={job.logo} alt="" />
                     <div className='text-left'>
@@ -89,19 +89,19 @@ const [isFeatured,setIsFeatured] = useState(false)
                     </div>
                   </div>
                     </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     <Link className='text-blue-700 underline font-medium'>3+ Applied</Link>
                     </td>
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                    <p className='text-xs'> October 27, 2017</p>
                    <p className='text-xs'>April 25, 2011</p>
                     </td>
 
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     <p className={`${job.isVisible?'text-green-600 bg-green-50':'bg-red-50 text-red-600'} p-3 rounded-md`}>{job.isVisible? 'Active':'Deactived'}</p>
                     </td>
 
-                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                    <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                    <div className='flex gap-1 items-center'>
                     <button onClick={()=>handleUpdateVisiblity(job._id)} title="Deactive Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'>
                         {/* Hide / Unhide Job */}
@@ -119,11 +119,11 @@ const [isFeatured,setIsFeatured] = useState(false)
                     
 
 
-                    <div class="flex justify-center">
+                    <div className="flex justify-center">
   <div>
-    <div class="dropdown relative">
+    <div className="dropdown relative">
       <a
-        class="
+        className="
           dropdown-toggle
           bg-rose-50 p-2 text-red-700 hover:bg-red-500 hover:text-white rounded-md
         "
@@ -136,7 +136,7 @@ const [isFeatured,setIsFeatured] = useState(false)
         <BiTrash />
       </a>
       <ul
-        class="
+        className="
           dropdown-menu
           min-w-max
           absolute
@@ -161,7 +161,7 @@ const [isFeatured,setIsFeatured] = useState(false)
         <p className='p-2'>Confirm if you want to delete</p>
         <li className='flex gap-5'>
           <a
-            class="
+            className="
               dropdown-item
               text-sm
               py-2

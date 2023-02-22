@@ -25,10 +25,7 @@ const DashboardLayout = () => {
 					</div>
 
 				</div>
-
-				<Outlet />
-
-				<div>
+				<div className="w-full">
 
 					<div className=" offcanvas offcanvas-start fixed bottom-0 flex flex-col max-w-full bg-white invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out text-gray-700 top-0 left-0 border-none w-60" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
 						<div className="offcanvas-header flex items-center justify-between p-4">
@@ -42,13 +39,13 @@ const DashboardLayout = () => {
 
 								{
 									dbUser?.type === 'Agency' && <li className="relative">
-										<NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out">My Profile</NavLink>
+										<NavLink to='/dashboard/profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out">My Profile</NavLink>
 									</li>
 								}
 								{
 									dbUser?.type === 'Candidate' &&
 									<li className="relative">
-										<NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
+										<NavLink to='/dashboard/profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
 									</li>
 								}
 								{
@@ -65,14 +62,14 @@ const DashboardLayout = () => {
 									</li>
 								}
 
-								<NavLink to='/dashboard/my_allpost'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> All Applicants</li></NavLink>
+								<NavLink to='/dashboard/applied-jobs'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base focus:bg-gray-200"> All Applicants</li></NavLink>
 								<NavLink to='/'>  <li className="w-full hover:bg-gray-200 px-4 py-2 text-base 
           flex gap-2 items-center focus:bg-gray-200"> <FaHome className="text-blue-500" /> Back Home  </li></NavLink>
 							</ul>
 						</div>
 					</div>
 					<div className='w-full '  >
-						{/* <Outlet/> */}
+					<Outlet />
 					</div>
 				</div>
 

@@ -7,7 +7,7 @@ import Candidates from "../components/Pages/Candidates/Candidates";
 
 import DashboardAddPost from "../components/Pages/Dashboard/DashboardAddPost/DashboardAddPost";
 import MyAllPost from "../components/Pages/Dashboard/MyAllPost/MyAllPost";
-import MyProfile from "../components/Pages/Dashboard/MyProfle/MyProfile";
+import EmployerProfile from "../components/Pages/Dashboard/MyProfle/EmployerProfile";
 
 import Articles from "../components/Pages/Home/Articles/Articles";
 import SingelArticles from "../components/Pages/Home/Articles/SingelArticles";
@@ -175,15 +175,11 @@ export const router = createBrowserRouter([
 				element: <UserDashboard > </UserDashboard>
 			},
 			{
-				path: '/dashboard/my_dashboard',
-				element: <UserDashboard > </UserDashboard>
-			},
-			{
-				path: '/dashboard/my_profile',
+				path: '/dashboard/profile',
 				element: <Profile> </Profile>
 			},
 			{
-				path: '/dashboard/manage_jobs',
+				path: '/dashboard/manage-jobs',
 				element: <ManageJobs> </ManageJobs>
 			},
 			{
@@ -191,7 +187,7 @@ export const router = createBrowserRouter([
 				element: <DashboardAddPost> </DashboardAddPost>
 			},
 			{
-				path: '/dashboard/my_allpost',
+				path: '/dashboard/applied-jobs',
 				element: <MyAllPost> </MyAllPost>
 			},
 			{

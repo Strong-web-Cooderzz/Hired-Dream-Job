@@ -8,11 +8,22 @@ import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from "react-select";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../api/fetchData";
+import axios from "axios";
 
 const CandidateProfile = () => {
   const [loading, setLoading] = useState(false);
   const { user, dbUser } = useContext(AuthContext);
 
+  const [userData, setUserData] = useState({});
+  console.log(user)
+   
+  
+  
+    useEffect(() => {
+      axios.get(`http://localhost:5000/user?email=${user?.email}`).then((response) => {
+        setUserData(response.data);
+      });
+    }, []);
   // I, Abid Hasan removed function that sends ip address
   // we don't need it. Cause express can do that. So it will improve user experience
 
@@ -117,11 +128,11 @@ const CandidateProfile = () => {
         </div>
         <h3>My Profile</h3>
         <div>
-          <div class="flex relative items-center gap-2">
-            <div class="mb-3 w-60 ">
+          <div className="flex relative items-center gap-2">
+            <div className="mb-3 w-60 ">
               <label
-                for="formFile"
-                class="form-label overflow-hidden relative w-full inline-block mb-2 text-gray-700"
+                htmlFor="formFile"
+                className="form-label overflow-hidden relative w-full inline-block mb-2 text-gray-700"
               >
                 <div className="border border-dashed py-4 hover:border-black transition duration-300 border-blue-200">
                   <p className="flex flex-col justify-center items-center">
@@ -134,7 +145,7 @@ const CandidateProfile = () => {
                   type="file"
                   name="file_upload"
                   {...register("image", { required: false })}
-                  class="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out hidden m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out hidden m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="formFile"
                 />
               </label>
@@ -146,20 +157,20 @@ const CandidateProfile = () => {
           </div>
         </div>
         {/* Company Name */}
-        <div class="flex">
+        <div className="flex">
           <div className="md:flex w-full gap-5">
             <div className="md:w-1/2">
               <p>Your Name</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 <input
                   defaultValue={dbUser?.fullName}
                   {...register("candidateName", { required: false })}
                   type="text"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="floatingInput"
                   placeholder="name@example.com"
                 />
-                <label for="floatingInput" class="text-gray-700">
+                <label htmlFor="floatingInput" className="text-gray-700">
                   Name
                 </label>
               </div>
@@ -167,17 +178,17 @@ const CandidateProfile = () => {
             {/* Email address */}
             <div className="md:w-1/2">
               <p>Email address (can't be changed) </p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 <input
                   disabled
                   defaultValue={dbUser.email}
                   {...register("emailAddress", { required: false })}
                   type="email"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="floatingInput"
                   placeholder="name@example.com"
                 />
-                <label for="floatingInput" class="text-gray-700">
+                <label htmlFor="floatingInput" className="text-gray-700">
                   Email address
                 </label>
               </div>
@@ -186,20 +197,20 @@ const CandidateProfile = () => {
         </div>
 
         {/* Phone , Website */}
-        <div class="flex">
+        <div className="flex">
           <div className="md:flex w-full gap-5">
             <div className="md:w-1/2">
               <p>Phone</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/* Phone */}
                 <input
                   {...register("phoneNumber", { required: false })}
                   type="tel"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="floatingInput"
                   placeholder="name@example.com"
                 />
-                <label for="floatingInput" class="text-gray-700">
+                <label htmlFor="floatingInput" className="text-gray-700">
                   1234567890{" "}
                 </label>
               </div>
@@ -207,17 +218,17 @@ const CandidateProfile = () => {
             {/* Rate */}
             <div className="md:w-1/2">
               <p>Rate:</p>
-              <div class="form-floating flex items-center mb-3 w-full">
+              <div className="form-floating flex items-center mb-3 w-full">
                 $
                 <input
                   {...register("rate", { required: false })}
                   type="number"
-                  class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   id="floatingInput"
                   placeholder="name@example.com"
                 />
                 /hour
-                <label for="floatingInput" class="text-gray-700">
+                <label htmlFor="floatingInput" className="text-gray-700">
                   99
                 </label>
               </div>
@@ -225,11 +236,11 @@ const CandidateProfile = () => {
           </div>
         </div>
         {/*Experience*/}
-        <div class="flex">
+        <div className="flex">
           <div className="md:flex w-full gap-5">
             <div className="md:w-1/2">
               <p>Experience</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/*Experience */}
                 <select
                   className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -251,9 +262,9 @@ const CandidateProfile = () => {
             {/* Age */}
             <div className="md:w-1/2">
               <p>Age</p>
-              <div class="form-floating mb-3 w-full">
-                <div class="">
-                  <div class="mb-3 ">
+              <div className="form-floating mb-3 w-full">
+                <div className="">
+                  <div className="mb-3 ">
                     <select
                       className="form-select appearance-none block w-full px-3 py-4 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
@@ -275,9 +286,9 @@ const CandidateProfile = () => {
             {/* Gender */}
             <div className="md:w-1/2">
               <p>Gender</p>
-              <div class="form-floating mb-3 w-full">
-                <div class="">
-                  <div class="mb-3 ">
+              <div className="form-floating mb-3 w-full">
+                <div className="">
+                  <div className="mb-3 ">
                     <select
                       className="form-select appearance-none block w-full px-3 py-4 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
@@ -297,11 +308,11 @@ const CandidateProfile = () => {
         </div>
 
         {/*Current Salary, Expected Salary*/}
-        <div class="flex">
+        <div className="flex">
           <div className="md:flex w-full gap-5">
             <div className="md:w-1/2">
               <p>Current Salary (if have)</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/*Current Salary*/}
                 <select
                   className="form-select appearance-none block w-full px-3 py-2.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -326,9 +337,9 @@ const CandidateProfile = () => {
             {/* Expected Salary */}
             <div className="md:w-1/2">
               <p>Expected Salary</p>
-              <div class="form-floating mb-3 w-full">
-                <div class="">
-                  <div class="mb-3 ">
+              <div className="form-floating mb-3 w-full">
+                <div className="">
+                  <div className="mb-3 ">
                     <select
                       className="form-select appearance-none block w-full px-3 py-4 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
@@ -352,9 +363,9 @@ const CandidateProfile = () => {
             {/* Education */}
             <div className="md:w-1/2">
               <p>Education</p>
-              <div class="form-floating mb-3 w-full">
-                <div class="">
-                  <div class="mb-3 ">
+              <div className="form-floating mb-3 w-full">
+                <div className="">
+                  <div className="mb-3 ">
                     <select
                       className="form-select appearance-none block w-full px-3 py-4 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
@@ -376,11 +387,11 @@ const CandidateProfile = () => {
         </div>
 
         {/*Skills , */}
-        <div class="flex">
+        <div className="flex">
           <div className=" w-full gap-5">
             <div className="md:">
               <p>Skills</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/*Skills*/}
                 <Select
                   onChange={(e) => setSkills(e)}
@@ -396,21 +407,21 @@ const CandidateProfile = () => {
           </div>
         </div>
         {/*Resume Url , */}
-        <div class="flex gap-1">
+        <div className="flex gap-1">
           <div className=" gap-5 w-full">
             <div className="md:w-full">
               <p>Resume Url</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/*Resume Url*/}
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("resumeUrl", { required: false })}
                     type="url"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     www.drive.google.com/
                   </label>
                 </div>
@@ -420,17 +431,17 @@ const CandidateProfile = () => {
           <div className=" gap-5 w-full">
             <div className="md:">
               <p>Language</p>
-              <div class="form-floating mb-3 w-full">
+              <div className="form-floating mb-3 w-full">
                 {/*Language */}
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("language", { required: false })}
                     type="text"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     English, Bangla
                   </label>
                 </div>
@@ -476,19 +487,19 @@ const CandidateProfile = () => {
         </div>
         <div>
           {/* Social */}
-          <div class="flex">
+          <div className="flex">
             <div className="md:flex w-full gap-5">
               <div className="md:w-1/2">
                 <p>Facebook</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   {/* Twitter */}
                   <input
                     {...register("facebook", { required: false })}
                     type="url"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     www.facebook.com/hdj{" "}
                   </label>
                 </div>
@@ -496,14 +507,14 @@ const CandidateProfile = () => {
               {/* Twitter */}
               <div className="md:w-1/2">
                 <p>Twitter</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("twitter", { required: false })}
                     type="url"
-                    class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     www.twitter.com/hdjs
                   </label>
                 </div>
@@ -511,16 +522,16 @@ const CandidateProfile = () => {
             </div>
           </div>
           {/* Linkedin  github*/}
-          <div class="flex">
+          <div className="flex">
             <div className="md:flex w-full gap-5">
               <div className="md:w-1/2">
                 <p>Linkedin</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   {/* Linkedin */}
                   <input
                     {...register("linkedin", { required: false })}
                     type="url"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -538,7 +549,7 @@ const CandidateProfile = () => {
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     www.linkedin.com/in/hdj{" "}
                   </label>
                 </div>
@@ -546,11 +557,11 @@ const CandidateProfile = () => {
               {/* Github */}
               <div className="md:w-1/2">
                 <p>Github</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("github", { required: false })}
                     type="url"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -567,7 +578,7 @@ const CandidateProfile = () => {
        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="floatingInput"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     www.github.com/hdj
                   </label>
                 </div>
@@ -578,16 +589,16 @@ const CandidateProfile = () => {
             <h3>Contact Information</h3>
           </div>
           {/* Social */}
-          <div class="flex">
+          <div className="flex">
             <div className="md:flex w-full gap-5">
               <div className="md:w-1/2">
                 <p>Country</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   {/* Country */}
                   <input
                     {...register("country", { required: false })}
                     type="text"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -605,7 +616,7 @@ const CandidateProfile = () => {
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     US{" "}
                   </label>
                 </div>
@@ -613,11 +624,11 @@ const CandidateProfile = () => {
               {/* City */}
               <div className="md:w-1/2">
                 <p>City</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("city", { required: false })}
                     type="text"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -635,7 +646,7 @@ const CandidateProfile = () => {
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     New York
                   </label>
                 </div>
@@ -643,16 +654,16 @@ const CandidateProfile = () => {
             </div>
           </div>
           {/* Zip Code, Street address*/}
-          <div class="flex">
+          <div className="flex">
             <div className="md:flex w-full gap-5">
               <div className="md:w-1/2">
                 <p> Zip Code</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   {/*  Zip Code */}
                   <input
                     {...register("zipCode", { required: false })}
                     type="number"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -670,7 +681,7 @@ const CandidateProfile = () => {
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     1200
                   </label>
                 </div>
@@ -678,11 +689,11 @@ const CandidateProfile = () => {
               {/* Street Address */}
               <div className="md:w-1/2">
                 <p>Street Address</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   <input
                     {...register("streetAddress", { required: false })}
                     type="text"
-                    class="form-control
+                    className="form-control
        block
        w-full
        px-3
@@ -700,7 +711,7 @@ const CandidateProfile = () => {
                     id="floatingInput"
                     placeholder="name@example.com"
                   />
-                  <label for="floatingInput" class="text-gray-700">
+                  <label htmlFor="floatingInput" className="text-gray-700">
                     Mithapukur,Rangpur
                   </label>
                 </div>
@@ -709,15 +720,15 @@ const CandidateProfile = () => {
           </div>
           {/* Company BIO */}
 
-          <div class="flex">
+          <div className="flex">
             <div className="md:flex w-full gap-5">
               <div className=" w-full">
                 <p> Candidate Bio</p>
-                <div class="form-floating mb-3 w-full">
+                <div className="form-floating mb-3 w-full">
                   {/*  Candidate */}
                   <textarea
                     {...register("candidateBio", { required: false })}
-                    class=" block w-full px-3 py-1.5 text-base font-normal text-gray-700  bg-white bg-clip-padding border border-solid order-gray-300 rounded transition ease-in-out h-44 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    className=" block w-full px-3 py-1.5 text-base font-normal text-gray-700  bg-white bg-clip-padding border border-solid order-gray-300 rounded transition ease-in-out h-44 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="floatingInput"
                     placeholder="Candidate Bio"
                   ></textarea>
