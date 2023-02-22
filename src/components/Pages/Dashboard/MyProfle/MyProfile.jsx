@@ -116,17 +116,20 @@ const MyProfile = () => {
 								<div onClick={() => imageRef.current.click()} className="border-dashed border-2 py-4 w-44 hover:border-black transition duration-300 border-blue-200">
 									{
 										!selectedImage ?
-										<p className="flex flex-col justify-center items-center">
-											<BiArrowFromBottom className="text-3xl" />
-											Browse Image
-										</p>
-										:
-										<img className="w-44 object-cover" src={selectedImage} alt="" />
+											<p className="flex flex-col justify-center items-center">
+												<BiArrowFromBottom className="text-3xl" />
+												Browse Image
+											</p>
+											:
+											<img className="w-44 object-cover" src={selectedImage} alt="" />
 									}
 								</div>
 								<input
 									ref={imageRef}
-									onChange={e => setSelectedImage(e.target.files[0])}
+									onChange={e => {
+										console.log(e.target.files[0])
+										setSelectedImage(e.target.files[0])
+									}}
 									accept="image/*"
 									type="file"
 									name="file_upload"
