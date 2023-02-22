@@ -126,7 +126,7 @@ const MyProfile = () => {
 								</div>
 								<input
 									ref={imageRef}
-									onChange={() => setSelectedImage(imageRef.current.files[0])}
+									onChange={e => setSelectedImage(e.target.files[0])}
 									accept="image/*"
 									type="file"
 									name="file_upload"
