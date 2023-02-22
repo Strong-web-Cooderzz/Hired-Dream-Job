@@ -11,6 +11,7 @@ const Profile = () => {
 			{
 				dbUser?.type === 'Agency' ? <EmployerProfile /> : <CandidateProfile />
 			}
+
 		</div>
 	);
 };

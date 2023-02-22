@@ -63,7 +63,7 @@ const SingleJobs = () => {
                     </span>
                     {jobData.urgent && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-500">
-                        {jobData.urgent ? "Urgent" : ""}
+                        {jobData.urgent ? "Urgent" : "Any Time"}
                       </span>
                     )}
                     <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-500">

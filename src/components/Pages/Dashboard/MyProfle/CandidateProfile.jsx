@@ -9,19 +9,22 @@ import Select from "react-select";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../api/fetchData";
 import axios from "axios";
+import Loading from "../../../Loading/Loading";
 
 const CandidateProfile = () => {
   const [loading, setLoading] = useState(false);
   const { user, dbUser } = useContext(AuthContext);
-
+  const [userLoading,setUserLoading]  = useState(false)
   const [userData, setUserData] = useState({});
   console.log(user)
    
   
   
     useEffect(() => {
+      setUserLoading(true)
       axios.get(`http://localhost:5000/user?email=${user?.email}`).then((response) => {
         setUserData(response.data);
+        setUserLoading(false)
       });
     }, []);
   // I, Abid Hasan removed function that sends ip address
@@ -119,6 +122,9 @@ const CandidateProfile = () => {
 
   return (
     <div className=" bg-gray-100 my-6 px-3 rounded-xl w-[90%] mx-12">
+      {
+        userLoading && <Loading />
+      }
       <form
         onSubmit={handleSubmit(handleUpdateEmployer)}
         className=" w-full bg-gray-100  rounded-xl"
@@ -177,7 +183,7 @@ const CandidateProfile = () => {
             </div>
             {/* Email address */}
             <div className="md:w-1/2">
-              <p>Email address (can't be changed) </p>
+              <p>Email address </p>
               <div className="form-floating mb-3 w-full">
                 <input
                   disabled

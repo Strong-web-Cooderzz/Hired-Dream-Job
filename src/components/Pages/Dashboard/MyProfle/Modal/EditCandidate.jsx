@@ -10,7 +10,7 @@ import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../../api/fetchData";
 import axios from "axios";
 
-const CandidateProfile = () => {
+const EditCandidate = () => {
   const [loading, setLoading] = useState(false);
   const { user, dbUser } = useContext(AuthContext);
 
@@ -747,4 +747,4 @@ const CandidateProfile = () => {
   );
 };
 
-export default CandidateProfile;
+export default EditCandidate;

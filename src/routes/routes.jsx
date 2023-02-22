@@ -47,6 +47,7 @@ import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/Mana
 import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageJob";
 import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
+import EditEmployer from "../components/Pages/Dashboard/MyProfle/Modal/EditEmployer";
 
 
 export const router = createBrowserRouter([
@@ -206,6 +207,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <EditBlog> </EditBlog>
+			},
+			{
+				path: '/dashboard/profile/edit-employer',
+				element: <EditEmployer> </EditEmployer>
 			}
 		]
 	},

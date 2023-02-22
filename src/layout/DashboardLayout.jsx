@@ -18,7 +18,7 @@ const DashboardLayout = () => {
 		<div className="w-full" >
 			<DashboardNavbar > </DashboardNavbar>
 
-			<div className="flex gap-4 ">
+			<div className="flex ">
 				<div >
 					<div className="w-full p-0 m-0 hidden lg:inline-block">
 						{!loading && <DashboardSidebar></DashboardSidebar>}
