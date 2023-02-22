@@ -48,6 +48,7 @@ import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/M
 import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
 import EditEmployer from "../components/Pages/Dashboard/MyProfle/Modal/EditEmployer";
+import EditCandidate from "../components/Pages/Dashboard/MyProfle/Modal/EditCandidate";
 
 
 export const router = createBrowserRouter([
@@ -211,6 +212,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/profile/edit-employer',
 				element: <EditEmployer> </EditEmployer>
+			},
+			{
+				path: '/dashboard/profile/edit-candidate',
+				element: <EditCandidate> </EditCandidate>
 			}
 		]
 	},
