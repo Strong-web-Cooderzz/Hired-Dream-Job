@@ -92,7 +92,7 @@ const DashboardAddPost = () => {
 									className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 									aria-label="Default select example"
 								>
-									<option selected>Select Category</option>
+									<option selected disabled>Select Category</option>
 									<option value="Accounting / Finance">
 										Accounting / Finance
 									</option>
@@ -116,7 +116,7 @@ const DashboardAddPost = () => {
 							<div className="form-check form-check-inline">
 								<label
 									className="form-check-label inline-block text-gray-800"
-									htmlFor="inlineRadio10"
+									for="inlineRadio10"
 								>
 									<input
 										onChange={(e) => setJobType(e.target.value)}
@@ -132,7 +132,7 @@ const DashboardAddPost = () => {
 							<div className="form-check form-check-inline">
 								<label
 									className="form-check-label inline-block text-gray-800"
-									htmlFor="inlineRadio20"
+									for="inlineRadio20"
 								>
 									<input
 										onChange={(e) => setJobType(e.target.value)}
@@ -148,7 +148,7 @@ const DashboardAddPost = () => {
 							<div className="form-check form-check-inline">
 								<label
 									className="form-check-label inline-block text-gray-800"
-									htmlFor="inlineRadio20"
+									for="inlineRadio20"
 								>
 									<input
 										onChange={(e) => setJobType(e.target.value)}
@@ -194,7 +194,7 @@ const DashboardAddPost = () => {
 								/>
 								<label
 									className="form-check-label inline-block text-gray-800"
-									htmlFor="flexRadioDefault1"
+									for="flexRadioDefault1"
 								>
 									Private
 								</label>
@@ -209,7 +209,7 @@ const DashboardAddPost = () => {
 								/>
 								<label
 									className="form-check-label inline-block text-gray-800"
-									htmlFor="flexRadioDefault1"
+									for="flexRadioDefault1"
 								>
 									Public
 								</label>
@@ -336,7 +336,7 @@ const DashboardAddPost = () => {
 						/>
 						<label
 							className="form-check-label inline-block text-gray-800"
-							htmlFor="exampleCheck87"
+							for="exampleCheck87"
 						>
 							Accept job Treams and condition
 						</label>
