@@ -8,22 +8,21 @@ import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from "react-select";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../api/fetchData";
-import axios from "axios";
 import Loading from "../../../Loading/Loading";
 import { Link } from "react-router-dom";
 
 const CandidateProfile = () => {
 	const [loading, setLoading] = useState(false);
 	const { user, dbUser } = useContext(AuthContext);
-	const [userLoading, setUserLoading] = useState(false);
+	const [userLoading, setUserLoading] = useState(false)
 	const [userData, setUserData] = useState({});
-	console.log(user);
+	console.log(user)
 
 	useEffect(() => {
-		setUserLoading(true);
+		setUserLoading(true)
 		fetchData.get(`/user?email=${user?.email}`).then((response) => {
 			setUserData(response.data);
-			setUserLoading(false);
+			setUserLoading(false)
 		});
 	}, []);
 	// I, Abid Hasan removed function that sends ip address
@@ -55,7 +54,7 @@ const CandidateProfile = () => {
 		formState: { errors },
 	} = useForm();
 	const handleUpdateCandidate = (data) => {
-		setUploadingLoading(true);
+		setUploadingLoading(true)
 		setLoading(true);
 		console.log(data, skills);
 		const image = data.image[0];
@@ -73,7 +72,7 @@ const CandidateProfile = () => {
 			.then((imageData) => {
 				const imageUrl = imageData.url;
 				const updateData = {
-					photo: imageUrl,
+					photo: imageUrl
 				};
 				if (imageUrl) {
 					fetchData
@@ -123,8 +122,11 @@ const CandidateProfile = () => {
 									/>
 									<div className="flex justify-center">
 										<button className="btn_primary justify-center my-2">
-											{uploadingLoading ? "Uploading..." : "Update"}
+											{
+												uploadingLoading ? 'Uploading...' : 'Update'
+											}
 										</button>
+
 									</div>
 								</label>
 							</div>
@@ -133,13 +135,12 @@ const CandidateProfile = () => {
 				</form>
 
 				<div className="flex justify-end ">
-					<Link to={"edit-candidate"} className="btn_primary">
-						Edit
-					</Link>
+					<Link to={'edit-candidate'} className="btn_primary">Edit</Link>
 				</div>
 
 				<div className="w-full md:flex gap-2">
 					<div className="md:w-1/2 bg-gray-100 rounded-md px-3 py-2">
+
 						<h3 className="text-center text-xl font-semibold">User Info</h3>
 						<div>
 							{/* Email */}
@@ -206,9 +207,7 @@ const CandidateProfile = () => {
 							{/* Country */}
 							<div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
 								<p className="font-semibold">Country or city:</p>
-								<p>
-									{userData.address?.country}, {userData.address?.city}
-								</p>
+								<p>{userData.address?.country}, {userData.address?.city}</p>
 							</div>
 							{/* Zip Code */}
 							<div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
@@ -222,13 +221,16 @@ const CandidateProfile = () => {
 							</div>
 						</div>
 					</div>
+
 				</div>
 				{/* About */}
 				<div className="w-full bg-gray-100 rounded-md px-3 py-2"></div>
 				{/* Education */}
 				<div className="w-full bg-gray-100 rounded-md px-3 py-2"></div>
 			</div>
-			<div></div>
+			<div>
+
+			</div>
 		</div>
 	);
 };
