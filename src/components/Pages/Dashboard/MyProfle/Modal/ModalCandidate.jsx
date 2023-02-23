@@ -10,7 +10,7 @@ import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../../api/fetchData";
 import axios from "axios";
 
-const EditCandidate = () => {
+const CandidateProfile = () => {
   const [loading, setLoading] = useState(false);
   const { user, dbUser } = useContext(AuthContext);
 
@@ -18,8 +18,8 @@ const EditCandidate = () => {
   console.log(user);
 
   useEffect(() => {
-    fetchData
-      .get(`/user?email=${user?.email}`)
+    axios
+      .get(`http://localhost:5000/user?email=${user?.email}`)
       .then((response) => {
         setUserData(response.data);
       });
@@ -698,4 +698,4 @@ const EditCandidate = () => {
   );
 };
 
-export default EditCandidate;
+export default CandidateProfile;

@@ -10,7 +10,7 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import Loading from "../../../Loading/Loading";
 
 const EmployerProfile = () => {
-	const { user, token } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 	const [userData, setUserData] = useState({});
 	console.log(user);
 	const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ const EmployerProfile = () => {
 					fetchData
 						.put(`/employ?email=${user.email}`, updateData, {
 							headers: {
-								Authorization: `Bearer ${token}`,
+								Authorization: `Bearer ${user?.accessToken}`,
 							},
 						})
 						.then((response) => {

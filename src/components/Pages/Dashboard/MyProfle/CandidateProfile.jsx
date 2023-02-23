@@ -8,6 +8,7 @@ import { BiArrowFromBottom, BiArrowFromTop } from "react-icons/bi";
 import Select from "react-select";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../api/fetchData";
+import axios from "axios";
 import Loading from "../../../Loading/Loading";
 import { Link } from "react-router-dom";
 
@@ -20,10 +21,11 @@ const CandidateProfile = () => {
 
 	useEffect(() => {
 		setUserLoading(true)
-		fetchData.get(`/user?email=${user?.email}`).then((response) => {
-			setUserData(response.data);
-			setUserLoading(false)
-		});
+		fetchData.get(`/user?email=${user?.email}`)
+			.then((response) => {
+				setUserData(response.data);
+				setUserLoading(false)
+			});
 	}, []);
 	// I, Abid Hasan removed function that sends ip address
 	// we don't need it. Cause express can do that. So it will improve user experience
