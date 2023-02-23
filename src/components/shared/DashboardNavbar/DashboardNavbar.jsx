@@ -91,9 +91,9 @@ export default function AdminNavbar() {
                       id="sortbox"
                       className="hidden absolute"
                     />
-					<div class="dropdown relative">
+					<div className="dropdown relative">
                       <a
-                        class="dropdown-toggle flex items-center hidden-arrow"
+                        className="dropdown-toggle flex items-center hidden-arrow"
                         href="#"
                         id="dropdownMenuButton2"
                         role="button"
@@ -111,7 +111,7 @@ export default function AdminNavbar() {
                           )}
                       </a>
                       <ul
-                        class="
+                        className="
     dropdown-menu
     min-w-max
     absolute
@@ -136,7 +136,7 @@ export default function AdminNavbar() {
                       >
                         <li>
                           <a
-                            class="
+                            className="
         dropdown-item
         text-sm
         py-2
@@ -156,7 +156,7 @@ export default function AdminNavbar() {
                         </li>
                         <li>
                           <Link
-                            class="
+                            className="
         dropdown-item
         text-sm
         py-2
@@ -178,7 +178,7 @@ export default function AdminNavbar() {
                         <li>
                           <button
                             onClick={logOut}
-                            class=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-rose-700 hover:bg-rose-100 " >
+                            className=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-rose-700 hover:bg-rose-100 " >
                             Log Out
                           </button>
                         </li>

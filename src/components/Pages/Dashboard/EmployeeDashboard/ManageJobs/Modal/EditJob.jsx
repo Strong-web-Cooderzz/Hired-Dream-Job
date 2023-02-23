@@ -81,24 +81,24 @@ const EditJob = () => {
           setLoading(false)
           console.log(data);
           toast.success('Job Updated')
-          navigate('/dashboard/manage_jobs')
+          navigate('/dashboard/manage-jobs')
         })
     }
 
 
     return (
-<div class="" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
-  <div class="modal-dialog max-w-2xl modal-dialog-centered relative w-full pointer-events-none">
-    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-      <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-        <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+<div className="" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+  <div className="modal-dialog max-w-2xl modal-dialog-centered relative w-full pointer-events-none">
+    <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+      <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
           Edit {editData?.title}
         </h5>
        
       </div>
       <form className='p-6 ' onSubmit={handleSubmit(handleAddNewJob)}>
-    <div class="form-group mb-6 w-full">
-      <input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" class="form-control block
+    <div className="form-group mb-6 w-full">
+      <input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -114,8 +114,8 @@ const EditJob = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
         placeholder="Job Title"/>
     </div>
-    <div class="form-group mb-6 w-full">
-      <input defaultValue={editData?.location} {...register("location", { required: true })} type="text" class="form-control block
+    <div className="form-group mb-6 w-full">
+      <input defaultValue={editData?.location} {...register("location", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -134,22 +134,22 @@ const EditJob = () => {
 
 
     {/* Job TYpe */}
-    <div class="form-group mb-6 w-full">
-    <div class="flex flex-wrap items-center">
+    <div className="form-group mb-6 w-full">
+    <div className="flex flex-wrap items-center">
         <h3>Job Type: </h3>
-  <div class="form-check form-check-inline">
-  <label class="form-check-label inline-block text-gray-800" for="inlineRadio10">
-    <input onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Full Time"/>
+  <div className="form-check form-check-inline">
+  <label className="form-check-label inline-block text-gray-800" htmlFor="inlineRadio10">
+    <input onChange={(e)=>setJobType(e.target.value)} className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Full Time"/>
     Full Time</label>
   </div>
-  <div class="form-check form-check-inline">
-  <label class="form-check-label inline-block text-gray-800" for="inlineRadio20">
-    <input onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Part Time"/>
+  <div className="form-check form-check-inline">
+  <label className="form-check-label inline-block text-gray-800" htmlFor="inlineRadio20">
+    <input onChange={(e)=>setJobType(e.target.value)} className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Part Time"/>
    Part Time</label>
   </div>
-  <div class="form-check form-check-inline">
-  <label class="form-check-label inline-block text-gray-800" for="inlineRadio20">
-    <input onChange={(e)=>setJobType(e.target.value)} class="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Temporary"/>
+  <div className="form-check form-check-inline">
+  <label className="form-check-label inline-block text-gray-800" htmlFor="inlineRadio20">
+    <input onChange={(e)=>setJobType(e.target.value)} className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Temporary"/>
     Temporary
 </label>
   </div>
@@ -157,10 +157,10 @@ const EditJob = () => {
 
 
 {/* Job Urgent */}
-<div class="flex justify-center">
+<div className="flex justify-center">
   <div>
-    <div class="form-check">
-      <input onClick={()=>setUrgent(!urgent)} class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer mr-3" type="checkbox" value="Urgent" id="flexCheckChecked3" /> Urgent
+    <div className="form-check">
+      <input onClick={()=>setUrgent(!urgent)} className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 my-1 align-top bg-no-repeat bg-center bg-contain float-left cursor-pointer mr-3" type="checkbox" value="Urgent" id="flexCheckChecked3" /> Urgent
     </div>
   </div>
 </div>
@@ -169,32 +169,32 @@ const EditJob = () => {
 
     </div>
 {/* Compnay Type */}
-    <div class="flex ">
+    <div className="flex ">
   <div className='flex gap-6 my-4'>
         <h3>Company Type:</h3>
-    <div class="form-check">
-      <input onClick={()=>setCompanyType('Private')} class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-      <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
+    <div className="form-check">
+      <input onClick={()=>setCompanyType('Private')} className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+      <label className="form-check-label inline-block text-gray-800" htmlFor="flexRadioDefault1">
       Private
       </label>
     </div>
-    <div class="form-check">
-      <input onClick={()=>setCompanyType('Public')} class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-      <label class="form-check-label inline-block text-gray-800" for="flexRadioDefault1">
+    <div className="form-check">
+      <input onClick={()=>setCompanyType('Public')} className="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+      <label className="form-check-label inline-block text-gray-800" htmlFor="flexRadioDefault1">
       Public
       </label>
     </div>
   </div>
 </div>
 
-    <div class="form-group mb-6 flex  items-center gap-2">
+    <div className="form-group mb-6 flex  items-center gap-2">
      <div>
 
 
         {/* Working Hours */}
         <p>Working Hours</p>
      <div className='flex items-center gap-1'>
-     <input defaultValue={editData?.workingHours} {...register("workingHours", { required: true })} type="text" class="form-control block
+     <input defaultValue={editData?.workingHours} {...register("workingHours", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -218,7 +218,7 @@ const EditJob = () => {
      <p>Salary: </p>
     <div className='flex items-center gap-2'>
         
-        <input defaultValue={editData?.salaryMin} {...register("salaryMin", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.salaryMin} {...register("salaryMin", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -234,7 +234,7 @@ const EditJob = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="35k"/>
         -
-        <input defaultValue={editData?.salaryMax} {...register("salaryMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.salaryMax} {...register("salaryMax", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -263,7 +263,7 @@ const EditJob = () => {
 <div>
 <h3>Rate</h3>
 <div className='flex gap-2 items-center'>
-<input defaultValue={editData?.rateMin} {...register("rateMin", { required: true })} type="text" class="form-control block
+<input defaultValue={editData?.rateMin} {...register("rateMin", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -279,7 +279,7 @@ const EditJob = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
         placeholder="15"/>
         -
-        <input defaultValue={editData?.rateMax} {...register("rateMax", { required: true })} type="text" class="form-control block
+        <input defaultValue={editData?.rateMax} {...register("rateMax", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -302,12 +302,12 @@ const EditJob = () => {
 
     {/* Job Description
  */}
-    <div class="form-group mb-6">
+    <div className="form-group mb-6">
         <h3>Job Description</h3>
       <textarea
       defaultValue={editData?.jobDescription}
        {...register("jobDescription", { required: true })}
-      class="
+      className="
         form-control
         block
         w-full
@@ -333,12 +333,12 @@ const EditJob = () => {
 
     {/* Key Responsibilities
  */}
-    <div class="form-group mb-6">
+    <div className="form-group mb-6">
         <h3>Key Responsibilities</h3>
       <textarea
       defaultValue={editData?.responsibilities}
         {...register("responsibilities", { required: true })}
-      class="
+      className="
         form-control
         block
         w-full
@@ -366,12 +366,12 @@ const EditJob = () => {
 
     {/* Skill & Experience
  */}
-    <div class="form-group mb-6">
+    <div className="form-group mb-6">
         <h3>Skill & Experience</h3>
       <textarea
       defaultValue={editData?.skills}
         {...register("skills", { required: true })}
-      class="
+      className="
         form-control
         block
         w-full
@@ -396,14 +396,14 @@ const EditJob = () => {
 
 
     {/* Trems and condition */}
-    <div class="form-group form-check text-center mb-6">
+    <div className="form-group form-check text-center mb-6">
       <input type="checkbox"
         {...register("trems", { required: true })}
-        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
+        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
         id="exampleCheck87" />
-      <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Accept job Treams and condition</label>
+      <label className="form-check-label inline-block text-gray-800" htmlFor="exampleCheck87">Accept job Treams and condition</label>
     </div>
-    <button type="submit" class="
+    <button type="submit" className="
       w-full
       px-6
       py-2.5

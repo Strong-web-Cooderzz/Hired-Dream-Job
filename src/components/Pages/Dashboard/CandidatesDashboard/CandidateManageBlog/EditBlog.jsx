@@ -110,17 +110,17 @@ const EditBlog = () => {
 				</div>
 				<form onSubmit={handleSubmit(handleAddPost)} action="">
 					<div className=" w-full sm:flex gap-3 my-3 ">
-						<div class="w-full">
+						<div className="w-full">
 							<label
-								for="title"
-								class="form-label inline-block mb-2 text-gray-700"
+								htmlFor="title"
+								className="form-label inline-block mb-2 text-gray-700"
 							>
 								Title
 							</label>
 							<input defaultValue={editPost.title}
 								{...register("title", { required: true })}
 								type="text"
-								class="
+								className="
         form-control
         block
         w-full
@@ -144,8 +144,8 @@ const EditBlog = () => {
 
 						<div className=" w-full">
 							<label
-								for="title"
-								class="form-label inline-block w-full text-gray-700"
+								htmlFor="title"
+								className="form-label inline-block w-full text-gray-700"
 							>
 								Select Category
 							</label>
@@ -160,17 +160,17 @@ const EditBlog = () => {
 						</div>
 					</div>
 					<div className="md:flex gap-3">
-						<div class=" w-full">
-							<div class="mb-3">
+						<div className=" w-full">
+							<div className="mb-3">
 								<label
-									for="formFile"
-									class="form-label inline-block mb-2 text-gray-700"
+									htmlFor="formFile"
+									className="form-label inline-block mb-2 text-gray-700"
 								>
 									Featured Image
 								</label>
 								<input
 									{...register("image", { required: true })}
-									class="form-control
+									className="form-control
     block
     w-full
     px-3
@@ -192,8 +192,8 @@ const EditBlog = () => {
 						</div>
 						<div className=" w-full">
 							<label
-								for="title"
-								class="form-label inline-block w-full text-gray-700"
+								htmlFor="title"
+								className="form-label inline-block w-full text-gray-700"
 							>
 								Select Tags
 							</label>
@@ -216,9 +216,9 @@ const EditBlog = () => {
 						type="submit"
 						className="w-full bg-blue-100 text-blue-700 my-6 py-2 flex justify-center "
 					>
-						{loading ? <div class="flex justify-center items-center">
-							<div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-								<span class="visually-hidden">Loading...</span>
+						{loading ? <div className="flex justify-center items-center">
+							<div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+								<span className="visually-hidden">Loading...</span>
 							</div>
 						</div> : ' Update Post'}
 					</button>

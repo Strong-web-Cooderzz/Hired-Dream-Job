@@ -44,27 +44,27 @@ console.log(jobManage);
         <div>
 
 
-<div class=" w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+<div className=" w-full h-full outline-none overflow-x-hidden overflow-y-auto"
   id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog relative w-auto pointer-events-none">
+  <div className="modal-dialog relative w-auto pointer-events-none">
     <div
-      class="border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+      className="border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
       <div
-        class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-        <h5 class="text-xl font-medium leading-normal text-gray-800 flex items-center gap-2" id="exampleModalLabel">
+        className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <h5 className="text-xl font-medium leading-normal text-gray-800 flex items-center gap-2" id="exampleModalLabel">
         Pay <GrMoney /> <span className='bg-blue-100 text-blue-700 px-2 rounded-sm'> 5$ </span> for {jobManage.title}
         </h5>
        
       </div>
-      <div class="modal-body relative p-4">
+      <div className="modal-body relative p-4">
       <Elements stripe={stripePromise}>
       <CheckoutForm jobManage={jobManage} />
     </Elements>
     <div>
 <div className='flex justify-center'> 
 <button onClick={()=>handleSSLPayment()} type="button"
-          class="  px-6 py-2.5 bg-blue-100 text-blue-700   flex gap-2 font-medium leading-tight uppercase rounded shadow-md hover:bg-blue-200 hover:shadow-lg focus:bg-blue-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-300 mr-2 active:shadow-lg transition duration-150 ease-in-out"
+          className="  px-6 py-2.5 bg-blue-100 text-blue-700   flex gap-2 font-medium leading-tight uppercase rounded shadow-md hover:bg-blue-200 hover:shadow-lg focus:bg-blue-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-300 mr-2 active:shadow-lg transition duration-150 ease-in-out"
         >{loading ? 'Loading...':'Pay with'} <img className='w-24' src="https://ci3.googleusercontent.com/proxy/oe3FUQn0kM8cv4a-gftkBlZ1oDAl6iKYTxSkU_qCSbemcV_bVCGWtFYSPJFc4c2-JfTpVZJFigAi76l05Ag470HVtTne_r68-sYw2uE=s0-d-e1-ft#https://developer.sslcommerz.com/registration/img/logo.png" alt="" /></button>
 </div>
     </div>

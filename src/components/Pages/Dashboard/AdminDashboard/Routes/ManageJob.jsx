@@ -81,24 +81,24 @@ const MangeAdminJob = () => {
           setLoading(false)
           console.log(data);
           toast.success('Job Updated')
-          navigate('/dashboard/manage_jobs')
+          navigate('/dashboard/manage-jobs')
         })
     }
 
 
     return (
-<div class="" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
-  <div class="modal-dialog max-w-2xl modal-dialog-centered relative w-full pointer-events-none">
-    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-      <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-        <h5 class="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
+<div className="" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
+  <div className="modal-dialog max-w-2xl modal-dialog-centered relative w-full pointer-events-none">
+    <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+      <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+        <h5 className="text-xl font-medium leading-normal text-gray-800" id="exampleModalScrollableLabel">
           Edit {editData?.title}
         </h5>
        
       </div>
       <form className='p-6 ' onSubmit={handleSubmit(handleAddNewJob)}>
-    <div class="form-group mb-6 w-full">
-      <input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" class="form-control block
+    <div className="form-group mb-6 w-full">
+      <input defaultValue={editData?.title}  {...register("title", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -114,8 +114,8 @@ const MangeAdminJob = () => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
         placeholder="Job Title"/>
     </div>
-    <div class="form-group mb-6 w-full">
-      <input defaultValue={editData?.location} {...register("location", { required: true })} type="text" class="form-control block
+    <div className="form-group mb-6 w-full">
+      <input defaultValue={editData?.location} {...register("location", { required: true })} type="text" className="form-control block
         w-full
         px-3
         py-1.5
@@ -132,9 +132,9 @@ const MangeAdminJob = () => {
         placeholder="Location"/>
     </div>
     {/* Action */}
-    <div class=" flex ">
-  <div class="mb-3 w-24">
-    <select class="form-select appearance-none
+    <div className=" flex ">
+  <div className="mb-3 w-24">
+    <select className="form-select appearance-none
       block
       w-full
       px-3
@@ -154,8 +154,8 @@ const MangeAdminJob = () => {
     </select>
   </div>
    {/* Action */}
-   <div class="mb-3 w-24">
-    <select class="form-select appearance-none
+   <div className="mb-3 w-24">
+    <select className="form-select appearance-none
       block
       w-full
       px-3
@@ -185,14 +185,14 @@ const MangeAdminJob = () => {
 
 
     {/* Trems and condition */}
-    <div class="form-group form-check text-center mb-6">
+    <div className="form-group form-check text-center mb-6">
       <input type="checkbox"
         {...register("trems", { required: true })}
-        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
+        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain mr-2 cursor-pointer"
         id="exampleCheck87" />
-      <label class="form-check-label inline-block text-gray-800" for="exampleCheck87">Accept job Treams and condition</label>
+      <label className="form-check-label inline-block text-gray-800" htmlFor="exampleCheck87">Accept job Treams and condition</label>
     </div>
-    <button type="submit" class="
+    <button type="submit" className="
       w-full
       px-6
       py-2.5

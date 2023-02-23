@@ -25,9 +25,9 @@ const SingleBlog = ({blog}) => {
            <Link className='text-blue-500 mx-3 font-bold' to={`/dashboard/edit_blog/${blog._id}`}>Edit</Link>
             <Link className='text-green-500 mx-3 font-bold' to={`/singelArticles/${blog._id}`}>View</Link>
 <div>
-<div class="dropdown inline-block">
+<div className="dropdown inline-block">
   <button
-    class="
+    className="
     text-rose-600
     font-bold
       dropdown-toggle
@@ -41,7 +41,7 @@ const SingleBlog = ({blog}) => {
    Delete
   </button>
   <ul
-    class="
+    className="
       dropdown-menu
       min-w-max
       absolute

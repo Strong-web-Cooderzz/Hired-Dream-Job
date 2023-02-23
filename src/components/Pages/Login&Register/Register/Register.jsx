@@ -62,9 +62,9 @@ const Register = () => {
               toast(<Lottie animationData={registerCompleted} loop={false} />);
 			  setRegisterLoading(false)
               if (data.type === "Candidate") {
-                navigate("/accountClient");
+                navigate("/dashboard/profile");
               } else {
-                navigate("/accountAgency");
+                navigate("/dashboard/profile");
 				
               }
             })

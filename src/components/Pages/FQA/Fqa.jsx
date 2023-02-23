@@ -3,9 +3,9 @@ import React from 'react';
 const Fqa = () => {
     return (
         <div>
-            <div class="flex justify-center text-xl m-4">FQA's</div>
+            <div className="flex justify-center text-xl m-4">FQA's</div>
             <div class ="flex justify-center">
-            <div class="w-5/6 p-8 bg-white rounded-xl shado-md space-y-2 border border-sky-200">
+            <div className="w-5/6 p-8 bg-white rounded-xl shado-md space-y-2 border border-sky-200">
                 <p>1. What is HDj Hired dream job?</p>
                 <p>Answer: This is a job search website. Where employers can post job and job seekers can find and apply for jobs.</p>
                 <p>2. How to create Hired dream job account?</p>

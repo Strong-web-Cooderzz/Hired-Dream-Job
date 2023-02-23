@@ -22,7 +22,7 @@ const ManageJobs = () => {
 
  
     return (
-        <div class="flex bg-gray-100 flex-col w-full p-3        ">
+        <div className="flex bg-gray-100 flex-col w-full p-3        ">
             <div >
             <h3 className='text-3xl'>Manage jobs!</h3>
 <p className='text-xs'>Ready to jump back in?</p>
@@ -33,9 +33,9 @@ const ManageJobs = () => {
                 My Job Listings
                 </div>
                 <div className=''>
-                <div class="flex justify-center">
-  <div class="mb-3 xl:w-96">
-    <select class="form-select appearance-none
+                <div className="flex justify-center">
+  <div className="mb-3 xl:w-96">
+    <select className="form-select appearance-none
       block
       px-3
       w-32
@@ -60,25 +60,25 @@ const ManageJobs = () => {
 </div>
                 </div>
             </div>
-        <div class="">
-          <div class="py-4 inline-block w-full  overflow-auto">
-            <div class="">
-              <table class="min-w-full text-center">
-                <thead class="text-left border-b bg-blue-50 text-blue-600 w-full">
+        <div className="">
+          <div className="py-4 inline-block w-full  overflow-auto">
+            <div className="">
+              <table className="min-w-full text-center">
+                <thead className="text-left border-b bg-blue-50 text-blue-600 w-full">
                   <tr>
-                    <th scope="col" class="text-sm font-medium px-6 py-4">
+                    <th scope="col" className="text-sm font-medium px-6 py-4">
                     Title
                     </th>
-                    <th scope="col" class="text-sm font-medium px-6 py-4">
+                    <th scope="col" className="text-sm font-medium px-6 py-4">
                     Applications
                     </th>
-                    <th scope="col" class="text-sm font-medium px-6 py-4">
+                    <th scope="col" className="text-sm font-medium px-6 py-4">
                     Created & Expired	
                     </th>
-                    <th scope="col" class="text-sm font-medium px-6 py-4">
+                    <th scope="col" className="text-sm font-medium px-6 py-4">
                     Status
                     </th>
-                    <th scope="col" class="text-sm font-medium px-6 py-4">
+                    <th scope="col" className="text-sm font-medium px-6 py-4">
                     Action
                     </th>
                   </tr>

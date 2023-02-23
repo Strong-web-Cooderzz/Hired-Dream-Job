@@ -7,7 +7,7 @@ const DashboardSidebar = () => {
   const {dbUser} = useContext(AuthContext)
     return (
         <div>
- <div className="w-[20vw] sticky top-0 h-screen shadow-md bg-slate-50 px-1 ">
+ <div className="w-[20vw] sticky top-0 h-full   px-1 ">
   <ul className="relative">
     <li className="relative">
 						{/* <NavLink to='/dashboard' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"  data-mdb-ripple="true" data-mdb-ripple-color="dark">Dashboard</NavLink> */}
@@ -15,11 +15,11 @@ const DashboardSidebar = () => {
     </li>
 {
   dbUser?.type==='Agency' ?   <li className="relative">
-      <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
+      <NavLink to='/dashboard/profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out"> My Profile   </NavLink>
     </li>
     :
     <li className="relative">
-    <NavLink to='/dashboard/my_profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200">My Profile</NavLink>
+    <NavLink to='/dashboard/profile' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200">My Profile</NavLink>
   </li>
 }
   
@@ -30,7 +30,7 @@ const DashboardSidebar = () => {
       New Job </NavLink>
     </li>
     <li className="relative">
-      <NavLink to='/dashboard/manage_jobs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Manage Jobs</NavLink>
+      <NavLink to='/dashboard/manage-jobs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">Manage Jobs</NavLink>
     </li>
 
     <li className="relative">
@@ -48,7 +48,7 @@ const DashboardSidebar = () => {
       <NavLink to='/dashboard/my_blogs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!"> Manage Blogs</NavLink>
     </li>
     <li className="relative">
-      <NavLink to='/dashboard/my_allpost' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!">All Applied Jobs</NavLink>
+      <NavLink to='/dashboard/applied-jobs' className="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-200" href="#!">All Applied Jobs</NavLink>
     </li>
   </>
 }

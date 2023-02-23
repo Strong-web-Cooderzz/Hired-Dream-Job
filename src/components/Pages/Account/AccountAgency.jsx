@@ -50,7 +50,6 @@ const AccountAgency = () => {
       fullName: userData.fullName,
       photo: userData.photo,
       type: userData.type,
-      ip: ip,
       employData: data,
     };
     console.log(employInfo);

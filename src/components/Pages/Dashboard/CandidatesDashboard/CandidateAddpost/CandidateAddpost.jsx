@@ -92,17 +92,17 @@ const CandidateAddpost = () => {
 				</div>
 				<form onSubmit={handleSubmit(handleAddPost)} action="">
 					<div className=" w-full sm:flex gap-3 my-3 ">
-						<div class="w-full">
+						<div className="w-full">
 							<label
 								htmlFor="title"
-								class="form-label inline-block mb-2 text-gray-700"
+								className="form-label inline-block mb-2 text-gray-700"
 							>
 								Title
 							</label>
 							<input
 								{...register("title", { required: true })}
 								type="text"
-								class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-30 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+								className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-30 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 								id="title"
 								placeholder="Title"
 							/>
@@ -110,7 +110,7 @@ const CandidateAddpost = () => {
 						<div className=" w-full">
 							<label
 								htmlFor="title"
-								class="form-label inline-block w-full text-gray-700"
+								className="form-label inline-block w-full text-gray-700"
 							>
 								Select Category
 							</label>
@@ -125,17 +125,17 @@ const CandidateAddpost = () => {
 						</div>
 					</div>
 					<div className="md:flex gap-3">
-						<div class=" w-full">
-							<div class="mb-3">
+						<div className=" w-full">
+							<div className="mb-3">
 								<label
 									htmlFor="formFile"
-									class="form-label inline-block mb-2 text-gray-700"
+									className="form-label inline-block mb-2 text-gray-700"
 								>
 									Featured Image
 								</label>
 								<input
 									{...register("image", { required: true })}
-									class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 									type="file"
 									id="formFile"
 								/>
@@ -143,8 +143,8 @@ const CandidateAddpost = () => {
 						</div>
 						<div className=" w-full">
 							<label
-								for="title"
-								class="form-label inline-block w-full text-gray-700"
+								htmlFor="title"
+								className="form-label inline-block w-full text-gray-700"
 							>
 								Select Tags
 							</label>
