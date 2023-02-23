@@ -12,10 +12,10 @@ const CheckoutForm = ({jobManage}) => {
     const elements = useElements();
     const [cardError,setCardError] = useState('')
     const [loading,setLoading] = useState(false)
-    const price =jobManage.rateMax;
-console.log(price);
+    const price = 5
+console.log(jobManage);
 
- 
+
 useEffect(() => {
   fetch("http://localhost:5000/payment_intents", {
     method: "POST",
@@ -82,10 +82,11 @@ useEffect(() => {
           },
         },
       );
+
       if(paymentMethod?.id){
         const tId = paymentMethod.id
         const payData  ={
-          ...jobManage,
+          jobId:jobManage._id,
           tId,
         }
         fetch('http://localhost:5000/featured',{
@@ -98,7 +99,7 @@ useEffect(() => {
         .then(res=>res?.json())
         .then(data=>{
           setLoading(false)
-          toast.success('Payment successfully')
+          toast.success('Payment successfull')
           navigate('/dashboard/manage-jobs')
         })
       }
@@ -124,7 +125,7 @@ useEffect(() => {
             style: {
               base: {
                 fontSize: "16px",
-                color: "blue",
+                color: "#5271ff",
                 "::placeholder": {
                   color: "#000",
                 },
@@ -142,7 +143,7 @@ useEffect(() => {
         <Link to={'/dashboard/manage-jobs'} type="button"
           className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
         >Back</Link>
-        <button  disabled={!stripe || !clientSecret} type="submit"
+        <button  disabled={!stripe } type="submit"
           className="inline-block disabled:bg-gray-400 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1">{loading?'Loading...':'Pay Now'}</button>
       </div>
       </form>

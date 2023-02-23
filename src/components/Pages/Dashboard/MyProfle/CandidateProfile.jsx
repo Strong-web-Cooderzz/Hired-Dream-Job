@@ -58,9 +58,9 @@ const CandidateProfile = () => {
   } = useForm();
   const handleUpdateCandidate = (data) => {
     setUploadingLoading(true)
-    setLoading(true);
-    console.log(data, skills);
+   
     const image = data.image[0];
+    console.log(image);
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "hired-dream-job");
@@ -68,18 +68,19 @@ const CandidateProfile = () => {
 
     const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
     fetch(url, {
-      method: "POST",
+      method: "PUT",
       body: formData,
     })
       .then((res) => res.json())
       .then((imageData) => {
         const imageUrl = imageData.url;
         const updateData = {
-          photo: imageUrl
+          photo: imageUrl,
+		  fullName: user.displayName,
         };
         if (imageUrl) {
           fetchData
-            .put(`/user/${user.uid}`, updateData, {
+            .put(`/user`, updateData, {
               headers: {
                 Authorization: `Bearer ${user.accessToken}`,
               },
@@ -87,7 +88,7 @@ const CandidateProfile = () => {
             .then((response) => {
               console.log(response.data);
               reset();
-              setLoading(false);
+              setUploadingLoading(false);
               toast.success("Profile updated!");
             });
         }

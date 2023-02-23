@@ -10,7 +10,7 @@ import { AuthContext } from '../../../../../../AuthProvider/AuthProvider';
 import CheckoutForm from './CheckoutForm';
 
 const Payment = () => {
-  const jobManage  = useLoaderData()
+  const jobManage  = useLoaderData()[0]
   const {dbUser} = useContext(AuthContext)
 console.log(jobManage);
   const [payId,setPayId] = useState('')
@@ -53,7 +53,7 @@ console.log(jobManage);
       <div
         className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
         <h5 className="text-xl font-medium leading-normal text-gray-800 flex items-center gap-2" id="exampleModalLabel">
-        Pay <GrMoney /> <span className='bg-blue-100 text-blue-700 px-2 rounded-sm'> 5$ </span> for {jobManage.title}
+        Pay <GrMoney /> <span className='bg-blue-100 text-blue-700 px-2 rounded-sm'> 5$ </span> for {jobManage.title.slice(0,25)+'...'}
         </h5>
        
       </div>
@@ -62,11 +62,7 @@ console.log(jobManage);
       <CheckoutForm jobManage={jobManage} />
     </Elements>
     <div>
-<div className='flex justify-center'> 
-<button onClick={()=>handleSSLPayment()} type="button"
-          className="  px-6 py-2.5 bg-blue-100 text-blue-700   flex gap-2 font-medium leading-tight uppercase rounded shadow-md hover:bg-blue-200 hover:shadow-lg focus:bg-blue-100 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-300 mr-2 active:shadow-lg transition duration-150 ease-in-out"
-        >{loading ? 'Loading...':'Pay with'} <img className='w-24' src="https://ci3.googleusercontent.com/proxy/oe3FUQn0kM8cv4a-gftkBlZ1oDAl6iKYTxSkU_qCSbemcV_bVCGWtFYSPJFc4c2-JfTpVZJFigAi76l05Ag470HVtTne_r68-sYw2uE=s0-d-e1-ft#https://developer.sslcommerz.com/registration/img/logo.png" alt="" /></button>
-</div>
+
     </div>
       </div>
      

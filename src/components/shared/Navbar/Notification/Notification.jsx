@@ -2,27 +2,27 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { BsBell } from "react-icons/bs";
 import { VscBellDot } from "react-icons/vsc";
+import { useDispatch, useSelector } from "react-redux";
 import fetchData from "../../../../api/fetchData";
+import { addNotificationFromSocket, addNotification } from "../../../../features/notifications/notificationsSlice";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 export default function Notification() {
 	const { user, socket, socketConnected } = useContext(AuthContext);
-	const [notifications, setNotifications] = useState([])
+	const dispatch = useDispatch();
+	const notifications = useSelector(state => state.notifications.notifications)
+	console.log(notifications)
 	const [newNotification, setNewNotification] = useState(false);
 	let notificationCount = 0;
 
 	useEffect(() => {
 		if (socketConnected) {
 			socket.on("notification", (data) => {
-				toast.success(data);
+				toast.success(data, {
+					duration: 5000
+				});
 				setNewNotification(true);
-				let newNotifications = [];
-				const notificationObject = {};
-				notificationObject._id = Math.round(Math.random() * 1000000)
-				notificationObject.notification = data
-				if (notifications.length) newNotifications = [...notifications]
-				newNotifications.unshift(notificationObject)
-				setNotifications(newNotifications)
+				dispatch(addNotificationFromSocket(data))
 			});
 		}
 	}, [socketConnected]);
@@ -41,7 +41,7 @@ export default function Notification() {
 				const oldNotifications = [...notifications]
 				const newNotifications = oldNotifications.concat(response.data)
 				console.log(newNotifications)
-				setNotifications(newNotifications)
+				dispatch(addNotification(newNotifications))
 			})
 	}
 

@@ -8,7 +8,7 @@ import Loading from "../../../../Loading/Loading";
 const JobFeauters = () => {
   const [loading, setLoading] = useState(true);
   const [jobFeaturesData, setJobFeaturesData] = useState([]);
-
+console.log(jobFeaturesData)
   useEffect(() => {
     async function fetchJobs() {
       try {
@@ -123,7 +123,7 @@ const JobFeauters = () => {
         <div className="w-full  mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-2  gap-y-8">
           {/*  job featured card section   */}
           {jobFeaturesData.map((data) => (
-            <JobFeaturedCard key={data.id} data={data}></JobFeaturedCard>
+            <JobFeaturedCard key={data.id} data={data.job}></JobFeaturedCard>
           ))}
         </div>
       )}

@@ -54,20 +54,20 @@ const SingleJobs = () => {
               <div className="m-6 flex justify-between lg:m-6">
                 <div>
                   <h1 className="text-2xl font-medium ">
-                    {jobData.title}{" "}
-                    {new Date() > new Date(jobData.expireDate) && "(Expired)"}
+                    {jobData?.title}{" "}
+                    {new Date() > new Date(jobData?.expireDate) && "(Expired)"}
                   </h1>
                   <div className="mt-2 flex gap-2">
                     <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs text-blue-500">
-                      {jobData.jobType}
+                      {jobData?.jobType}
                     </span>
-                    {jobData.urgent && (
+                    {jobData?.urgent && (
                       <span className="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs text-yellow-500">
-                        {jobData.urgent ? "Urgent" : "Any Time"}
+                        {jobData?.urgent ? "Urgent" : "Any Time"}
                       </span>
                     )}
                     <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-2 py-1 text-xs text-orange-500">
-                      {jobData.companyType}
+                      {jobData?.companyType}
                     </span>
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const SingleJobs = () => {
                   <div className="flex items-center gap-4">
                     {user && (
                       <button
-                        className="bg-blue-500 w-full hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer"
+                        className="bg-blue-500 w-36 hover:bg-blue-600 px-6 py-3 text-sm rounded-md text-white cursor-pointer"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
                       >
@@ -84,10 +84,10 @@ const SingleJobs = () => {
                     )}
                     {!user && (
                       <button
-                        disabled={new Date() > new Date(jobData.expireDate)}
+                        disabled={new Date() > new Date(jobData?.expireDate)}
                         onClick={() => navigate("/login")}
                         className={`${
-                          new Date() > new Date(jobData.expireDate)
+                          new Date() > new Date(jobData?.expireDate)
                             ? "cursor-not-allowed bg-gray-400"
                             : "bg-blue-500 hover:bg-blue-600"
                         } w-full px-6 py-3 text-sm rounded-md text-white cursor-pointer`}
@@ -118,7 +118,7 @@ const SingleJobs = () => {
                             Date Posted
                           </span>
                           <span className="text-sm">
-                            {moment(jobData.postTime).fromNow()}
+                            {moment(jobData?.postTime).fromNow()}
                           </span>
                         </p>
                       </div>
@@ -131,7 +131,7 @@ const SingleJobs = () => {
                             Expiration date
                           </span>
                           <span className="text-sm">
-                            {moment(jobData.expireDate).fromNow()}
+                            {moment(jobData?.expireDate).fromNow()}
                           </span>
                         </p>
                       </div>
@@ -143,7 +143,7 @@ const SingleJobs = () => {
                           <span className="block font-semibold text-black text-sm">
                             Location
                           </span>
-                          <span className="text-sm">{jobData.location}</span>
+                          <span className="text-sm">{jobData?.location}</span>
                         </p>
                       </div>
                       <div className="flex items-center gap-5">
@@ -154,7 +154,7 @@ const SingleJobs = () => {
                           <span className="block font-semibold text-black text-sm">
                             Job Title
                           </span>
-                          <span className="text-sm">{jobData.title}</span>
+                          <span className="text-sm">{jobData?.title}</span>
                         </p>
                       </div>
                     </div>
@@ -168,7 +168,7 @@ const SingleJobs = () => {
                             Hours:
                           </span>
                           <span className="text-sm">
-                            {jobData.workingHours}h / week
+                            {jobData?.workingHours}h / week
                           </span>
                         </p>
                       </div>
@@ -181,7 +181,7 @@ const SingleJobs = () => {
                             Rate:
                           </span>
                           <span className="text-sm">
-                            ${jobData.rateMin} - ${jobData.rateMax} / hour
+                            ${jobData?.rateMin} - ${jobData?.rateMax} / hour
                           </span>
                         </p>
                       </div>
@@ -194,7 +194,7 @@ const SingleJobs = () => {
                             Salary:
                           </span>
                           <span className="text-sm">
-                            ${jobData.salaryMin} - ${jobData.salaryMax}
+                            ${jobData?.salaryMin} - ${jobData?.salaryMax}
                           </span>
                         </p>
                       </div>
@@ -206,7 +206,7 @@ const SingleJobs = () => {
                 <div>
                   <h1 className="text-xl font-medium mb-2">Description</h1>
                   <p className="text-black/70 text-justify text-sm">
-                    {jobData.jobDescription}
+                    {jobData?.jobDescription}
                   </p>
                 </div>
                 <div>
@@ -214,7 +214,7 @@ const SingleJobs = () => {
                     Key Responsibilities
                   </h1>
                   <ul className="text-black/70 text-justify list-disc space-y-5 text-sm">
-                    {jobData.responsibilities}
+                    {jobData?.responsibilities}
                   </ul>
                 </div>
                 <div>
@@ -222,7 +222,7 @@ const SingleJobs = () => {
                     Skill & Experience
                   </h1>
                   <ul className="text-black/70 text-justify text-sm list-disc space-y-5">
-                    {jobData.skills}
+                    {jobData?.skills}
                   </ul>
                 </div>
                 <div className="mt-6 flex flex-col">
@@ -257,15 +257,15 @@ const SingleJobs = () => {
                   <div className="flex gap-4 items-center">
                     <img
                       className="w-16 h-16 object-cover"
-                      src={jobData.company?.photo}
+                      src={jobData?.company?.photo}
                       alt=""
                     />
                     <div>
                       <h3 className="text-lg font-medium">
-                        {jobData.company?.fullName}
+                        {jobData?.company?.fullName}
                       </h3>
                       <Link
-                        to={`/employer/${jobData.company._id}`}
+                        to={`/employer/${jobData?.company._id}`}
                         className="text-blue-500 text-sm"
                       >
                         View company profile
@@ -278,7 +278,7 @@ const SingleJobs = () => {
                         Company size:
                       </p>
                       <p className="font-medium text-black/50">
-                        {jobData.company?.team}
+                        {jobData?.company?.team}
                       </p>
                     </div>
                     <div className="flex justify-between ">
@@ -286,7 +286,7 @@ const SingleJobs = () => {
                         Founded in:
                       </p>
                       <p className="font-medium text-md text-black/50">
-                        {jobData.company.founded || "N/A"}
+                        {jobData?.company.founded || "N/A"}
                       </p>
                     </div>
                     <div className="flex justify-between ">
@@ -294,7 +294,7 @@ const SingleJobs = () => {
                         Phone:
                       </p>
                       <p className="font-medium text-md text-black/50">
-                        {jobData.company?.phoneNumber || "N/A"}
+                        {jobData?.company?.phoneNumber || "N/A"}
                       </p>
                     </div>
                     <div className="flex justify-between ">
@@ -302,7 +302,7 @@ const SingleJobs = () => {
                         Email:
                       </p>
                       <p className="font-medium text-md text-black/50">
-                        {jobData.company?.email}
+                        {jobData?.company?.email}
                       </p>
                     </div>
                     <div className="flex justify-between ">
