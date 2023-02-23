@@ -86,7 +86,7 @@ const EditCandidate = () => {
       segment: data.category,
     };
     fetchData
-      .put(`/user/${user.uid}`, updateData, {
+      .put(`/user`, updateData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },
