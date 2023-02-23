@@ -20,10 +20,10 @@ const AppliedCandidates = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setCandidateData(data)
-
             })
-    }, [user?.email])
+    }, [user])
 
     if (loading) {
         return <Loading> </Loading>
@@ -32,7 +32,7 @@ const AppliedCandidates = () => {
     return (
         <section className='w-full  py-3  px-2 bg-slate-200'>
             <h2 className='text-2xl py-2 font-medium'> Who is   applied  for this job {candidateData.length} </h2>
-            <div className='w-full  grid lg:grid-cols-3 gap-4'>
+            <div className='w-full  '>
                 {
                     candidateData.map(candidateInfo => <AppliedCandidateCard
                         candidateInfo={candidateInfo}
