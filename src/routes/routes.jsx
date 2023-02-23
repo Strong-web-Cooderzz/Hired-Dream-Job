@@ -4,11 +4,9 @@ import AccountAgency from "../components/Pages/Account/AccountAgency";
 import AccountClient from "../components/Pages/Account/AccountClient";
 import Candidate from "../components/Pages/Candidates/Candidate";
 import Candidates from "../components/Pages/Candidates/Candidates";
-
 import DashboardAddPost from "../components/Pages/Dashboard/DashboardAddPost/DashboardAddPost";
 import MyAllPost from "../components/Pages/Dashboard/MyAllPost/MyAllPost";
 import EmployerProfile from "../components/Pages/Dashboard/MyProfle/EmployerProfile";
-
 import Articles from "../components/Pages/Home/Articles/Articles";
 import SingelArticles from "../components/Pages/Home/Articles/SingelArticles";
 import Contact from "../components/Pages/Contact/Contact";
@@ -33,21 +31,20 @@ import Profile from "../components/Pages/Dashboard/MyProfle/Profile";
 import ManageJobs from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJobs";
 import EditJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/Modal/EditJob";
 import Payment from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/FeaturedJob/Payment/Payment";
-
 import AdminDashboard from "../components/Pages/Dashboard/AdminDashboard/AdminDashborad";
 import CandidateAddpost from "../components/Pages/Dashboard/CandidatesDashboard/CandidateAddpost/CandidateAddpost";
 import CandidateManageBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/CandidateManageBlog";
 import EditBlog from "../components/Pages/Dashboard/CandidatesDashboard/CandidateManageBlog/EditBlog";
 import Users from "../components/Pages/Dashboard/AdminDashboard/Routes/Users";
 import Jobs from "../components/Pages/Dashboard/AdminDashboard/Routes/Jobs";
-
 import DashboardDetails from "../components/Pages/Dashboard/AdminDashboard/Routes/DashboardDetails";
 import ManageUsers from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageUsers";
 import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJob";
 import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageJob";
 import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
-
+import EditEmployer from "../components/Pages/Dashboard/MyProfle/Modal/EditEmployer";
+import EditCandidate from "../components/Pages/Dashboard/MyProfle/Modal/EditCandidate";
 
 export const router = createBrowserRouter([
 	{
@@ -195,29 +192,37 @@ export const router = createBrowserRouter([
 				element: <CandidateAddpost> </CandidateAddpost>
 			},
 			{
-       path: '/dashboard/applied_candidates',
-			 element: <AppliedCandidates/>
-			
+				path: '/dashboard/applied_candidates',
+				element: <AppliedCandidates />
+
 			},
 			{
 				path: '/dashboard/my_blogs',
 				element: <CandidateManageBlog> </CandidateManageBlog>
 			},
 			{
-				path: '/dashboard/edit_blog/:id',loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
+				path: '/dashboard/edit_blog/:id', loader: ({ params }) => fetch(`http://localhost:5000/blogPost/${params.id}`),
 				element: <EditBlog> </EditBlog>
+			},
+			{
+				path: '/dashboard/profile/edit-employer',
+				element: <EditEmployer> </EditEmployer>
+			},
+			{
+				path: '/dashboard/profile/edit-candidate',
+				element: <EditCandidate> </EditCandidate>
 			}
 		]
 	},
 	{
 		path: '/dashboard/admin',
-		element: <AdminDashboard />,children:[
-			{path:'',element:<DashboardDetails />},
-			{path:'users',element:<Users />},
-			{path:'jobs',element:<Jobs />},
-			{path:'blogs',element:<Blogs />},
-			{path:'users/edit/:id',element:<ManageUsers />, loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)},
-			{path:'jobs/edit/:id',element:<MangeAdminJob />, loader: ({params})=> fetch(`http://localhost:5000/jobs/${params.id}`)},
+		element: <AdminDashboard />, children: [
+			{ path: '', element: <DashboardDetails /> },
+			{ path: 'users', element: <Users /> },
+			{ path: 'jobs', element: <Jobs /> },
+			{ path: 'blogs', element: <Blogs /> },
+			{ path: 'users/edit/:id', element: <ManageUsers />, loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`) },
+			{ path: 'jobs/edit/:id', element: <MangeAdminJob />, loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`) },
 		]
 	},
 	{

@@ -15,15 +15,15 @@ const CandidateProfile = () => {
   const { user, dbUser } = useContext(AuthContext);
 
   const [userData, setUserData] = useState({});
-  console.log(user)
-   
-  
-  
-    useEffect(() => {
-      axios.get(`http://localhost:5000/user?email=${user?.email}`).then((response) => {
+  console.log(user);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/user?email=${user?.email}`)
+      .then((response) => {
         setUserData(response.data);
       });
-    }, []);
+  }, []);
   // I, Abid Hasan removed function that sends ip address
   // we don't need it. Cause express can do that. So it will improve user experience
 
@@ -55,65 +55,47 @@ const CandidateProfile = () => {
   } = useForm();
   const handleUpdateEmployer = (data) => {
     setLoading(true);
-    console.log(data, skills);
-    const image = data.image[0];
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "hired-dream-job");
-    formData.append("cloud_name", "dcckbmhft");
 
-    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageData) => {
-        const imageUrl = imageData.url;
-        const updateData = {
-          photo: imageUrl,
-          fullName: data.candidateName,
-          type: dbUser.type,
-          address: {
-            postal: data.zipCode,
-            street: data.streetAddress,
-            city: data.city,
-            country: data.country,
-          },
-          social: {
-            github: data.github,
-            facebook: data.facebook,
-            twitter: data.twitter,
-            linkedin: data.linkedin,
-          },
-          phoneNumber: data.phoneNumber,
-          expectedSalary: data.expectedSalary,
-          salary: data.salary,
-          rate: data.rate,
-          bio: data.candidateBio,
-          age: data.age,
-          education: data.education,
-          resumeURL: data.resumeUrl,
-          skills: skills,
-          language: data.language,
-          experience: data.experience,
-          gender: data.gender,
-          segment: data.category,
-        };
-        if (imageUrl) {
-          fetchData
-            .put(`/user/${user.uid}`, updateData, {
-              headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-              },
-            })
-            .then((response) => {
-              console.log(response.data);
-              reset();
-              setLoading(false);
-              toast.success("Profile updated!");
-            });
-        }
+    const updateData = {
+      fullName: data.candidateName,
+      type: dbUser.type,
+      address: {
+        postal: data.zipCode,
+        street: data.streetAddress,
+        city: data.city,
+        country: data.country,
+      },
+      social: {
+        github: data.github,
+        facebook: data.facebook,
+        twitter: data.twitter,
+        linkedin: data.linkedin,
+      },
+      phoneNumber: data.phoneNumber,
+      expectedSalary: data.expectedSalary,
+      salary: data.salary,
+      rate: data.rate,
+      bio: data.candidateBio,
+      age: data.age,
+      education: data.education,
+      resumeURL: data.resumeUrl,
+      skills: skills,
+      language: data.language,
+      experience: data.experience,
+      gender: data.gender,
+      segment: data.category,
+    };
+    fetchData
+      .put(`/user/${user.uid}`, updateData, {
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        reset();
+        setLoading(false);
+        toast.success("Profile updated!");
       });
   };
 
@@ -123,39 +105,6 @@ const CandidateProfile = () => {
         onSubmit={handleSubmit(handleUpdateEmployer)}
         className=" w-full bg-gray-100  rounded-xl"
       >
-        <div className="w-full">
-          <h2 className="text-xl px-3 py-5">Update Profile</h2>
-        </div>
-        <h3>My Profile</h3>
-        <div>
-          <div className="flex relative items-center gap-2">
-            <div className="mb-3 w-60 ">
-              <label
-                htmlFor="formFile"
-                className="form-label overflow-hidden relative w-full inline-block mb-2 text-gray-700"
-              >
-                <div className="border border-dashed py-4 hover:border-black transition duration-300 border-blue-200">
-                  <p className="flex flex-col justify-center items-center">
-                    <BiArrowFromBottom className="text-3xl" />
-                    Browse Logo{" "}
-                  </p>
-                </div>
-                <input
-                  accept="image/*"
-                  type="file"
-                  name="file_upload"
-                  {...register("image", { required: false })}
-                  className="form-control w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out hidden m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="formFile"
-                />
-              </label>
-            </div>
-            <p className="text-xs left-0 top-0 flex w-full">
-              Max file size is 1MB, Minimum dimension: 330x300 And Suitable
-              files are .jpg & .png
-            </p>
-          </div>
-        </div>
         {/* Company Name */}
         <div className="flex">
           <div className="md:flex w-full gap-5">
@@ -163,7 +112,7 @@ const CandidateProfile = () => {
               <p>Your Name</p>
               <div className="form-floating mb-3 w-full">
                 <input
-                  defaultValue={dbUser?.fullName}
+                  defaultValue={userData.fullName}
                   {...register("candidateName", { required: false })}
                   type="text"
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -177,7 +126,7 @@ const CandidateProfile = () => {
             </div>
             {/* Email address */}
             <div className="md:w-1/2">
-              <p>Email address (can't be changed) </p>
+              <p>Email address </p>
               <div className="form-floating mb-3 w-full">
                 <input
                   disabled
@@ -496,7 +445,8 @@ const CandidateProfile = () => {
                   <input
                     {...register("facebook", { required: false })}
                     type="url"
-                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="floatingInput"
                     placeholder="name@example.com"
                   />
                   <label htmlFor="floatingInput" className="text-gray-700">
@@ -511,7 +461,8 @@ const CandidateProfile = () => {
                   <input
                     {...register("twitter", { required: false })}
                     type="url"
-                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="floatingInput"
+                    className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="floatingInput"
                     placeholder="name@example.com"
                   />
                   <label htmlFor="floatingInput" className="text-gray-700">
