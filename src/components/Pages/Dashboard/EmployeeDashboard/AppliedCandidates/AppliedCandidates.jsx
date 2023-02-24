@@ -12,14 +12,15 @@ const AppliedCandidates = () => {
     // console.log(dbUser?._id)
     
     // find candidate who is applied of my job post 
-    useEffect(()=>  {
-        fetch(`https://hdj-server.vercel.app/get_applied_candidate/${user?.email}`)
-        .then(res => res.json())
-        .then(data => {
-            setCandidateData(data)
-        
-        })
-    },[user?.email])
+	useEffect(()=>  {
+		if (user.uid) {
+			fetch(`https://hdj-server.vercel.app/get_applied_candidate/${user?.uid}`)
+				.then(res => res.json())
+				.then(data => {
+					setCandidateData(data)
+			})
+		}
+	},[user?.email])
 
     if(loading){
         return <Loading> </Loading>
@@ -31,7 +32,7 @@ const AppliedCandidates = () => {
             <div className='w-full  grid lg:grid-cols-3 gap-4'>
              {
               candidateData.map(candidateInfo => <AppliedCandidateCard 
-                 candidateInfo={candidateInfo}
+                 candidateInfo={candidateInfo.user}
                 > 
                 </AppliedCandidateCard>
               )
