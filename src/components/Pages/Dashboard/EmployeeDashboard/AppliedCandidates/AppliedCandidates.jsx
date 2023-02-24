@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 import AppliedCandidateCard from './AppliedCandidateCard';
 import Loading from './../../../../Loading/Loading';
+import fetchData from '../../../../../api/fetchData';
 
 const AppliedCandidates = () => {
     const {user,dbUser,loading} = useContext(AuthContext)
@@ -14,11 +15,16 @@ const AppliedCandidates = () => {
     // find candidate who is applied of my job post 
 	useEffect(()=>  {
 		if (user.uid) {
-			fetch(`https://hdj-server.vercel.app/get_applied_candidate/${user?.uid}`)
-				.then(res => res.json())
-				.then(data => {
-					setCandidateData(data)
+			fetchData.get(`/get_applied_candidate/${user?.uid}`)
+			.then(response => {
+					console.log(response.data)
+					setCandidateData(response.data)
 			})
+			// fetch(`https://hdj-server.vercel.app/get_applied_candidate/${user?.uid}`)
+			// 	.then(res => res.json())
+			// 	.then(data => {
+			// 		setCandidateData(data)
+			// })
 		}
 	},[user?.email])
 
@@ -32,7 +38,7 @@ const AppliedCandidates = () => {
             <div className='w-full  grid lg:grid-cols-3 gap-4'>
              {
               candidateData.map(candidateInfo => <AppliedCandidateCard 
-                 candidateInfo={candidateInfo.user}
+                 candidateInfo={candidateInfo}
                 > 
                 </AppliedCandidateCard>
               )

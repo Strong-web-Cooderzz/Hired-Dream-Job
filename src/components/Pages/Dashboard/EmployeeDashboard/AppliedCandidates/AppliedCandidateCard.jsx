@@ -10,6 +10,7 @@ const AppliedCandidateCard = ({ candidateInfo }) => {
 		const time = new Date()
 		const meetingInfo = {
 			candidateId: candidateInfo.user._id,
+			jobId: candidateInfo.jobId,
 			meetingTime: time
 		}
 		fetchData.post('/add-meeting', meetingInfo, {
