@@ -30,7 +30,7 @@ const AccountAgency = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/user?email=${user?.email}`)
+    fetch(`${import.meta.env.VITE_API}/user?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);

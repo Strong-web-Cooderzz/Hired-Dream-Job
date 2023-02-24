@@ -69,7 +69,7 @@ const MangeAdminJob = () => {
             
         }
         console.log(jobDetails);
-        fetch(`http://localhost:5000/jobsUpdate/${editData._id}`,{
+        fetch(`${import.meta.env.VITE_API}/jobsUpdate/${editData._id}`,{
             method:'PATCH',
             headers:{
                 'content-type':'application/json'

@@ -19,7 +19,7 @@ const EmployerProfile = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/user?email=${user?.email}`)
+      .get(`${import.meta.env.VITE_API}/user?email=${user?.email}`)
       .then((response) => {
         setUserData(response.data);
         setLoading(false);

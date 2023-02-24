@@ -21,7 +21,7 @@ export default function Employer() {
 
 const [employerJobs,setEmployerJobs] = useState([])
 	useEffect(()=>{
-		fetch(`http://localhost:5000/jobsFindByEmail?email=${employer?.email}`)
+		fetch(`${import.meta.env.VITE_API}/jobsFindByEmail?email=${employer?.email}`)
 		.then(res=>res.json())
 		.then(data=>setEmployerJobs(data))
 	  },[employer])

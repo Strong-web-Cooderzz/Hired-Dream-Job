@@ -20,7 +20,7 @@ const EditCandidate = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/user?email=${user?.email}`)
+      .get(`${import.meta.env.VITE_API}/user?email=${user?.email}`)
       .then((response) => {
         setUserData(response.data);
       });
@@ -54,7 +54,7 @@ const EditCandidate = () => {
     reset,
     formState: { errors },
   } = useForm({
-    defaultValues:async () => await fetch(`http://localhost:5000/user?email=${user?.email}`)
+    defaultValues:async () => await fetch(`${import.meta.env.VITE_API}/user?email=${user?.email}`)
     
   });
   const handleUpdateEmployer = (data) => {
