@@ -53,7 +53,7 @@ const AccountAgency = () => {
       employData: data,
     };
     console.log(employInfo);
-    fetch(`http://localhost:5000/user/${userData._id}`, {
+    fetch(`${import.meta.env.VITE_API}/user/${userData._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
