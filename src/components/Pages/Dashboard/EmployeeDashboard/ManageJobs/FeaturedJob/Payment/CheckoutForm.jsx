@@ -17,7 +17,7 @@ console.log(jobManage);
 
 
 useEffect(() => {
-  fetch("${import.meta.env.VITE_API}/payment_intents", {
+  fetch(`${import.meta.env.VITE_API}/payment_intents`, {
     method: "POST",
     headers: {
        "Content-Type": "application/json"
@@ -89,7 +89,7 @@ useEffect(() => {
           jobId:jobManage._id,
           tId,
         }
-        fetch(`${import.meta.env.VITE_API}/featured`,{
+        fetch('http://localhost:5000/featured',{
           method:"POST",
           headers:{
             'content-type':'application/json'
