@@ -9,6 +9,7 @@ import Select from "react-select";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import fetchData from "../../../../../api/fetchData";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const EditCandidate = () => {
   const [loading, setLoading] = useState(false);
@@ -52,7 +53,10 @@ const EditCandidate = () => {
     watch,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues:async () => await fetch(`http://localhost:5000/user?email=${user?.email}`)
+    
+  });
   const handleUpdateEmployer = (data) => {
     setLoading(true);
 
@@ -152,7 +156,7 @@ const EditCandidate = () => {
               <p>Phone</p>
               <div className="form-floating mb-3 w-full">
                 {/* Phone */}
-                <input
+                <input defaultValue={userData.phoneNumber}
                   {...register("phoneNumber", { required: false })}
                   type="tel"
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -169,7 +173,7 @@ const EditCandidate = () => {
               <p>Rate:</p>
               <div className="form-floating flex items-center mb-3 w-full">
                 $
-                <input
+                <input defaultValue={userData.rate}
                   {...register("rate", { required: false })}
                   type="number"
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -363,7 +367,7 @@ const EditCandidate = () => {
               <div className="form-floating mb-3 w-full">
                 {/*Resume Url*/}
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.resumeURL}
                     {...register("resumeUrl", { required: false })}
                     type="url"
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -383,7 +387,7 @@ const EditCandidate = () => {
               <div className="form-floating mb-3 w-full">
                 {/*Language */}
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.language}
                     {...register("language", { required: false })}
                     type="text"
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -442,7 +446,7 @@ const EditCandidate = () => {
                 <p>Facebook</p>
                 <div className="form-floating mb-3 w-full">
                   {/* Twitter */}
-                  <input
+                  <input defaultValue={userData.social?.facebook}
                     {...register("facebook", { required: false })}
                     type="url"
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -458,7 +462,7 @@ const EditCandidate = () => {
               <div className="md:w-1/2">
                 <p>Twitter</p>
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.social?.twitter}
                     {...register("twitter", { required: false })}
                     type="url"
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -479,7 +483,7 @@ const EditCandidate = () => {
                 <p>Linkedin</p>
                 <div className="form-floating mb-3 w-full">
                   {/* Linkedin */}
-                  <input
+                  <input defaultValue={userData.social?.linkedin}
                     {...register("linkedin", { required: false })}
                     type="url"
                     className="form-control
@@ -509,7 +513,7 @@ const EditCandidate = () => {
               <div className="md:w-1/2">
                 <p>Github</p>
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.social?.github}
                     {...register("github", { required: false })}
                     type="url"
                     className="form-control
@@ -546,7 +550,7 @@ const EditCandidate = () => {
                 <p>Country</p>
                 <div className="form-floating mb-3 w-full">
                   {/* Country */}
-                  <input
+                  <input defaultValue={userData.address?.country}
                     {...register("country", { required: false })}
                     type="text"
                     className="form-control
@@ -576,7 +580,7 @@ const EditCandidate = () => {
               <div className="md:w-1/2">
                 <p>City</p>
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.address?.city}
                     {...register("city", { required: false })}
                     type="text"
                     className="form-control
@@ -611,7 +615,7 @@ const EditCandidate = () => {
                 <p> Zip Code</p>
                 <div className="form-floating mb-3 w-full">
                   {/*  Zip Code */}
-                  <input
+                  <input defaultValue={userData.address?.postal}
                     {...register("zipCode", { required: false })}
                     type="number"
                     className="form-control
@@ -641,7 +645,7 @@ const EditCandidate = () => {
               <div className="md:w-1/2">
                 <p>Street Address</p>
                 <div className="form-floating mb-3 w-full">
-                  <input
+                  <input defaultValue={userData.address?.street}
                     {...register("streetAddress", { required: false })}
                     type="text"
                     className="form-control
@@ -677,18 +681,23 @@ const EditCandidate = () => {
                 <p> Candidate Bio</p>
                 <div className="form-floating mb-3 w-full">
                   {/*  Candidate */}
-                  <textarea
+                  <textarea defaultValue={userData.bio}
                     {...register("candidateBio", { required: false })}
                     className=" block w-full px-3 py-1.5 text-base font-normal text-gray-700  bg-white bg-clip-padding border border-solid order-gray-300 rounded transition ease-in-out h-44 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="floatingInput"
                     placeholder="Candidate Bio"
-                  ></textarea>
+                  >
+                   
+                  </textarea>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex justify-center my-3">
+        <div className="flex justify-between my-3">
+          <Link to={'/dashboard/profile'} className="bg-blue-100 hover:bg-blue-200 text-blue-600 px-12 rounded-md py-3">
+            Cancel
+          </Link>
           <button className="bg-blue-400 hover:bg-blue-500 text-white px-12 rounded-md py-3">
             {loading ? "Updating..." : "Update"}
           </button>

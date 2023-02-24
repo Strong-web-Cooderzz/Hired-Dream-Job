@@ -138,10 +138,7 @@ export const router = createBrowserRouter([
 				path: "/employer/:id",
 				element: <Employer />,
 			},
-			{
-				path: '/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
-				element: <EditJob />
-			},
+			
 			{
 				path: '/blogs/:id',
 				element: <SingelArticles />
@@ -212,6 +209,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/profile/edit-candidate',
 				element: <EditCandidate> </EditCandidate>
+			},
+			{
+				path: '/dashboard/edit-job/:id', loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
+				element: <EditJob />
 			}
 		]
 	},

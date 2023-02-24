@@ -11,15 +11,17 @@ import fetchData from "../../../../api/fetchData";
 import axios from "axios";
 import Loading from "../../../Loading/Loading";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const CandidateProfile = () => {
   const [loading, setLoading] = useState(false);
-  const { user, dbUser } = useContext(AuthContext);
+  const { user, dbUser,updateUserProfile } = useContext(AuthContext);
   const [userLoading,setUserLoading]  = useState(false)
+  const [photoUpdate,setPhotoUpdate]  = useState(false)
   const [userData, setUserData] = useState({});
   console.log(user)
    
-  
+  console.log(userData)
   
     useEffect(() => {
       setUserLoading(true)
@@ -27,7 +29,7 @@ const CandidateProfile = () => {
         setUserData(response.data);
         setUserLoading(false)
       });
-    }, []);
+    }, [photoUpdate]);
   // I, Abid Hasan removed function that sends ip address
   // we don't need it. Cause express can do that. So it will improve user experience
 
@@ -78,20 +80,23 @@ const CandidateProfile = () => {
           photo: imageUrl,
 		  fullName: user.displayName,
         };
-        if (imageUrl) {
-          fetchData
-            .put(`/user`, updateData, {
-              headers: {
-                Authorization: `Bearer ${user.accessToken}`,
-              },
-            })
-            .then((response) => {
-              console.log(response.data);
-              reset();
-              setUploadingLoading(false);
-              toast.success("Profile updated!");
-            });
-        }
+        updateUserProfile(updateData).then( ()=> 
+        fetchData
+        .put(`/user`, updateData, {
+          headers: {
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          reset();
+          setUploadingLoading(false);
+          toast.success("Profile updated!");
+          setPhotoUpdate(!photoUpdate)
+        })
+         )
+         
+        
       });
   };
 
@@ -111,7 +116,7 @@ const CandidateProfile = () => {
                 >
                   <div className="w-full flex justify-center ">
                     <img
-                      className=" h-24 w-24 border-2 rounded-full my-2"
+                      className=" h-24 w-24 border-2 rounded-full my-2 object-cover"
                       src={userData.photo}
                       alt=""
                     />
@@ -147,7 +152,7 @@ const CandidateProfile = () => {
          
               <h3 className="text-center text-xl font-semibold">User Info</h3>
             <div>
-               {/* Email */}
+               {/* Name */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
                 <p className="font-semibold">Name:</p>
                 <p>{userData.fullName}</p>
@@ -157,30 +162,45 @@ const CandidateProfile = () => {
                 <p className="font-semibold">Email:</p>
                 <p>{userData.email}</p>
               </div>
+              {/* Gender */}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Gender:</p>
+                <p>{userData.gender}</p>
+              </div>
               {/* Phone Number */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
                 <p className="font-semibold">Phone Number:</p>
                 <p>{userData.phoneNumber}</p>
               </div>
-              {/* Team */}
+              {/* Salary */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
-                <p className="font-semibold">Team:</p>
-                <p>{userData.team}</p>
+                <p className="font-semibold">Current Salary:</p>
+                <p>{userData.salary}</p>
+              </div>
+              {/* Expected Salary */}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Expected Salary:</p>
+                <p>{userData.expectedSalary}</p>
+              </div>
+              {/* Experience*/}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Experience:</p>
+                <p>{userData.experience}</p>
               </div>
               {/* Website */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
-                <p className="font-semibold">Website:</p>
-                <p>{userData.website}</p>
+                <p className="font-semibold">Education:</p>
+                <p>{userData.education}</p>
               </div>
               {/* Founded In */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
-                <p className="font-semibold">Founded In:</p>
-                <p>{userData.founded}</p>
+                <p className="font-semibold">Segment:</p>
+                <p>{userData.segment}</p>
               </div>
               {/* Account Created */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
                 <p className="font-semibold">Account Created:</p>
-                <p>{userData.createdAt}</p>
+                <p className="capitalize">{moment(userData.createdAt).fromNow()}</p>
               </div>
             </div>
           </div>
@@ -188,6 +208,23 @@ const CandidateProfile = () => {
           <div className="md:w-1/2 bg-gray-100 rounded-md px-3 py-2">
               <h3 className="text-center text-xl font-semibold">Others Info</h3>
             <div>
+              {/* language */}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Language:</p>
+                <p>{userData?.language}</p>
+              </div>
+              {/* rate */}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Rate:</p>
+                <p>{userData?.rate}{" "} per hour</p>
+              </div>
+              {/* Skills */}
+              <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
+                <p className="font-semibold">Skills:</p>
+                <div className="flex flex-wrap gap-1">{userData.skills?.map((skill,i)=><p key={i}>
+                  <span className="bg-blue-100 px-2 text-blue-600 rounded-full">{skill.value}</span>
+                </p>)}</div>
+              </div>
               {/* Facebook */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
                 <p className="font-semibold">Facebook:</p>
@@ -211,7 +248,7 @@ const CandidateProfile = () => {
               {/* Country */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
                 <p className="font-semibold">Country or city:</p>
-                <p>{userData.address?.country}, {userData.address?.city}</p>
+                <p className="capitalize">{userData.address?.city}, {userData.address?.country}</p>
               </div>
               {/* Zip Code */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
@@ -220,7 +257,7 @@ const CandidateProfile = () => {
               </div>
               {/* Street Address? */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
-                <p className="font-semibold">Street Address?:</p>
+                <p className="font-semibold">Street Address:</p>
                 <p>{userData.address?.street}</p>
               </div>
             </div>
@@ -228,7 +265,12 @@ const CandidateProfile = () => {
          
         </div>
          {/* About */}
-         <div className="w-full bg-gray-100 rounded-md px-3 py-2"></div>
+         <div className="w-full bg-gray-100 rounded-md px-3 py-2">
+          <div className="bg-white w-full px-2 py-1 rounded-md">
+            <h2>Candidate Bio</h2>
+          </div>
+          {userData.bio}
+         </div>
          {/* Education */}
          <div className="w-full bg-gray-100 rounded-md px-3 py-2"></div>
       </div>

@@ -196,7 +196,7 @@ const EmployerProfile = () => {
               </div>
               {/* Street Address? */}
               <div className="flex items-center gap-2 bg-white px-2 border-b rounded-md py-1">
-                <p className="font-semibold">Street Address?:</p>
+                <p className="font-semibold">Street Address:</p>
                 <p>{userData.address?.street}</p>
               </div>
             </div>
