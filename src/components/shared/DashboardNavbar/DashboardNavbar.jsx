@@ -156,7 +156,7 @@ export default function AdminNavbar() {
       text-gray-700
       hover:bg-gray-100
     "
-                          href="#"
+                          href="/dashboard/profile"
                         >
                           {user?.displayName ? user?.displayName : "Unknown"}
                         </a>

@@ -122,7 +122,7 @@ console.log(jobFeaturesData)
       ) : (
         <div className="w-full  mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-x-2  gap-y-8">
           {/*  job featured card section   */}
-          {jobFeaturesData.map((data) => (
+          {jobFeaturesData.slice(0,8).map((data) => (
             <JobFeaturedCard key={data.id} data={data.job}></JobFeaturedCard>
           ))}
         </div>

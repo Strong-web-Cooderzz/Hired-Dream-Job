@@ -68,7 +68,7 @@ const Articles = () => {
 					:
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 place-items-center">
 						{
-							posts.map(post => <div key={post._id} className="relative w-full h-[404px] mt-5 rounded-md overflow-hidden border-2">
+							posts.slice(0,6).map(post => <div key={post._id} className="relative w-full h-[404px] mt-5 rounded-md overflow-hidden border-2">
 								{/* image */}
 								<div className="overflow-hidden">
 									{

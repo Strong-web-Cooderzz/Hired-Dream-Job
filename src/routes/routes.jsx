@@ -45,6 +45,7 @@ import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
 import EditEmployer from "../components/Pages/Dashboard/MyProfle/Modal/EditEmployer";
 import EditCandidate from "../components/Pages/Dashboard/MyProfle/Modal/EditCandidate";
+import CandidateMeetings from "../components/Pages/Dashboard/CandidatesDashboard/JobMeetings/CandidateMeetings";
 
 
 export const router = createBrowserRouter([
@@ -209,6 +210,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/dashboard/profile/edit-candidate',
 				element: <EditCandidate> </EditCandidate>
+			},
+			{
+				path: '/dashboard/my-meetings',
+				element: <CandidateMeetings> </CandidateMeetings>
 			},
 			{
 				path: '/dashboard/edit-job/:id', loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`),

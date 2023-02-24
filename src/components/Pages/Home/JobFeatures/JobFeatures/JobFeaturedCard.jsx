@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const JobFeaturedCard = ({ data }) => {
 	// console.log(data)
 	const { company, location, logo, title, jobType, companyType, urgent } = data;
+	console.log(data)
 	return (
 		<Link to={`/jobs/${data._id}`}>
 			<div className='job-card w-full rounded-lg mx-auto py-2 '>
