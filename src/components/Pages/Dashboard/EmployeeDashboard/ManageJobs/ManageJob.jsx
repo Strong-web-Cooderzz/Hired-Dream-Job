@@ -21,7 +21,7 @@ const ManageJob = ({job,setUpdate,update}) => {
 
   useEffect(()=>{
    if(job._id){
-    axios.get(`http://localhost:5000/featured/${job?._id}`)
+    axios.get(`${import.meta.env.VITE_API}/featured/${job?._id}`)
     .then(res => {
       const data = res.data
       setIsFeatured(data[0].jobId,job._id);
@@ -40,7 +40,7 @@ const ManageJob = ({job,setUpdate,update}) => {
     const handleUpdateVisiblity = (id) =>{
       setLoading(true)
       setVisible(!visible)
-      fetch(`http://localhost:5000/jobs/${id}`,{
+      fetch(`${import.meta.env.VITE_API}/jobs/${id}`,{
       method:'PATCH',
       headers:{
         'content-type':'application/json'
@@ -59,7 +59,7 @@ const ManageJob = ({job,setUpdate,update}) => {
     // Delete Data
     const handleDeleteData = (id) =>{
       setDLoading(true)
-      fetch(`http://localhost:5000/deleteJob/${id}`,{
+      fetch(`${import.meta.env.VITE_API}/deleteJob/${id}`,{
         method:'DELETE',
       })
       .then(res=>res.json())
@@ -67,7 +67,7 @@ const ManageJob = ({job,setUpdate,update}) => {
         console.log(data);
       })
 
-      fetch(`http://localhost:5000/featured/${job?._id}`,{
+      fetch(`${import.meta.env.VITE_API}/featured/${job?._id}`,{
         method:'DELETE',
       })
       .then(res=>res.json())

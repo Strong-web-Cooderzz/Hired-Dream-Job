@@ -76,7 +76,7 @@ const FindJob = () => {
 
 	// sends new fetch request when date posted or job type or is changed
 	useEffect(() => {
-		// fetch(`http://localhost:5000/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
+		// fetch(`${import.meta.env.VITE_API}/find-jobs?search=${searchString}&location=${location}&sort=${sort}&type=${jobType}&time=${time}&per-page=${perPage}`)
 		if (dataFromForm && firstTime.current) {
 			console.log(dataFromForm);
 			setDataLoading(false);

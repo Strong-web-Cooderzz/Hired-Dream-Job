@@ -16,7 +16,7 @@ const ManageJobs = () => {
   const [jobs,setJobs] = useState([])
   console.log(jobs)
   useEffect(()=>{
-    fetch(`http://localhost:5000/jobsFindByEmail?email=${user?.email}`)
+    fetch(`${import.meta.env.VITE_API}/jobsFindByEmail?email=${user?.email}`)
     .then(res=>res.json())
     .then(data=>setJobs(data))
   },[user,update])

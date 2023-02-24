@@ -27,7 +27,7 @@ console.log(jobManage);
       dbUser:dbUser
     }
     console.log(payJob);
-    fetch('http://localhost:5000/sslPay',{
+    fetch(`${import.meta.env.VITE_API}/sslPay`,{
       method:'POST',
       headers:{
         'Content-type':'application/json'

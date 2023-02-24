@@ -37,7 +37,7 @@ const Jobs = () => {
 	console.log(jobs);
 	useEffect(() => {
 		setLoading(true);
-		fetch(`http://localhost:5000/jobs?type=${jobType}`)
+		fetch(`${import.meta.env.VITE_API}/jobs?type=${jobType}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setJobs(data);

@@ -25,7 +25,7 @@ const CandidateProfile = () => {
   
     useEffect(() => {
       setUserLoading(true)
-      axios.get(`http://localhost:5000/user?email=${user?.email}`).then((response) => {
+      axios.get(`${import.meta.env.VITE_API}/user?email=${user?.email}`).then((response) => {
         setUserData(response.data);
         setUserLoading(false)
       });
