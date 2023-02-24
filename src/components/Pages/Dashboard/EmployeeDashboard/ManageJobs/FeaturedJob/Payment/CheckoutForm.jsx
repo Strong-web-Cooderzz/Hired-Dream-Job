@@ -89,7 +89,7 @@ useEffect(() => {
           jobId:jobManage._id,
           tId,
         }
-        fetch('http://localhost:5000/featured',{
+        fetch('https://hdj-server.onrender.com/featured',{
           method:"POST",
           headers:{
             'content-type':'application/json'
