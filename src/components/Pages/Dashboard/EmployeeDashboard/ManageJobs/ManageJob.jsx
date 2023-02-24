@@ -8,12 +8,32 @@ import { Link } from 'react-router-dom';
 import EditJob from './Modal/EditJob';
 import Payment from './FeaturedJob/Payment/Payment';
 import PaymentModal from './FeaturedJob/Payment/Payment';
+import axios from 'axios';
 
 
 const ManageJob = ({job,setUpdate,update}) => {
   const [loading,setLoading] = useState(false)
   const [dLoading,setDLoading] = useState(false)
   const [visible,setVisible] = useState(!job.isVisible)
+
+
+  const [isFeatured,setIsFeatured] = useState(false)
+
+  useEffect(()=>{
+   if(job._id){
+    axios.get(`http://localhost:5000/featured/${job?._id}`)
+    .then(res => {
+      const data = res.data
+      setIsFeatured(data[0].jobId,job._id);
+    })
+   }
+    
+  },[])
+
+
+
+
+
   const visiblity = {
     isVisible: visible
   }
@@ -59,15 +79,7 @@ const ManageJob = ({job,setUpdate,update}) => {
         }
     const [paymentData,setPaymentData] = useState('')
 
-const [isFeatured,setIsFeatured] = useState(false)
 
-    useEffect(()=>{
-      fetch(`http://localhost:5000/featured/${job?._id}`)
-      .then(res=>res.json())
-      .then(data=>{
-        setIsFeatured(data._id === job._id);
-      })
-    },[job?._id])
 
     return (
             <tr className="bg-white border-b">
@@ -111,7 +123,7 @@ const [isFeatured,setIsFeatured] = useState(false)
                        }
                         </button>
                         {/* Edit Job */}
-                    <Link to={`/edit-job/${job._id}`} title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
+                    <Link to={`/dashboard/edit-job/${job._id}`} title="Edit Job" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><BiPen /></Link>
                     {/* Payment For Featured Job */}
                   {
                     isFeatured ? <Link  title="Already Featured" className='bg-green-50 p-2 text-green-700 hover:bg-green-500 hover:text-white rounded-md'><RiFireLine /></Link>:<Link to={`/pay/${job._id}`} title="Add To Featured" className='bg-blue-50 p-2 text-blue-700 hover:bg-blue-500 hover:text-white rounded-md'><RiFireLine /></Link>

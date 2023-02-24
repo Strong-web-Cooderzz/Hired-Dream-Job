@@ -61,15 +61,17 @@ const DashboardAddPost = () => {
 	};
 
 	return (
-		<div className="md:w-7/12 h-screen mx-auto">
-			<h2 className="text-xl "> Add New Job </h2>
-			<div className="block p-6 rounded-lg shadow-lg bg-white max-w-lg">
-				<form onSubmit={handleSubmit(handleAddNewJob)}>
-					<div className="form-group mb-6 w-full">
+		<div className="w-full text-gray-700 h-full bg-gray-100 ">
+      <div className="mx-12 py-7">
+        <h2 className="text-xl ">Add New Job</h2>
+      </div>
+			<div className="">
+				<form className="mx-8 p-5 bg-white rounded-xl" onSubmit={handleSubmit(handleAddNewJob)}>
+					<div className="form-group mb-6 w-full ">
 						<input
 							{...register("title", { required: true })}
 							type="text"
-							className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+							className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
 							id="exampleInput7"
 							placeholder="Job Title"
 						/>

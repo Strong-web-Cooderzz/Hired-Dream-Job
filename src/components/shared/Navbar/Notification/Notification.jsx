@@ -53,7 +53,7 @@ export default function Notification() {
 		<section>
 			{newNotification ? (
 				<span className="text-xl">
-					<div className="dropdown relative">
+					<div className="dropdown relative ">
 						<a
 							onClick={() => setNewNotification(false)}
 							className="dropdown-toggle flex items-center hidden-arrow"
@@ -73,11 +73,11 @@ export default function Notification() {
 								<h3 className="text-xl">Notifications</h3>
 							</div>
 							<span
-								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 "
 							>
 								{
 									notifications.map(notification =>
-										<li key={notification._id} className="border-b pb-2">
+										<li key={notification._id} className="border-b pb-2 whitespace-normal hover:underline">
 											{notification.notification}
 										</li>)
 								}
@@ -119,11 +119,11 @@ export default function Notification() {
 								<h3 className="text-xl">Notifications</h3>
 							</div>
 							<span
-								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+								className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 "
 							>
 								{
-									notifications.map(notification =>
-										<li className="border-b pb-2">
+									notifications.slice(0,10).map(notification =>
+										<li className="border-b pb-2 whitespace-normal hover:underline">
 											{notification.notification}
 										</li>)
 								}

@@ -14,6 +14,7 @@ const ManageJobs = () => {
   const {user} = useContext(AuthContext)
   const [update,setUpdate] = useState('')
   const [jobs,setJobs] = useState([])
+  console.log(jobs)
   useEffect(()=>{
     fetch(`http://localhost:5000/jobsFindByEmail?email=${user?.email}`)
     .then(res=>res.json())
@@ -22,12 +23,11 @@ const ManageJobs = () => {
 
  
     return (
-        <div className="flex bg-gray-100 flex-col w-full p-3        ">
-            <div >
-            <h3 className='text-3xl'>Manage jobs!</h3>
-<p className='text-xs'>Ready to jump back in?</p>
-            </div>
-            <div className='bg-white p-3 m-3 rounded-lg'>
+      <div className="w-full text-gray-700 h-full bg-gray-100 ">
+      <div className="mx-12 py-7">
+        <h2 className="text-xl ">Manage Jobs</h2>
+      </div>
+            <div className='mx-8 p-5 bg-white rounded-xl'>
             <div className='flex justify-between items-center mx-8'>
                 <div>
                 My Job Listings

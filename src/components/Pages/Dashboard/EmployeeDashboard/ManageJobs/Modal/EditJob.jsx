@@ -6,7 +6,8 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 const EditJob = () => {
-  const editData = useLoaderData()
+  const editData = useLoaderData()[0]
+  
   const navigate = useNavigate('')
     const [startDate, setStartDate] = useState(new Date());
     const [jobType,setJobType] = useState('')

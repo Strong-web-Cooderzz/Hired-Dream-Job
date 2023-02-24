@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { FaAlignRight, FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../../assets/logo.svg";
+import logo from "/logo.svg";
+import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Notification from "../Navbar/Notification/Notification";
 
 export default function AdminNavbar() {
   const navigate = useNavigate()
@@ -19,8 +21,8 @@ export default function AdminNavbar() {
     <div className="justify-between px-4 md:items-center md:flex md:px-8">
       <div>
         <div className="flex items-center justify-between py-3 md:py-2 md:block">
-          <Link to="/">
-            <img src={logo} alt="" className="w-12" />
+          <Link className="w-24 h-7 inline-block" to="/">
+            <img src={logo} alt="" className="w-24" />
           </Link>
           <div className="md:hidden">
             <button
@@ -62,9 +64,8 @@ export default function AdminNavbar() {
       </div>
       <div>
         <div
-          className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  ${
-            navbar ? "block" : "hidden"
-          }`}
+          className={`flex-1  justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0  ${navbar ? "block" : "hidden"
+            }`}
         >
           <ul className="items-center   justify-center space-y-8 md:flex md:space-x-6 md:space-y-0   transition duration-150 ease-in-out ">
             <li className="text-gray-600 hover:text-blue-600">
@@ -82,124 +83,131 @@ export default function AdminNavbar() {
             <li className="text-gray-600 hover:text-blue-600">
               <Link to="/blogs">Blogs</Link>
             </li>
+            {
+              user?.email &&
+              <li>
+                <Notification />
+              </li>
+            }
 
             <li className="text-white">
-                {user?.email ? (
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id="sortbox"
-                      className="hidden absolute"
-                    />
-					<div className="dropdown relative">
-                      <a
-                        className="dropdown-toggle flex items-center hidden-arrow"
-                        href="#"
-                        id="dropdownMenuButton2"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                       {user?.photo ? (
-                            <img
-                              className="w-8 h-8 rounded-full object-cover"
-                              src={user?.photo}
-                              alt=""
-                            />
-                          ) : (
-                            <FaUserCircle className="text-black text-3xl" />
-                          )}
-                      </a>
-                      <ul
-                        className="
-    dropdown-menu
-    min-w-max
-    absolute
-    bg-white
-    text-base
-    z-50
-    float-left
-    py-2
-    list-none
-    text-left
-    rounded-lg
-    shadow-lg
-    mt-1
-    hidden
-    m-0
-    bg-clip-padding
-    border-none
-    left-auto
-    right-0
-  "
-                        aria-labelledby="dropdownMenuButton2"
-                      >
-                        <li>
-                          <a
-                            className="
-        dropdown-item
-        text-sm
-        py-2
-        px-4
-        font-normal
-        block
-        w-full
-        whitespace-nowrap
-        bg-transparent
-        text-gray-700
-        hover:bg-gray-100
-      "
-                            href="#"
-                          >
-                            {user?.displayName ? user?.displayName : "Unknown"}
-                          </a>
-                        </li>
-                        <li>
-                          <Link
-                            className="
-        dropdown-item
-        text-sm
-        py-2
-        px-4
-        font-normal
-        block
-        w-full
-        whitespace-nowrap
-        bg-transparent
-        text-gray-700
-        hover:bg-gray-100
-      "
-                            to="/dashboard"
-                          >
-                            {" "}
-                            Dashboard{" "}
-                          </Link>
-                        </li>
-                        <li>
-                          <button
-                            onClick={logOut}
-                            className=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-rose-700 hover:bg-rose-100 " >
-                            Log Out
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                    
-                   
+              {user?.email ? (
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    id="sortbox"
+                    className="hidden absolute"
+                  />
+                  <div className="dropdown relative">
+                    <a
+                      className="dropdown-toggle flex items-center hidden-arrow"
+                      href="#"
+                      id="dropdownMenuButton2"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {user?.photoURL ? (
+                        <img
+                          className="w-8 h-8 rounded-full object-cover"
+                          src={user?.photoURL}
+                          alt=""
+                        />
+                      ) : (
+                        <FaUserCircle className="text-black text-3xl" />
+                      )}
+                    </a>
+                    <ul
+                      className="
+  dropdown-menu
+  min-w-max
+  absolute
+  bg-white
+  text-base
+  z-50
+  float-left
+  py-2
+  list-none
+  text-left
+  rounded-lg
+  shadow-lg
+  mt-1
+  hidden
+  m-0
+  bg-clip-padding
+  border-none
+  left-auto
+  right-0
+"
+                      aria-labelledby="dropdownMenuButton2"
+                    >
+                      <li>
+                        <a
+                          className="
+      dropdown-item
+      text-sm
+      py-2
+      px-4
+      font-normal
+      block
+      w-full
+      whitespace-nowrap
+      bg-transparent
+      text-gray-700
+      hover:bg-gray-100
+    "
+                          href="#"
+                        >
+                          {user?.displayName ? user?.displayName : "Unknown"}
+                        </a>
+                      </li>
+                      <li>
+                        <Link
+                          className="
+      dropdown-item
+      text-sm
+      py-2
+      px-4
+      font-normal
+      block
+      w-full
+      whitespace-nowrap
+      bg-transparent
+      text-gray-700
+      hover:bg-gray-100
+    "
+                          to="/dashboard"
+                        >
+                          {" "}
+                          Dashboard{" "}
+                        </Link>
+                      </li>
+                      <li>
+                        <button
+                          onClick={LogOut}
+                          className=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-rose-700 hover:bg-rose-100 " >
+                          Log Out
+                        </button>
+                      </li>
+                    </ul>
                   </div>
-                ) : (
-                  <Link
-                    className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600"
-                    to="/login"
-                  >
-                    Log in
-                  </Link>
-                )}
-              </li>
+
+
+                </div>
+              ) : (
+                <Link
+                  className="py-2 px-4 bg-blue-500 rounded-lg hover:bg-blue-600"
+                  to="/login"
+                >
+                  Log in
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
       </div>
     </div>
+    <ScrollToTop />
   </nav>
   );
 }
