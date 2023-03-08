@@ -10,8 +10,6 @@ import testiBG from "../../../assets/Hero/shape-2.65541c6a.png";
 import avaterBG1 from "../../../assets/assets/Avater/testimonial-left.png";
 import avaterBG2 from "../../../assets/assets/Avater/testimonial-right.png";
 import avater1 from "../../../assets/assets/Avater/testi-thumb-1.png";
-import avater2 from "../../../assets/assets/Avater/testi-thumb-2.png";
-import avater3 from "../../../assets/assets/Avater/testi-thumb-3.png";
 import workicon1 from "../../../assets/assets/works/work-1.png";
 import workicon2 from "../../../assets/assets/works/work-2.png";
 import workicon3 from "../../../assets/assets/works/work-3.png";

@@ -2,7 +2,7 @@ import { AiOutlineCloseCircle, } from "react-icons/ai";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { BiCategory } from 'react-icons/bi';
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const Leftside = ({ setCandidates, fetchData, setLoading, isOpen, setIsOpen }) => {
 	const submitButtonRef = useRef()

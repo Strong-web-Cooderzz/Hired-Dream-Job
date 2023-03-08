@@ -1,12 +1,11 @@
 import MarkdownIt from "markdown-it";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import MdEditor from 'react-markdown-editor-lite';
-import axios from "axios";
 
 const AccountClient = () => {
 	const { user } = useContext(AuthContext);
@@ -18,22 +17,7 @@ const AccountClient = () => {
 	}
 
 	const navigate = useNavigate();
-	const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  //creating IP state
-  const [ip, setIP] = useState("");
-
-  //creating function to load ip address from the API
-  const getData = async () => {
-    const res = await axios.get(
-      "https://api.ipdata.co/?api-key=965b4d07f1cd5df803c1a10e449db03ebb2a71222da2e643919112ba"
-    );
-    console.log(res.data.ip);
-    setIP(res.data.ip);
-  };
-  useEffect(() => {
-    //passing getData method to the lifecycle method
-    getData();
-  }, []);
+	const { register, handleSubmit } = useForm();
 	const handleFormSubmit = (data) => {
 		const userData = {
 			'fullName': user.displayName,

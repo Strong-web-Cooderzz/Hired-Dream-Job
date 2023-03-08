@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import { CategorySelect } from "./Select/CategorySelect";
-import { GenderSelect } from "./Select/GenderSelect";
 import Leftside from "./Sidebar/Leftside";
-import SingleCandidate from "./SIngleCandidate";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Loading from "../../Loading/Loading";
 

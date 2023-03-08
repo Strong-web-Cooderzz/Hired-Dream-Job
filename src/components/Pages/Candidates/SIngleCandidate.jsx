@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FiBookmark } from 'react-icons/fi';
 import { GiMoneyStack } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SingleCandidate = ({ candidate }) => {
-	const [date, setDate] = useState("");
+	// const [date, setDate] = useState("");
 	const [hover, setHover] = useState();
 
-	const { fullName, type, photo, candidateData, email, _id } = candidate
+	const { fullName, photo, candidateData, _id } = candidate
 	return (
 		<div>
 			<div

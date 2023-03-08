@@ -1,35 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { BiBookmark, BiCalendar, BiDollar, BiUser } from "react-icons/bi";
+import { BiBookmark, BiCalendar, BiUser } from "react-icons/bi";
 import { BsClock, BsCurrencyExchange } from "react-icons/bs";
 import { SlGraduation } from "react-icons/sl";
 import { IoLanguage } from "react-icons/io5";
 import {
   FaFacebookF,
   FaGithub,
-  FaInstagram,
-  FaLinkedin,
   FaLinkedinIn,
-  FaMoneyBill,
-  FaMoneyBillWave,
-  FaMoneyBillWaveAlt,
   FaTwitter,
 } from "react-icons/fa";
 import { GiMoneyStack, GiSandsOfTime } from "react-icons/gi";
 import { GoLocation } from "react-icons/go";
 import { GrMoney } from "react-icons/gr";
-import { Link, useParams } from "react-router-dom";
-import { FiFacebook, FiTwitter } from "react-icons/fi";
+import { useParams } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import moment from "moment";
 
 const Candidate = () => {
   const candidateId = useParams().id;
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [candidate, setCandidate] = useState([]);
   useEffect(() => {
     fetchData.get(`/candidate/${candidateId}`).then((response) => {
       setCandidate(response.data);
-      setLoading(false);
+      // setLoading(false);
       console.log(response.data);
     });
     // fetch(`https://hired-dream-job-server-sparmankhan.vercel.app/candidate/${candidateId}`)
@@ -38,7 +32,7 @@ const Candidate = () => {
     //     setCandidate(data)
     //     setLoading(false)
     //   });
-  }, []);
+  }, [candidateId]);
   console.log(candidate);
   return (
     <div>
