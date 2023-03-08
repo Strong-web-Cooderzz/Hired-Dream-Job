@@ -128,7 +128,7 @@ const AuthProvider = ({ children }) => {
 				setSocketConnected(true)
 			})
 		}
-	}, [socket])
+	}, [socketConnected])
 
 	return (
 		<AuthContext.Provider value={authInfo}>
