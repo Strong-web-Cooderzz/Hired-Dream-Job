@@ -42,11 +42,11 @@ export default function Comments({ post, hideComments, setHideComments, fetchPos
 	}
 
 	const handleDeleteComment = async () => {
-		if (token) {
+		if (user?.accessToken) {
 			setCommentLoading(true)
 			const response = await fetchData.delete('/delete-comment', {
 				headers: {
-					Authorization: `Bearer ${token}`
+					Authorization: `Bearer ${user?.accessToken}`
 				},
 				params: {
 					commentId,
