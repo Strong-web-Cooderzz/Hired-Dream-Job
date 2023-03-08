@@ -139,7 +139,7 @@ export const router = createBrowserRouter([
 				path: "/employer/:id",
 				element: <Employer />,
 			},
-			
+
 			{
 				path: '/blogs/:id',
 				element: <SingelArticles />
@@ -223,13 +223,34 @@ export const router = createBrowserRouter([
 	},
 	{
 		path: '/dashboard/admin',
-		element: <AdminDashboard />, children: [
-			{ path: '', element: <DashboardDetails /> },
-			{ path: 'users', element: <Users /> },
-			{ path: 'jobs', element: <Jobs /> },
-			{ path: 'blogs', element: <Blogs /> },
-			{ path: 'users/edit/:id', element: <ManageUsers />, loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`) },
-			{ path: 'jobs/edit/:id', element: <MangeAdminJob />, loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`) },
+		element: <AdminDashboard />,
+		children: [
+			{
+				path: '/',
+				element: <DashboardDetails />
+			},
+			{
+				path: '/users', 
+				element: <Users />
+			},
+			{
+				path: '/jobs', 
+				element: <Jobs />
+			},
+			{
+				path: '/blogs', 
+				element: <Blogs />
+			},
+			{
+				path: '/users/edit/:id', 
+				element: <ManageUsers />, 
+				loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`)
+			},
+			{
+				path: '/jobs/edit/:id', 
+				element: <MangeAdminJob />, 
+				loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`)
+			},
 		]
 	},
 	{
