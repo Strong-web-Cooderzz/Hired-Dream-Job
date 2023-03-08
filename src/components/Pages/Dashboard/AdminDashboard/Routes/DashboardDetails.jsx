@@ -1,11 +1,9 @@
-import React, { PureComponent, useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { BiUser } from "react-icons/bi";
 import fetchData from "../../../../../api/fetchData";
 import Loading from "../../../../Loading/Loading";
 import Chart from "./Chart";
-import PieCharts from "./PieChart";
-import PieChart from "./PieChart";
 
 const DashboardDetails = () => {
 	const [loading, setLoading] = useState(true)
@@ -16,7 +14,7 @@ const DashboardDetails = () => {
 		setLoading(true)
 		fetchData.get('/job-counter', {
 
-			})
+		})
 			.then(response => {
 				setJobs(response.data)
 				console.log(response.data)
@@ -78,6 +76,7 @@ const DashboardDetails = () => {
 							</div>
 						</div>
 
+						{/*
 						<div className="md:flex gap-2 w-full">
 							<div className="w-full md:w-1/2">
 								<div className="flex flex-col w-full py-2 px-4 my-2 bg-blue-100 text-blue-700">Total Users</div>
@@ -89,6 +88,7 @@ const DashboardDetails = () => {
 								<div className="flex flex-col w-full py-2 px-4 my-2 bg-blue-100 text-blue-700">Total Users</div>
 							</div>
 						</div>
+							*/}
 					</div>
 			}
 		</>

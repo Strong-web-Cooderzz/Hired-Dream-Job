@@ -10,46 +10,46 @@ import Loading from "../../../../Loading/Loading";
 import ConfirmModal from "../../../../shared/Modal/ConfirmModal";
 
 const Users = () => {
-	const { token} = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
   const [userType, setUserType] = useState("candidates");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dataType, setDataType] = useState("user");
   const [jobs, setJobs] = useState([]);
-	const [hidden, setHidden] = useState(true)
-	const [toBeDeletedUserId, setToBeDeletedUserId] = useState('')
+  const [hidden, setHidden] = useState(true)
+  const [toBeDeletedUserId, setToBeDeletedUserId] = useState('')
 
   useEffect(() => {
     setLoading(true);
-		fetchData(`/api/v1/get/users?type=${userType}`)
-		.then(response => {
+    fetchData(`/api/v1/get/users?type=${userType}`)
+      .then(response => {
         setUsers(response.data);
         setLoading(false);
-		})
+      })
   }, [userType, dataType]);
-     
-	const deleteUser = async () => {
-		fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`, {
-			headers: {
-				'Authorization': `Bearer ${token}`
-			}
-			})
-			.then(response => {
-				console.log(response)
-				if (response.data.acknowledged) {
-					setHidden(true)
-					toast.success('User deleted successfully')
-				}
-				if (result.status = 401) {
-					setHidden(true)
-					toast.error('You are not an admin')
-				}
-		})
-	}
-  
+
+  const deleteUser = async () => {
+    fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        console.log(response)
+        if (response.data.acknowledged) {
+          setHidden(true)
+          toast.success('User deleted successfully')
+        }
+        if (result.status = 401) {
+          setHidden(true)
+          toast.error('You are not an admin')
+        }
+      })
+  }
+
   return (
     <>
-			<ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={deleteUser}/>
+      <ConfirmModal hidden={hidden} setHidden={setHidden} confirmFunction={deleteUser} />
       {loading ? (
         <>
           <Loading />
@@ -94,20 +94,7 @@ const Users = () => {
                           <div className="w-32">
                             <select
                               onChange={(e) => setUserType(e.target.value)}
-                              className="form-select appearance-none
-      block
-      w-full
-      px-3
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                              className="form-select appearance-none block w-full px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                               aria-label="Default select example"
                             >
                               <option
@@ -183,12 +170,12 @@ const Users = () => {
                             </Link>
 
                             {/* User Action */}
- 
 
-                           <div className="flex justify-center">
-  <div>
-    <div className="dropstart relative">
-      {/* <button
+
+                            <div className="flex justify-center">
+                              <div>
+                                <div className="dropstart relative">
+                                  {/* <button
         className="
           dropdown-toggle
           px-6
@@ -218,17 +205,17 @@ const Users = () => {
       >
         Dropstart
       </button> */}
-      {/* Action BTN */}
-      <Link
-                                id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                className="h-full flex items-center dropdown-toggle w-full bg-rose-100 !px-2 !py-2 rounded-md text-rose-600 shadow-md hover:bg-rose-400 hover:text-white"
-                              >
-                                <BsListOl />
-                              </Link>
-      <ul
-        className="
+                                  {/* Action BTN */}
+                                  <Link
+                                    id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                    className="h-full flex items-center dropdown-toggle w-full bg-rose-100 !px-2 !py-2 rounded-md text-rose-600 shadow-md hover:bg-rose-400 hover:text-white"
+                                  >
+                                    <BsListOl />
+                                  </Link>
+                                  <ul
+                                    className="
           dropdown-menu
           min-w-max
           absolute
@@ -247,11 +234,11 @@ const Users = () => {
           bg-clip-padding
           border-none
         "
-        aria-labelledby="dropdownMenuButton1s"
-      >
-        <li>
-          <a
-            className="
+                                    aria-labelledby="dropdownMenuButton1s"
+                                  >
+                                    <li>
+                                      <a
+                                        className="
               dropdown-item
               text-sm
               py-2
@@ -265,15 +252,15 @@ const Users = () => {
               border-b-2
               hover:bg-gray-100
             "
-            href="#"
-            >
-              Ban User
-              </a
-          >
-        </li>
-        <li>
-          <a
-            className="
+                                        href="#"
+                                      >
+                                        Ban User
+                                      </a
+                                      >
+                                    </li>
+                                    <li>
+                                      <a
+                                        className="
               dropdown-item
               text-sm
               py-2
@@ -287,13 +274,13 @@ const Users = () => {
               border-b-2
               hover:bg-gray-100
             "
-            href="#"
-            >Block IP</a
-          >
-        </li>
-        <li>
-          <a
-            className="
+                                        href="#"
+                                      >Block IP</a
+                                      >
+                                    </li>
+                                    <li>
+                                      <a
+                                        className="
               dropdown-item
               text-sm
               py-2
@@ -307,15 +294,15 @@ const Users = () => {
               border-b-2
               hover:bg-blue-100
             "
-            href="#"
-            >
-               {user.type==='Candidate' ? 'Make Employer':'Make Candidate'}
-              </a
-          >
-        </li>
-        <li>
-          <a
-            className="
+                                        href="#"
+                                      >
+                                        {user.type === 'Candidate' ? 'Make Employer' : 'Make Candidate'}
+                                      </a
+                                      >
+                                    </li>
+                                    <li>
+                                      <a
+                                        className="
               dropdown-item
               text-sm
               py-2
@@ -329,15 +316,15 @@ const Users = () => {
               text-green-700
               hover:bg-green-100
             "
-            href="#"
-            >
-               Make Admin
-              </a
-          >
-        </li>
-        <li>
-          <a
-            className="
+                                        href="#"
+                                      >
+                                        Make Admin
+                                      </a
+                                      >
+                                    </li>
+                                    <li>
+                                      <a
+                                        className="
               dropdown-item
               text-sm
               py-2
@@ -350,21 +337,21 @@ const Users = () => {
               text-rose-700
               hover:bg-red-100
             "
-            href=""
-																					onClick={e => {
-																						e.preventDefault()
-																						setHidden(false)
-																						setToBeDeletedUserId(user._id)
-																					}}
-            >
-               Delete User
-              </a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+                                        href=""
+                                        onClick={e => {
+                                          e.preventDefault()
+                                          setHidden(false)
+                                          setToBeDeletedUserId(user._id)
+                                        }}
+                                      >
+                                        Delete User
+                                      </a
+                                      >
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
 
 
 
