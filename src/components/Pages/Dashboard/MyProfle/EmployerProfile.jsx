@@ -16,6 +16,8 @@ const EmployerProfile = () => {
   const [loading, setLoading] = useState(false);
   const [uploadingLoading, setUploadingLoading] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [modal, setModal] = useState(false)
+
   useEffect(() => {
     setLoading(true);
     axios
