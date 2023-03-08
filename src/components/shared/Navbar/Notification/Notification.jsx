@@ -25,7 +25,7 @@ export default function Notification() {
 				dispatch(addNotificationFromSocket(data))
 			});
 		}
-	}, [socketConnected]);
+	}, [socketConnected, dispatch, socket]);
 
 	function fetchNotification() {
 		fetchData.get('/notifications', {
@@ -47,7 +47,7 @@ export default function Notification() {
 
 	useEffect(() => {
 		fetchNotification()
-	}, [user])
+	}, [user, fetchNotification])
 
 	return (
 		<section>
@@ -102,7 +102,7 @@ export default function Notification() {
 					<div className="dropdown relative">
 						<a
 							className="dropdown-toggle flex items-center hidden-arrow"
-							href="#"
+							href=""
 							id="dropdownMenuButton2"
 							role="button"
 							data-bs-toggle="dropdown"
