@@ -49,7 +49,7 @@ const Register = () => {
           email: data.email,
           fullName: data.firstName + " " + data.lastName,
           type: data.type,
-          photo: imageData.url,
+          photo: imageData.data.url,
           password: data.password,
         };
         fetchData.post("/register", userData).then((response) => {
