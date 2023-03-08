@@ -11,7 +11,7 @@ import registerCompleted from '../../../../assets/Loatte/account-created.json'
 import { FaBullseye } from "react-icons/fa";
 
 const Register = () => {
-	const [registerLoading,setRegisterLoading] = useState(false)
+  const [registerLoading, setRegisterLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -30,15 +30,15 @@ const Register = () => {
   // we don't need it. Cause express can do that. So it will improve user experience
 
   const onSubmit = (data) => {
-	setRegisterLoading(true)
+    setRegisterLoading(true)
     const image = data.image[0];
     const formData = new FormData();
     formData.append("file", image);
     formData.append("upload_preset", "hired-dream-job");
     formData.append("cloud_name", "dcckbmhft");
 
-    const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
-    fetch(url, {
+    // const url = `https://api.cloudinary.com/v1_1/dcckbmhft/image/upload`;
+    fetch(`https://api.imgbb.com/1/upload?key=111086ae671f3d002b28cbaeab0c9580`, {
       method: "POST",
       body: formData,
     })
@@ -60,17 +60,17 @@ const Register = () => {
             .then((userCredential) => {
               console.log(userCredential);
               toast(<Lottie animationData={registerCompleted} loop={false} />);
-			  setRegisterLoading(false)
+              setRegisterLoading(false)
               if (data.type === "Candidate") {
                 navigate("/dashboard/profile");
               } else {
                 navigate("/dashboard/profile");
-				
               }
             })
             .catch((err) => {
-				setRegisterLoading(false)
-				console.log(err)});
+              setRegisterLoading(false)
+              console.log(err)
+            });
           console.log(data);
         });
       });
@@ -83,7 +83,7 @@ const Register = () => {
           <div className="w-full xl:w-3/4 lg:w-11/12 flex">
             <div className="w-full h-auto hidden lg:block lg:w-5/12 bg-cover rounded-l-lg ">
               <div className="flex items-center w-full h-full">
-			  <Lottie className="w-full" animationData={registerForm} loop={true} />
+                <Lottie className="w-full" animationData={registerForm} loop={true} />
               </div>
             </div>
             <div className="w-full lg:w-7/12 bg-white lg:p-5 rounded-lg lg:rounded-l-none">
@@ -254,7 +254,7 @@ const Register = () => {
                     className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
-                    {registerLoading?<>Account Creating... </>:'Sign Up'}
+                    {registerLoading ? <>Account Creating... </> : 'Sign Up'}
                   </button>
                 </div>
                 <hr className="mb-6 border-t" />
