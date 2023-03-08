@@ -10,6 +10,7 @@ import Loading from "../../../../Loading/Loading";
 import ConfirmModal from "../../../../shared/Modal/ConfirmModal";
 
 const Users = () => {
+  const {user} = useState(AuthContext)
   const [userType, setUserType] = useState("candidates");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
