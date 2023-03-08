@@ -226,28 +226,28 @@ export const router = createBrowserRouter([
 		element: <AdminDashboard />,
 		children: [
 			{
-				path: '/',
+				path: '/dashboard/admin',
 				element: <DashboardDetails />
 			},
 			{
-				path: '/users', 
+				path: '/dashboard/admin/users', 
 				element: <Users />
 			},
 			{
-				path: '/jobs', 
+				path: '/dashboard/admin/jobs', 
 				element: <Jobs />
 			},
 			{
-				path: '/blogs', 
+				path: '/dashboard/admin/blogs', 
 				element: <Blogs />
 			},
 			{
-				path: '/users/edit/:id', 
+				path: '/dashboard/admin/users/edit/:id', 
 				element: <ManageUsers />, 
 				loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`)
 			},
 			{
-				path: '/jobs/edit/:id', 
+				path: '/dashboard/admin/jobs/edit/:id', 
 				element: <MangeAdminJob />, 
 				loader: ({ params }) => fetch(`${import.meta.env.VITE_API}/jobs/${params.id}`)
 			},
