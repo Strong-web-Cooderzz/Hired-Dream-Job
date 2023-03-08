@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { FaAlignRight, FaUserCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "/logo.svg";
+// import logo from "/logo.svg";
+import logo from "../../../logo.svg"
 import ScrollToTop from "../../../ScrollUp/ScrollToTop";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Notification from "../Navbar/Notification/Notification";
