@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fetchData from "../../../api/fetchData";
 import { CategorySelect } from "./Select/CategorySelect";
 import { GenderSelect } from "./Select/GenderSelect";
@@ -10,6 +10,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import Loading from "../../Loading/Loading";
 
 const Candidates = () => {
+  const navigate = useNavigate()
   const [dataLoading, setDataLoading] = useState(true);
   const [candidates, setCandidates] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
