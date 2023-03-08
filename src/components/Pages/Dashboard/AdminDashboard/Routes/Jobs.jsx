@@ -1,11 +1,8 @@
-import { getAuth } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { BiTrash } from "react-icons/bi";
 import { BsPen, BsPencil } from "react-icons/bs";
-import { FiDelete } from "react-icons/fi";
 import { IoWarningOutline } from "react-icons/io5";
-import { TbUserOff } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import fetchData from "../../../../../api/fetchData";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
@@ -14,7 +11,6 @@ import Loading from "../../../../Loading/Loading";
 const Jobs = () => {
 	const { user } = useContext(AuthContext)
 	const [jobType, setJobType] = useState(true);
-	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [dataType, setDataType] = useState("user");
 	const [jobs, setJobs] = useState([]);
