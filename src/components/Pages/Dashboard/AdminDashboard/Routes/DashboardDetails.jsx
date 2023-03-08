@@ -16,7 +16,7 @@ const DashboardDetails = () => {
 
 		})
 			.then(response => {
-				setJobs(response.data)
+				setJobs(response.data.count)
 				console.log(response.data)
 				setLoading(false)
 			})
