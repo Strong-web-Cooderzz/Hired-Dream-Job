@@ -10,7 +10,6 @@ import Loading from "../../../../Loading/Loading";
 import ConfirmModal from "../../../../shared/Modal/ConfirmModal";
 
 const Users = () => {
-  const { token } = useContext(AuthContext)
   const [userType, setUserType] = useState("candidates");
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +30,7 @@ const Users = () => {
   const deleteUser = async () => {
     fetchData.delete(`/delete-user?id=${toBeDeletedUserId}`, {
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${user.accessToken}`
       }
     })
       .then(response => {
@@ -40,7 +39,7 @@ const Users = () => {
           setHidden(true)
           toast.success('User deleted successfully')
         }
-        if (result.status = 401) {
+        if (response.status = 401) {
           setHidden(true)
           toast.error('You are not an admin')
         }
