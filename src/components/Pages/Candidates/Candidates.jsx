@@ -61,6 +61,7 @@ const Candidates = () => {
             setCandidates={setCandidates}
             fetchData={fetchData}
             setLoading={setDataLoading}
+            setIsOpen={setIsOpen}
           />
           {/* Right side */}
           <div className="col-start-2 col-end-5">

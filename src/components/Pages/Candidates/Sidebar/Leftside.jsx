@@ -4,7 +4,7 @@ import { GoLocation } from "react-icons/go";
 import { BiCategory } from 'react-icons/bi';
 import { useRef, useState } from "react";
 
-const Leftside = ({ setCandidates, fetchData, setLoading, isOpen }) => {
+const Leftside = ({ setCandidates, fetchData, setLoading, isOpen, setIsOpen }) => {
 	const submitButtonRef = useRef()
 	const handleFormSubmit = e => {
 		e.preventDefault()
