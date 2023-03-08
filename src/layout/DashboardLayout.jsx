@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { set } from "react-hook-form";
+// import { set } from "react-hook-form";
 import { FaHome } from "react-icons/fa";
-import { FcMenu, FcTodoList } from "react-icons/fc";
+// import { FcMenu, FcTodoList } from "react-icons/fc";
 import { Navigate, NavLink, Outlet } from "react-router-dom";
-import AuthProvider, { AuthContext } from "../components/AuthProvider/AuthProvider";
+import { AuthContext } from "../components/AuthProvider/AuthProvider";
 import DashboardNavbar from "../components/shared/DashboardNavbar/DashboardNavbar";
 import DashboardSidebar from "../components/shared/DashboardSidebar/DashboardSidebar";
 
@@ -13,7 +13,7 @@ const DashboardLayout = () => {
 	const { dbUser } = useContext(AuthContext)
 	const { loading } = useContext(AuthContext)
 	console.log(dbUser);
-	const [side, setSide] = useState(false);
+	// const [side, setSide] = useState(false);
 	return (
 		<div className="w-full" >
 			<DashboardNavbar > </DashboardNavbar>

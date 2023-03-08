@@ -39,7 +39,7 @@ import Users from "../components/Pages/Dashboard/AdminDashboard/Routes/Users";
 import Jobs from "../components/Pages/Dashboard/AdminDashboard/Routes/Jobs";
 import DashboardDetails from "../components/Pages/Dashboard/AdminDashboard/Routes/DashboardDetails";
 import ManageUsers from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageUsers";
-import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJob";
+// import ManageAdminJob from "../components/Pages/Dashboard/EmployeeDashboard/ManageJobs/ManageJob";
 import MangeAdminJob from "../components/Pages/Dashboard/AdminDashboard/Routes/ManageJob";
 import Blogs from "../components/Pages/Dashboard/AdminDashboard/Routes/Blogs";
 import AppliedCandidates from './../components/Pages/Dashboard/EmployeeDashboard/AppliedCandidates/AppliedCandidates';
