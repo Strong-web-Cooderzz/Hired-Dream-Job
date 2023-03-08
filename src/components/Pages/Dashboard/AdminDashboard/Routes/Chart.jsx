@@ -45,23 +45,16 @@ const data = [
 
 export default class Chart extends PureComponent {
     static demoUrl = 'https://codesandbox.io/s/synchronized-line-charts-zc3nl';
-  
 
     render() {
       return (
         <div className='text-xs' style={{ width: '100%' }}> 
           <ResponsiveContainer width="100%" height={200}>
-            <LineChart
+            <LineChart className='mt-[10px] mr-[30px], ml-0 mb-0'
               width={500}
               height={200}
               data={data}
               syncId="anyId"
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis  dataKey="name" />
